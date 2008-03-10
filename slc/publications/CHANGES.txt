@@ -1,0 +1,9 @@
+1.0 beta1
+---------
+
+* Plone 3 compatibility. Removed the PublicationFolder concept and base completely on Linguaplone
+
+0.9 beta
+--------
+
+* initial release
