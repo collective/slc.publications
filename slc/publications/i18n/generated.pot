@@ -1,0 +1,313 @@
+# archgenxml generated POT File
+# SYSLAB.COM <schrempp@syslab.com>, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: Publications\n"
+"POT-Creation-Date: Fri Jan 25 12:00:38 2008\n"
+"PO-Revision-Date: Fri Jan 25 12:00:38 2008\n"
+"Last-Translator: SYSLAB.COM <schrempp@syslab.com>\n"
+"Language-Team: SYSLAB.COM <schrempp@syslab.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: latin1 utf-8\n"
+"Domain: Publications\n"
+
+#. Default: "The ISBN Number to order the publication - if available."
+#: Publication.py
+msgid "Publications_help_ISBN_number"
+msgstr ""
+
+#. Default: "The author of this publication. It is used as backup if the real author of the underlying PDF file displayed here is not set."
+#: Publication.py
+msgid "Publications_help_author"
+msgstr ""
+
+#. Default: "Add one chapter name per line. This will generate link objects pointing to anchors with that name inside the pdf document. Make sure that the chapternames are the same as the pdf web anchor names on your pdf."
+#: Publication.py
+msgid "Publications_help_chapters"
+msgstr ""
+
+#. Default: "A thumbnail image of this publication. It is used in overview listings and the publication view."
+#: Publication.py
+msgid "Publications_help_coverImage"
+msgstr ""
+
+#. Default: "The description of this publication. It is used as backup if the real description of the underlying PDF file displayed here is not set."
+#: Publication.py
+msgid "Publications_help_description"
+msgstr ""
+
+#. Default: "Upload the PDF file containing your publication here."
+#: Publication.py
+msgid "Publications_help_file"
+msgstr ""
+
+#. Default: "forsale"
+#: Publication.py
+msgid "Publications_help_forsale"
+msgstr ""
+
+#. Default: "The Id of this publication. This will show up in the URL of this publication."
+#: Publication.py
+msgid "Publications_help_id"
+msgstr ""
+
+#. Default: "Upload a textfile (ini style) where each section is named after a language abbreviation and contains the metadata keys and values that should be set on the publication files."
+#: Publication.py
+msgid "Publications_help_metadataUpload"
+msgstr ""
+
+#. Default: "Type the Order-Id (OPOCE) used to order the publication at the EU Bookshop. If you do so, a link to the EU Bookshop will be generated automatically."
+#: Publication.py
+msgid "Publications_help_order_id"
+msgstr ""
+
+#. Default: "Enter the owner password for the PDF if you want to parse its metadata and it is secured. This password is used as fallback if no password is specified on the publication file object itself."
+#: Publication.py
+msgid "Publications_help_ownerPassword"
+msgstr ""
+
+#. Default: "Select this to reparse all contained PDF files for properties. Note that this might overwrite the currently set values."
+#: Publication.py
+msgid "Publications_help_parsePDF"
+msgstr ""
+
+#. Default: "The date when this publication has been published."
+#: Publication.py
+msgid "Publications_help_publication_date"
+msgstr ""
+
+#. Default: "The Title of this publication. It is used as backup if the real title of the underlying PDF file displayed here is not set. It will then show up in listings and the breadcrumb trail."
+#: Publication.py
+msgid "Publications_help_title"
+msgstr ""
+
+#. Default: "Enter the user password for the PDF if you want to parse its metadata and it is secured. This password is used as fallback if no password is specified on the publication file object itself."
+#: Publication.py
+msgid "Publications_help_userPassword"
+msgstr ""
+
+#. Default: "ISBN-Number"
+#: Publication.py
+msgid "Publications_label_ISBN_number"
+msgstr ""
+
+#. Default: "Author"
+#: Publication.py
+msgid "Publications_label_author"
+msgstr ""
+
+#. Default: "Chapters"
+#: Publication.py
+msgid "Publications_label_chapters"
+msgstr ""
+
+#. Default: "Cover Image"
+#: Publication.py
+msgid "Publications_label_coverImage"
+msgstr ""
+
+#. Default: "Coverimg"
+#: Publication.py
+msgid "Publications_label_coverImg"
+msgstr ""
+
+#. Default: "Fallback Description"
+#: Publication.py
+msgid "Publications_label_description"
+msgstr ""
+
+#. Default: "Publication PDF File"
+#: Publication.py
+msgid "Publications_label_file"
+msgstr ""
+
+#. Default: "Publication for sale?"
+#: Publication.py
+msgid "Publications_label_forsale"
+msgstr ""
+
+#. Default: "ID"
+#: Publication.py
+msgid "Publications_label_id"
+msgstr ""
+
+#. Default: "Metadataupload"
+#: Publication.py
+msgid "Publications_label_metadataUpload"
+msgstr ""
+
+#. Default: "Order-ID"
+#: Publication.py
+msgid "Publications_label_order_id"
+msgstr ""
+
+#. Default: "Fallback Owner Password"
+#: Publication.py
+msgid "Publications_label_ownerPassword"
+msgstr ""
+
+#. Default: "Parse PDF Properties"
+#: Publication.py
+msgid "Publications_label_parsePDF"
+msgstr ""
+
+#. Default: "Publication date"
+#: Publication.py
+msgid "Publications_label_publication_date"
+msgstr ""
+
+#. Default: "Fallback Title"
+#: Publication.py
+msgid "Publications_label_title"
+msgstr ""
+
+#. Default: "Fallback User Password"
+#: Publication.py
+msgid "Publications_label_userPassword"
+msgstr ""
+
+#. Default: "The ISBN Number to order the publication - if available."
+#: Publication.py
+msgid "publications_help_ISBN_number"
+msgstr ""
+
+#. Default: "The author of this publication. It is used as backup if the real author of the underlying PDF file displayed here is not set."
+#: Publication.py
+msgid "publications_help_author"
+msgstr ""
+
+#. Default: "Add one chapter name per line. This will generate link objects pointing to anchors with that name inside the pdf document. Make sure that the chapternames are the same as the pdf web anchor names on your pdf."
+#: Publication.py
+msgid "publications_help_chapters"
+msgstr ""
+
+#. Default: "A thumbnail image of this publication. It is used in overview listings and the publication view."
+#: Publication.py
+msgid "publications_help_coverImage"
+msgstr ""
+
+#. Default: "The description of this publication. It is used as backup if the real description of the underlying PDF file displayed here is not set."
+#: Publication.py
+msgid "publications_help_description"
+msgstr ""
+
+#. Default: "Upload the PDF file containing your publication here."
+#: Publication.py
+msgid "publications_help_file"
+msgstr ""
+
+#. Default: "Check this if the publication can be bought in the bookshop as well."
+#: Publication.py
+msgid "publications_help_forsale"
+msgstr ""
+
+#. Default: "Upload a textfile (ini style) where each section is named after a language abbreviation and contains the metadata keys and values that should be set on the publication files."
+#: Publication.py
+msgid "publications_help_metadataUpload"
+msgstr ""
+
+#. Default: "Type the Order-Id (OPOCE) used to order the publication at the EU Bookshop. If you do so, a link to the EU Bookshop will be generated automatically."
+#: Publication.py
+msgid "publications_help_order_id"
+msgstr ""
+
+#. Default: "Enter the owner password for the PDF if you want to parse its metadata and it is secured. This password is used as fallback if no password is specified on the publication file object itself."
+#: Publication.py
+msgid "publications_help_ownerPassword"
+msgstr ""
+
+#. Default: "Select this to reparse all contained PDF files for properties. Note that this might overwrite the currently set values."
+#: Publication.py
+msgid "publications_help_parsePDF"
+msgstr ""
+
+#. Default: "The date when this publication has been published."
+#: Publication.py
+msgid "publications_help_publication_date"
+msgstr ""
+
+#. Default: "The Title of this publication. It is used as backup if the real title of the underlying PDF file displayed here is not set. It will then show up in listings and the breadcrumb trail."
+#: Publication.py
+msgid "publications_help_title"
+msgstr ""
+
+#. Default: "Enter the user password for the PDF if you want to parse its metadata and it is secured. This password is used as fallback if no password is specified on the publication file object itself."
+#: Publication.py
+msgid "publications_help_userPassword"
+msgstr ""
+
+#. Default: "ISBN-Number"
+#: Publication.py
+msgid "publications_label_ISBN_number"
+msgstr ""
+
+#. Default: "Author"
+#: Publication.py
+msgid "publications_label_author"
+msgstr ""
+
+#. Default: "Chapters"
+#: Publication.py
+msgid "publications_label_chapters"
+msgstr ""
+
+#. Default: "Cover Image"
+#: Publication.py
+msgid "publications_label_coverImage"
+msgstr ""
+
+#. Default: "Description"
+#: Publication.py
+msgid "publications_label_description"
+msgstr ""
+
+#. Default: "Publication PDF File"
+#: Publication.py
+msgid "publications_label_file"
+msgstr ""
+
+#. Default: "Publication for sale?"
+#: Publication.py
+msgid "publications_label_forsale"
+msgstr ""
+
+#. Default: "Metadataupload"
+#: Publication.py
+msgid "publications_label_metadataUpload"
+msgstr ""
+
+#. Default: "Order-ID"
+#: Publication.py
+msgid "publications_label_order_id"
+msgstr ""
+
+#. Default: "Fallback Owner Password"
+#: Publication.py
+msgid "publications_label_ownerPassword"
+msgstr ""
+
+#. Default: "Parse PDF Properties"
+#: Publication.py
+msgid "publications_label_parsePDF"
+msgstr ""
+
+#. Default: "Publication date"
+#: Publication.py
+msgid "publications_label_publication_date"
+msgstr ""
+
+#. Default: "Title"
+#: Publication.py
+msgid "publications_label_title"
+msgstr ""
+
+#. Default: "Fallback User Password"
+#: Publication.py
+msgid "publications_label_userPassword"
+msgstr ""
+

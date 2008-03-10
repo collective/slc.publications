@@ -1,0 +1,11 @@
+TODO
+
+- Currently the chapter links while translating are not set immediately onto the
+translation. You need to save once again. Find out why.
+
+- Review the permissions
+
+- Review the PDF Parser. There are still other formats in PDF Files, we do not
+  cover all of them. Find out why.
+
+- DONE: metadata.ini support for chapter links

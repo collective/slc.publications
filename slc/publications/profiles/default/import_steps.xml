@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<import-steps>
+
+<import-step 
+    id="publications-GS-dependencies" 
+    handler="slc.publications.setuphandlers.installGSDependencies"
+    title="Dependend GS profiles for publications"
+    version="2008-03-10T13:20:40.487669">
+   <dependency step="plone-final"/>
+   <dependency step="publications-QI-dependencies"/>
+   Install Generic Setup profile dependencies for publications
+ </import-step>
+
+ <import-step 
+    id="publications-QI-dependencies" 
+    handler="slc.publications.setuphandlers.installQIDependencies"
+    title="Dependend QI installables for publications"
+    version="2008-03-10T13:20:40.487669">
+   Install quickinstaller dependencies for publications
+ </import-step>
+ 
+     
+
+
+ <import-step 
+    id="publications-postInstall" 
+    handler="slc.publications.setuphandlers.postInstall"
+    title="manual coded post-install for publications"
+    version="2008-03-10T13:20:40.487669">
+   <dependency step="publications-QI-dependencies"/>
+   manual coded post-install for publications
+ </import-step>
+
+
+</import-steps>
+ 
