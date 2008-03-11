@@ -18,10 +18,9 @@ except ImportError:
 else:
     HAS_LINGUAPLONE = True
 
+import ConfigParser, StringIO, tempfile, os, urllib, logging, interfaces
 from zope.interface import implements
-import interfaces
 from Acquisition import aq_base, aq_inner, aq_parent
-import ConfigParser, StringIO, tempfile, os, urllib, logging
 from ComputedAttribute import ComputedAttribute
 from DateTime import DateTime
 
@@ -259,13 +258,15 @@ Publication_schema = ATFolderSchema.copy() + \
     schema.copy()
 
 
-class Publication(ATFolder, ATFile,  ATFolder):
+class Publication(ATFile, ATFolder):
     """ Publications Content Type
     """
-    security = ClassSecurityInfo()
     implements(interfaces.IPublication)
+    security = ClassSecurityInfo()
 
-    meta_type = 'Publication'
+    archetype_name  = 'Publication'
+    portal_type     = 'Publication'
+    meta_type       = 'Publication'
     _at_rename_after_creation = True
 
     schema = Publication_schema
@@ -530,170 +531,6 @@ class Publication(ATFolder, ATFile,  ATFolder):
                 return I
 
         return self.getCoverImage()
-
-    security.declareProtected(permissions.ModifyPortalContent, 'parsePDFProperties')
-    def parsePDFProperties(self):
-        """
-        looks in PDF files for metadata and set it to the object
-        """
-
-        def attrFallback(*args, **kwargs):
-            for a in args:
-                if a.strip() !='':
-                    return a
-
-
-        # helper to do some logging
-        def log(level, error):
-            error = 'File: '+error
-            zLOG.LOG('Publication Product', level, 'Parsing PDF Metadata', detail=error)
-
-        # Fetch some PDF Parsing Properties from us or the Publication object, if not set
-        opass = self._fetchAttrValue('getOwnerPassword').strip()
-        upass = self._fetchAttrValue('getUserPassword').strip()
-
-
-        statement = "pdfinfo -meta"
-        if opass !="":
-            statement += ' -opw ' + opass
-        if upass !="":
-            statement += ' -upw ' + upass
-
-        # write a file and start pdfinfo
-        tmp_pdf = tempfile.mkstemp(suffix='.pdf')
-        fd = open(tmp_pdf[1], 'w')
-        fd.write(str(self.getFile()))
-        fd.close()
-
-        statement += ' '+tmp_pdf[1]
-        log(zLOG.BLATHER, 'Statement: '+statement)
-        ph = os.popen4(statement)
-
-        # get the result
-        result = ph[1].read()
-        log(zLOG.BLATHER, 'METADATA:\n%s ' % result)
-        ph[0].close()
-        ph[1].close()
-
-        os.remove(tmp_pdf[1])
-
-        # check for errors or encryption
-        if result.startswith('Error'):
-            error =  result.split('\n')[0]
-            log(zLOG.ERROR, error)
-        crypt_patt = re.compile('Encrypted:.*?copy:no', re.I)
-        mobj = crypt_patt.search(result, 1)
-        if mobj is not None:
-            error = "Error: PDF is encrypted"
-            log(zLOG.ERROR, error)
-
-        # everything is fine, parse the meta data
-        # caution: do not use the metalist, it's not unicode!
-        METADATA = result.split('Metadata:')
-        if len(METADATA)>1:
-            metalist, metaxml = METADATA
-        else:
-            metalist, metaxml = (result, '')
-        meta_map = {}
-
-        # Hooray, metadata in the list part is not the same as the metadata in xml. Uff.
-        # But metalist may not be unicode. Unbelievable. Lets get it anyway..
-        list_map = {}
-        for line in metalist.split("\n"):
-            elems = line.split(":")
-            if len (elems)>1:
-                k = elems[0].strip()
-                v = ":".join(elems[1:]).strip()
-            else:
-                continue
-            list_map[k] = v
-        # get metadata out of the xml-part
-        patt_list = []
-        patt_list.append( ('Keywords', "<pdf:Keywords>(.*?)</pdf:Keywords>") )
-        patt_list.append( ('Keywords', "pdf:Keywords='(.*?)'") )
-        patt_list.append( ('Language', "<pdf:Language>(.*?)</pdf:Language>") )
-        patt_list.append( ('Language', "pdf:Language='(.*?)'") )
-        patt_list.append( ('UUID', "xapMM:DocumentID='uuid:(.*?)'") )
-        patt_list.append( ('UUID', 'rdf:about="uuid:(.*?)"') )
-        patt_list.append( ('CreationDate', "xap:CreateDate='(.*?)'") )
-        patt_list.append( ('CreationDate', "<xap:CreateDate>(.*?)</xap:CreateDate>") )
-        patt_list.append( ('ModificationDate', "xap:ModifyDate='(.*?)'") )
-        patt_list.append( ('ModificationDate', "<xap:ModifyDate>(.*?)</xap:ModifyDate>") )
-        patt_list.append( ('MetadataDate', "xap:MetadataDate='(.*?)'") )
-        patt_list.append( ('MetadataDate', "<xap:MetadataDate>(.*?)</xap:MetadataDate>") )
-        patt_list.append( ('Rights Webstatement', "<xapRights:WebStatement>(.*?)</xapRights:WebStatement>") )
-        patt_list.append( ('Producer', "<pdf:Producer>(.*?)</pdf:Producer>") )
-        patt_list.append( ('CreatorTool', "<xap:CreatorTool>(.*?)</xap:CreatorTool>") )
-        patt_list.append( ('Title', "<dc:title>(.*?)</dc:title>") )
-        patt_list.append( ('Description', "<dc:description>(.*?)</dc:description>") )
-        patt_list.append( ('Rights', "<dc:rights>(.*?)</dc:rights>") )
-        patt_list.append( ('Format', "<dc:format>(.*?)</dc:format>") )
-        patt_list.append( ('Creator', "<dc:creator>(.*?)</dc:creator>") )
-        patt_list.append( ('OPOCE', "pdfx:OPOCE='(.*?)'") )
-        patt_list.append( ('OPOCE', "<pdfx:OPOCE>(.*?)</pdfx:OPOCE>") )
-
-        for patt in patt_list:
-            pobj = re.compile(patt[1], re.I | re.S)
-            mobj = pobj.search(metaxml, 1)
-            if mobj is not None:
-                value = re.sub('<.*?>', '', mobj.group(1))
-                meta_map[patt[0].strip()] = value.strip()
-            else:
-                blather = "No matches for "+ str(patt[1])
-                log(zLOG.BLATHER, blather)
-
-
-
-        # get the user-defined meta-data
-        add_patt = re.compile("pdfx:(.*?)='(.*?)'", re.I|re.S)
-        for name, value in add_patt.findall(metaxml):
-            meta_map[name.strip()] = value
-        # Another format
-        add_patt = re.compile("pdfx:(.*?)>(.*?)</pdfx:", re.I|re.S)
-        for name, value in add_patt.findall(metaxml):
-            meta_map[name.strip()] = value
-
-        # make the author and subject to a tuple of values
-        if type(meta_map.get('Author', '')) != TupleType:
-            kw = meta_map.get('Author', '').split(";")
-            meta_map['Author'] = tuple(kw)
-        if type(meta_map.get('Keywords', '')) != TupleType:
-            kw = meta_map.get('Keywords', '').split(";")
-            meta_map['Keywords'] = tuple(kw)
-
-
-        for key in meta_map:
-            meta_data = meta_map[key]
-            if not meta_data:
-                continue
-            # use the appropriate dublin-core mutators
-            if key.upper() == "TITLE":
-                if not (self.getTitle() and meta_data ==''):
-                    self.setTitle(meta_data)
-            elif key.upper() in ["SUBJECT", "KEYWORDS"]:
-                self.setSubject(meta_data)
-            elif key.upper() == "DESCRIPTION":
-                self.setDescription(meta_data)
-            elif key.upper() == "CONTRIBUTORS":
-                self.setContributors(meta_data)
-            elif key.upper() in ("MODIFICATION_DATE", "MODIFICATIONDATE"):
-                self.setModificationDate(meta_data)
-            elif key.upper() in ("EXPIRATION_DATE", "EXPIRATIONDATE"):
-                self.setExpirationDate(meta_data)
-            elif key.upper() == "EFFECTIVE_DATE":
-                self.setEffectiveDate(meta_data)
-            elif key.upper() == "RIGHTS":
-                self.setRights(meta_data)
-            elif key.upper() == "PUBLISHER":
-                self.setPublisher(meta_data)
-            elif key.upper() == "LANGUAGE":
-                self.setLanguage(meta_data)
-            elif key.upper() == "FORMAT":
-                self.setFormat(meta_data)
-            elif key.upper() == "OPOCE":
-                self.setOrder_id(meta_data)
-#                if len(meta_data) > 3 and self.getLanguage()=='':
-    # Manually created methods
 
     security.declareProtected(permissions.View, 'getImage')
     def getImage(self):

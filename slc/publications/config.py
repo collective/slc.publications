@@ -19,7 +19,7 @@ CEILING_DATE = DateTime("2037/01/01") # never expires
 DEFAULT_RIGHTS = "European Agency for Safety and Health at Work"
 
 
-PROJECTNAME = "publications"
+PROJECTNAME = "slc.publications"
 
 # Permissions
 DEFAULT_ADD_CONTENT_PERMISSION = "Add portal content"

@@ -1,10 +1,11 @@
 <?xml version="1.0"?>
 <object name="Publication"
         meta_type="Factory-based Type Information with dynamic views"
-        xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+        xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+        i18n:domain="slc.publications">
    
- <property name="title">Publication</property>
- <property name="description"></property>
+ <property name="title" i18n:translate="">Publication</property>
+ <property name="description" i18n:translate="">A content type to store publications in PDF format</property>
  <property name="content_icon">publication_icon.gif</property>
  <property name="content_meta_type">Publication</property>
  <property name="product">slc.publications</property>
@@ -24,9 +25,8 @@
  <property name="default_view_fallback">False</property>
  <alias from="(Default)" to="(dynamic view)"/>
  <alias from="view" to="(selected layout)"/>
- <alias from="edit" to="base_edit"/>
- <alias from="properties" to="base_metadata"/>
- <alias from="sharing" to="folder_localrole_form"/>
+ <alias from="edit" to="atct_edit"/>
+ <alias from="sharing" to="@@sharing"/>
  <action title="View" 
          action_id="view"
          category="object" 
