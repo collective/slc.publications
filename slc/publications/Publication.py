@@ -18,7 +18,8 @@ except ImportError:
 else:
     HAS_LINGUAPLONE = True
 
-import ConfigParser, StringIO, tempfile, os, urllib, logging, interfaces
+import ConfigParser, StringIO, tempfile, os, urllib, logging, interfaces, re
+from types import *
 from zope.interface import implements
 from Acquisition import aq_base, aq_inner, aq_parent
 from ComputedAttribute import ComputedAttribute
@@ -298,8 +299,11 @@ class Publication(ATFile, ATFolder):
                 self._processChapterSection(section, meta)
             else: # section is only a language abbrev like [en]
                 self._processMainSection(section, meta)
-        return ERR
 
+        if ERR != []:                  
+            return "\n".join(ERR)
+            
+            
     security.declarePublic('generateImage')
     def generateImage(self):
         """
@@ -361,12 +365,6 @@ class Publication(ATFile, ATFolder):
                 if a.strip() !='':
                     return a
 
-
-        # helper to do some logging
-        def log(level, error):
-            error = 'File: '+error
-            zLOG.LOG('Publication Product', level, 'Parsing PDF Metadata', detail=error)
-
         # Fetch some PDF Parsing Properties from us or the Publication object, if not set
         opass = self._fetchAttrValue('getOwnerPassword').strip()
         upass = self._fetchAttrValue('getUserPassword').strip()
@@ -385,12 +383,12 @@ class Publication(ATFile, ATFolder):
         fd.close()
 
         statement += ' '+tmp_pdf[1]
-        log(zLOG.BLATHER, 'Statement: '+statement)
+        logger.debug('Statement: %s' % statement)
         ph = os.popen4(statement)
 
         # get the result
         result = ph[1].read()
-        log(zLOG.BLATHER, 'METADATA:\n%s ' % result)
+        logger.debug('METADATA:\n%s ' % result)
         ph[0].close()
         ph[1].close()
 
@@ -399,12 +397,12 @@ class Publication(ATFile, ATFolder):
         # check for errors or encryption
         if result.startswith('Error'):
             error =  result.split('\n')[0]
-            log(zLOG.ERROR, error)
+            logger.error("Error in pdfinfo conversion: %s" % error)
         crypt_patt = re.compile('Encrypted:.*?copy:no', re.I)
         mobj = crypt_patt.search(result, 1)
         if mobj is not None:
             error = "Error: PDF is encrypted"
-            log(zLOG.ERROR, error)
+            logger.error(error)
 
         # everything is fine, parse the meta data
         # caution: do not use the metalist, it's not unicode!
@@ -459,7 +457,7 @@ class Publication(ATFile, ATFolder):
                 meta_map[patt[0].strip()] = value.strip()
             else:
                 blather = "No matches for "+ str(patt[1])
-                log(zLOG.BLATHER, blather)
+                logger.debug(blather)
 
 
 
@@ -479,7 +477,6 @@ class Publication(ATFile, ATFolder):
         if type(meta_map.get('Keywords', '')) != TupleType:
             kw = meta_map.get('Keywords', '').split(";")
             meta_map['Keywords'] = tuple(kw)
-
 
         for key in meta_map:
             meta_data = meta_map[key]
@@ -506,13 +503,58 @@ class Publication(ATFile, ATFolder):
             elif key.upper() == "PUBLISHER":
                 self.setPublisher(meta_data)
             elif key.upper() == "LANGUAGE":
-                self.setLanguage(meta_data)
+                if not self.Language():
+                    self.setLanguage(meta_data)
             elif key.upper() == "FORMAT":
                 self.setFormat(meta_data)
             elif key.upper() == "OPOCE":
                 self.setOrder_id(meta_data)
-#                if len(meta_data) > 3 and self.getLanguage()=='':
+    
+        # If the language is given in the filename extension, we consider that as 
+        # most explicit
+        
+        l = self.guessLanguage()
+        if l and not self.Language():
+            self.setLanguage(l)
+        
+        return 
+        
 
+    def guessLanguage(self):
+        """
+        try to find a language abbreviation in the string
+        acceptable is a two letter language abbreviation at the start of the string followed by an _
+        or at the end of the string prefixed by an _ just before the extension
+        """
+        def findAbbrev(id):
+            if len(id)>3 and id[2] in ['_', '-']:
+                lang = id[0:2].lower()
+                if lang in langs:
+                    return lang
+            if len(id)>3 and '.' in id:
+                elems = id.split('.')
+                filename = ".".join(elems[:-1])
+                if len(filename)>3 and filename[-3] in ['_', '-']:
+                    lang = filename[-2:].strip()
+                    if lang in langs:
+                        return lang
+                elif len(filename)==2:
+                    lang = filename
+                    if lang in langs:
+                        return lang
+
+
+
+        language_tool = self.portal_languages
+        langs = language_tool.getSupportedLanguages()
+        langbyid = findAbbrev(self.getId())
+        if langbyid in langs:
+            return langbyid
+        langbyfileid = findAbbrev(self.file.filename)
+        if langbyfileid in langs:
+            return langbyfileid
+
+        return ''
 
     security.declarePublic('importCoverImage')
     def importCoverImage(self):

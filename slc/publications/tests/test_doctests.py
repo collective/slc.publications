@@ -4,10 +4,10 @@ import glob
 import doctest
 import unittest
 from Globals import package_home
-from base import PublicationProductFunctionalTestCase
+from base import PublicationFunctionalTestCase
 from Testing.ZopeTestCase import FunctionalDocFileSuite as Suite
 
-from Products.PublicationProduct.config import product_globals
+from slc.publications.config import product_globals
 
 OPTIONFLAGS = (doctest.REPORT_ONLY_FIRST_FAILURE |
                doctest.ELLIPSIS |
@@ -28,7 +28,7 @@ def test_suite():
     return unittest.TestSuite(
         [Suite('doc/'+os.path.basename(filename),
                optionflags=OPTIONFLAGS,
-               package='Products.PublicationProduct',
-               test_class=PublicationProductFunctionalTestCase)
+               package='slc.publications',
+               test_class=PublicationFunctionalTestCase)
          for filename in filenames]
         )
