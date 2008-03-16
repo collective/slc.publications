@@ -9,4 +9,16 @@
 
     <include file="skins.zcml" />
 
+    <utility
+        name="publication"
+        factory=".descriptors.PublicationDescriptor"
+        />
+
+    <browser:page
+        for=".interfaces.IPublication"
+        name="publication_view"
+        permission="zope2.View"
+        template="publication.pt"
+        />
+
 </configure>
