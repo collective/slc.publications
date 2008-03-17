@@ -46,7 +46,7 @@ PUBLICATION_SORT_CRITERIA.add('Title', 'Title')
 PUBLICATION_SORT_CRITERIA.add('getPublication_date', 'Publication Date')
 PUBLICATION_SORT_CRITERIA.add('getOrder_id', 'Order-ID')
 
-AUTHOR = "European Agency for Safety and Health at Work" # Set your default author here
+AUTHOR = u"European Agency for Safety and Health at Work" # Set your default author here
 DFORMAT = '%Y/%m/%d' # date format for date-widgets
 SHOW_HM = 1 # show hour and minute in edit-macro for date-widgets
 

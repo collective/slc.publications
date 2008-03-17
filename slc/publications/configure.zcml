@@ -6,13 +6,48 @@
     <five:registerPackage package="." initialize=".initialize" />
 
     <include file="profiles.zcml" />
-
     <include file="skins.zcml" />
 
+    <include package=".browser" />
+
+
+    <class class="Products.ATContentTypes.content.topic.ATTopic">
+        <implements interface="slc.publications.interfaces.IPublicationContainerEnhanced" />
+    </class>
+    
+    <class class="Products.ATContentTypes.content.folder.ATFolder">
+        <implements interface="slc.publications.interfaces.IPublicationContainerEnhanced" />
+    </class>
+    
+    <class class="Products.ATContentTypes.content.folder.ATBTreeFolder">
+        <implements interface="slc.publications.interfaces.IPublicationContainerEnhanced" />
+    </class>
+    
+    <class class="Products.ATContentTypes.content.file.ATFile">
+        <implements interface="slc.publications.interfaces.IPublicationEnhanced" />
+    </class>
+    
+    <class class="plone.app.blob.content.ATBlob">
+        <implements interface="slc.publications.interfaces.IPublicationEnhanced" />
+    </class>
+
+
     <utility
-        name="publication"
+        name="slc.publications.Publication"
         factory=".descriptors.PublicationDescriptor"
         />
+
+    <utility
+        name="slc.publications.FolderPublicationContainer"
+        factory=".descriptors.FolderPublicationContainerDescriptor" />
+
+    <utility
+        name="slc.publications.LargeFolderPublicationContainer"
+        factory=".descriptors.LargeFolderPublicationContainerDescriptor" />
+
+    <utility
+        name="slc.publications.TopicPublicationContainer"
+        factory=".descriptors.TopicPublicationContainerDescriptor" />
 
     <browser:page
         for=".interfaces.IPublication"

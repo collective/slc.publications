@@ -1,0 +1,57 @@
+<configure
+    xmlns="http://namespaces.zope.org/browser"
+    xmlns:zope="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    i18n_domain="slc.publications">
+    
+      
+      
+  <page
+      name="publication-container.html"
+      for="slc.publications.interfaces.IPublicationContainerEnhanced"
+      permission="zope2.View"
+      template="publication-container.pt"
+      class=".publication.PublicationContainerView"
+      allowed_attributes="macros"
+      />
+      
+            
+    <!-- This is the new default view for the file object. 
+         It uses the publication_view as helper -->      
+  <page
+      name="file_view"
+      template="publication.pt"
+      for="slc.publications.interfaces.IPublicationEnhanced"
+      class=".publication.PublicationPageView"
+      permission="zope2.View"
+      />
+      
+  <page
+      name="publication_view"
+      class=".publication.PublicationView"
+      allowed_interface=".publication.IPublicationView"
+      for="slc.publications.interfaces.IPublication"
+      permission="zope2.View"
+      />
+      
+  <page
+      name="atct_edit"
+      for="slc.publications.interfaces.IPublicationEnhanced"
+      permission="cmf.ModifyPortalContent"
+      class=".publication.PublicationEditForm"
+      />
+
+  <page
+      name="publication_edit_macros"
+      for="*"
+      permission="cmf.ModifyPortalContent"
+      class=".publication.PublicationEditMacros"
+      allowed_attributes="macros"
+      />
+      
+  <zope:adapter 
+        factory="..displays.PublicationContainerDynamicViews"
+        />      
+      
+</configure>
+      

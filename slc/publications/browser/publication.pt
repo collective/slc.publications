@@ -1,0 +1,221 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US"
+      lang="en-US"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+
+
+<metal:cssslot fill-slot="css_slot">
+  <style type="text/css" media="all" tal:condition="exists: portal/publications_styles.css"
+         tal:content="string:@import url($portal_url/publications_styles.css);">
+  </style>
+</metal:cssslot>
+
+<body>
+
+<div metal:fill-slot="main"
+        tal:define="
+        errors options/state/getErrors | nothing;
+        Iterator python: modules['Products.Archetypes'].IndexIterator;
+        tabindex tabindex|python: Iterator(pos=7000);
+        schematas here/Schemata;
+        fieldsets python: [key for key in schematas.keys() if key != 'metadata'];
+        default_fieldset python:(not schematas or schematas.has_key('default')) and 'default' or fieldsets[0];
+        fieldset request/fieldset|options/fieldset|default_fieldset;
+        fields python: schematas[fieldset].editableFields(here);
+        lockable python: hasattr(here, 'wl_isLocked');
+        isLocked python: lockable and here.wl_isLocked();
+        css python: here.getUniqueWidgetAttr(fields, 'helper_css');
+        js python: here.getUniqueWidgetAttr(fields, 'helper_js');
+        mode string:view;
+        canonical here/getCanonical;
+        ">
+
+    <style type="text/css" src="publication_styles.css"></style>
+
+    <h1>
+        <span tal:replace="here/Title">Title of the Publication</span>
+    </h1>
+
+
+    <div class="field publicationImage"
+         tal:condition="here/importCoverImage | nothing">
+        <img src="" 
+             tal:define="img python:view.getCoverImage()" 
+             tal:replace="structure img/tag" tal:on-error="nothing">
+    </div>
+
+    <div class="publicationText">
+
+        <div class="publicationDescription">
+            <metal:fieldMacro use-macro="python: here.widget('description', mode=mode)" />
+        </div>
+
+
+        <!--div class="publicationField"
+             tal:define="fn string:ISBN_number;
+                         field python:here.getField(fn)"
+             tal:condition="view/getISBN_number">
+            <strong tal:content="python: field.widget.Label(here)" />:
+            <metal:fieldMacro use-macro="python: here.widget(fn, mode=mode)" />
+        </div>
+
+        <div class="publicationField"
+             tal:condition="here/getAuthor"
+             tal:define="fn string:author; field python:here.getField(fn)">
+            <strong tal:content="python: field.widget.Label(here)" />:
+            <metal:fieldMacro use-macro="python: here.widget(fn, mode=mode)" />
+        </div>
+        <div class="publicationField"
+             tal:condition="here/getPublication_date"
+             tal:define="fn string:publication_date; field python:here.getField(fn)">
+
+            <strong tal:content="python: field.widget.Label(here)" />:
+            <span tal:replace="python:toLocalizedTime(here.getPublication_date())"/>
+        </div-->
+
+        <div class="publicationField"
+             tal:define="icon here/file/getBestIcon | nothing"
+             tal:condition="here/get_size">
+
+            <a href="" tal:attributes="href string:${here/absolute_url}">
+                <strong i18n:domain="Publications" i18n:translate="label_download_full_publication">Download the full publication as PDF</strong>
+                <img tal:condition="icon" src=""
+                     tal:attributes="src string:${here/portal_url}/$icon"/>
+            </a>
+            <tal:size content="structure python:'&nbsp; (%s KB)' % (here.get_size() / 1024)">0Kb</tal:size>
+        </div>
+
+
+        <!--div tal:condition="here/getOrder_id"
+             class="publicationOrder"
+             tal:define="order_id here/getOrder_id">
+
+            <div class="publicationField" style="float:left">
+             <strong i18n:domain="Publications" i18n:translate="label_opoce"> OPOCE Catalog number:</strong>
+             <span tal:replace="order_id" />
+                <br />
+             <strong i18n:domain="Publications" i18n:translate="help_opoce">Order a printed copy of this document!</strong>
+            </div>
+
+            <div style="float:left" class="publicationOrderButton">
+               <a href=""
+                      target="_blank"
+                      alt="Order a printed copy at EU-Bookshop"
+                      tal:attributes="href     string:http://bookshop.europa.eu/eGetRecords?Template=Test_EUB/en_publication_details&amp;CATNBR=$order_id" >
+                          <img src="eu_bookshop.gif"
+                               alt="EU Bookshop: You can order a printed copy of this document"
+                               title="EU Bookshop: You can order a printed copy of this document">
+               </a>
+            </div>
+            <div class="visualClear"></div>
+        </div-->
+
+        <div>
+            <span style="float:right" class="discreet"
+                  tal:condition="python:here.portal_membership.checkPermission('Modify portal content', here )">
+                <a tal:attributes="href string:${here/absolute_url}/viewMetadata">View Metadata File</a><br />
+                <a tal:attributes="href string:${here/absolute_url}/downloadMetadata">Download Metadata File</a>
+            </span>
+        </div>
+
+        <div class="visualClear"></div>
+
+        <div>&nbsp;</div>
+        <tal:comment replace="nothing">
+            Show this box only when there are more than this translation is available
+        </tal:comment>
+
+        <div class="publicationLanguageBox"
+             tal:define="translations here/getTranslations"
+             tal:condition="python: len(translations) > 0">
+            <span i18n:domain="Publications" i18n:translate="label_available_in">Available in</span>:
+                <tal:block define="lang_tool nocall: here/portal_languages;
+                                   url here/absolute_url;
+                                   lang_codes translations/keys;
+                                   dummy python: lang_codes.sort()"
+                           repeat="lang lang_codes">
+                    <a href="" tal:attributes="href python: translations[lang][0].absolute_url()"
+                       tal:content="python: '[%s]' % lang_tool.getNameForLanguageCode(lang)" />
+                </tal:block>
+        </div>
+
+
+
+
+        <!--div id="chapterlisting"
+             tal:define="LINKS here/getLinksByLanguage"
+             tal:condition="LINKS">
+
+            <h2 i18n:translate="heading_chapterlisting">Chapters in this Publication</h2>
+            <tal:repeat repeat="link LINKS">
+                <h3>
+                    <a href="" tal:attributes="href link/getRemoteUrl" tal:content="link/Title"></a>
+                </h3>
+
+                <tal:block condition="link/Description">
+                    <span tal:replace="link/Description"/>
+                    <a href="" tal:attributes="href link/getRemoteUrl" i18n:translate="box_morelink">Read more ...</a>
+                </tal:block>
+
+            </tal:repeat>
+        </div-->
+
+    </div>
+
+    <br clear="all" />
+
+
+    <!--div id="related_publications_block"
+         tal:condition="PUBS"
+         tal:define="PUBS python:here.fetchRelatedPublications(limit=3);">
+
+        <div id="related_pubs_heading">
+            <h2>Related Publications</h2>
+        </div>
+
+        <div class="publicationBlock" tal:repeat="elem PUBS">
+            <span tal:define="publication python:elem.getObject();
+                              file nocall:publication/getPublicationFile">
+            <div class="publicationImage"
+                 tal:condition="python:publication.importCoverImage() is not None">
+                 <img src="coverImage"
+                      tal:condition="publication/coverImage | nothing"
+                      tal:attributes="src string:${publication/absolute_url}/coverImage;
+                                      alt string:Cover Image of Publication ${publication/getId}"
+                      alt="Cover Image of Publication" width="80" />
+            </div>
+            <div class="publicationText">
+                <h2>
+                    <a href="" tal:attributes="href publication/absolute_url">
+                    <span tal:content="structure publication/getTitleFallback" tal:on-error="here/Title" />
+                    </a>
+                </h2>
+            </div>
+
+            <div class="publicationText"
+                     tal:content="structure publication/getDescriptionFallback"
+                     tal:on-error="here/Description" />
+                <br clear="all" />
+            </span>
+
+        </div>
+
+        <div id="more_pubs_line"
+             tal:define="keywords here/Subjects">
+            Show more publications on
+            <span tal:repeat="key keywords" tal:omit-tag="">
+                <a tal:attributes="href string:show_publications_by_keyword?keywords=$key"
+                   tal:content="python:key.capitalize().replace('_',' ')" />
+               <span tal:replace="string:&" tal:condition="not:repeat/key/end"/>
+            </span>
+        </div>
+
+    </div-->
+
+
+
+
+</div>
+
+</body>
+</html>
