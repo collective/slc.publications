@@ -1,11 +1,16 @@
 from zope import interface
+from zope import component
 from slc.publications import interfaces
 from Products.ATContentTypes import interface as atctifaces
+from plone.app.blob.interfaces import IATBlob
 try:
     from zope.app.annotation import interfaces as annointerfaces
 except ImportError, err:
     # Zope 2.10 support
     from zope.annotation import interfaces as annointerfaces
+
+from p4a.common.descriptors import atfield
+from p4a.fileimage import DictProperty
 
 
 class AnnotationPublication(object):
@@ -25,14 +30,43 @@ class AnnotationPublication(object):
             annotations[self.ANNO_KEY] = self.publication_data
         print "In my annoadapter XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"        
             
-class ATPublication(AnnotationPublication):
+
+    title = DictProperty(interfaces.IPublication['title'], 'publication_data')
+    description = DictProperty(interfaces.IPublication['description'], 'publication_data')
+    isbn = DictProperty(interfaces.IPublication['isbn'], 'publication_data')
+#    rich_description = DictProperty(interfaces.IPublication['rich_description'],
+#                                    'publication_data')
+#    video_author = DictProperty(interfaces.IPublication['video_author'], 'publication_data')
+#    height = DictProperty(interfaces.IPublication['height'], 'publication_data')
+#    width = DictProperty(interfaces.IPublication['width'], 'publication_data')
+#    duration = DictProperty(interfaces.IPublication['duration'], 'publication_data')
+#    file = DictProperty(interfaces.IPublication['file'], 'publication_data')
+#    video_image = DictProperty(interfaces.IPublication['video_image'], 'publication_data')
+#    video_type = DictProperty(interfaces.IPublication['video_type'], 'publication_data')
+#    urls = DictProperty(interfaces.IPublication['urls'], 'publication_data')
+#
+
+
+@interface.implementer(interfaces.IPublication)
+@component.adapter(IATBlob)
+def ATCTBlobPublication(context):
+    if not interfaces.IVideoEnhanced.providedBy(context):
+        return None
+    return _ATCTPublication(context)
+
+@interface.implementer(interfaces.IPublication)
+@component.adapter(atctifaces.IATFile)
+def ATCTFilePublication(context):
+    if not interfaces.IVideoEnhanced.providedBy(context):
+        return None
+    return _ATCTPublication(context)
+
+    
+class _ATCTPublication(AnnotationPublication):
     """ 
     """
     interface.implements(interfaces.IPublication)
     component.adapts(atctifaces.IATFile)
-
-    if not interfaces.IPublicationEnhanced.providedBy(context):
-        return None
         
 
     ANNO_KEY = 'slc.publications.ATCTFilePublication'
@@ -43,6 +77,7 @@ class ATPublication(AnnotationPublication):
     description = atfield('description', 'context')
 
 
+
     def _get_file(self):
         field = self.context.getPrimaryField()
         return field.getEditAccessor(self.context)()
@@ -51,6 +86,19 @@ class ATPublication(AnnotationPublication):
             field = self.context.getPrimaryField()
             field.getMutator(self.context)(v)
     file = property(_get_file, _set_file)
+
+
+
+    def _get_isbn(self):
+        v = self.publication_data.get('isbn', '')
+        return v
+    def _set_isbn(self, v):
+        self.video_data['isbn'] = v
+    isbn = property(_get_isbn, _set_isbn)
+
+
+
+
 
 
     def __str__(self):

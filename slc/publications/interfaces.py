@@ -25,6 +25,8 @@ class IPublication(Interface):
 
     title = schema.TextLine(title=u'Title', required=False)
     description = schema.Text(title=u'Description', required=False)
+    isbn = schema.TextLine(title=u'ISBN Number', required=False)
+    
 #    rich_description = schema.Text(title=u'Rich Text Description',
 #                                   required=False)
 #    file = p4afile.FileField(title=u'File', required=False)

@@ -31,6 +31,8 @@
         <implements interface="slc.publications.interfaces.IPublicationEnhanced" />
     </class>
 
+    <adapter factory=".adapter.ATCTFilePublication" />
+    <adapter factory=".adapter.ATCTBlobPublication" />
 
     <utility
         name="slc.publications.Publication"

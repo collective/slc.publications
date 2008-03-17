@@ -99,15 +99,14 @@ class PublicationEditForm(formbase.EditForm):
 
     template = pagetemplatefile.ViewPageTemplateFile('publication-edit.pt')
     form_fields = form.FormFields(interfaces.IPublication)
-    form_fields = form_fields.omit('urls')
     #form_fields['rich_description'].custom_widget = at.RichTextEditWidget
     label = u'Edit Publication Data'
     priority_fields = ['title']
 
-    def display_tags(self):
-        username = AccessControl.getSecurityManager().getUser().getId()
-        return username == self.context.getOwner().getId() and \
-               has_contenttagging_support(self.context)
+#    def display_tags(self):
+#        username = AccessControl.getSecurityManager().getUser().getId()
+#        return username == self.context.getOwner().getId() and \
+#               has_contenttagging_support(self.context)
 
     def update(self):
         self.adapters = {}
