@@ -22,6 +22,7 @@ from slc.publications import interfaces
 from p4a.common import at
 from p4a.common import formatting
 
+from zope.app.form.browser.textwidgets import TextAreaWidget
 
 class PublicationPageView(form.PageDisplayForm):
     """Page for displaying a publication.
@@ -45,9 +46,9 @@ class PublicationPageView(form.PageDisplayForm):
 
     def update(self):
         super(PublicationPageView, self).update()
-#        if not interfaces.IPublication(self.context).publication_type:
-#            self.context.plone_utils.addPortalMessage( \
-#                _(u'Unsupported Publication type'))
+        if not interfaces.IPublication(self.context).publication_data:
+            self.context.plone_utils.addPortalMessage( \
+                _(u'Unsupported Publication type'))
 
 class IPublicationView(interface.Interface):
     def title(): pass
@@ -62,8 +63,18 @@ class PublicationView(object):
         mime_type = unicode(context.get_content_type())
         
     def title(self): return self.publication_info.title
+    def description(self): return self.publication_info.description
+    def cover_image(self): return self.publication_info.cover_image
 
-
+    def author(self): return self.publication_info.author
+    def publication_date(self): return self.context.effectiveDate()
+    def isbn(self): return self.publication_info.isbn
+    def order_id(self): return self.publication_info.order_id
+    def for_sale(self): return self.publication_info.for_sale
+    def chapters(self): return self.publication_info.chapters
+    def metadata_upload(self): return self.publication_info.metadata_upload
+    def owner_password(self): return self.publication_info.owner_password
+    def user_password(self): return self.publication_info.user_password
 
 
 def applyChanges(context, form_fields, data, adapters=None):
@@ -100,6 +111,7 @@ class PublicationEditForm(formbase.EditForm):
     template = pagetemplatefile.ViewPageTemplateFile('publication-edit.pt')
     form_fields = form.FormFields(interfaces.IPublication)
     #form_fields['rich_description'].custom_widget = at.RichTextEditWidget
+    #form_fields['chapters'].custom_widget=TextAreaWidget(form_fields['chapters'].field, self.request)
     label = u'Edit Publication Data'
     priority_fields = ['title']
 

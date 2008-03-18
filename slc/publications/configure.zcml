@@ -26,13 +26,14 @@
     <class class="Products.ATContentTypes.content.file.ATFile">
         <implements interface="slc.publications.interfaces.IPublicationEnhanced" />
     </class>
-    
-    <class class="plone.app.blob.content.ATBlob">
-        <implements interface="slc.publications.interfaces.IPublicationEnhanced" />
-    </class>
 
+    <!--class class="plone.app.blob.content.ATBlob">
+        <implements interface="slc.publications.interfaces.IPublicationEnhanced" />
+    </class-->
+    
     <adapter factory=".adapter.ATCTFilePublication" />
-    <adapter factory=".adapter.ATCTBlobPublication" />
+
+    <!--adapter factory=".adapter.ATCTBlobFilePublication" /-->
 
     <utility
         name="slc.publications.Publication"
@@ -51,11 +52,11 @@
         name="slc.publications.TopicPublicationContainer"
         factory=".descriptors.TopicPublicationContainerDescriptor" />
 
-    <browser:page
+    <!--browser:page
         for=".interfaces.IPublication"
         name="publication_view"
         permission="zope2.View"
         template="publication.pt"
-        />
+        /-->
 
 </configure>

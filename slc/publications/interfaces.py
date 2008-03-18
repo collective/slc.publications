@@ -7,6 +7,7 @@ from p4a.fileimage import file as p4afile
 from p4a.fileimage import image as p4aimage
 from slc.publications.config import AUTHOR
 
+
 class IPublicationEnhanced(Interface):
     """Marker interface for publications
     """
@@ -25,14 +26,19 @@ class IPublication(Interface):
 
     title = schema.TextLine(title=u'Title', required=False)
     description = schema.Text(title=u'Description', required=False)
+    cover_image = p4aimage.ImageField(title=u'Cover Image', required=False,
+                                      preferred_dimensions=(70, 100))
+    file = p4afile.FileField(title=u'File', required=False)
+    author = schema.TextLine(title=u'Author', required=False, default=AUTHOR)
+    publication_date = schema.Date(title=u'Publication Date', required=True)
     isbn = schema.TextLine(title=u'ISBN Number', required=False)
-    
-#    rich_description = schema.Text(title=u'Rich Text Description',
-#                                   required=False)
-#    file = p4afile.FileField(title=u'File', required=False)
- #   isbn = schema.TextLine(title=u'ISBN Number', required=False, readonly=False)
+    order_id = schema.TextLine(title=u'Order-ID', required=False)
+    for_sale = schema.Bool(title=u'For sale', required=False)
+    chapters = schema.Text(title=u'Chapters', required=False)
+    metadata_upload = p4afile.FileField(title=u'Metadata Upload', required=False)            
+    owner_password = schema.TextLine(title=u'Owner Password', required=False)
+    user_password = schema.TextLine(title=u'User Password', required=False)
 
-#    publication_author = schema.TextLine(title=u'Author', default=AUTHOR, required=False)
     
     
 class IPublicationProvider(Interface):
