@@ -1,8 +1,6 @@
 Overview
 ========
 
-by Syslab.com GmbH <info@syslab.com>
-
 The Publication Product can be used to organise printed publications that are
 available online for download. Publications usually have a publication date,
 order and ISBN numbers, an author and exist in several language versions.
@@ -27,13 +25,14 @@ Optional Products
 
 If you want support for autogeneration of cover images, you need to install
 
-- pyxml
+    - pyxml
+    
+    - pdftk
+    
+    - convert from the imagemagick toolkit
+    
+    - ghostscript gs
 
-- pdftk
-
-- convert from the imagemagick toolkit
-
-- ghostscript gs
 
 Adding Publications
 ===================
@@ -162,3 +161,6 @@ the properties on both versions should be set.
 
     >>> DEFile.getISBN_number()
     '87-418-5901-6'
+
+
+

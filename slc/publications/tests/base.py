@@ -37,6 +37,8 @@ def setup_slc_publications():
     # should be available. This can't happen until after we have loaded
     # the ZCML.
     
+    # It seems that files are automatically blobs, but my test won't run without this.
+    ztc.installPackage('plone.app.blob')
     ztc.installPackage('slc.publications')
     
 # The order here is important: We first call the (deferred) function which
@@ -53,7 +55,7 @@ class PublicationTestCase(PloneTestCase):
 class PublicationFunctionalTestCase(FunctionalTestCase):
     """Base class for functional integration tests for the 'Publication' product.
     """
-
+    
     def loadDocumentation(self):
         """ loads a pdf file with pdf metadata set (Title, Description)
             Language = en
@@ -64,7 +66,8 @@ class PublicationFunctionalTestCase(FunctionalTestCase):
         filename = os.path.sep.join([home, 'doc', 'UsingthePublicationProduct.pdf'])
         self.docpdf = StringIO(open(filename, 'r').read())
         self.docpdf.filename = 'UsingthePublicationProduct.pdf'
-
+        return self.docpdf
+        
     def loadGermanFile(self):
         """ loads a pdf file with pdf metadata set (Title, Description)
             Language = de
@@ -75,7 +78,8 @@ class PublicationFunctionalTestCase(FunctionalTestCase):
         filename = os.path.sep.join([home, 'tests', 'data', 'GermanOSHA.pdf'])
         self.germanpdf = StringIO(open(filename, 'r').read())
         self.germanpdf.filename = 'GermanOSHA.pdf'
-
+        return self.germanpdf
+        
     def loadGermanFile_de(self):
         """ loads a pdf file with pdf metadata set (Title, Description)
             no Language but filename has extension _de
@@ -86,7 +90,8 @@ class PublicationFunctionalTestCase(FunctionalTestCase):
         filename = os.path.sep.join([home, 'doc', 'UsingthePublicationProduct.pdf'])
         self.german_de_pdf = StringIO(open(filename, 'r').read())
         self.german_de_pdf.filename = 'GermanOSHA_de.pdf'
-
+        return self.german_de_pdf
+    
     def loadMetadataini(self):
         """ loads an ini file with metadata sets
         """
@@ -94,3 +99,4 @@ class PublicationFunctionalTestCase(FunctionalTestCase):
         filename = os.path.sep.join([home, 'tests', 'data', 'metadata.ini'])
         self.metadataini = StringIO(open(filename, 'r').read())
         self.metadataini.filename = 'metadata.ini'
+        return self.metadataini
