@@ -116,8 +116,14 @@ class PDFParser(object):
             pobj = re.compile(patt[1], re.I | re.S)
             mobj = pobj.search(metaxml, 1)
             if mobj is not None:
-                value = re.sub('<.*?>', '', mobj.group(1))
-                META_MAP[patt[0].strip().lower()] = value.strip()
+                value = re.sub('<.*?>', '', mobj.group(1)).strip()
+                # acrobat separates keywords with a semicolon. There is no datatyping
+                # so we assume it is a list if a semicolon appears.
+                if ";" in value:
+                    kw = value.split(";")
+                    value = tuple([x.strip() for x in kw])
+                    
+                META_MAP[patt[0].strip().lower()] = value
             else:
                 logger.debug("No matches for "+ str(patt[1]))
 
@@ -126,21 +132,31 @@ class PDFParser(object):
         add_patt = re.compile("pdfx:(.*?)='(.*?)'", re.I|re.S)
 
         for name, value in add_patt.findall(metaxml):
+            # acrobat separates keywords with a semicolon. There is no datatyping
+            # so we assume it is a list if a semicolon appears.
+            if ";" in value:
+                kw = value.split(";")
+                value = tuple([x.strip() for x in kw])
             META_MAP[name.strip().lower()] = value
 
         # And another format
         add_patt = re.compile("pdfx:(.*?)>(.*?)</pdfx:", re.I|re.S)
         for name, value in add_patt.findall(metaxml):
+            # acrobat separates keywords with a semicolon. There is no datatyping
+            # so we assume it is a list if a semicolon appears.
+            if ";" in value:
+                kw = value.split(";")
+                value = tuple([x.strip() for x in kw])
             META_MAP[name.strip().lower()] = value
 
-        # make the author and subject to a tuple of values
-        if type(META_MAP.get('author', '')) != TupleType:
-            kw = META_MAP.get('author', '').split(";")
-            META_MAP['author'] = tuple([x.strip() for x in kw])
-
-        if type(META_MAP.get('keywords', '')) != TupleType:
-            kw = META_MAP.get('keywords', '').split(";")
-            META_MAP['keywords'] = tuple([x.strip() for x in kw])
+#        # make the author and subject to a tuple of values
+#        if type(META_MAP.get('author', '')) != TupleType:
+#            kw = META_MAP.get('author', '').split(";")
+#            META_MAP['author'] = tuple([x.strip() for x in kw])
+#
+#        if type(META_MAP.get('keywords', '')) != TupleType:
+#            kw = META_MAP.get('keywords', '').split(";")
+#            META_MAP['keywords'] = tuple([x.strip() for x in kw])
 
 #        for key in META_MAP:
 #            meta_data = META_MAP[key]

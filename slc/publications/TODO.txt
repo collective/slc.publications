@@ -1,5 +1,10 @@
 TODO
 
+- Once a folder or file has been changed to be a publication type, it doesn't 
+  show the archetype tabs anymore. Any additional attributes but the ones 
+  defined for the publication are no longer accessible
+  
+- 
 
 - Review the PDF Parser. There are still other formats in PDF Files, we do not
   cover all of them. Find out why.

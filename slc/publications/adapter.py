@@ -1,4 +1,5 @@
 from Acquisition import aq_base, aq_inner, aq_parent
+from OFS import Image as ofsimage
 import ConfigParser, StringIO, tempfile, os, urllib, logging, interfaces, re
 from types import *
 from persistent.dict import PersistentDict
@@ -11,6 +12,9 @@ from plone.app.blob.interfaces import IATBlobFile
 from ComputedAttribute import ComputedAttribute
 from DateTime import DateTime
 
+from slc.publications.pdf.interfaces import IPDFParser
+from slc.publications.ini.interfaces import IINIParser
+
 try:
     from zope.app.annotation import interfaces as annointerfaces
 except ImportError, err:
@@ -21,13 +25,22 @@ from p4a.common.descriptors import atfield
 from p4a.fileimage import DictProperty
 
 
-class AnnotationPublication(object):
-    """An IPublication adapter designed to handle ATCT based file content.
-    """
 
+@interface.implementer(interfaces.IPublication)
+@component.adapter(atctifaces.IATFile)
+def ATCTFilePublication(context):
+    if not interfaces.IPublicationEnhanced.providedBy(context):
+        return None
+    return _ATCTPublication(context)
+
+
+class _ATCTPublication(object):
+    """ 
+    """
     interface.implements(interfaces.IPublication)
-    component.adapts(atctifaces.IATFile)           
-    ANNO_KEY = 'slc.publications.AnnotationPublication'
+    component.adapts(atctifaces.IATFile)
+
+    ANNO_KEY = 'slc.publications.PublicationAnnotation'
                                                
     def __init__(self, context):
         self.context = context
@@ -51,26 +64,11 @@ class AnnotationPublication(object):
     metadata_upload = DictProperty(interfaces.IPublication['metadata_upload'], 'publication_data')
     owner_password = DictProperty(interfaces.IPublication['owner_password'], 'publication_data')
     user_password = DictProperty(interfaces.IPublication['user_password'], 'publication_data')
-
-
-@interface.implementer(interfaces.IPublication)
-@component.adapter(atctifaces.IATFile)
-def ATCTFilePublication(context):
-    if not interfaces.IPublicationEnhanced.providedBy(context):
-        return None
-    return _ATCTPublication(context)
-
     
-class _ATCTPublication(AnnotationPublication):
-    """ 
-    """
-    interface.implements(interfaces.IPublication)
-    component.adapts(atctifaces.IATFile)
-       
-    ANNO_KEY = 'slc.publications.ATCTFilePublication'
-
+          
+    # ??? necessary?
     file = None
-    isbn = ''
+    metadata_upload = None
     cover_image = None
 
     
@@ -106,52 +104,44 @@ class _ATCTPublication(AnnotationPublication):
     cover_image = property(_get_cover_image, _set_cover_image)
 
 
-    def _get_isbn(self):
-        v = self.publication_data.get('isbn', '')
+    def _get_metadata_upload(self):
+        v = self.publication_data.get('metadata_upload', None)
+        if v == None:
+            return None
         return v
-    def _set_isbn(self, v):
-        self.publication_data['isbn'] = v
-    isbn = property(_get_isbn, _set_isbn)
+    def _set_metadata_upload(self, v):
+        if v == interfaces.IPublication['metadata_upload'].missing_value:
+            return
+        upload = v
+        if isinstance(upload, ofsimage.File):
+            file = upload
+        else:
+            file = ofsimage.File(id=upload.filename,
+                                   title=upload.filename,
+                                   file=upload)
+        self.publication_data['metadata_upload'] = file
+    metadata_upload = property(_get_metadata_upload, _set_metadata_upload)
 
     def __str__(self):
         return '<slc.publication %s title=%s>' % (self.__class__.__name__, self.title)
     __repr__ = __str__
 
 
+    def parsePDFProperties(self):
+        """ parse the properties from the file contents and set them on the object """
+        pdfparser = component.getUtility(IPDFParser)
+        meta = pdfparser.parse(self._get_file())
+        
+        
+    def generate_metadata(self):
+        """ generates and downloads the metadata matching the current settings """
+        return "generated"        
+
 
 #class PDFHandler(object):
 #    """ contains the methods to manipulate a pdf file """
 #    
-#
-#    def parseMetadataUpload(self):
-#        """
-#        Does the parsing of an uploaded metadata file in configparser style and sets those metadata on existing publications.
-#        """
-#        request = self.REQUEST
-#
-#        sio = StringIO.StringIO(str(self.getMetadataUpload()))
-#        meta = ConfigParser.ConfigParser()
-#        meta.optionxform = str
-#        meta.readfp(sio)
-#        portal_languages = getToolByName(self.context, 'portal_languages')
-#        langs = portal_languages.getSupportedLanguages()
-#
-#        ERR = []
-#
-#        if meta.has_section('default'):
-#            err = _setMeta(TARGET=self, DATA=meta.items('default'))
-#            if err:
-#                ERR.append(err)
-#        for section in meta.sections():
-#            section = section.strip()
-#
-#            if len(section)>2 and section.find('.')>-1:  # we have a section of type [webanchor.en]
-#                self._processChapterSection(section, meta)
-#            else: # section is only a language abbrev like [en]
-#                self._processMainSection(section, meta)
-#
-#        if ERR != []:                  
-#            return "\n".join(ERR)
+
 #            
 #            
 #    security.declarePublic('generateImage')
@@ -232,32 +222,7 @@ class _ATCTPublication(AnnotationPublication):
 #    def getImage(self):
 #        """ Returns the name of an image within this object that can be used as eye catcher """
 #        return "coverImage"
-#
-#    def _processMainSection(self, section, meta):
-#        """ parse the contents for a language Version of the publication
-#        """
-#        portal_languages = getToolByName(self.context, 'portal_languages')
-#        translations = self.getTranslations()
-#        langs = portal_languages.getSupportedLanguages()
-#        if section in langs:
-#            F = translations.get(section, None)
-#            if not F:
-#                return
-#            F = F[0]
-#            _setMeta(TARGET=F, DATA=meta.items(section))
-#
-#    def _processChapterSection(self, section, meta):
-#        """ parse the contents for a chapter Version of the publication
-#        """
-#        translations = self.getTranslations()
-#        chapter, lang = section.rsplit('.')
-#        F = translations.get(lang, None)
-#        if not F:
-#            return
-#        F = F[0]
-#        if hasattr(aq_base(F), chapter):
-#            L = getattr(F, chapter)
-#            _setMeta(TARGET=L, DATA=meta.items(section))
+
 #
 #    security.declareProtected(permissions.ModifyPortalContent, 'downloadMetadata')
 #    def downloadMetadata(self):
@@ -269,27 +234,7 @@ class _ATCTPublication(AnnotationPublication):
 #        """ returns the currently safed metadata file """
 #        return self.getMetadataUpload()
 #
-#
-#    def _buildParsedParams(self, params):
-#        """ helper """
-#
-#        np = {}
-#        for key in params.keys():
-#            key = key.strip()
-#            value = params[key].strip()
-#            if len(key)>2 and key[-2:]=='[]':
-#                # we have a list notation
-#                key = key[:-2]
-#                elems = value.split(",")
-#                nelems = []
-#                for e in elems:
-#                    nelems.append(e.strip())
-#                if MDMAP[key]=='split':
-#                    value = "\n".join(nelems)
-#                else:
-#                    value = nelems
-#            np[key] = value
-#        return np
+
 #
 #    def getLinksByLanguage(self, language=None):
 #        """ returns a list of Chapter links by language
@@ -314,26 +259,7 @@ class _ATCTPublication(AnnotationPublication):
 #            val = ''
 #        return val
 #
-##    def at_post_edit_script(self):
-##        """ add the parse Properties mechanism in case the parse checkbox has been checked """
-##        pw = self.portal_workflow
-###        print self.REQUEST.keys()
-###        if self.REQUEST.get('file_file', ''):
-###            # fixing the filename
-###            filename = IUserPreferredFileNameNormalizer(self.REQUEST).normalize(self.Title())
-###            blob = self.file.get(self)
-###            if blob is not None:
-###                blob.setFilename(filename)
-##
-##        p = self.REQUEST.get('parsePDF', '')
-##        if p == '1':
-##            self.parsePDFProperties()
-##            self.setParsePDF('0')
-##        self.updateChapterLinks()
-##        metafile = self.REQUEST.get('metadataUpload_file', '')
-##        if metafile!='':
-##            self.parseMetadataUpload()
-#
+
 #    def updateChapterLinks(self):
 #        """ Read the chapternames and compair them to the Link objects inside the
 #            Publication for all translations. Add/Delete where they differ
@@ -345,63 +271,4 @@ class _ATCTPublication(AnnotationPublication):
 #            updateChapterLinksForTranslation(translations[T][0])    
 #            
 #            
-#
-#def updateChapterLinksForTranslation(ob):
-#    """ syncronizes the chapter links in ob to be compliant with the
-#        current portal languages and the chapters in getChapter
-#    """
-#    pw = getToolByName(ob, 'portal_workflow')
-#
-#    links = ob.objectIds('ATLink')
-#    chapters = ob.getChapters()
-#
-#    # remove all links which are not named in getChapters
-#    RM = []
-#    for l in links:
-#        if l not in chapters:
-#            RM.append(l)
-#    ob.manage_delObjects(ids=RM)
-#
-#    for c in chapters:
-#        if c not in links:
-#            ob.invokeFactory('Link', c)
-#            L = getattr(ob, c)
-#            L.setTitle(c)
-#            L.setLanguage(ob.Language())
-#            remurl = "/%s#%s" % ( urllib.unquote(ob.absolute_url(1)), c )
-#            L.edit(remurl)
-#            pw.doActionFor(L, 'publish', comment='Publish publication link %s in language %s.' % (c, ob.Language()))
-#
-#
-#def _setMeta(TARGET, DATA):
-#    """ sets metadata from a config section
-#    """
-#    if not TARGET:
-#        return
-#    params = {}
-#    for elem in DATA:
-#        if elem[1].strip()=='':
-#            continue
-#        params[elem[0].strip()] = elem[1].strip()
-#
-#    if TARGET.meta_type=='Link':
-#        TARGET._editMetadata(title=params.get('title', TARGET.Title()),
-#                      subject=params.get('subject', TARGET.Subject()),
-#                      description=params.get('description', TARGET.Description()),
-#                      contributors=params.get('contributors', TARGET.Contributors()),
-#                      effective_date=params.get('effective_date', TARGET.EffectiveDate()),
-#                      expiration_date=params.get('expiration_date', TARGET.ExpirationDate()),
-#                      format=params.get('format', TARGET.Format()),
-#                      language=params.get('language', TARGET.Language()),
-#                      rights=params.get('rights', TARGET.Rights()),
-#                      )
-#    else:
-#        TARGET._processForm(data=1, metadata=1, values=params)
-#
-#    TARGET.reindexObject()
-#
-#
-#
-#
-#
-#            
+            

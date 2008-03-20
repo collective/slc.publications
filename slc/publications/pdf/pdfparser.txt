@@ -5,14 +5,9 @@ slc.publications comes with a component to parse pdf file metadata. It does that
 
 Note: Make sure "pdfinfo" is in the path of your zope user and is callable.
 
-First we need a pdf file to parse. We load a demonstration pdf file from doc/UsingthePublicationProduct.pdf which has the following metadata set within the pdf file:
+First we need a pdf file to parse. We load a demonstration pdf file from data/testpdf_en.pdf.
 
-    - Title: Using the Publication Product
-    - Description: The Publication Product can be used ...
-    - Keywords: documentation, tutorial
-    - Language: en
-
-    >>> docpdf = self.loadDocumentation()
+    >>> testpdf_en = self.loadfile('pdf/data/testpdf_en.pdf')
     
 Then we get the parser utility.
     
@@ -22,17 +17,21 @@ Then we get the parser utility.
 
 Now we can retrieve the metadata by calling the parse method.
 
-    >>> metadata = pdfparser.parse(docpdf.getvalue())
+    >>> metadata = pdfparser.parse(testpdf_en.getvalue())
     >>> metadata is not False
     True
-    >>> metadata['title'].startswith('Using the Publication Product')
-    True
-    >>> metadata['description'].startswith('The Publication Product can be used')
-    True
+    >>> metadata['title']
+    'English testing title'
+    >>> metadata['description']
+    'English testing description'
     >>> metadata['keywords']
-    ('documentation', 'tutorial')
+    ('testing', 'documentation')
     >>> metadata['language']
     'en'
+    >>> metadata['creator']
+    'pilz'
+    >>> metadata['topic']
+    ('young workers', 'stress')
     
     
     

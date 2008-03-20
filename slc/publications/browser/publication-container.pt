@@ -23,7 +23,7 @@
                                   templateId template/getId">
 
         <div tal:replace="structure provider:plone.abovecontenttitle" />
-
+[Publication container view]
         <h1 metal:use-macro="here/kss_generic_macros/macros/generic_title_view">
             Title or id
         </h1>

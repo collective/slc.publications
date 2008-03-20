@@ -56,47 +56,9 @@ class PublicationFunctionalTestCase(FunctionalTestCase):
     """Base class for functional integration tests for the 'Publication' product.
     """
     
-    def loadDocumentation(self):
-        """ loads a pdf file with pdf metadata set (Title, Description)
-            Language = en
-            Creator = pilz
-            Keywords = documentation,tutorial
-        """
+    def loadfile(self, rel_filename):
         home = package_home(product_globals)
-        filename = os.path.sep.join([home, 'doc', 'UsingthePublicationProduct.pdf'])
-        self.docpdf = StringIO(open(filename, 'r').read())
-        self.docpdf.filename = 'UsingthePublicationProduct.pdf'
-        return self.docpdf
-        
-    def loadGermanFile(self):
-        """ loads a pdf file with pdf metadata set (Title, Description)
-            Language = de
-            Creator = pilz
-            Keywords = documentation,information
-        """
-        home = package_home(product_globals)
-        filename = os.path.sep.join([home, 'tests', 'data', 'GermanOSHA.pdf'])
-        self.germanpdf = StringIO(open(filename, 'r').read())
-        self.germanpdf.filename = 'GermanOSHA.pdf'
-        return self.germanpdf
-        
-    def loadGermanFile_de(self):
-        """ loads a pdf file with pdf metadata set (Title, Description)
-            no Language but filename has extension _de
-            Creator = pilz
-            Keywords = documentation,tutorial
-        """
-        home = package_home(product_globals)
-        filename = os.path.sep.join([home, 'doc', 'UsingthePublicationProduct.pdf'])
-        self.german_de_pdf = StringIO(open(filename, 'r').read())
-        self.german_de_pdf.filename = 'GermanOSHA_de.pdf'
-        return self.german_de_pdf
-    
-    def loadMetadataini(self):
-        """ loads an ini file with metadata sets
-        """
-        home = package_home(product_globals)
-        filename = os.path.sep.join([home, 'tests', 'data', 'metadata.ini'])
-        self.metadataini = StringIO(open(filename, 'r').read())
-        self.metadataini.filename = 'metadata.ini'
-        return self.metadataini
+        filename = os.path.sep.join([home, rel_filename])
+        data = StringIO(open(filename, 'r').read())
+        data.filename = os.path.basename(rel_filename)
+        return data

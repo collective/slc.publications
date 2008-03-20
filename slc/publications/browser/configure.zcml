@@ -30,9 +30,18 @@
       name="publication_view"
       class=".publication.PublicationView"
       allowed_interface=".publication.IPublicationView"
-      for="slc.publications.interfaces.IPublication"
+      for="slc.publications.interfaces.IPublicationEnhanced"
       permission="zope2.View"
       />
+
+  <page
+      name="generate-metadata"
+      class=".publication.GenerateMetadataView"
+      allowed_interface=".publication.IGenerateMetadata"
+      for="slc.publications.interfaces.IPublicationEnhanced"
+      permission="zope2.View"
+      />
+
       
   <page
       name="atct_edit"
@@ -53,5 +62,48 @@
         factory="..displays.PublicationContainerDynamicViews"
         />      
       
+      
+  <page
+      name="publication-config.html"
+      for="slc.publications.interfaces.IPossiblePublicationContainer"
+      permission="cmf.ModifyPortalContent"
+      class=".media.ToggleEnhancementsView"
+      />
+            
+  <page
+      name="publication-config.html"
+      for="slc.publications.interfaces.IPossiblePublication"
+      permission="cmf.ModifyPortalContent"
+      class=".media.ToggleEnhancementsView"
+      />      
+      
+      
+  <menuItem
+      menu="object_buttons"
+      for="slc.publications.interfaces.IAnyPublicationCapable"
+      title="Deactivate Publication"
+      action="${object_url}/publication-config.html"
+      filter="object/@@slcpublicationsupport/can_deactivate_publication"
+      permission="cmf.ModifyPortalContent"
+      />
+
+  <menuItem
+      menu="object_buttons"
+      for="slc.publications.interfaces.IAnyPublicationCapable"
+      title="Activate Publication"
+      action="${object_url}/publication-config.html"
+      filter="object/@@slcpublicationsupport/can_activate_publication"
+      permission="cmf.ModifyPortalContent"
+      />      
+      
+      
+  <page
+      name="slcpublicationsupport"
+      for="*"
+      class=".support.Support"
+      permission="zope.Public"
+      allowed_interface=".support.IContextualPublicationSupport"
+      />
+            
 </configure>
       

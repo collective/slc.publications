@@ -12,6 +12,8 @@ from zope.app.event import objectevent
 from zope.app.i18n import ZopeMessageFactory as _
 
 from Products.CMFCore import utils as cmfutils
+from Products.CMFDefault.formlib.form import getLocale
+
 from Products.CMFPlone import PloneMessageFactory as _
 from Products.statusmessages import interfaces as statusmessages_ifaces
 
@@ -19,32 +21,57 @@ from Products.Five.browser import pagetemplatefile
 from Products.Five.formlib import formbase
 
 from slc.publications import interfaces 
+from slc.publications.ini.interfaces import IINIParser
+
 from p4a.common import at
 from p4a.common import formatting
 
-from zope.app.form.browser.textwidgets import TextAreaWidget
+from zope.app.form.browser import TextAreaWidget, DateDisplayWidget, CollectionInputWidget, OrderedMultiSelectWidget
 
 class PublicationPageView(form.PageDisplayForm):
     """Page for displaying a publication.
     """
-
     adapted_interface = interfaces.IPublication
     media_field = 'file'
 
     form_fields = form.FormFields(interfaces.IPublication)
+    datewidget = DateDisplayWidget
+    datewidget.displayStyle = "medium"
+    form_fields['publication_date'].custom_widget = datewidget
+    #form_fields['chapters'].custom_widget = OrderedMultiSelectWidget
+    
     label = u'View Publication Info'
 
     @property
     def template(self):
         return self.index
 
-    def getCoverImage(self):
-        return "image"
+    def available_translations(self):
+        portal_languages = cmfutils.getToolByName(self.context, 'portal_languages')
+        default_language = portal_languages.getDefaultLanguage()
+        
+        translations = self.context.getTranslations()
+        if len(translations)<1:
+            return
+        
+        lang_codes = translations.keys()
+        lang_codes.sort()
+        
+        R = []
+        for lang in lang_codes:
+            trans = translations[lang][0]
+            url = trans.absolute_url()
+            name = portal_languages.getNameForLanguageCode(lang or default_language)
+            R.append( (name, url) )
+        return R
+                
 
-    def getISBN_number(self):
-        return "000-0000-000"
 
     def update(self):
+        # We need to set the locale manually. Can be removed when on Zope2.11
+        self.request.set('locale', getLocale(self.request))
+        
+                
         super(PublicationPageView, self).update()
         if not interfaces.IPublication(self.context).publication_data:
             self.context.plone_utils.addPortalMessage( \
@@ -58,7 +85,7 @@ class PublicationView(object):
     """
 
     def __init__(self, context, request):
-        self.publication_info = IPublication(context)
+        self.publication_info = interfaces.IPublication(context)
 
         mime_type = unicode(context.get_content_type())
         
@@ -67,7 +94,7 @@ class PublicationView(object):
     def cover_image(self): return self.publication_info.cover_image
 
     def author(self): return self.publication_info.author
-    def publication_date(self): return self.context.effectiveDate()
+    def publication_date(self): return self.publication_info.publication_date
     def isbn(self): return self.publication_info.isbn
     def order_id(self): return self.publication_info.order_id
     def for_sale(self): return self.publication_info.for_sale
@@ -110,15 +137,10 @@ class PublicationEditForm(formbase.EditForm):
 
     template = pagetemplatefile.ViewPageTemplateFile('publication-edit.pt')
     form_fields = form.FormFields(interfaces.IPublication)
-    #form_fields['rich_description'].custom_widget = at.RichTextEditWidget
-    #form_fields['chapters'].custom_widget=TextAreaWidget(form_fields['chapters'].field, self.request)
+    #form_fields['chapters'].custom_widget = CollectionInputWidget
+
     label = u'Edit Publication Data'
     priority_fields = ['title']
-
-#    def display_tags(self):
-#        username = AccessControl.getSecurityManager().getUser().getId()
-#        return username == self.context.getOwner().getId() and \
-#               has_contenttagging_support(self.context)
 
     def update(self):
         self.adapters = {}
@@ -198,3 +220,20 @@ class PublicationContainerView(object):
         except:
             # it's ok if this doesn't exist, just means no syndication
             return False
+            
+            
+class IGenerateMetadata(interface.Interface):
+    def __call__():
+        """ download the generated metadata """
+            
+class GenerateMetadataView(object):
+    
+    def __init__(self, context, request):
+        self.context = context
+        self.request = request    
+        
+    def __call__(self):
+        """ download the generated metadata """
+        iniparser = component.getUtility(IINIParser)
+
+        return iniparser.retrieve(self.context)

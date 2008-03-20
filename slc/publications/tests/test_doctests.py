@@ -25,5 +25,11 @@ def test_suite():
             Suite('pdf/pdfparser.txt',
                    optionflags=OPTIONFLAGS,
                    package='slc.publications',
+                   test_class=PublicationFunctionalTestCase) ,
+
+            Suite('metadata/metadataparser.txt',
+                   optionflags=OPTIONFLAGS,
+                   package='slc.publications',
                    test_class=PublicationFunctionalTestCase)
+
         ))
