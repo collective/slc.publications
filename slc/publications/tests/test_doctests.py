@@ -27,7 +27,12 @@ def test_suite():
                    package='slc.publications',
                    test_class=PublicationFunctionalTestCase) ,
 
-            Suite('metadata/metadataparser.txt',
+            Suite('ini/iniparser.txt',
+                   optionflags=OPTIONFLAGS,
+                   package='slc.publications',
+                   test_class=PublicationFunctionalTestCase) ,
+
+            Suite('doc/chapters.txt',
                    optionflags=OPTIONFLAGS,
                    package='slc.publications',
                    test_class=PublicationFunctionalTestCase)

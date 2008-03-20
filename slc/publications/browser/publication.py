@@ -20,13 +20,18 @@ from Products.statusmessages import interfaces as statusmessages_ifaces
 from Products.Five.browser import pagetemplatefile
 from Products.Five.formlib import formbase
 
+from slc.publications.config import STORAGE_FOLDER 
 from slc.publications import interfaces 
 from slc.publications.ini.interfaces import IINIParser
+from slc.publications.adapter import _get_storage_folder
+
 
 from p4a.common import at
 from p4a.common import formatting
 
 from zope.app.form.browser import TextAreaWidget, DateDisplayWidget, CollectionInputWidget, OrderedMultiSelectWidget
+
+
 
 class PublicationPageView(form.PageDisplayForm):
     """Page for displaying a publication.
@@ -65,8 +70,13 @@ class PublicationPageView(form.PageDisplayForm):
             R.append( (name, url) )
         return R
                 
-
-
+    def chapters(self):
+        additionals = _get_storage_folder(self.context)
+        if additionals is None:
+            return []
+        chapterlinks = additionals.objectValues('ATLink')
+        return chapterlinks
+        
     def update(self):
         # We need to set the locale manually. Can be removed when on Zope2.11
         self.request.set('locale', getLocale(self.request))
@@ -160,10 +170,10 @@ class PublicationEditForm(formbase.EditForm):
         changed = applyChanges(
             self.context, self.form_fields, data, self.adapters)
         if changed:
-#            attrs = objectevent.Attributes(interfaces.IPublication, *changed)
-#            event.notify(
-#                objectevent.ObjectModifiedEvent(self.context, attrs)
-#                )
+            attrs = objectevent.Attributes(interfaces.IPublication, *changed)
+            event.notify(
+                objectevent.ObjectModifiedEvent(self.context, attrs)
+                )
             # TODO: Needs locale support. See also Five.form.EditView.
             self.status = _("Successfully updated")
         else:

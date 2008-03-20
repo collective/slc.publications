@@ -50,6 +50,24 @@
         factory=".descriptors.TopicPublicationContainerDescriptor" />
 
 
+    <subscriber 
+        for="slc.publications.interfaces.IPublicationEnhanced
+             zope.app.event.interfaces.IObjectModifiedEvent"
+        handler=".adapter.update_chapters"
+      />
+
+
+    <!-- Zope 2.9 / 3.2 support -->
+    <configure zcml:condition="installed zope.app.annotation.tests">
+        <include package="zope.app.annotation" />
+        
+        <adapter
+            for=".interfaces.IPossiblePublication"
+            provides="zope.app.annotation.interfaces.IAnnotations"
+            factory="zope.app.annotation.attribute.AttributeAnnotations"
+            />
+    </configure>
+
     <!-- Zope 2.10 - 3.3 support -->
     <configure zcml:condition="installed zope.annotation">
         <include package="zope.annotation" />

@@ -50,4 +50,6 @@ AUTHOR = u"European Agency for Safety and Health at Work" # Set your default aut
 DFORMAT = '%Y/%m/%d' # date format for date-widgets
 SHOW_HM = 1 # show hour and minute in edit-macro for date-widgets
 
-
+# Used to store Link objects
+STORAGE_FOLDER = "storage_folder"
+ALLOWED_TYPES = ["Link"]

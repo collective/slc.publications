@@ -4,7 +4,11 @@ TODO
   show the archetype tabs anymore. Any additional attributes but the ones 
   defined for the publication are no longer accessible
   
-- 
+- Edit interface cleanup: We need a quicker way to add chapters.
+
+- i18n cleanup
+
+- add the image auto generation
 
 - Review the PDF Parser. There are still other formats in PDF Files, we do not
   cover all of them. Find out why.

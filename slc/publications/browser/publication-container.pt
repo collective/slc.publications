@@ -23,7 +23,7 @@
                                   templateId template/getId">
 
         <div tal:replace="structure provider:plone.abovecontenttitle" />
-[Publication container view]
+
         <h1 metal:use-macro="here/kss_generic_macros/macros/generic_title_view">
             Title or id
         </h1>
@@ -47,7 +47,7 @@
         </div>
 
         <metal:listingmacro define-macro="listing">
-        <tal:foldercontents define="contentFilter contentFilter|request/contentFilter|nothing;
+        <tal:foldercontents define="contentFilter contentFilter|request/contentFilter|python:{'portal_type': 'File'};
                             limit_display limit_display|request/limit_display|nothing;
                             more_url more_url|request/more_url|string:folder_contents;
                             contentsMethod view/contentsMethod; 
@@ -83,6 +83,7 @@
                         <div class="field publicationImage">
                             <img tal:attributes="src string:${item_url}/${item_image}" width="70"/>
                         </div>
+                       
                         <h3 class="summary publicationText"
                               tal:attributes="class string:$item_type_class summary">
                             <a href="#"

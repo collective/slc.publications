@@ -29,7 +29,6 @@
         mode string:view;
         ">
 
-[Publication view]
     <h1>
         <span tal:replace="here/Title">Title of the Publication</span>
     </h1>
@@ -140,23 +139,23 @@
 
 
 
-        <!--div id="chapterlisting"
-             tal:define="LINKS here/getLinksByLanguage"
-             tal:condition="LINKS">
+        <div id="chapterlisting"
+             tal:define="chapters view/chapters"
+             tal:condition="chapters">
 
             <h2 i18n:translate="heading_chapterlisting">Chapters in this Publication</h2>
-            <tal:repeat repeat="link LINKS">
+            <tal:repeat repeat="chapter chapters">
                 <h3>
-                    <a href="" tal:attributes="href link/getRemoteUrl" tal:content="link/Title"></a>
+                    <a href="" tal:attributes="href chapter/getRemoteUrl" tal:content="chapter/Title"></a>
                 </h3>
 
-                <tal:block condition="link/Description">
-                    <span tal:replace="link/Description"/>
-                    <a href="" tal:attributes="href link/getRemoteUrl" i18n:translate="box_morelink">Read more ...</a>
+                <tal:block condition="chapter/Description">
+                    <span tal:replace="chapter/Description"/>
+                    <a href="" tal:attributes="href chapter/getRemoteUrl" i18n:translate="box_morelink">Read more ...</a>
                 </tal:block>
 
             </tal:repeat>
-        </div-->
+        </div>
 
     </div>
 

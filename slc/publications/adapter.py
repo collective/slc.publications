@@ -1,5 +1,7 @@
+import App.Common
 from Acquisition import aq_base, aq_inner, aq_parent
-from OFS import Image as ofsimage
+from OFS import Image as ofsimage, ObjectManager
+from Products.ATContentTypes.content import folder as atctfolder
 import ConfigParser, StringIO, tempfile, os, urllib, logging, interfaces, re
 from types import *
 from persistent.dict import PersistentDict
@@ -11,6 +13,8 @@ from Products.CMFCore.utils import getToolByName
 from plone.app.blob.interfaces import IATBlobFile
 from ComputedAttribute import ComputedAttribute
 from DateTime import DateTime
+
+
 
 from slc.publications.pdf.interfaces import IPDFParser
 from slc.publications.ini.interfaces import IINIParser
@@ -24,7 +28,7 @@ except ImportError, err:
 from p4a.common.descriptors import atfield
 from p4a.fileimage import DictProperty
 
-
+from slc.publications.config import STORAGE_FOLDER, ALLOWED_TYPES
 
 @interface.implementer(interfaces.IPublication)
 @component.adapter(atctifaces.IATFile)
@@ -33,6 +37,7 @@ def ATCTFilePublication(context):
         return None
     return _ATCTPublication(context)
 
+_marker=[]
 
 class _ATCTPublication(object):
     """ 
@@ -131,12 +136,81 @@ class _ATCTPublication(object):
         """ parse the properties from the file contents and set them on the object """
         pdfparser = component.getUtility(IPDFParser)
         meta = pdfparser.parse(self._get_file())
-        
-        
-    def generate_metadata(self):
-        """ generates and downloads the metadata matching the current settings """
-        return "generated"        
+     
 
+        
+
+                   
+# Eventhandler
+        
+def _get_storage_folder(ob):
+
+    additionals_id = ob.getId().replace('.pdf', '')+'_data'
+
+    if additionals_id == ob.getId():
+        raise AttributeError, "Cannot get a unique name for the additionals folder"
+        
+    # container = ob.aq_parent # This returns the view... 
+    container = ob.request.PARENTS[1]
+    
+    if additionals_id not in container.objectIds():
+        container.invokeFactory("Folder", additionals_id)
+        additionals = getattr(container, additionals_id)
+        additionals.setTitle('Additional material on %s' % ob.Title())
+        additionals.setExcludeFromNav(True)
+        additionals.reindexObject()
+    else:    
+        additionals = getattr(container, additionals_id)
+
+    return additionals    
+   
+def updateChapterLinksForTranslation(ob):
+    """ Read the chapternames and compair them to the Link objects inside the
+        Publication for all translations. Add/Delete where they differ
+        syncronizes the chapter links in ob to be compliant with the
+        current portal languages and the chapters in getChapter
+    """
+    pw = getToolByName(ob, 'portal_workflow')
+
+    adapter = component.getAdapter(ob, interfaces.IPublication)    
+    chapters = adapter.publication_data['chapters']
+
+    additionals = _get_storage_folder(ob)
+    links = additionals.objectIds('ATLink')
+
+    # remove all links which are not named in getChapters
+    RM = []
+    for l in links:
+        if l not in chapters:
+            RM.append(l)
+    additionals.manage_delObjects(ids=RM)
+
+    for c in chapters:
+        c = c.encode('utf-8')
+        if c not in links:
+            additionals.invokeFactory('Link', c)
+            L = getattr(additionals, c)
+            L.setTitle(c)
+            L.setLanguage(ob.Language())
+            remurl = "/%s#%s" % ( urllib.unquote(ob.absolute_url(1)), c )
+            L.edit(remurl)
+            pw.doActionFor(L, 'publish', comment='Publish publication link %s in language %s.' % (c, ob.Language()))   
+
+
+def update_chapters(obj, evt):
+    """ EVENT: 
+        Update the chapter links based on the new set values in chapters
+    """    
+    # Make sure we execute this only on the canonical
+    if obj != obj.getCanonical():
+        return
+            
+    translations = obj.getTranslations()
+
+    for T in translations.keys():
+        updateChapterLinksForTranslation(translations[T][0])
+    
+    
 
 #class PDFHandler(object):
 #    """ contains the methods to manipulate a pdf file """

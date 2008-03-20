@@ -7,7 +7,6 @@ from p4a.fileimage import file as p4afile
 from p4a.fileimage import image as p4aimage
 from slc.publications.config import AUTHOR
 
-
 class IAnyPublicationCapable(Interface):
     """Any aspect of publication/content capable.
     """

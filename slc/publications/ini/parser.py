@@ -44,16 +44,6 @@ class INIParser(object):
         if ERR != []:                  
             return "\n".join(ERR)        
 
-    def updateChapterLinks(self):
-        """ Read the chapternames and compair them to the Link objects inside the
-            Publication for all translations. Add/Delete where they differ
-        """
-
-        translations = self.getTranslations()
-
-        for T in translations.keys():
-            updateChapterLinksForTranslation(translations[T][0])
-
 
     def _processMainSection(self, section, meta):
         """ parse the contents for a language Version of the publication
@@ -145,31 +135,6 @@ def _vTs(value):
         
     return None
             
-def updateChapterLinksForTranslation(ob):
-    """ syncronizes the chapter links in ob to be compliant with the
-        current portal languages and the chapters in getChapter
-    """
-    pw = getToolByName(ob, 'portal_workflow')
-
-    links = ob.objectIds('ATLink')
-    chapters = ob.getChapters()
-
-    # remove all links which are not named in getChapters
-    RM = []
-    for l in links:
-        if l not in chapters:
-            RM.append(l)
-    ob.manage_delObjects(ids=RM)
-
-    for c in chapters:
-        if c not in links:
-            ob.invokeFactory('Link', c)
-            L = getattr(ob, c)
-            L.setTitle(c)
-            L.setLanguage(ob.Language())
-            remurl = "/%s#%s" % ( urllib.unquote(ob.absolute_url(1)), c )
-            L.edit(remurl)
-            pw.doActionFor(L, 'publish', comment='Publish publication link %s in language %s.' % (c, ob.Language()))
         
 def _setMeta(TARGET, DATA):
     """ sets metadata from a config section
