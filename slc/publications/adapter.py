@@ -150,8 +150,7 @@ def _get_storage_folder(ob):
     if additionals_id == ob.getId():
         raise AttributeError, "Cannot get a unique name for the additionals folder"
         
-    # container = ob.aq_parent # This returns the view... 
-    container = ob.request.PARENTS[1]
+    container = aq_parent(aq_inner(ob)) 
     
     if additionals_id not in container.objectIds():
         container.invokeFactory("Folder", additionals_id)

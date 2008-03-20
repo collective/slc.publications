@@ -37,6 +37,14 @@ Now we add a chapter and call the ObjectModified event to call the handler that 
     >>> additionals.objectIds()
     ['chapter1']
     
+If we delete the chapter setting on the publication object, the link in the additionals storage is deleted as well.
+
+    >>> adapter.chapters = []
+    >>> event.notify(objectevent.ObjectModifiedEvent(mypub))
+    >>> additionals = _get_storage_folder(mypub)
+    >>> additionals.objectIds()
+    []
+    
 
     
 

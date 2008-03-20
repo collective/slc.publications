@@ -1,6 +1,9 @@
 Overview
 ========
 
+----------- DEPRECATED, look at the other txt files ----------
+
+
 The Publication Product can be used to organise printed publications that are
 available online for download. Publications usually have a publication date,
 order and ISBN numbers, an author and exist in several language versions.
