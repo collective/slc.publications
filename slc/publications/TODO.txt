@@ -13,6 +13,8 @@ TODO
 
 - add the related publications section
 
+- metadata export needs to be restricted on relevant attributes. (i.e. id  or remoteUrl is unnecessary, but how do I get schemaextended attribs?)
+
 - Review the PDF Parser. There are still other formats in PDF Files, we do not
   cover all of them. Find out why.
 
