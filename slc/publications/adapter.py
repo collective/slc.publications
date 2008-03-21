@@ -10,7 +10,6 @@ from zope import component
 from slc.publications import interfaces
 from Products.ATContentTypes import interface as atctifaces
 from Products.CMFCore.utils import getToolByName
-from plone.app.blob.interfaces import IATBlobFile
 from ComputedAttribute import ComputedAttribute
 from DateTime import DateTime
 

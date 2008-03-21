@@ -95,7 +95,7 @@ Now we load a demonstration pdf file from doc/UsingthePublicationProduct.pdf whi
     - Keywords: documentation, tutorial
     - Language: en
 
-    >>> docpdf = self.loadFile('doc/UsingthePublicationProduct.pdf')
+    >>> docpdf = self.loadfile('doc/UsingthePublicationProduct.pdf')
     >>> mypub.setFile(docpdf)
 
 Once we parse the uploaded file, we will have these properties set on our zope object.
@@ -117,7 +117,7 @@ Sometimes the PDF files will not come with proper metadata set on them. In this 
     >>> AnotherFile.Language()
     'en'
 
-    >>> german_de_pdf = self.loadFile('tests/data/GermanOSHA_de.pdf')
+    >>> german_de_pdf = self.loadfile('tests/data/GermanOSHA_de.pdf')
     >>> AnotherFile.setFile(german_de_pdf)
     >>> IPublication(AnotherFile).parsePDFProperties()
     >>> AnotherFile.Language()
