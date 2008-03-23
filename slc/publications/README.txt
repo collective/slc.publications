@@ -20,7 +20,7 @@ Alin Voinea for pointing that out)
 
   * use the QuickInstaller to add this product to your Plone site
 
-  * Optional: pdfinfo to parse pdf metadata
+  * Optional: pdfinfo to parse pdf metadata (part of the xpdf package)
 
   * Optional: pdftk and imagemagicks convert to generate a 
     cover image from a pdf file

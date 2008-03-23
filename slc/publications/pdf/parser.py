@@ -46,10 +46,12 @@ class PDFParser(object):
         os.remove(tmp_pdf[1])
 
         # check for errors or encryption
-        if result.startswith('Error'):
+        if result.startswith('Error: No paper information available - using defaults'):
+            # Irritating error if libpaper is not configured correctly. For our case this is irrelevant
+            pass
+        elif result.startswith('Error'):
             error =  result.split('\n')[0]
             logger.error("Error in pdfinfo conversion: %s" % error)
-            print error
             return False
             
         crypt_patt = re.compile('Encrypted:.*?copy:no', re.I)
@@ -57,7 +59,6 @@ class PDFParser(object):
         if mobj is not None:
             error = "Error: PDF is encrypted"
             logger.error(error)
-            print result
             return False
             
         # Everything seems fine, parse the metadata

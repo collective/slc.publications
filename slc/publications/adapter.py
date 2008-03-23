@@ -75,10 +75,9 @@ class _ATCTPublication(object):
     metadata_upload = None
     cover_image = None
 
-    
     title = atfield('title', 'context')
     description = atfield('description', 'context')
-    
+
     def _get_file(self):
         field = self.context.getPrimaryField()
         return field.getEditAccessor(self.context)()
