@@ -149,48 +149,8 @@ class PDFParser(object):
                 kw = value.split(";")
                 value = tuple([x.strip() for x in kw])
             META_MAP[name.strip().lower()] = value
-
-#        # make the author and subject to a tuple of values
-#        if type(META_MAP.get('author', '')) != TupleType:
-#            kw = META_MAP.get('author', '').split(";")
-#            META_MAP['author'] = tuple([x.strip() for x in kw])
-#
-#        if type(META_MAP.get('keywords', '')) != TupleType:
-#            kw = META_MAP.get('keywords', '').split(";")
-#            META_MAP['keywords'] = tuple([x.strip() for x in kw])
-
-#        for key in META_MAP:
-#            meta_data = META_MAP[key]
-#            if not meta_data:
-#                continue
-#            # use the appropriate dublin-core mutators
-#            if key.upper() == "TITLE":
-#                if not (self.getTitle() and meta_data ==''):
-#                    self.setTitle(meta_data)
-#            elif key.upper() in ["SUBJECT", "KEYWORDS"]:
-#                self.setSubject(meta_data)
-#            elif key.upper() == "DESCRIPTION":
-#                self.setDescription(meta_data)
-#            elif key.upper() == "CONTRIBUTORS":
-#                self.setContributors(meta_data)
-#            elif key.upper() in ("MODIFICATION_DATE", "MODIFICATIONDATE"):
-#                self.setModificationDate(meta_data)
-#            elif key.upper() in ("EXPIRATION_DATE", "EXPIRATIONDATE"):
-#                self.setExpirationDate(meta_data)
-#            elif key.upper() == "EFFECTIVE_DATE":
-#                self.setEffectiveDate(meta_data)
-#            elif key.upper() == "RIGHTS":
-#                self.setRights(meta_data)
-#            elif key.upper() == "PUBLISHER":
-#                self.setPublisher(meta_data)
-#            elif key.upper() == "LANGUAGE":
-#                if not self.Language():
-#                    self.setLanguage(meta_data)
-#            elif key.upper() == "FORMAT":
-#                self.setFormat(meta_data)
-#            elif key.upper() == "OPOCE":
-#                self.context.setOrder_id(meta_data)
-    
+        
+        
         # If the language is given in the filename extension, we consider that as 
         # most explicit
         
@@ -199,7 +159,7 @@ class PDFParser(object):
             META_MAP['language'] = l
         
         return META_MAP
-        
+
 
     def _guessLanguage(self, file):
         """

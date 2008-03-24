@@ -130,15 +130,46 @@ class _ATCTPublication(object):
     __repr__ = __str__
 
 
-    def parsePDFProperties(self):
-        """ parse the properties from the file contents and set them on the object """
-        pdfparser = component.getUtility(IPDFParser)
-        meta = pdfparser.parse(self._get_file())
-     
+#    def parsePDFProperties(self):
+#        """ parse the properties from the file contents and set them on the object """
+#        pdfparser = component.getUtility(IPDFParser)
+#        meta = pdfparser.parse(self._get_file())
 
+    def editChapter(self, chapter, map):
+        """ add/edit a link object with the given chapter name and modify its metadata """
+        additionals = _get_storage_folder(self.context)
+        C = getattr(additionals, chapter, None)
+        if C is None:
+            return
+        C.processForm(map)
         
-
-                   
+    def setMetadataMap(self, map):
+        """ sets a simple map with metadata on the current context. """
+        self.context.processForm(map)
+    
+    def setMetadataIniMap(self, map):
+        """ Given a complex metadata map from e.g. the ini parser set the metadata on all translations and chapters """
+        translations = self.context.getTranslations()
+        canonical = self.getCanonical()
+        T = {}
+        for t in translations:
+            T[t[0]] = t[1]
+        
+        for lang in map.keys():
+            if T.has_key(lang):
+                translation = T[lang]
+            else:
+                canonical.addTranslation(lang)
+                translation = canonical.getTranslation(lang)
+                T[lang] = translation
+            langmap = map[lang]
+            adapter = IPublication(translation)
+            for key in langmap.keys():
+                if key == '':
+                    adapter.setMetadataMap(langmap[key])
+                else:
+                    adapter.editChapter(key, langmap[key])
+    
 # Eventhandler
         
 def _get_storage_folder(ob):
@@ -170,7 +201,7 @@ def updateChapterLinksForTranslation(ob):
     pw = getToolByName(ob, 'portal_workflow')
 
     adapter = component.getAdapter(ob, interfaces.IPublication)    
-    chapters = adapter.publication_data['chapters']
+    chapters = adapter.publication_data.get('chapters', [])
 
     additionals = _get_storage_folder(ob)
     links = additionals.objectIds('ATLink')

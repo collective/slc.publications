@@ -52,9 +52,6 @@ class INIParser(object):
         
     ######## Retriever        
         
-        
-       
-        
     def retrieve(self, context):
         """ retrieves the metadata from the object, all translations and all chapters """
         meta = ConfigParser.ConfigParser()
