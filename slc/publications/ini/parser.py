@@ -20,59 +20,35 @@ class INIParser(object):
     
     def parse(self, ini):
         """ parses the given ini file and writes on the object """
-        
-        request = self.REQUEST
         site = getSite()
-        
-        sio = StringIO.StringIO(str(ini))
+        portal_languages = getToolByName(site, 'portal_languages')
+        langs = portal_languages.getSupportedLanguages()
+
+        if type(ini) in [StringType, UnicodeType]:
+            sio = StringIO.StringIO(ini)
+        elif type(ini) == FileType:
+            sio = ini
+
         meta = ConfigParser.ConfigParser()
         meta.optionxform = str
         meta.readfp(sio)
-        portal_languages = getToolByName(site, 'getToolByName')
-        langs = portal_languages.getSupportedLanguages()
-
-        ERR = []
-
-        if meta.has_section('default'):
-            err = _setMeta(TARGET=self, DATA=meta.items('default'))
-            if err:
-                ERR.append(err)
+        
+        metadata = {}
+        
         for section in meta.sections():
             section = section.strip()
-
             if len(section)>2 and section.find('.')>-1:  # we have a section of type [webanchor.en]
-                self._processChapterSection(section, meta)
-            else: # section is only a language abbrev like [en]
-                self._processMainSection(section, meta)
-
-        if ERR != []:                  
-            return "\n".join(ERR)        
-
-
-    def _processMainSection(self, section, meta):
-        """ parse the contents for a language Version of the publication
-        """
-        translations = self.getTranslations()
-        langs = self.portal_languages.getSupportedLanguages()
-        if section in langs:
-            F = translations.get(section, None)
-            if not F:
-                return
-            F = F[0]
-            _setMeta(TARGET=F, DATA=meta.items(section))
-
-    def _processChapterSection(self, section, meta):
-        """ parse the contents for a chapter Version of the publication
-        """
-        translations = self.getTranslations()
-        chapter, lang = section.rsplit('.')
-        F = translations.get(lang, None)
-        if not F:
-            return
-        F = F[0]
-        if hasattr(aq_base(F), chapter):
-            L = getattr(F, chapter)
-            _setMeta(TARGET=L, DATA=meta.items(section))
+                (chapter,lang) = section.rsplit(".", 1)
+                langmap = metadata.get(lang, {})
+                langmap[chapter] = _getMeta( meta.items(section) )
+                metadata[lang] = langmap
+            else: # section is a language abbrev like [en] ad therefore a main section
+                lang = section
+                langmap = metadata.get(lang, {})
+                langmap[''] = _getMeta( meta.items(section) ) 
+                metadata[lang] = langmap 
+        
+        return metadata
         
     ######## Retriever        
         
@@ -117,11 +93,6 @@ class INIParser(object):
         
             _retrieve_chapter_attrs(adapted, meta)
         
-                 
-        
-        
-        
-        
         out = StringIO.StringIO()
         meta.write(out)
         
@@ -164,33 +135,28 @@ def _vTs(value):
         
     return None
             
-        
-def _setMeta(TARGET, DATA):
-    """ sets metadata from a config section
-    """
-    if not TARGET:
-        return
+
+def _getMeta(section):
     params = {}
-    for elem in DATA:
-        if elem[1].strip()=='':
+    for elem in section:
+        key = elem[0].strip()
+        value = elem[1].strip()
+
+        if key=='':
             continue
-        params[elem[0].strip()] = elem[1].strip()
-
-    if TARGET.meta_type=='Link':
-        TARGET._editMetadata(title=params.get('title', TARGET.Title()),
-                      subject=params.get('subject', TARGET.Subject()),
-                      description=params.get('description', TARGET.Description()),
-                      contributors=params.get('contributors', TARGET.Contributors()),
-                      effective_date=params.get('effective_date', TARGET.EffectiveDate()),
-                      expiration_date=params.get('expiration_date', TARGET.ExpirationDate()),
-                      format=params.get('format', TARGET.Format()),
-                      language=params.get('language', TARGET.Language()),
-                      rights=params.get('rights', TARGET.Rights()),
-                      )
-    else:
-        TARGET._processForm(data=1, metadata=1, values=params)
-
-    TARGET.reindexObject()
+            
+        if len(key)>2 and key[-2:]=='[]':
+            # we have a list notation
+            key = key[:-2]
+            elems = value.split(";")
+            value = []
+            for e in elems:
+                value.append(e.strip())
+            value = tuple(value)
+            
+        params[key] = value    
+    return params
+    
 
 
 

@@ -13,8 +13,7 @@ Installation
 
     - AdvancedQuery (http://www.dieter.handshake.de/pyprojects/zope/#AdvancedQuery) (thanks to Alin Voinea for pointing that out)
 
-    - xpath that comes with pyxml (http://sourceforge.net/project/showfiles.php?group_id=6473&package_id=6541&release_id=286213)  (thanks to
-Alin Voinea for pointing that out)
+    - xpath that comes with pyxml (http://sourceforge.net/project/showfiles.php?group_id=6473&package_id=6541&release_id=286213)  (thanks to Alin Voinea for pointing that out)
 
   * Put this package in your Zope's Products directory and restart Zope
 
@@ -35,5 +34,9 @@ Authors
 
 Alexander Pilz <pilz@syslab.com>
 
+Credits
+-------
+
+Alin Voinea for Testing and Plone 2.5 backporting
 
 

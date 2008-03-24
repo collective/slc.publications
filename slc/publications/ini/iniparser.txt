@@ -20,18 +20,20 @@ Now we can retrieve the metadata by calling the parse method.
     True
     
     
-    >>> metadata_ini['title']
-    'English testing title'
-    >>> metadata_ini['description']
-    'English testing description'
-    >>> metadata_ini['keywords']
+    >>> metadata_ini['en']['']['title']
+    'Memorandum of Understanding'
+    >>> metadata_ini['en']['']['description']
+    'Memorandum of Understanding between the European Agency for Safety and Health at Work and the European Foundation for the Improvement of Living and Working Conditions.'
+    >>> metadata_ini['en']['']['keywords']
     ('testing', 'documentation')
-    >>> metadata_ini['language']
-    'en'
-    >>> metadata_ini['creator']
-    'pilz'
-    >>> metadata_ini['topic']
+    >>> metadata_ini['en']['']['author']
+    'European Agency for Safety and Health at Work'
+    >>> metadata_ini['en']['']['topic']
     ('young workers', 'stress')
+    >>> metadata_ini['de']['']['title']
+    'Vereinbarung'
+    >>> metadata_ini['en']['ch1']['title']
+    'Preamble'
     
     
     
