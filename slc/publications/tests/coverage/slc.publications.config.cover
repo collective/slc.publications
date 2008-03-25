@@ -1,0 +1,33 @@
+       # -*- coding: utf-8 -*-
+       #
+       # File: publications.py
+       #
+       # GNU General Public License (GPL)
+       #
+       
+    1: __author__ = """SYSLAB.COM <info@syslab.com>"""
+    1: __docformat__ = 'plaintext'
+       
+       
+       # Product configuration.
+       
+    1: from Products.CMFCore.permissions import setDefaultRoles
+    1: from Products.Archetypes.utils import DisplayList
+    1: from DateTime import DateTime
+    1: FLOOR_DATE = DateTime() # always effective
+    1: CEILING_DATE = DateTime("2037/01/01") # never expires
+       
+    1: PROJECTNAME = "slc.publications"
+       
+       # Permissions
+    1: DEFAULT_ADD_CONTENT_PERMISSION = "Add portal content"
+    1: setDefaultRoles(DEFAULT_ADD_CONTENT_PERMISSION, ('Manager', 'Owner'))
+       
+    1: product_globals = globals()
+       
+    1: AUTHOR = u"European Agency for Safety and Health at Work" # Set your default author here
+    1: DFORMAT = '%Y/%m/%d' # date format for date-widgets
+    1: SHOW_HM = 1 # show hour and minute in edit-macro for date-widgets
+       
+       # Used to store Link objects
+    1: ALLOWED_TYPES = ["Link"]

@@ -1,0 +1,172 @@
+    1: import tempfile, logging, os, re, ConfigParser, StringIO
+    1: from types import *
+    1: from interfaces import IINIParser
+    1: from zope import interface
+    1: from zope import component
+    1: from zope.formlib import form
+    1: from zope.app.component.hooks import getSite
+    1: from Products.CMFCore.utils import getToolByName
+    1: from slc.publications.adapter import _get_storage_folder
+       
+       
+    1: logger = logging.getLogger('slc.publications.ini')
+       
+    2: class INIParser(object):
+           """ parses metadata and chapters from ini files """
+       
+    1:     interface.implements(IINIParser)
+           
+           ##### Parser
+           
+    1:     def parse(self, ini):
+               """ parses the given ini file and writes on the object """
+    2:         site = getSite()
+    2:         portal_languages = getToolByName(site, 'portal_languages')
+    2:         langs = portal_languages.getSupportedLanguages()
+               
+    2:         sio = None
+    2:         if type(ini) in [StringType, UnicodeType]:
+    1:             sio = StringIO.StringIO(ini)
+    1:         elif type(ini) == FileType:
+>>>>>>             sio = ini
+    1:         elif type(ini) == InstanceType and ini.__class__ == StringIO.StringIO:
+    1:             sio = ini
+               else:
+>>>>>>             raise TypeError, 'Cannot determine type of ini paramenter'
+    2:         sio.seek(0)
+    2:         meta = ConfigParser.ConfigParser()
+    2:         meta.optionxform = str
+    2:         meta.readfp(sio)
+               
+    2:         metadata = {}
+               
+   12:         for section in meta.sections():
+   10:             section = section.strip()
+   10:             if len(section)>2 and section.find('.')>-1:  # we have a section of type [webanchor.en]
+    4:                 (chapter,lang) = section.rsplit(".", 1)
+    4:                 langmap = metadata.get(lang, {})
+    4:                 langmap[chapter] = _getMeta( meta.items(section) )
+    4:                 metadata[lang] = langmap
+                   else: # section is a language abbrev like [en] ad therefore a main section
+    6:                 lang = section
+    6:                 langmap = metadata.get(lang, {})
+    6:                 langmap[''] = _getMeta( meta.items(section) ) 
+    6:                 metadata[lang] = langmap 
+               
+    2:         return metadata
+               
+           ######## Retriever        
+               
+    1:     def retrieve(self, context):
+               """ retrieves the metadata from the object, all translations and all chapters """
+>>>>>>         meta = ConfigParser.ConfigParser()
+>>>>>>         meta.optionxform = str
+>>>>>>         portal_languages = getToolByName(context, 'portal_languages')
+>>>>>>         default_language = portal_languages.getDefaultLanguage()
+               
+               
+>>>>>>         from slc.publications.interfaces import IPublication
+               #form_fields = form.FormFields(IPublication)
+       
+               # the main object
+>>>>>>         canonical = context.getCanonical()
+               
+               
+               # the translations
+>>>>>>         translations = canonical.getTranslations()
+>>>>>>         for translation in translations.keys():
+>>>>>>             if not translation:
+>>>>>>                 lang = canonical.Language() or default_language
+                   else:
+>>>>>>                 lang = translation
+                                   
+>>>>>>             t_ob = translations[translation][0]
+                           
+>>>>>>             meta.add_section(lang)      
+>>>>>>             adapted = IPublication(t_ob)
+       
+>>>>>>             schema = t_ob.Schema()
+                   
+>>>>>>             for key in schema.keys():
+>>>>>>                 value = t_ob.getField(key).getAccessor(t_ob)()
+                       #value = getattr(t_ob, schema[key].accessor)()           
+>>>>>>                 value = _vTs(value)
+>>>>>>                 if not value or key=='id':
+>>>>>>                     continue
+>>>>>>                 meta.set(lang, key, value )          
+       
+       # DEP:
+       #            for attr in form_fields:
+       #                value = attr.field.get(adapted)
+       #                value = _vTs(value)
+       #                if not value: 
+       #                    continue
+       #                meta.set( lang, attr.field.getName(), value )
+               
+>>>>>>             _retrieve_chapter_attrs(adapted, meta)
+               
+>>>>>>         out = StringIO.StringIO()
+>>>>>>         meta.write(out)
+               
+>>>>>>         return out.getvalue()
+              
+              
+              
+    1: def _retrieve_chapter_attrs(ob, meta):
+>>>>>>     portal_languages = getToolByName(ob.context, 'portal_languages')
+>>>>>>     default_language = portal_languages.getDefaultLanguage()
+>>>>>>     suffix = ob.context.Language() or default_language
+       
+>>>>>>     additionals = _get_storage_folder(ob.context)
+           #DEP: chapters = ob.publication_data.get('chapters', [])
+>>>>>>     chapters = ob.context.getField('chapters').getAccessor(ob)()                
+           
+>>>>>>     for chapter in chapters:
+>>>>>>         section_name = "%s.%s" % (chapter, suffix)
+>>>>>>         link = getattr(additionals, chapter)
+>>>>>>         meta.add_section( section_name )   
+       
+>>>>>>         schema = link.Schema()
+>>>>>>         for key in schema.keys():
+>>>>>>             value = link.getField(key).getAccessor(link)()
+                   #value = getattr(link, schema[key].accessor)()           
+>>>>>>             value = _vTs(value)
+>>>>>>             if not value or key=='id':
+>>>>>>                 continue
+>>>>>>             meta.set(section_name, key, value )          
+                   
+                      
+               
+    1: def _vTs(value):
+           """ parse a value into a string representation in one line """
+>>>>>>     if type(value) in [StringType, UnicodeType]:
+>>>>>>         return value
+>>>>>>     elif type(value) in [IntType, FloatType]:
+>>>>>>         return value
+>>>>>>     elif type(value) in [ListType, TupleType]:
+>>>>>>         return ";".join(value)
+               
+>>>>>>     return None
+                   
+       
+    1: def _getMeta(section):
+   10:     params = {}
+   46:     for elem in section:
+   36:         key = elem[0].strip()
+   36:         value = elem[1].strip()
+       
+   36:         if key=='':
+>>>>>>             continue
+                   
+   36:         if len(key)>2 and key[-2:]=='[]':
+                   # we have a list notation
+    6:             key = key[:-2]
+    6:             elems = value.split(";")
+    6:             value = []
+   22:             for e in elems:
+   16:                 value.append(e.strip())
+    6:             value = tuple(value)
+                   
+   36:         params[key] = value    
+   10:     return params
+       

@@ -1,0 +1,38 @@
+    1: from zope import interface
+    1: from zope.formlib import form
+    1: from slc.publications import interfaces
+    1: try:
+    1:     from zope.app.annotation import interfaces as annointerfaces
+>>>>>> except ImportError, err:
+           # Zope 2.10 support
+>>>>>>     from zope.annotation import interfaces as annointerfaces
+       
+    1: _marker = object()
+       
+    2: class ToggleEnhancementsView(object):
+           """
+           """
+       
+    1:     def __init__(self, context, request):
+>>>>>>         self.context = context
+>>>>>>         self.request = request
+       
+    1:     def __call__(self):
+>>>>>>         was_activated = self.media_activated
+>>>>>>         self.media_activated = not was_activated
+>>>>>>         response = self.request.response
+       
+>>>>>>         if was_activated:
+>>>>>>             activated = 'Media+deactivated'
+               else:
+>>>>>>             activated = 'Media+activated'
+       
+>>>>>>         response.redirect(self.context.absolute_url() + \
+                                 '/view?portal_status_message='+activated)
+       
+    1:     def _set_media_activated(self, v):
+>>>>>>         interfaces.IMediaActivator(self.context).media_activated = v
+    1:     def _get_media_activated(self):
+>>>>>>         return interfaces.IMediaActivator(self.context).media_activated
+    1:     media_activated = property(_get_media_activated, _set_media_activated)
+       

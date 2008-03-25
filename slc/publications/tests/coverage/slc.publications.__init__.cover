@@ -1,0 +1,65 @@
+       # -*- coding: utf-8 -*-
+       # GNU General Public License (GPL)
+       #
+       # This program is free software; you can redistribute it and/or
+       # modify it under the terms of the GNU General Public License
+       # as published by the Free Software Foundation; either version 2
+       # of the License, or (at your option) any later version.
+       #
+       # This program is distributed in the hope that it will be useful,
+       # but WITHOUT ANY WARRANTY; without even the implied warranty of
+       # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+       # GNU General Public License for more details.
+       #
+       # You should have received a copy of the GNU General Public License
+       # along with this program; if not, write to the Free Software
+       # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+       # 02110-1301, USA.
+       #
+       
+    1: __author__ = """SYSLAB.COM <info@syslab.com>"""
+    1: __docformat__ = 'plaintext'
+       
+       
+    1: import logging
+    1: logger = logging.getLogger('slc.publications')
+    1: logger.debug('Installing slc.publications')
+       
+    1: import os
+    1: import os.path
+    1: from Globals import package_home
+    1: import Products.CMFPlone.interfaces
+    1: from Products.Archetypes import listTypes
+    1: from Products.Archetypes.atapi import *
+    1: from Products.Archetypes.utils import capitalize
+    1: from Products.CMFCore import DirectoryView
+    1: from Products.CMFCore import permissions as cmfpermissions
+    1: from Products.CMFCore import utils as cmfutils
+    1: from Products.CMFPlone.utils import ToolInit
+    1: from config import *
+       
+    1: from Products.ATContentTypes.content.schemata import finalizeATCTSchema
+    1: from Products.ATContentTypes.content.file import ATFileSchema
+       
+    1: ATFileSchema['file'].languageIndependent = False
+    1: ATFileSchema['file'].required = False
+    1: finalizeATCTSchema(ATFileSchema)
+       
+       
+       
+    1: def initialize(context):
+           """initialize product (called by zope)"""
+       
+           # Initialize portal content
+    1:     content_types, constructors, ftis = process_types(
+               listTypes(PROJECTNAME),
+    1:         PROJECTNAME)
+       
+    1:     cmfutils.ContentInit(
+               PROJECTNAME + ' Content',
+    1:         content_types      = content_types,
+    1:         permission         = DEFAULT_ADD_CONTENT_PERMISSION,
+    1:         extra_constructors = constructors,
+    1:         fti                = ftis,
+               ).initialize(context)
+       

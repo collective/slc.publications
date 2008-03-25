@@ -1,0 +1,154 @@
+    1: from zope.interface import implements
+    1: from Products.CMFPlone import PloneMessageFactory as _
+    1: from Products.Archetypes import atapi 
+    1: from Products.validation import V_REQUIRED
+    1: from archetypes.schemaextender.interfaces import ISchemaExtender, IOrderableSchemaExtender
+    1: from archetypes.schemaextender.field import ExtensionField
+    1: from slc.publications.config import AUTHOR
+       
+    2: class ExtensionFieldMixin:
+    1:     def translationMutator(self, instance):
+>>>>>>         return self.getMutator(instance)
+       
+    2: class CoverImageField(ExtensionField, ExtensionFieldMixin, atapi.ImageField):
+    1:     """ The cover image """
+       
+    2: class AuthorField(ExtensionField, ExtensionFieldMixin, atapi.StringField):
+    1:     """ The Publicaion Author"""
+       
+    2: class ISBNField(ExtensionField, ExtensionFieldMixin, atapi.StringField):
+    1:     """ The Publications ISBN """
+       
+    2: class OrderIdField(ExtensionField, ExtensionFieldMixin, atapi.StringField):
+    1:     """ The Publications Order ID """
+       
+    2: class ForSaleField(ExtensionField, ExtensionFieldMixin, atapi.BooleanField):
+    1:     """ The Publication id for sale? """
+       
+    2: class ChaptersField(ExtensionField, ExtensionFieldMixin, atapi.LinesField):
+    1:     """ The Publication Chapters """
+       
+    2: class MetadataUploadField(ExtensionField, ExtensionFieldMixin, atapi.FileField):
+    1:     """ The Publication Metadata as ini upload """
+       
+    2: class OwnerPasswordField(ExtensionField, ExtensionFieldMixin, atapi.StringField):
+    1:     """ The Publication PDFs owner password """
+       
+    2: class UserPasswordField(ExtensionField, ExtensionFieldMixin, atapi.StringField):
+    1:     """ The Publication PDFs user password """
+       
+       
+    2: class SchemaExtender(object):
+    1:     implements(IOrderableSchemaExtender)
+       
+    1:     _fields = [
+                   CoverImageField('cover_image',
+    1:                 schemata='publication',
+    1:                 sizes={'cover':(70,100)},
+    1:                 languageIndependent=True,
+    1:                 widget=atapi.ImageWidget(
+                           label = _(u'label_cover_image', default=u'Cover Image'),
+    1:                     description=_(u'description_cover_image', default=u'Upload a cover image. Leave empty to have the system autogenerate one for you.'),
+                       ),
+    1:                 translation_mutator="translationMutator",
+                   ),
+                   AuthorField('author',
+    1:                 schemata='publication',
+    1:                 languageIndependent=True,
+    1:                 default=AUTHOR,
+    1:                 widget=atapi.StringWidget(
+                           label = _(u'label_author', default=u'Author'),
+    1:                     description=_(u'description_author', default=u'Fill in the Name of the Author of this Publication.'),
+                       ),
+    1:                 translation_mutator="translationMutator",
+                   ),
+                   ISBNField('isbn',
+    1:                 schemata='publication',
+    1:                 languageIndependent=False,
+    1:                 widget=atapi.StringWidget(
+                           label = _(u'label_isbn', default=u'ISBN'),
+    1:                     description=_(u'description_isbn', default=u'Fill in the ISBN Number of this Publication.'),
+                       ),
+    1:                 translation_mutator="translationMutator",
+                   ),
+                   OrderIdField('order_id',
+    1:                 schemata='publication',
+    1:                 languageIndependent=False,
+    1:                 widget=atapi.StringWidget(
+                           label = _(u'label_order_id', default=u'Order ID'),
+    1:                     description=_(u'description_order_id', default=u'Fill in the Order ID of this Publication.'),
+                       ),
+    1:                 translation_mutator="translationMutator",
+                   ),
+                   ForSaleField('for_sale',
+    1:                 schemata='publication',
+    1:                 languageIndependent=True,
+    1:                 widget=atapi.BooleanWidget(
+                           label = _(u'label_for_sale', default=u'For sale?'),
+    1:                     description=_(u'description_for_sale', default=u'Is this Publication for sale?'),
+                       ),
+    1:                 translation_mutator="translationMutator",
+                   ),
+                   ChaptersField('chapters',
+    1:                 schemata='publication',
+    1:                 languageIndependent=True,
+    1:                 widget=atapi.LinesWidget(
+                           label = _(u'label_chapters', default=u'Chapters'),
+    1:                     description=_(u'description_chapters', default=u'Chapters of this Publication. Specify the Link targets defined in your pdf file, one per line.'),
+                       ),
+    1:                 translation_mutator="translationMutator",
+                   ),
+                   MetadataUploadField('metadata_upload',
+    1:                 schemata='publication',
+    1:                 languageIndependent=True,
+    1:                 widget=atapi.FileWidget(
+                           label = _(u'label_metadata_upload', default=u'Metadata INI upload'),
+    1:                     description=_(u'description_metadata_upload', default=u'Upload Metadata in INI style format.'),
+                       ),
+    1:                 translation_mutator="translationMutator",
+                   ),
+                   OwnerPasswordField('owner_password',
+    1:                 schemata='publication',
+    1:                 languageIndependent=False,
+    1:                 widget=atapi.StringWidget(
+                           label = _(u'label_owner_password', default=u'Owner Password'),
+    1:                     description=_(u'description_owner_password', default=u'If this publication is protected, speciy the pdf owner password if you want to parse the file.'),
+                       ),
+    1:                 translation_mutator="translationMutator",
+                   ),
+                   UserPasswordField('user_password',
+    1:                 schemata='publication',
+    1:                 languageIndependent=False,
+    1:                 widget=atapi.StringWidget(
+                           label = _(u'label_user_password', default=u'User Password'),
+    1:                     description=_(u'description_user_password', default=u'If this publication is protected, speciy the pdf user password if you want to parse the file.'),
+                       ),
+    1:                 translation_mutator="translationMutator",
+                   ),
+                   ]
+       
+    1:     def __init__(self, context):
+  209:         self.context = context
+       
+    1:     def getFields(self):
+  209:         return self._fields
+       
+    1:     def getOrder(self, original):
+  209:         publication = original.get('publication', [])
+       
+               #publication.remove('')
+       
+  209:         publication.insert(0, 'author')
+  209:         publication.insert(1, 'isbn')
+  209:         publication.insert(2, 'order_id')
+  209:         publication.insert(3, 'for_sale')
+  209:         publication.insert(4, 'chapters')
+  209:         publication.insert(5, 'cover_image')
+  209:         publication.insert(6, 'metadata_upload')
+  209:         publication.insert(7, 'owner_password')
+  209:         publication.insert(8, 'user_password')
+       
+  209:         original['publication'] = publication
+       
+  209:         return original
+       

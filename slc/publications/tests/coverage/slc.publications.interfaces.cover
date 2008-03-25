@@ -1,0 +1,57 @@
+    1: from zope import schema
+    1: from zope.interface import Interface, alsoProvides
+    1: from zope.app.content import interfaces as contentifaces
+       
+       
+    2: class IAnyPublicationCapable(Interface):
+           """Any aspect of publication/content capable.
+    1:     """
+           
+    2: class IPossiblePublication(IAnyPublicationCapable):
+           """ All objects that should have the ability to be converted to some
+               form of publication should implement this interface.
+    1:     """
+       
+    2: class IPossiblePublicationContainer(IAnyPublicationCapable):
+           """ All objects that should have the ability to be converted to some
+               form of publication should implement this interface.
+    1:     """
+       
+    2: class IPublicationEnhanced(Interface):
+           """ Marker interface for publications
+    1:     """
+               
+    2: class IPublicationContainerEnhanced(Interface):
+           """ Any folderish entity that has had it's IPublicationContainer features
+               enabled.
+    1:     """
+       
+    1: alsoProvides(IPublicationEnhanced, contentifaces.IContentType)
+       
+       
+    2: class IPublication(Interface):
+           """ Objects which have publication information.
+    1:     """
+           
+    2: class IPublicationProvider(Interface):
+           """ Provide publications.
+           """
+    1:     publication_items = schema.List(title=u'Publication Items', required=True, readonly=True)    
+       
+       
+                                           
+    2: class IBasicPublicationSupport(Interface):
+           """ Provides certain information about publication support.
+           """
+    1:     support_enabled = schema.Bool(title=u'Publication Support Enabled?', required=True, readonly=True)                
+       
+    2: class IPublicationSupport(IBasicPublicationSupport):
+           """ Provides full information about publication support.
+    1:     """     
+                                             
+    2: class IMediaActivator(Interface):
+           """ For seeing the activation status or toggling activation.
+           """
+    1:     media_activated = schema.Bool(title=u'Media Activated',required=True, readonly=False)
+           
+           
