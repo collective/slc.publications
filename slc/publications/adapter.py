@@ -13,7 +13,6 @@ from Products.CMFCore.utils import getToolByName
 from ComputedAttribute import ComputedAttribute
 from DateTime import DateTime
 
-
 from slc.publications.pdf.interfaces import IPDFParser
 from slc.publications.ini.interfaces import IINIParser
 from slc.publications.config import ALLOWED_TYPES
@@ -27,6 +26,9 @@ except ImportError, err:
 from p4a.common.descriptors import atfield
 from p4a.fileimage import DictProperty
 from p4a.subtyper.interfaces import ISubtyper
+
+import logging
+logger = logging.getLogger('slc.publications')
 
 @interface.implementer(interfaces.IPublication)
 @component.adapter(atctifaces.IATFile)
@@ -97,13 +99,71 @@ class _ATCTPublication(object):
                 else:
                     adapter.editChapter(key, langmap[key])
 
+    def generateImage(self):
+        """
+        try safely to generate the cover image if pdftk and imagemagick are present
+        """
+        tmp_pdfin = tmp_pdfout = tmp_gifin = None
+        try:
+            mainpub = self.context.getCanonical()
+            data = str(mainpub.getFile())
+            if not data:
+                return 0
+            tmp_pdfin = tempfile.mkstemp(suffix='.pdf')
+            tmp_pdfout = tempfile.mkstemp(suffix='.pdf')
+            tmp_gifin = tempfile.mkstemp(suffix='.gif')
+            fhout = open(tmp_pdfout[1], "w")
+            fhimg = open(tmp_gifin[1], "r")
+            fhout.write(data)
+            fhout.seek(0)
+            cmd = "pdftk %s cat 1 output %s" %(tmp_pdfout[1], tmp_pdfin[1])
+            logger.info(cmd)
+            res = os.popen(cmd)
+            result = res.read()
+            if result:
+                logger.warn("popen-1: %s" % (result))
+            cmd = "convert %s -resize 80x113 %s" %(tmp_pdfin[1], tmp_gifin[1])
+            res = os.popen(cmd)
+            result = res.read()
+            if result:
+                logger.warn("popen-2: %s" % (result))
+            #fhimg.seek(0)
+            coverdata = fhimg.read()
+            self.context.getField('cover_image').getMutator(self.context)(coverdata)
+            status = 1
+        except Exception, e:
+            logger.warn("generateImage: Could not autoconvert because: %s" %e)
+            status = 0
 
+        # try to clean up
+        if tmp_pdfin is not None:
+            try: os.remove(tmp_pdfin[1])
+            except: pass
+        if tmp_pdfout is not None:
+            try: os.remove(tmp_pdfout[1])
+            except: pass
+        if tmp_gifin is not None:
+            try: os.remove(tmp_gifin[1])
+            except: pass
+
+        return status
 
 
 # Eventhandler
         
+def generate_image(obj, evt):
+    """ EVENT
+        called on objectmodified. Tries to generate the cover image. 
+    """
+    # Make sure we execute this only on the canonical
+    if obj != obj.getCanonical():
+        return
+        
+    interfaces.IPublication(obj).generateImage()
+        
 def _get_storage_folder(ob):
-
+    """ Helper Method to fetch the folder containing additional material like chapters and further pdf parts 
+    """
     additionals_id = ob.getId().replace('.pdf', '')+'_data'
 
     if additionals_id == ob.getId():

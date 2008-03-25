@@ -26,11 +26,13 @@ slc/publications/README.txt
 slc/publications/TODO.txt
 slc/publications/__init__.py
 slc/publications/adapter.py
+slc/publications/adapterold.py
 slc/publications/config.py
 slc/publications/configure.zcml
 slc/publications/descriptors.py
 slc/publications/displays.py
 slc/publications/interfaces.py
+slc/publications/overrides.zcml
 slc/publications/profiles.zcml
 slc/publications/refresh.txt
 slc/publications/setuphandlers.py
@@ -53,7 +55,6 @@ slc/publications/doc/pubfolderview.png
 slc/publications/doc/pubview.png
 slc/publications/doc/subtyping.txt
 slc/publications/doc/tutorial_icon.gif
-slc/publications/doc/usage.txt
 slc/publications/i18n/Publications-bg.po
 slc/publications/i18n/Publications-cs.po
 slc/publications/i18n/Publications-da.po
@@ -115,6 +116,7 @@ slc/publications/skins/publications_templates/show_publications_by_keyword.pt
 slc/publications/skins/publications_templates/xliff_Publication_tmpl.pt
 slc/publications/subtypes/__init__.py
 slc/publications/subtypes/file.py
+slc/publications/subtypes/publication.py
 slc/publications/tests/__init__.py
 slc/publications/tests/base.py
 slc/publications/tests/test_doctests.py

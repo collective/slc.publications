@@ -3,6 +3,7 @@
 
 * Switch to p4a.subtyper to make publications out of files
 * Use Archetypes.schemaextender to marry normal and publication attributes in one interface
+* readded cover image generation
 
 1.0 beta1
 ---------

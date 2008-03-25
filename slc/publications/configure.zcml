@@ -56,6 +56,11 @@
         handler=".adapter.update_chapters"
       />
 
+      <subscriber 
+          for="slc.publications.interfaces.IPublicationEnhanced
+               zope.app.event.interfaces.IObjectModifiedEvent"
+          handler=".adapter.generate_image"
+        />
 
     <!-- Zope 2.9 / 3.2 support -->
     <configure zcml:condition="installed zope.app.annotation.tests">
