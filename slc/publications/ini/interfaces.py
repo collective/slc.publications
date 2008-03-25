@@ -11,4 +11,4 @@ class IINIParser(Interface):
         
     def retrieve(context):
         """ retrieves an ini representation of the given context"""
-        
+
