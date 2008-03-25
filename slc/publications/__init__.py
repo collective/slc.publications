@@ -49,7 +49,6 @@ finalizeATCTSchema(ATFileSchema)
 
 def initialize(context):
     """initialize product (called by zope)"""
-    import Publication
 
     # Initialize portal content
     content_types, constructors, ftis = process_types(

@@ -9,8 +9,6 @@ Installation
 
   * Requires 
  
-    - Plone Language Tool 
-
     - On Plone2.5: AdvancedQuery (http://www.dieter.handshake.de/pyprojects/zope/#AdvancedQuery) 
       (thanks to Alin Voinea for pointing that out)
 
@@ -21,6 +19,8 @@ Installation
     - p4a.subtyper, p4a.common, p4a.z2utils
     
     - archetypes.schemaextender
+    
+    - LinguaPlone (the product might run without but I have not bothered to make the calls to LP conditional yet...)
 
 
   * Put this package in your Zope's Products directory and restart Zope
