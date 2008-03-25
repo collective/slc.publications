@@ -13,8 +13,7 @@
 <body>
 
 <div metal:fill-slot="main"
-        tal:define="
-        publication_info context/@@publication_view;
+        tal:define="publication_info context/@@publication_view;
         context_url string:${context/absolute_url};
         errors options/state/getErrors | nothing;
         Iterator python: modules['Products.Archetypes'].IndexIterator;
@@ -34,8 +33,11 @@
     </h1>
     
     <div class="field publicationImage"
-         tal:condition="publication_info/cover_image | nothing">
-        <div tal:replace="structure view/widgets/cover_image"></div>        
+         xtal:condition="here/cover_image | nothing">
+         <img src="" 
+              tal:attributes="src string:${here/absolute_url}/cover_image;
+                              alt here/Title" 
+              width="70" height="100">
     </div>
 
     <div class="publicationText">
@@ -44,33 +46,32 @@
             <metal:fieldMacro use-macro="python: here.widget('description', mode=mode)" />
         </div>
 
-
-        <div class="publicationField" tal:define="widget nocall:view/widgets/isbn">
+        <div class="publicationField" tal:define="field python:here.getField('isbn');">
             <div class="label">
                 <label for="field.name" title="The widget's hint"
-                       tal:attributes="for widget/name; title widget/hint"
-                       tal:content="widget/label"></label>: 
-            </div>       
-            <div tal:replace="structure widget"></div>        
+                       tal:attributes="for python:field.widget.Label(here); title python: field.widget.Label(here)"
+                       tal:content="python:field.widget.Label(here)"></label>:
+            </div>
+            <div tal:replace="structure python:field.getAccessor(here)()"></div>        
         </div>
 
-        <div class="publicationField" tal:define="widget nocall:view/widgets/author">
+        <div class="publicationField" tal:define="field python:here.getField('author');">
             <div class="label">
                 <label for="field.name" title="The widget's hint"
-                       tal:attributes="for widget/name; title widget/hint"
-                       tal:content="widget/label"></label>: 
+                       tal:attributes="for python:field.widget.Label(here); title python:field.widget.Label(here)"
+                       tal:content="python:field.widget.Label(here)"></label>: 
             </div>       
-            <div tal:replace="structure widget"></div>        
+            <div tal:replace="structure python:field.getAccessor(here)()"></div>        
         </div>
         
         
-        <div class="publicationField" tal:define="widget nocall:view/widgets/publication_date">
+        <div class="publicationField" tal:define="field python:here.getField('effectiveDate');">
             <div class="label">
                 <label for="field.name" title="The widget's hint"
-                       tal:attributes="for widget/name; title widget/hint"
-                       tal:content="widget/label"></label>: 
+                       tal:attributes="for python:field.widget.Label(here); title python:field.widget.Label(here)"
+                       tal:content="python:field.widget.Label(here)"></label>: 
             </div>       
-            <div tal:replace="structure widget"></div>        
+            <div tal:replace="structure python:toLocalizedTime(field.getAccessor(here)())"></div>        
         </div>
         
         <div class="publicationField">
@@ -82,24 +83,25 @@
             <tal:size content="structure python:', %s KB' % (here.get_size() / 1024)">0Kb</tal:size>
         </div>
 
-        <div class="publicationOrder" tal:define="widget nocall:view/widgets/order_id">
+        <div class="publicationOrder" tal:define="field python:here.getField('order_id'); 
+                                                  value python:field.getAccessor(here)()">
             
             <div class="publicationField" style="float:left">
                 <div class="label">
                     <label for="field.name" title="The widget's hint"
-                           tal:attributes="for widget/name; title widget/hint"
-                           tal:content="widget/label"></label>: 
+                           tal:attributes="for python:field.widget.Label(here); title python:field.widget.Label(here)"
+                           tal:content="python:field.widget.Label(here)"></label>: 
                 </div>       
-                <div tal:replace="structure widget"></div> 
+                <div tal:replace="structure value"></div>        
                 <br />
-                <strong tal:content="widget/hint"></strong>
+                <div i18n:translate="help_order_id">Order a printed copy of this document!</div>        
             </div>
 
             <div style="float:left" class="publicationOrderButton">
                <a href=""
                       target="_blank"
                       alt="Order a printed copy at EU-Bookshop"
-                      tal:attributes="href     string:http://bookshop.europa.eu/eGetRecords?Template=Test_EUB/en_publication_details&amp;CATNBR=$widget" >
+                      tal:attributes="href     string:http://bookshop.europa.eu/eGetRecords?Template=Test_EUB/en_publication_details&amp;CATNBR=$value" >
                           <img src="eu_bookshop.gif"
                                alt="EU Bookshop: You can order a printed copy of this document"
                                title="EU Bookshop: You can order a printed copy of this document">
@@ -112,7 +114,7 @@
         <div>
             <span style="float:right" class="discreet"
                   tal:condition="python:here.portal_membership.checkPermission('Modify portal content', here )">
-                  <span tal:replace="structure view/widgets/metadata_upload"/><br/>
+                  <metal:fieldMacro use-macro="python: here.widget('metadata_upload', mode=mode)" />
                   <a href="" tal:attributes="href string:${context_url}/@@generate-metadata">Generate Metadata</a><br/>
                     
             </span>
@@ -139,7 +141,7 @@
 
 
 
-        <div id="chapterlisting"
+        <!--div id="chapterlisting"
              tal:define="chapters view/chapters"
              tal:condition="chapters">
 
@@ -155,7 +157,7 @@
                 </tal:block>
 
             </tal:repeat>
-        </div>
+        </div-->
 
     </div>
 

@@ -44,7 +44,7 @@
 
       
   <page
-      name="atct_edit"
+      name="publication_edit"
       for="slc.publications.interfaces.IPublicationEnhanced"
       permission="cmf.ModifyPortalContent"
       class=".publication.PublicationEditForm"

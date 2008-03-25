@@ -20,7 +20,6 @@ from Products.statusmessages import interfaces as statusmessages_ifaces
 from Products.Five.browser import pagetemplatefile
 from Products.Five.formlib import formbase
 
-from slc.publications.config import STORAGE_FOLDER 
 from slc.publications import interfaces 
 from slc.publications.ini.interfaces import IINIParser
 from slc.publications.adapter import _get_storage_folder
@@ -33,17 +32,16 @@ from zope.app.form.browser import TextAreaWidget, DateDisplayWidget, CollectionI
 
 
 
-class PublicationPageView(form.PageDisplayForm):
+class PublicationPageView(object):
     """Page for displaying a publication.
     """
     adapted_interface = interfaces.IPublication
     media_field = 'file'
 
-    form_fields = form.FormFields(interfaces.IPublication)
-    datewidget = DateDisplayWidget
-    datewidget.displayStyle = "medium"
-    form_fields['publication_date'].custom_widget = datewidget
-    #form_fields['chapters'].custom_widget = OrderedMultiSelectWidget
+    #form_fields = form.FormFields(interfaces.IPublication)
+    #datewidget = DateDisplayWidget
+    #datewidget.displayStyle = "medium"
+    #form_fields['publication_date'].custom_widget = datewidget
     
     label = u'View Publication Info'
 
@@ -78,14 +76,14 @@ class PublicationPageView(form.PageDisplayForm):
         return chapterlinks
         
     def update(self):
+        pass
         # We need to set the locale manually. Can be removed when on Zope2.11
-        self.request.set('locale', getLocale(self.request))
+        #self.request.set('locale', getLocale(self.request))
         
-                
-        super(PublicationPageView, self).update()
-        if not interfaces.IPublication(self.context).publication_data:
-            self.context.plone_utils.addPortalMessage( \
-                _(u'Unsupported Publication type'))
+        #super(PublicationPageView, self).update()
+        #if not interfaces.IPublication(self.context).publication_data:
+        #    self.context.plone_utils.addPortalMessage( \
+        #        _(u'Unsupported Publication type'))
 
 class IPublicationView(interface.Interface):
     def title(): pass
@@ -97,21 +95,19 @@ class PublicationView(object):
     def __init__(self, context, request):
         self.publication_info = interfaces.IPublication(context)
 
-        mime_type = unicode(context.get_content_type())
+        #mime_type = unicode(context.get_content_type())
         
-    def title(self): return self.publication_info.title
-    def description(self): return self.publication_info.description
-    def cover_image(self): return self.publication_info.cover_image
+    #def cover_image(self): return self.publication_info.cover_image
 
-    def author(self): return self.publication_info.author
-    def publication_date(self): return self.publication_info.publication_date
-    def isbn(self): return self.publication_info.isbn
-    def order_id(self): return self.publication_info.order_id
-    def for_sale(self): return self.publication_info.for_sale
-    def chapters(self): return self.publication_info.chapters
-    def metadata_upload(self): return self.publication_info.metadata_upload
-    def owner_password(self): return self.publication_info.owner_password
-    def user_password(self): return self.publication_info.user_password
+    #def author(self): return self.publication_info.author
+    #def publication_date(self): return self.publication_info.publication_date
+    #def isbn(self): return self.publication_info.isbn
+    #def order_id(self): return self.publication_info.order_id
+    #def for_sale(self): return self.publication_info.for_sale
+    #def chapters(self): return self.publication_info.chapters
+    #def metadata_upload(self): return self.publication_info.metadata_upload
+    #def owner_password(self): return self.publication_info.owner_password
+    #def user_password(self): return self.publication_info.user_password
 
 
 def applyChanges(context, form_fields, data, adapters=None):
@@ -211,11 +207,6 @@ class PublicationContainerView(object):
         self.context = context
         self.request = request
         
-        # XXX:Adapter missing
-        #self.provider = interfaces.IPublicationProvider(context)
-
-#    def publication_items(self):
-#        return self.provider.publication_items
 
     def contentsMethod(self):
         if self.context.portal_type=='Topic':

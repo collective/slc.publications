@@ -66,13 +66,12 @@ class INIParser(object):
         
         
         from slc.publications.interfaces import IPublication
-        form_fields = form.FormFields(IPublication)
+        #form_fields = form.FormFields(IPublication)
 
         # the main object
         canonical = context.getCanonical()
-            
-
-
+        
+        
         # the translations
         translations = canonical.getTranslations()
         for translation in translations.keys():
@@ -86,12 +85,23 @@ class INIParser(object):
             meta.add_section(lang)      
             adapted = IPublication(t_ob)
 
-            for attr in form_fields:
-                value = attr.field.get(adapted)
+            schema = t_ob.Schema()
+            
+            for key in schema.keys():
+                value = t_ob.getField(key).getAccessor(t_ob)()
+                #value = getattr(t_ob, schema[key].accessor)()           
                 value = _vTs(value)
-                if not value: 
+                if not value or key=='id':
                     continue
-                meta.set( lang, attr.field.getName(), value )
+                meta.set(lang, key, value )          
+
+# DEP:
+#            for attr in form_fields:
+#                value = attr.field.get(adapted)
+#                value = _vTs(value)
+#                if not value: 
+#                    continue
+#                meta.set( lang, attr.field.getName(), value )
         
             _retrieve_chapter_attrs(adapted, meta)
         
@@ -108,8 +118,8 @@ def _retrieve_chapter_attrs(ob, meta):
     suffix = ob.context.Language() or default_language
 
     additionals = _get_storage_folder(ob.context)
-    chapters = ob.publication_data.get('chapters', [])
-                    
+    #DEP: chapters = ob.publication_data.get('chapters', [])
+    chapters = ob.context.getField('chapters').getAccessor(ob)()                
     
     for chapter in chapters:
         section_name = "%s.%s" % (chapter, suffix)
@@ -118,9 +128,10 @@ def _retrieve_chapter_attrs(ob, meta):
 
         schema = link.Schema()
         for key in schema.keys():
-            value = getattr(link, schema[key].accessor)()           
+            value = link.getField(key).getAccessor(link)()
+            #value = getattr(link, schema[key].accessor)()           
             value = _vTs(value)
-            if not value:
+            if not value or key=='id':
                 continue
             meta.set(section_name, key, value )          
             

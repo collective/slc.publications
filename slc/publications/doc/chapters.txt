@@ -26,10 +26,8 @@ We add a new File and make it a publication by subtyping.
 
 Now we add a chapter and call the ObjectModified event to call the handler that adds the actual Link objects.
 
-    >>> from slc.publications.interfaces import IPublication
     >>> from slc.publications.adapter import _get_storage_folder
-    >>> adapter = IPublication(mypub)
-    >>> adapter.chapters = [u'chapter1']
+    >>> mypub.getField('chapters').getMutator(mypub)(['chapter1'])
     >>> from zope import event
     >>> from zope.app.event import objectevent
     >>> event.notify(objectevent.ObjectModifiedEvent(mypub))
@@ -39,7 +37,7 @@ Now we add a chapter and call the ObjectModified event to call the handler that 
     
 If we delete the chapter setting on the publication object, the link in the additionals storage is deleted as well.
 
-    >>> adapter.chapters = []
+    >>> mypub.getField('chapters').getMutator(mypub)([])
     >>> event.notify(objectevent.ObjectModifiedEvent(mypub))
     >>> additionals = _get_storage_folder(mypub)
     >>> additionals.objectIds()

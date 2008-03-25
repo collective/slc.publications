@@ -177,11 +177,11 @@ We need to subtype the translated publication as well (this can made much easier
     >>> DEFile.Title()
     'Vereinbarung'
 
-    >>> IPublication(ENFile).isbn
-    u'87-418-5901-5'
+    >>> ENFile.getField('isbn').getAccessor(ENFile)()
+    '87-418-5901-5'
 
-    >>> IPublication(DEFile).isbn
-    u'87-418-5901-6'
+    >>> DEFile.getField('isbn').getAccessor(DEFile)()
+    '87-418-5901-6'
 
 
 

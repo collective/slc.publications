@@ -115,4 +115,10 @@
         </class>
     </configure>
 
+    <adapter
+        name="slc.publications.subtypes.publication"
+        for="slc.publications.interfaces.IPublicationEnhanced"
+        factory=".subtypes.publication.SchemaExtender" />
+
+
 </configure>

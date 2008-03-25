@@ -11,9 +11,17 @@ Installation
  
     - Plone Language Tool 
 
-    - AdvancedQuery (http://www.dieter.handshake.de/pyprojects/zope/#AdvancedQuery) (thanks to Alin Voinea for pointing that out)
+    - On Plone2.5: AdvancedQuery (http://www.dieter.handshake.de/pyprojects/zope/#AdvancedQuery) 
+      (thanks to Alin Voinea for pointing that out)
 
-    - xpath that comes with pyxml (http://sourceforge.net/project/showfiles.php?group_id=6473&package_id=6541&release_id=286213)  (thanks to Alin Voinea for pointing that out)
+    - xpath that comes with pyxml 
+      (http://sourceforge.net/project/showfiles.php?group_id=6473&package_id=6541&release_id=286213)  
+      (thanks to Alin Voinea for pointing that out)
+      
+    - p4a.subtyper
+    
+    - archetypes.schemaextender
+
 
   * Put this package in your Zope's Products directory and restart Zope
 
