@@ -11,32 +11,6 @@ Note: You can run the tests in this file by typing
 
     zopectl test -m slc.publications
 
-Required Products
-=================
-
-- Plone 3 (note that version 1.0 is not - yet - tested on Plone 2.5)
-
-- Linguaplone 2.0
-
-- AdvancedQuery (if you use Plone2.5)
-
-- p4a.subtyper
-
-- p4a.fileimage
-
-Optional Products
-=================
-
-If you want support for autogeneration of cover images, you need to install
-
-    - pyxml
-    
-    - pdftk
-    
-    - convert from the imagemagick toolkit
-    
-    - ghostscript gs
-
 
 Adding Publications
 ===================

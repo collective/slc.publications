@@ -1,7 +1,5 @@
 import App.Common
 from Acquisition import aq_base, aq_inner, aq_parent
-from OFS import Image as ofsimage, ObjectManager
-from Products.ATContentTypes.content import folder as atctfolder
 import ConfigParser, StringIO, tempfile, os, urllib, logging, interfaces, re
 from types import *
 from persistent.dict import PersistentDict
@@ -24,7 +22,6 @@ except ImportError, err:
     from zope.annotation import interfaces as annointerfaces
 
 from p4a.common.descriptors import atfield
-from p4a.fileimage import DictProperty
 from p4a.subtyper.interfaces import ISubtyper
 
 import logging

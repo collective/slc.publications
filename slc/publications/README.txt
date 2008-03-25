@@ -18,7 +18,7 @@ Installation
       (http://sourceforge.net/project/showfiles.php?group_id=6473&package_id=6541&release_id=286213)  
       (thanks to Alin Voinea for pointing that out)
       
-    - p4a.subtyper
+    - p4a.subtyper, p4a.common, p4a.z2utils
     
     - archetypes.schemaextender
 

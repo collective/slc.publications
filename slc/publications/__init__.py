@@ -22,7 +22,7 @@ __docformat__ = 'plaintext'
 
 
 import logging
-logger = logging.getLogger('publications')
+logger = logging.getLogger('slc.publications')
 logger.debug('Installing slc.publications')
 
 import os
@@ -40,7 +40,6 @@ from config import *
 
 from Products.ATContentTypes.content.schemata import finalizeATCTSchema
 from Products.ATContentTypes.content.file import ATFileSchema
-from plone.app.blob.content import ATBlobSchema
 
 ATFileSchema['file'].languageIndependent = False
 ATFileSchema['file'].required = False

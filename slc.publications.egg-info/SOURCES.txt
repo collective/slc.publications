@@ -26,7 +26,6 @@ slc/publications/README.txt
 slc/publications/TODO.txt
 slc/publications/__init__.py
 slc/publications/adapter.py
-slc/publications/adapterold.py
 slc/publications/config.py
 slc/publications/configure.zcml
 slc/publications/descriptors.py
