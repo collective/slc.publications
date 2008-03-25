@@ -23,12 +23,17 @@ class INIParser(object):
         site = getSite()
         portal_languages = getToolByName(site, 'portal_languages')
         langs = portal_languages.getSupportedLanguages()
-
+        
+        sio = None
         if type(ini) in [StringType, UnicodeType]:
             sio = StringIO.StringIO(ini)
         elif type(ini) == FileType:
             sio = ini
-
+        elif type(ini) == InstanceType and ini.__class__ == StringIO.StringIO:
+            sio = ini
+        else:
+            raise TypeError, 'Cannot determine type of ini paramenter'
+        sio.seek(0)
         meta = ConfigParser.ConfigParser()
         meta.optionxform = str
         meta.readfp(sio)

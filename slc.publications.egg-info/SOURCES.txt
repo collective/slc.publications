@@ -8,13 +8,7 @@ docs/LICENSE.GPL
 docs/LICENSE.txt
 slc/__init__.py
 slc.publications.egg-info/PKG-INFO
-slc.publications.egg-info/PKG-INFO.mine
-slc.publications.egg-info/PKG-INFO.r60837
-slc.publications.egg-info/PKG-INFO.r61058
 slc.publications.egg-info/SOURCES.txt
-slc.publications.egg-info/SOURCES.txt.mine
-slc.publications.egg-info/SOURCES.txt.r60837
-slc.publications.egg-info/SOURCES.txt.r61058
 slc.publications.egg-info/dependency_links.txt
 slc.publications.egg-info/entry_points.txt
 slc.publications.egg-info/namespace_packages.txt
@@ -119,6 +113,8 @@ slc/publications/skins/publications_templates/publications_by_type.py
 slc/publications/skins/publications_templates/publications_styles.css.dtml
 slc/publications/skins/publications_templates/show_publications_by_keyword.pt
 slc/publications/skins/publications_templates/xliff_Publication_tmpl.pt
+slc/publications/subtypes/__init__.py
+slc/publications/subtypes/file.py
 slc/publications/tests/__init__.py
 slc/publications/tests/base.py
 slc/publications/tests/test_doctests.py

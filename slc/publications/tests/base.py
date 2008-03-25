@@ -37,7 +37,7 @@ def setup_slc_publications():
     # should be available. This can't happen until after we have loaded
     # the ZCML.
     
-    # It seems that files are automatically blobs, but my test won't run without this.
+    # It seems that files are automatically blobs, but my test won't run without this. (Plone3.1?)
     ztc.installPackage('plone.app.blob')
     ztc.installPackage('slc.publications')
     
@@ -46,7 +46,7 @@ def setup_slc_publications():
 # PloneTestCase set up this product on installation.
 
 setup_slc_publications()
-setupPloneSite(products=['slc.publications'])
+setupPloneSite(products=['plone.app.blob', 'slc.publications'])
 
 class PublicationTestCase(PloneTestCase):
     """Base class for integration tests for the 'Publication' product.

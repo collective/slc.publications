@@ -14,9 +14,9 @@ from ComputedAttribute import ComputedAttribute
 from DateTime import DateTime
 
 
-
 from slc.publications.pdf.interfaces import IPDFParser
 from slc.publications.ini.interfaces import IINIParser
+from slc.publications.config import ALLOWED_TYPES
 
 try:
     from zope.app.annotation import interfaces as annointerfaces
@@ -26,8 +26,7 @@ except ImportError, err:
 
 from p4a.common.descriptors import atfield
 from p4a.fileimage import DictProperty
-
-from slc.publications.config import STORAGE_FOLDER, ALLOWED_TYPES
+from p4a.subtyper.interfaces import ISubtyper
 
 @interface.implementer(interfaces.IPublication)
 @component.adapter(atctifaces.IATFile)
@@ -130,46 +129,69 @@ class _ATCTPublication(object):
     __repr__ = __str__
 
 
-#    def parsePDFProperties(self):
-#        """ parse the properties from the file contents and set them on the object """
-#        pdfparser = component.getUtility(IPDFParser)
-#        meta = pdfparser.parse(self._get_file())
-
-    def editChapter(self, chapter, map):
+    def editChapter(self, chapter, metadata):
         """ add/edit a link object with the given chapter name and modify its metadata """
         additionals = _get_storage_folder(self.context)
         C = getattr(additionals, chapter, None)
         if C is None:
             return
-        C.processForm(map)
+        C.processForm(data=1, metadata=1, values=metadata)
         
-    def setMetadataMap(self, map):
+    def setMetadataMap(self, metadata):
         """ sets a simple map with metadata on the current context. """
-        self.context.processForm(map)
+        self.context.processForm(data=1, metadata=1, values=metadata)
+        self._setPublicationMetadata(metadata)
     
-    def setMetadataIniMap(self, map):
+    def setMetadataIniMap(self, metadata):
         """ Given a complex metadata map from e.g. the ini parser set the metadata on all translations and chapters """
         translations = self.context.getTranslations()
-        canonical = self.getCanonical()
-        T = {}
-        for t in translations:
-            T[t[0]] = t[1]
+        canonical = self.context.getCanonical()
+        subtyper = component.getUtility(ISubtyper)
         
-        for lang in map.keys():
-            if T.has_key(lang):
-                translation = T[lang]
+        for lang in metadata.keys():
+            if lang == 'default': 
+                continue    # we skip the default section
+
+            if translations.has_key(lang):
+                translation = translations[lang][0]
+                if not subtyper.existing_type(translation) or \
+                   subtyper.existing_type(translation).name != 'slc.publications.Publication':
+                   subtyper.change_type(translation, 'slc.publications.Publication')
+                   
             else:
                 canonical.addTranslation(lang)
                 translation = canonical.getTranslation(lang)
-                T[lang] = translation
-            langmap = map[lang]
-            adapter = IPublication(translation)
+                # make the translation a publication as well
+                subtyper.change_type(translation, 'slc.publications.Publication')
+                
+                translations[lang] = [translation, None]
+
+            langmap = metadata[lang]
+            adapter = interfaces.IPublication(translation)
             for key in langmap.keys():
                 if key == '':
                     adapter.setMetadataMap(langmap[key])
+                    adapter._setPublicationMetadata(langmap[key])
                 else:
                     adapter.editChapter(key, langmap[key])
-    
+
+    def _setPublicationMetadata(self, metadata):
+        """ sets the publication specific metadata """
+        if metadata.has_key('author'):
+            self.author = unicode(metadata['author'], 'utf-8')
+        if metadata.has_key('publication_date'):
+            self.publication_date = metadata['publication_date']
+        if metadata.has_key('isbn'):
+            self.isbn = unicode(metadata['isbn'], 'utf-8')
+        if metadata.has_key('order_id'):
+            self.order_id = unicode(metadata['order_id'], 'utf-8')
+        if metadata.has_key('for_sale'):
+            self.for_sale = not not metadata['for_sale']
+        if metadata.has_key('chapters'):
+            self.chapters = [unicode(x, 'utf-8') for x in metadata['chapters']]
+
+
+
 # Eventhandler
         
 def _get_storage_folder(ob):

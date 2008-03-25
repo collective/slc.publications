@@ -1,4 +1,5 @@
-import tempfile, logging, os, re
+from Acquisition import aq_base, aq_inner
+import tempfile, logging, os, re, StringIO
 from types import *
 from interfaces import IPDFParser
 from zope import interface
@@ -28,7 +29,14 @@ class PDFParser(object):
         # pdfinfo needs to work on a file. Write the file and start pdfinfo
         tmp_pdf = tempfile.mkstemp(suffix='.pdf')
         fd = open(tmp_pdf[1], 'w')
-        fd.write( str(pdf) )
+        if type(pdf) == InstanceType and pdf.__class__ == StringIO.StringIO:
+            fd.write( pdf.getvalue() )
+        elif type(pdf) in [StringType, UnicodeType]:
+            fd.write( pdf )
+        elif type(pdf) == FileType:
+            fd.write( str(pdf) )
+        else:
+            raise ValueError, 'Cannot determine type of pdf variable'
         fd.close()
 
         statement += ' '+tmp_pdf[1]
@@ -157,6 +165,11 @@ class PDFParser(object):
         l = self._guessLanguage(pdf)
         if l and not META_MAP.has_key('language'):
             META_MAP['language'] = l
+        
+        # Finally we'll do some plone specific rewritings
+        # It would be smart to hook some kind of adapter here so that one can define his own rewritings 
+        if META_MAP.has_key('keywords'):
+            META_MAP['subject_keywords'] = list(META_MAP['keywords'])
         
         return META_MAP
 

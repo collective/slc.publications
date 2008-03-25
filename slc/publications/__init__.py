@@ -38,6 +38,15 @@ from Products.CMFCore import utils as cmfutils
 from Products.CMFPlone.utils import ToolInit
 from config import *
 
+from Products.ATContentTypes.content.schemata import finalizeATCTSchema
+from Products.ATContentTypes.content.file import ATFileSchema
+from plone.app.blob.content import ATBlobSchema
+
+ATFileSchema['file'].languageIndependent = False
+ATFileSchema['file'].required = False
+finalizeATCTSchema(ATFileSchema)
+
+
 
 def initialize(context):
     """initialize product (called by zope)"""

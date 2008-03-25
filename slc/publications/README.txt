@@ -24,6 +24,10 @@ Installation
   * Optional: pdftk and imagemagicks convert to generate a 
     cover image from a pdf file
 
+Translations
+------------
+Note that the ATCT file object by default has a languageIndependent file attribute. That means that you can translate the Title and Description of a file object but not change the real file. Publications changes this behaviour for ATCT and Blob files. 
+
 Documentation
 -------------
 See the *doc* directory in this package.
