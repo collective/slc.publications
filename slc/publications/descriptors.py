@@ -28,4 +28,4 @@ class LargeFolderPublicationContainerDescriptor(AbstractPublicationContainerDesc
 
 class TopicPublicationContainerDescriptor(AbstractPublicationContainerDescriptor):
     for_portal_type = 'Topic'
-    
+
