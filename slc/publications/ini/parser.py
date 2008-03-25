@@ -169,10 +169,4 @@ def _getMeta(section):
             
         params[key] = value    
     return params
-    
 
-
-
-
-
-        
