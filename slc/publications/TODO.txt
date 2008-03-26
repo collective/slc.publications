@@ -10,3 +10,6 @@ TODO
 - Review the PDF Parser. There are still other formats in PDF Files, we do not
   cover all of them. Find out why.
 
+
+- The mechanism to place the country abbrevs as sections into the ini files is hardcoded to 2 letter abbrevs. What if someone uses de-de as code? Need to make this rely on the language tool completely
+
