@@ -33,6 +33,9 @@
     <class class="Products.ATContentTypes.content.file.ATFile">
       <implements interface="slc.publications.interfaces.IPossiblePublication" />
     </class>
+    <!--class class="plone.app.blob.content.ATBlobFile">
+      <implements interface="slc.publications.interfaces.IPossiblePublication" />
+    </class-->
     
 
     <adapter factory=".adapter.ATCTFilePublication" />
@@ -57,15 +60,26 @@
 
     <subscriber 
         for="slc.publications.interfaces.IPublicationEnhanced
-             zope.app.event.interfaces.IObjectModifiedEvent"
+             zope.lifecycleevent.interfaces.IObjectModifiedEvent"
         handler=".adapter.update_chapters"
-      />
+    />
 
-      <subscriber 
-          for="slc.publications.interfaces.IPublicationEnhanced
-               zope.app.event.interfaces.IObjectModifiedEvent"
-          handler=".adapter.generate_image"
-        />
+    <subscriber 
+        for="slc.publications.interfaces.IPublicationEnhanced
+             zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+        handler=".adapter.generate_image"
+    />
+
+    <subscriber 
+        for="slc.publications.interfaces.IPossiblePublication
+             Products.Archetypes.interfaces.IObjectInitializedEvent"
+        handler=".adapter.object_initialized"
+    />
+    <!--subscriber 
+        for="slc.publications.interfaces.IPossiblePublication
+             zope.lifecycleevent.interfaces.IObjectEvent"
+        handler=".adapter.objectevent"
+    /-->
 
     <!-- Zope 2.9 / 3.2 support -->
     <configure zcml:condition="installed zope.app.annotation.tests">

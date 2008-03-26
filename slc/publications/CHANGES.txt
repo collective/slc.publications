@@ -1,3 +1,10 @@
+1.0 svn
+-------
+
+* Added an eventhandler to automatically set the suptype on files added to a publication folder
+* Added an eventhandler to detect the uploaded language if the filename starts or ends with a lang abbrev
+  E.g. XX_filename.pdf or filename_XX.pdf or XX-filename.pdf or filename-XX.pdf.
+
 1.0 beta2
 ---------
 

@@ -156,7 +156,7 @@
                         <span class="description" tal:content="item_description">
                             description
                         </span>
-                        <div class="publicationLanguageBox"
+                        <!--div class="publicationLanguageBox"
                             tal:define="translations item/getTranslatedLanguages"
                             tal:condition="python: len(translations) > 0">
                            <span i18n:domain="Publications" i18n:translate="label_available_in">Available in</span>:
@@ -167,7 +167,7 @@
                                       xtal:attributes="href python:item_url+'/languageVersionRedirect?language='+lang[0]"
                                       tal:content="python: '[%s]' % lang[1]" />
                                </tal:block>
-                        </div>
+                        </div-->
 
 
                     </dd>

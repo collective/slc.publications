@@ -1,0 +1,51 @@
+Bulkuploading Files
+-------------------
+
+If you are handling multiple translations, you usually don't want to add the files manually. In addition, those files usually have a naming convention telling which file contains which language.
+
+If you are uploading such files using FTP or a Bulk Uploader like FlashUpload into a Publication Folder, the folder will try to a) make such files publication files and b) make them have a LinguaPlone translation relation automatically.
+
+First we need some languages and a folder which is subtyped to be a publication folder
+
+    >>> self.loginAsPortalOwner()
+    >>> portal_languages = self.portal.portal_languages
+    >>> portal_languages.addSupportedLanguage('en')
+    >>> portal_languages.addSupportedLanguage('de')
+    >>> portal_languages.getSupportedLanguages()
+    ['en', 'de']
+    >>> portal_languages.setDefaultLanguage('en')
+
+    >>> _ = self.folder.invokeFactory('Folder', 'pubfolder')
+    >>> pubfolder = getattr(self.folder, 'pubfolder')
+    >>> from p4a.subtyper.interfaces import ISubtyper
+    >>> from zope.component import getUtility
+    >>> subtyper = getUtility(ISubtyper)
+    >>> subtyper.change_type(pubfolder, 'slc.publications.FolderPublicationContainer')
+    >>> subtyper.existing_type(pubfolder).name
+    'slc.publications.FolderPublicationContainer'
+
+Now we a) create a new file in it and check that it is automatically transformed to be a publication file.
+
+    >>> _ = pubfolder.invokeFactory('File', 'mypubfile.pdf')
+    >>> mypubfile = getattr(pubfolder, 'mypubfile.pdf')
+    >>> mypubfile.processForm()
+    >>> subtyper.existing_type(mypubfile).name
+    'slc.publications.Publication'
+
+If our files comply to the folowing naming convention: XX_filename.ext or filename_XX.ext then we can automatically assume that we can b) make them have a LinguaPlone translation relation. The canonical will be the one which matches the portal default language. Note that this automatism only works if also a canonical is uploaded!
+
+    >>> _ = pubfolder.invokeFactory('File', 'test_en.pdf')
+    >>> _ = pubfolder.invokeFactory('File', 'test_de.pdf')
+    >>> test_en = getattr(pubfolder, 'test_en.pdf')
+    >>> test_en.processForm()
+    >>> test_de = getattr(pubfolder, 'test_de.pdf')
+    >>> test_de.processForm()
+    >>> test_en.getCanonical() == test_en
+    True
+    >>> test_de.getCanonical() == test_en
+    True
+    >>> test_en.getTranslation('de') == test_de
+    True
+    
+
+    

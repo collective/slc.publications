@@ -8,12 +8,12 @@ from zope import component
 from slc.publications import interfaces
 from Products.ATContentTypes import interface as atctifaces
 from Products.CMFCore.utils import getToolByName
+from Products.LinguaPlone.config import RELATIONSHIP
 from ComputedAttribute import ComputedAttribute
 from DateTime import DateTime
 
 from slc.publications.pdf.interfaces import IPDFParser
 from slc.publications.ini.interfaces import IINIParser
-from slc.publications.config import ALLOWED_TYPES
 
 try:
     from zope.app.annotation import interfaces as annointerfaces
@@ -147,7 +147,77 @@ class _ATCTPublication(object):
 
 
 # Eventhandler
-        
+
+def _findAbbrev(id, langs):
+    id = id.rsplit(".", 1)[0]
+    if len(id)>3 and id[2] in ['_', '-']:
+        lang = id[0:2].lower()
+        name = id[3:]
+        if lang in langs:
+            return (name, lang)
+    if len(id)>3 and id[-3] in ['_', '-']:
+        lang = id[-2:]
+        name = id[:-3]
+        if lang in langs:
+            return (name, lang)
+    return []
+
+
+#def objectevent(obj, evt):
+#    print [obj], [evt]
+
+    
+def object_initialized(obj, evt):
+    """ EVENT
+        An object has been added to the pub folder. We make sure that
+        a) that files are subtyped
+        b) translation relations are set
+        I have no idea about the perormance of this. If adding objects in large pub folders 
+        is too slow, consider disabling this.
+    """
+    if not interfaces.IPublicationContainerEnhanced.providedBy(obj.aq_parent):
+        return
+
+    portal_languages = getToolByName(obj, 'portal_languages')
+    default_language = portal_languages.getDefaultLanguage()
+    langs = portal_languages.getSupportedLanguages()
+    
+    # A mapping which stores {lang: obj} mappings under each common naming component
+    # E.g. {'test': {'en': atfile1, 'de': atfile2}}
+    GROUPS = {}
+    
+    subtyper = component.getUtility(ISubtyper)
+    for child in obj.aq_parent.objectValues(['ATFile', 'AtBlob']):
+        if subtyper.existing_type(child) is None:
+            subtyper.change_type(child, 'slc.publications.Publication')
+        comp = _findAbbrev(child.getId(), langs)
+        if len(comp)==2:    # comp is a component tuple ('test', 'de')
+            namemap = GROUPS.get(comp[0], {})
+            namemap[comp[1]] = child
+            GROUPS[comp[0]] = namemap
+            if child.Language()!= comp[1]:
+                child.setLanguage(comp[1])
+            
+    for key in GROUPS.keys():
+        namemap = GROUPS[key]
+        canonical = namemap.get(default_language, None)
+        if canonical is None:
+            continue
+        if canonical != canonical.getCanonical():
+            canonical.setCanonical()
+            
+        for lang in namemap.keys():
+            if lang == default_language:
+                continue
+
+            o = namemap[lang] 
+
+            if o.getCanonical() != canonical:
+                o.addReference(canonical, RELATIONSHIP)
+                o.invalidateTranslationCache()        
+                o.reindexObject()
+
+    
 def generate_image(obj, evt):
     """ EVENT
         called on objectmodified. Tries to generate the cover image. 

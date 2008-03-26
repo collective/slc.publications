@@ -10,4 +10,3 @@ TODO
 - Review the PDF Parser. There are still other formats in PDF Files, we do not
   cover all of them. Find out why.
 
-- Improve support for bulkuploading files. If I upload files into a publication folder, I want them to be subtyped to publications automatically. If I upload multiple files that have a language abbreviation, I want them to be glued together to form the translation relation.

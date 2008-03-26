@@ -35,6 +35,12 @@ def test_suite():
             Suite('doc/chapters.txt',
                    optionflags=OPTIONFLAGS,
                    package='slc.publications',
-                   test_class=PublicationFunctionalTestCase)
+                   test_class=PublicationFunctionalTestCase) ,
+
+           Suite('doc/bulkuploading.txt',
+                  optionflags=OPTIONFLAGS,
+                  package='slc.publications',
+                  test_class=PublicationFunctionalTestCase) 
+
 
         ))
