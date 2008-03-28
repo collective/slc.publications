@@ -8,8 +8,8 @@
 
  <object name="publications_templates"
          meta_type="Filesystem Directory View"
-         directory="slc.publications:skins/publications_templates"/>
- 
+         directory="publications/skins/publications_templates"/>
+
  <skin-path name="Plone Default">
   <layer insert-after="custom" 
          name="publications_templates"/>

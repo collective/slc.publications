@@ -20,21 +20,21 @@
 __author__ = """SYSLAB.COM <info@syslab.com>"""
 __docformat__ = 'plaintext'
 
-
 import logging
 logger = logging.getLogger('slc.publications')
 logger.debug('Installing slc.publications')
 
-import linguaplone_addTranslation_patch
-
 import os
 import os.path
+from os.path import dirname
+
 from Globals import package_home
 import Products.CMFPlone.interfaces
 from Products.Archetypes import listTypes
 from Products.Archetypes.atapi import *
 from Products.Archetypes.utils import capitalize
 from Products.CMFCore import DirectoryView
+from Products.CMFCore.DirectoryView import registerDirectory
 from Products.CMFCore import permissions as cmfpermissions
 from Products.CMFCore import utils as cmfutils
 from Products.CMFPlone.utils import ToolInit
@@ -47,7 +47,10 @@ ATFileSchema['file'].languageIndependent = False
 ATFileSchema['file'].required = False
 finalizeATCTSchema(ATFileSchema)
 
-
+ppath = cmfutils.ProductsPath
+cmfutils.ProductsPath.append(dirname(package_home(globals())))
+registerDirectory('skins', globals())
+cmfutils.ProductsPath = ppath
 
 def initialize(context):
     """initialize product (called by zope)"""
@@ -64,4 +67,3 @@ def initialize(context):
         extra_constructors = constructors,
         fti                = ftis,
         ).initialize(context)
-

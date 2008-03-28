@@ -38,8 +38,12 @@ def setup_slc_publications():
     # the ZCML.
     
     # It seems that files are automatically blobs, but my test won't run without this. (Plone3.1?)
-    ztc.installPackage('plone.app.blob')
-    ztc.installPackage('slc.publications')
+    try:
+        ztc.installPackage('plone.app.blob')
+        ztc.installPackage('slc.publications')
+    except AttributeError, error:
+        # Old ZopeTestCase
+        pass
     
 # The order here is important: We first call the (deferred) function which
 # installs the products we need for the Optilux package. Then, we let 
