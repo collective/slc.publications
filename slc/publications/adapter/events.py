@@ -141,3 +141,17 @@ def update_chapters(obj, evt):
 
     for T in translations.keys():
         updateChapterLinksForTranslation(translations[T][0])
+
+
+# Event handler to catch our own patched event while translation named IObjectTranslationReferenceSetEvent
+# We need this to be able to subtype an object while it is translated.
+def subtype_on_translate(obj, evt):
+    """ EVENT: 
+        Update the chapter links based on the new set values in chapters
+    """    
+    canonical = evt.object
+    target = evt.target
+    subtyper = component.getUtility(ISubtyper)    
+    subtype = subtyper.existing_type(canonical)
+    if subtype is not None:
+        subtyper.change_type(target, subtype.name)

@@ -31,6 +31,12 @@
        handler=".events.object_initialized"
    />
 
+   <subscriber 
+       for="slc.publications.interfaces.IPublicationEnhanced
+            ..linguaplone_addTranslation_patch.IObjectTranslationReferenceSetEvent"
+       handler=".events.subtype_on_translate"
+   />
+
 
     <configure zcml:condition="installed slc.xliff">
 
