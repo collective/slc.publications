@@ -22,7 +22,7 @@ from Products.Five.formlib import formbase
 
 from slc.publications import interfaces 
 from slc.publications.ini.interfaces import IINIParser
-from slc.publications.adapter import _get_storage_folder
+from slc.publications.utils import _get_storage_folder
 
 
 from p4a.common import at

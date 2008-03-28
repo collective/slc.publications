@@ -17,6 +17,7 @@
     <include package=".browser" />
     <include package=".pdf" />
     <include package=".ini" />
+    <include package=".adapter" />
 
     <class class="Products.ATContentTypes.content.topic.ATTopic">
       <implements interface="slc.publications.interfaces.IPossiblePublicationContainer" />
@@ -33,12 +34,13 @@
     <class class="Products.ATContentTypes.content.file.ATFile">
       <implements interface="slc.publications.interfaces.IPossiblePublication" />
     </class>
-    <!--class class="plone.app.blob.content.ATBlobFile">
-      <implements interface="slc.publications.interfaces.IPossiblePublication" />
-    </class-->
     
-
-    <adapter factory=".adapter.ATCTFilePublication" />
+    <class class="plone.app.blob.content.ATBlob">
+      <implements interface="slc.publications.interfaces.IPossiblePublication" />
+    </class>
+    
+    <!-- Main adapter to make a file a publication -->
+    <adapter factory=".adapter.publication.ATCTFilePublication" />
 
     <utility
         name="slc.publications.Publication"
@@ -57,29 +59,6 @@
         name="slc.publications.TopicPublicationContainer"
         factory=".descriptors.TopicPublicationContainerDescriptor" />
 
-
-    <subscriber 
-        for="slc.publications.interfaces.IPublicationEnhanced
-             zope.lifecycleevent.interfaces.IObjectModifiedEvent"
-        handler=".adapter.update_chapters"
-    />
-
-    <subscriber 
-        for="slc.publications.interfaces.IPublicationEnhanced
-             zope.lifecycleevent.interfaces.IObjectModifiedEvent"
-        handler=".adapter.generate_image"
-    />
-
-    <subscriber 
-        for="slc.publications.interfaces.IPossiblePublication
-             Products.Archetypes.interfaces.IObjectInitializedEvent"
-        handler=".adapter.object_initialized"
-    />
-    <!--subscriber 
-        for="slc.publications.interfaces.IPossiblePublication
-             zope.lifecycleevent.interfaces.IObjectEvent"
-        handler=".adapter.objectevent"
-    /-->
 
     <!-- Zope 2.9 / 3.2 support -->
     <configure zcml:condition="installed zope.app.annotation.tests">

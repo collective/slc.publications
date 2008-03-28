@@ -6,7 +6,7 @@ from zope import component
 from zope.formlib import form
 from zope.app.component.hooks import getSite
 from Products.CMFCore.utils import getToolByName
-from slc.publications.adapter import _get_storage_folder
+from slc.publications.utils import _get_storage_folder
 
 
 logger = logging.getLogger('slc.publications.ini')

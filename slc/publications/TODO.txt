@@ -3,13 +3,17 @@ TODO
 
 - i18n cleanup
 
+- reshen up the skinworks
+
 - add the related publications section
 
-- metadata export needs to be restricted on relevant attributes. (i.e. id  or remoteUrl is unnecessary, but how do I get schemaextended attribs?)
+- metadata export needs to be restricted on relevant attributes. (i.e. id  or remoteUrl is unnecessary, but how do I get schemaextended attribs? - perhaps use the same adapter mechanism as with slc.xliff...)
 
 - Review the PDF Parser. There are still other formats in PDF Files, we do not
   cover all of them. Find out why.
 
+Potential Risk
+--------------
 
 - The mechanism to place the country abbrevs as sections into the ini files is hardcoded to 2 letter abbrevs. What if someone uses de-de as code? Need to make this rely on the language tool completely
 
