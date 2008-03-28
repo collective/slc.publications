@@ -1,0 +1,127 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:browser="http://namespaces.zope.org/browser"
+           xmlns:zcml="http://namespaces.zope.org/zcml"
+           xmlns:five="http://namespaces.zope.org/five"    
+           i18n_domain="slc.publications">
+
+    <five:registerPackage package="." initialize=".initialize" />
+
+    <include package="p4a.common" />
+    <include package="p4a.z2utils" />
+    <include package="p4a.subtyper" />
+    <include package="archetypes.schemaextender" />
+
+    <include file="profiles.zcml" />
+    <include file="skins.zcml" />
+
+    <include package=".browser" />
+    <include package=".pdf" />
+    <include package=".ini" />
+    <include package=".adapter" />
+
+    <class class="Products.ATContentTypes.content.topic.ATTopic">
+      <implements interface="slc.publications.interfaces.IPossiblePublicationContainer" />
+    </class>
+    
+    <class class="Products.ATContentTypes.content.folder.ATFolder">
+      <implements interface="slc.publications.interfaces.IPossiblePublicationContainer" />
+    </class>
+    
+    <class class="Products.ATContentTypes.content.folder.ATBTreeFolder">
+      <implements interface="slc.publications.interfaces.IPossiblePublicationContainer" />
+    </class>
+    
+    <class class="Products.ATContentTypes.content.file.ATFile">
+      <implements interface="slc.publications.interfaces.IPossiblePublication" />
+    </class>
+    
+    <class class="plone.app.blob.content.ATBlob">
+      <implements interface="slc.publications.interfaces.IPossiblePublication" />
+    </class>
+    
+    <!-- Main adapter to make a file a publication -->
+    <adapter factory=".adapter.publication.ATCTFilePublication" />
+
+    <utility
+        name="slc.publications.Publication"
+        factory=".descriptors.PublicationDescriptor"
+        />
+
+    <utility
+        name="slc.publications.FolderPublicationContainer"
+        factory=".descriptors.FolderPublicationContainerDescriptor" />
+
+    <utility
+        name="slc.publications.LargeFolderPublicationContainer"
+        factory=".descriptors.LargeFolderPublicationContainerDescriptor" />
+
+    <utility
+        name="slc.publications.TopicPublicationContainer"
+        factory=".descriptors.TopicPublicationContainerDescriptor" />
+
+
+    <!-- Zope 2.9 / 3.2 support -->
+    <configure zcml:condition="installed zope.app.annotation.tests">
+        <include package="zope.app.annotation" />
+        
+        <adapter
+            for=".interfaces.IPossiblePublication"
+            provides="zope.app.annotation.interfaces.IAnnotations"
+            factory="zope.app.annotation.attribute.AttributeAnnotations"
+            />
+    </configure>
+
+    <!-- Zope 2.10 - 3.3 support -->
+    <configure zcml:condition="installed zope.annotation">
+        <include package="zope.annotation" />
+        
+        <adapter
+            for=".interfaces.IPossiblePublication"
+            provides="zope.annotation.interfaces.IAnnotations"
+            factory="zope.annotation.attribute.AttributeAnnotations"
+            />
+    </configure>
+
+    <!-- Assure annotatable for plone2.5 and plone 3 -->
+    
+    <configure
+        zcml:condition="installed plone.app.layout">
+    
+        <class class="Products.ATContentTypes.content.topic.ATTopic">
+          <implements interface="zope.annotation.interfaces.IAttributeAnnotatable" />
+        </class>
+        <class class="Products.ATContentTypes.content.folder.ATFolder">
+          <implements interface="zope.annotation.interfaces.IAttributeAnnotatable" />
+        </class>
+        <class class="Products.ATContentTypes.content.folder.ATBTreeFolder">
+          <implements interface="zope.annotation.interfaces.IAttributeAnnotatable" />
+        </class>
+        <class class="Products.ATContentTypes.content.file.ATFile">
+          <implements interface="zope.annotation.interfaces.IAttributeAnnotatable" />
+        </class>
+    </configure>
+    
+    <configure
+      zcml:condition="installed zope.app.annotation">
+    
+        <class class="Products.ATContentTypes.content.topic.ATTopic">
+          <implements interface="zope.app.annotation.interfaces.IAttributeAnnotatable" />
+        </class>
+        <class class="Products.ATContentTypes.content.folder.ATFolder">
+          <implements interface="zope.app.annotation.interfaces.IAttributeAnnotatable" />
+        </class>
+        <class class="Products.ATContentTypes.content.folder.ATBTreeFolder">
+          <implements interface="zope.app.annotation.interfaces.IAttributeAnnotatable" />
+        </class>
+        <class class="Products.ATContentTypes.content.file.ATFile">
+          <implements interface="zope.app.annotation.interfaces.IAttributeAnnotatable" />
+        </class>
+    </configure>
+
+    <adapter
+        name="slc.publications.subtypes.publication"
+        for="slc.publications.interfaces.IPublicationEnhanced"
+        factory=".subtypes.publication.SchemaExtender" />
+
+
+</configure>

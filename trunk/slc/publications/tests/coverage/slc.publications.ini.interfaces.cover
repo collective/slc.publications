@@ -1,0 +1,14 @@
+    1: from zope import schema
+    1: from zope.interface import Interface, alsoProvides
+       
+       
+    2: class IINIParser(Interface):
+           """Parser Utility to parse metadata ini files
+           """
+       
+    1:     def parse(ini):
+               """ parses the given ini file and returns a mapping of attributes """
+               
+    1:     def retrieve(context):
+               """ retrieves an ini representation of the given context"""
+       

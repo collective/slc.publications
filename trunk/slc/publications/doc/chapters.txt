@@ -1,0 +1,48 @@
+Chapters
+========
+
+Chapters are a way to store additional metadata on link objects which point to targets within the pdf file.
+This can be used if the pdf file is large and/or contains chapters on different topics, thus the different metadata.
+
+
+    >>> self.loginAsPortalOwner()
+    >>> portal_languages = self.portal.portal_languages
+    >>> portal_languages.addSupportedLanguage('en')
+    >>> portal_languages.addSupportedLanguage('de')
+    >>> portal_languages.getSupportedLanguages()
+    ['en', 'de']
+    >>> default_language = portal_languages.start_neutral and '' or portal_languages.getDefaultLanguage()
+
+We add a new File and make it a publication by subtyping.
+
+    >>> _ = self.folder.invokeFactory('File', 'mypub.pdf')
+    >>> mypub = getattr(self.folder, 'mypub.pdf')
+    >>> mypub.setTitle('My english File')
+
+    >>> from p4a.subtyper.interfaces import ISubtyper
+    >>> from zope.component import getUtility
+    >>> subtyper = getUtility(ISubtyper)
+    >>> subtyper.change_type(mypub, 'slc.publications.Publication')
+
+Now we add a chapter and call the ObjectModified event to call the handler that adds the actual Link objects.
+
+    >>> from slc.publications.utils import _get_storage_folder
+    >>> mypub.getField('chapters').getMutator(mypub)(['chapter1'])
+    >>> from zope import event
+    >>> from zope.app.event import objectevent
+    >>> event.notify(objectevent.ObjectModifiedEvent(mypub))
+    >>> additionals = _get_storage_folder(mypub)
+    >>> additionals.objectIds()
+    ['chapter1']
+    
+If we delete the chapter setting on the publication object, the link in the additionals storage is deleted as well.
+
+    >>> mypub.getField('chapters').getMutator(mypub)([])
+    >>> event.notify(objectevent.ObjectModifiedEvent(mypub))
+    >>> additionals = _get_storage_folder(mypub)
+    >>> additionals.objectIds()
+    []
+    
+
+    
+

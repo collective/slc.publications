@@ -1,0 +1,9 @@
+Changelog for slc.publications
+
+    (name of developer listed in brackets)
+
+slc.publications - 1.0b1 Unreleased
+
+    - Initial package structure.
+      [zopeskel]
+

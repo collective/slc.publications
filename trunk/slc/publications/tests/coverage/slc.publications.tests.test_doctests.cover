@@ -1,0 +1,40 @@
+    1: import os, sys
+       
+    1: import glob
+    1: import doctest
+    1: import unittest
+    1: from Globals import package_home
+    1: from base import PublicationFunctionalTestCase
+    1: from Testing.ZopeTestCase import FunctionalDocFileSuite as Suite
+       
+    1: from slc.publications.config import product_globals
+       
+    1: OPTIONFLAGS = (doctest.REPORT_ONLY_FIRST_FAILURE |
+                      doctest.ELLIPSIS |
+                      doctest.NORMALIZE_WHITESPACE)
+       
+       
+    1: def test_suite():
+    1:     return unittest.TestSuite((
+       
+                   Suite('doc/subtyping.txt',
+    1:                    optionflags=OPTIONFLAGS,
+    1:                    package='slc.publications',
+    1:                    test_class=PublicationFunctionalTestCase) ,
+       
+                   Suite('pdf/pdfparser.txt',
+    1:                    optionflags=OPTIONFLAGS,
+    1:                    package='slc.publications',
+    1:                    test_class=PublicationFunctionalTestCase) ,
+       
+                   Suite('ini/iniparser.txt',
+    1:                    optionflags=OPTIONFLAGS,
+    1:                    package='slc.publications',
+    1:                    test_class=PublicationFunctionalTestCase) ,
+       
+                   Suite('doc/chapters.txt',
+    1:                    optionflags=OPTIONFLAGS,
+    1:                    package='slc.publications',
+    1:                    test_class=PublicationFunctionalTestCase)
+       
+               ))

@@ -1,0 +1,37 @@
+PDF Parser
+==========
+
+slc.publications comes with a component to parse pdf file metadata. It does that using the pyxml and pdftk tools. If you pass it a pdf file it will try to extract the available metadata and provide a dictionary in return.
+
+Note: Make sure "pdfinfo" is in the path of your zope user and is callable.
+
+First we need a pdf file to parse. We load a demonstration pdf file from data/testpdf_en.pdf.
+
+    >>> testpdf_en = self.loadfile('pdf/data/testpdf_en.pdf')
+    
+Then we get the parser utility.
+    
+    >>> from zope.component import getUtility
+    >>> from slc.publications.pdf.interfaces import IPDFParser
+    >>> pdfparser = getUtility(IPDFParser)
+
+Now we can retrieve the metadata by calling the parse method.
+
+    >>> metadata = pdfparser.parse(testpdf_en.getvalue())
+    >>> metadata is not False
+    True
+    >>> metadata['title']
+    'English testing title'
+    >>> metadata['description']
+    'English testing description'
+    >>> metadata['keywords']
+    ('testing', 'documentation')
+    >>> metadata['language']
+    'en'
+    >>> metadata['creator']
+    'pilz'
+    >>> metadata['topic']
+    ('young workers', 'stress')
+    
+    
+    

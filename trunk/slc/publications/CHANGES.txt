@@ -1,0 +1,25 @@
+1.0 svn
+-------
+
+* Added support for slc.xliff
+* refactored the adapter.py into adapter/ subdir
+* Added an eventhandler to automatically set the suptype on files added to a publication folder
+* Added an eventhandler to detect the uploaded language if the filename starts or ends with a lang abbrev
+  E.g. XX_filename.pdf or filename_XX.pdf or XX-filename.pdf or filename-XX.pdf.
+
+1.0 beta2
+---------
+
+* Switch to p4a.subtyper to make publications out of files
+* Use Archetypes.schemaextender to marry normal and publication attributes in one interface
+* readded cover image generation
+
+1.0 beta1
+---------
+
+* Plone 3 compatibility. Removed the PublicationFolder concept and base completely on Linguaplone
+
+0.9 beta
+--------
+
+* initial release

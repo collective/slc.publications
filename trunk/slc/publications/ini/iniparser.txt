@@ -1,0 +1,39 @@
+INI Parser
+==========
+
+slc.publications comes with a component to parse ini config style files for metadata. If you pass it an ini file, it will try to extract the available metadata and provide a dictionary in return.
+
+First we need an ini file to parse. We load one from the data directory.
+
+    >>> metadata_ini = self.loadfile('ini/data/metadata.ini')
+    
+Then we get the parser utility.
+    
+    >>> from zope.component import getUtility
+    >>> from slc.publications.ini.interfaces import IINIParser
+    >>> iniparser = getUtility(IINIParser)
+
+Now we can retrieve the metadata by calling the parse method.
+
+    >>> metadata_ini = iniparser.parse(metadata_ini.getvalue())
+    >>> metadata_ini is not False
+    True
+    
+    
+    >>> metadata_ini['en']['']['title']
+    'Memorandum of Understanding'
+    >>> metadata_ini['en']['']['description']
+    'Memorandum of Understanding between the European Agency for Safety and Health at Work and the European Foundation for the Improvement of Living and Working Conditions.'
+    >>> metadata_ini['en']['']['keywords']
+    ('testing', 'documentation')
+    >>> metadata_ini['en']['']['author']
+    'European Agency for Safety and Health at Work'
+    >>> metadata_ini['en']['']['topic']
+    ('young workers', 'stress')
+    >>> metadata_ini['de']['']['title']
+    'Vereinbarung'
+    >>> metadata_ini['en']['ch1']['title']
+    'Preamble'
+    
+    
+    

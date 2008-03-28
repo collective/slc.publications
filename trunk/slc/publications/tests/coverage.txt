@@ -1,0 +1,18 @@
+ Current coverage for 1.0b2 dated 26.3.2008
+ 
+ 30   100%   slc.publications.__init__   (/Users/pilz/dev/publications/src/slc.publications/slc/publications/__init__.py)
+152    88%   slc.publications.adapter   (/Users/pilz/dev/publications/src/slc.publications/slc/publications/adapter.py)
+ 25    48%   slc.publications.browser.media   (/Users/pilz/dev/publications/src/slc.publications/slc/publications/browser/media.py)
+135    40%   slc.publications.browser.publication   (/Users/pilz/dev/publications/src/slc.publications/slc/publications/browser/publication.py)
+ 37    43%   slc.publications.browser.support   (/Users/pilz/dev/publications/src/slc.publications/slc/publications/browser/support.py)
+ 15   100%   slc.publications.config   (/Users/pilz/dev/publications/src/slc.publications/slc/publications/config.py)
+ 20   100%   slc.publications.descriptors   (/Users/pilz/dev/publications/src/slc.publications/slc/publications/descriptors.py)
+ 16    75%   slc.publications.displays   (/Users/pilz/dev/publications/src/slc.publications/slc/publications/displays.py)
+  5   100%   slc.publications.ini.interfaces   (/Users/pilz/dev/publications/src/slc.publications/slc/publications/ini/interfaces.py)
+108    52%   slc.publications.ini.parser   (/Users/pilz/dev/publications/src/slc.publications/slc/publications/ini/parser.py)
+ 24   100%   slc.publications.interfaces   (/Users/pilz/dev/publications/src/slc.publications/slc/publications/interfaces.py)
+  4   100%   slc.publications.pdf.interfaces   (/Users/pilz/dev/publications/src/slc.publications/slc/publications/pdf/interfaces.py)
+136    77%   slc.publications.pdf.parser   (/Users/pilz/dev/publications/src/slc.publications/slc/publications/pdf/parser.py)
+ 95    98%   slc.publications.subtypes.publication   (/Users/pilz/dev/publications/src/slc.publications/slc/publications/subtypes/publication.py)
+ 31   100%   slc.publications.tests.base   (/Users/pilz/dev/publications/src/slc.publications/slc/publications/tests/base.py)
+ 23   100%   slc.publications.tests.test_doctests   (/Users/pilz/dev/publications/src/slc.publications/slc/publications/tests/test_doctests.py)

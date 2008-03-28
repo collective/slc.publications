@@ -1,0 +1,232 @@
+    1: import App.Common
+    1: from Acquisition import aq_base, aq_inner, aq_parent
+    1: import ConfigParser, StringIO, tempfile, os, urllib, logging, interfaces, re
+    1: from types import *
+    1: from persistent.dict import PersistentDict
+    1: from zope import interface
+    1: from zope import component
+    1: from slc.publications import interfaces
+    1: from Products.ATContentTypes import interface as atctifaces
+    1: from Products.CMFCore.utils import getToolByName
+    1: from ComputedAttribute import ComputedAttribute
+    1: from DateTime import DateTime
+       
+    1: from slc.publications.pdf.interfaces import IPDFParser
+    1: from slc.publications.ini.interfaces import IINIParser
+    1: from slc.publications.config import ALLOWED_TYPES
+       
+    1: try:
+    1:     from zope.app.annotation import interfaces as annointerfaces
+>>>>>> except ImportError, err:
+           # Zope 2.10 support
+>>>>>>     from zope.annotation import interfaces as annointerfaces
+       
+    1: from p4a.common.descriptors import atfield
+    1: from p4a.subtyper.interfaces import ISubtyper
+       
+    1: import logging
+    1: logger = logging.getLogger('slc.publications')
+       
+    1: @interface.implementer(interfaces.IPublication)
+       @component.adapter(atctifaces.IATFile)
+       def ATCTFilePublication(context):
+   14:     if not interfaces.IPublicationEnhanced.providedBy(context):
+>>>>>>         return None
+   14:     return _ATCTPublication(context)
+       
+    1: _marker=[]
+       
+    2: class _ATCTPublication(object):
+           """ 
+           """
+    1:     interface.implements(interfaces.IPublication)
+    1:     component.adapts(atctifaces.IATFile)
+                                                      
+    1:     def __init__(self, context):
+   14:         self.context = context
+       
+    1:     def __str__(self):
+>>>>>>         return '<slc.publication %s title=%s>' % (self.__class__.__name__, self.title)
+    1:     __repr__ = __str__
+       
+       
+    1:     def editChapter(self, chapter, metadata):
+               """ add/edit a link object with the given chapter name and modify its metadata """
+    2:         additionals = _get_storage_folder(self.context)
+    2:         C = getattr(additionals, chapter, None)
+    2:         if C is None:
+    1:             return
+    1:         C.processForm(data=1, metadata=1, values=metadata)
+               
+    1:     def setMetadataMap(self, metadata):
+               """ sets a simple map with metadata on the current context. """
+    3:         self.context.processForm(data=1, metadata=1, values=metadata)
+               #DEP: self._setPublicationMetadata(metadata)
+           
+    1:     def setMetadataIniMap(self, metadata):
+               """ Given a complex metadata map from e.g. the ini parser set the metadata on all translations and chapters """
+    1:         translations = self.context.getTranslations()
+    1:         canonical = self.context.getCanonical()
+    1:         subtyper = component.getUtility(ISubtyper)
+               
+    4:         for lang in metadata.keys():
+    3:             if lang == 'default': 
+    1:                 continue    # we skip the default section
+       
+    2:             if translations.has_key(lang):
+    2:                 translation = translations[lang][0]
+    2:                 if not subtyper.existing_type(translation) or \
+                          subtyper.existing_type(translation).name != 'slc.publications.Publication':
+    1:                    subtyper.change_type(translation, 'slc.publications.Publication')
+                          
+                   else:
+>>>>>>                 canonical.addTranslation(lang)
+>>>>>>                 translation = canonical.getTranslation(lang)
+                       # make the translation a publication as well
+>>>>>>                 subtyper.change_type(translation, 'slc.publications.Publication')
+                       
+>>>>>>                 translations[lang] = [translation, None]
+       
+    2:             langmap = metadata[lang]
+    2:             adapter = interfaces.IPublication(translation)
+    6:             for key in langmap.keys():
+    4:                 if key == '':
+    2:                     adapter.setMetadataMap(langmap[key])
+                           #DEP: adapter._setPublicationMetadata(langmap[key])
+                       else:
+    2:                     adapter.editChapter(key, langmap[key])
+       
+    1:     def generateImage(self):
+               """
+               try safely to generate the cover image if pdftk and imagemagick are present
+               """
+    4:         tmp_pdfin = tmp_pdfout = tmp_gifin = None
+    4:         try:
+    4:             mainpub = self.context.getCanonical()
+    4:             data = str(mainpub.getFile())
+    4:             if not data:
+    2:                 return 0
+    2:             tmp_pdfin = tempfile.mkstemp(suffix='.pdf')
+    2:             tmp_pdfout = tempfile.mkstemp(suffix='.pdf')
+    2:             tmp_gifin = tempfile.mkstemp(suffix='.gif')
+    2:             fhout = open(tmp_pdfout[1], "w")
+    2:             fhimg = open(tmp_gifin[1], "r")
+    2:             fhout.write(data)
+    2:             fhout.seek(0)
+    2:             cmd = "pdftk %s cat 1 output %s" %(tmp_pdfout[1], tmp_pdfin[1])
+    2:             logger.info(cmd)
+    2:             res = os.popen(cmd)
+    2:             result = res.read()
+    2:             if result:
+>>>>>>                 logger.warn("popen-1: %s" % (result))
+    2:             cmd = "convert %s -resize 80x113 %s" %(tmp_pdfin[1], tmp_gifin[1])
+    2:             res = os.popen(cmd)
+    2:             result = res.read()
+    2:             if result:
+>>>>>>                 logger.warn("popen-2: %s" % (result))
+                   #fhimg.seek(0)
+    2:             coverdata = fhimg.read()
+    2:             self.context.getField('cover_image').getMutator(self.context)(coverdata)
+    2:             status = 1
+>>>>>>         except Exception, e:
+>>>>>>             logger.warn("generateImage: Could not autoconvert because: %s" %e)
+>>>>>>             status = 0
+       
+               # try to clean up
+    2:         if tmp_pdfin is not None:
+    2:             try: os.remove(tmp_pdfin[1])
+>>>>>>             except: pass
+    2:         if tmp_pdfout is not None:
+    2:             try: os.remove(tmp_pdfout[1])
+>>>>>>             except: pass
+    2:         if tmp_gifin is not None:
+    2:             try: os.remove(tmp_gifin[1])
+>>>>>>             except: pass
+       
+    2:         return status
+       
+       
+       # Eventhandler
+               
+    1: def generate_image(obj, evt):
+           """ EVENT
+               called on objectmodified. Tries to generate the cover image. 
+           """
+           # Make sure we execute this only on the canonical
+    5:     if obj != obj.getCanonical():
+    1:         return
+               
+    4:     interfaces.IPublication(obj).generateImage()
+               
+    1: def _get_storage_folder(ob):
+           """ Helper Method to fetch the folder containing additional material like chapters and further pdf parts 
+           """
+    9:     additionals_id = ob.getId().replace('.pdf', '')+'_data'
+       
+    9:     if additionals_id == ob.getId():
+>>>>>>         raise AttributeError, "Cannot get a unique name for the additionals folder"
+               
+    9:     container = aq_parent(aq_inner(ob)) 
+           
+    9:     if additionals_id not in container.objectIds():
+    4:         container.invokeFactory("Folder", additionals_id)
+    4:         additionals = getattr(container, additionals_id)
+    4:         additionals.setTitle('Additional material on %s' % ob.Title())
+    4:         additionals.setExcludeFromNav(True)
+    4:         additionals.reindexObject()
+           else:    
+    5:         additionals = getattr(container, additionals_id)
+       
+    9:     return additionals    
+          
+    1: def updateChapterLinksForTranslation(ob):
+           """ Read the chapternames and compair them to the Link objects inside the
+               Publication for all translations. Add/Delete where they differ
+               syncronizes the chapter links in ob to be compliant with the
+               current portal languages and the chapters in getChapter
+           """
+    5:     pw = getToolByName(ob, 'portal_workflow')
+       
+    5:     adapter = component.getAdapter(ob, interfaces.IPublication)    
+    5:     chapters = ob.getField('chapters').getAccessor(ob)()
+           #DEP: chapters = adapter.publication_data.get('chapters', [])
+       
+    5:     additionals = _get_storage_folder(ob)
+    5:     links = additionals.objectIds('ATLink')
+       
+           # remove all links which are not named in getChapters
+    5:     RM = []
+    6:     for l in links:
+    1:         if l not in chapters:
+    1:             RM.append(l)
+    5:     additionals.manage_delObjects(ids=RM)
+       
+   10:     for c in chapters:
+    5:         c = c.encode('utf-8')
+    5:         if c not in links:
+    5:             additionals.invokeFactory('Link', c)
+    5:             L = getattr(additionals, c)
+    5:             L.setTitle(c)
+    5:             L.setLanguage(ob.Language())
+    5:             remurl = "/%s#%s" % ( urllib.unquote(ob.absolute_url(1)), c )
+    5:             L.edit(remurl)
+    5:             L.unmarkCreationFlag()
+    5:             pw.doActionFor(L, 'publish', comment='Publish publication link %s in language %s.' % (c, ob.Language()))   
+    5:             L.reindexObject()
+       
+    1: def update_chapters(obj, evt):
+           """ EVENT: 
+               Update the chapter links based on the new set values in chapters
+           """    
+           # Make sure we execute this only on the canonical
+    5:     if obj != obj.getCanonical():
+    1:         return
+                   
+    4:     translations = obj.getTranslations()
+       
+    9:     for T in translations.keys():
+    5:         updateChapterLinksForTranslation(translations[T][0])
+           
+           
+       
+                   

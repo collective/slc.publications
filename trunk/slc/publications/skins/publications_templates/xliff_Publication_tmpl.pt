@@ -1,0 +1,30 @@
+<group id='main' xml:space='preserve'
+        tal:define="oid python:here.portal_xliff_tool.getOIDStrForObj(here);
+                    src_lang python:here.get_default_language();
+                    tgt_lang options/lang|request/lang|python:here.portal_languages.getPreferredLanguage();
+                    pubfile python:here.getPublicationFile(src_lang);"
+        tal:attributes="id oid;
+                        source-language src_lang;
+                        target-language tgt_lang;
+                        original here/getId|here/id;
+                        product-name string:elevateIT;
+                        oid oid;
+                        uid here/UID | nothing;
+                        path python:here.absolute_url(1)">
+    <trans-unit id='title'>
+        <source xml:lang='en'
+            tal:attributes="xml:lang python:src_lang"><p tal:condition="options/html_compat"/></source>
+        <target xml:lang='de'
+            tal:attributes="xml:lang python:tgt_lang"
+            tal:content="python:pubfile.Title()">Target language Title</target>
+    </trans-unit>
+
+    <trans-unit id='description'>
+        <source xml:lang='en'
+            tal:attributes="xml:lang python:src_lang"><p tal:condition="options/html_compat"/></source>
+        <target xml:lang='de'
+            tal:attributes="xml:lang python:tgt_lang"
+            tal:content="python:pubfile.Description()">Target language Description</target>
+    </trans-unit>
+
+</group>

@@ -1,0 +1,31 @@
+    1: from zope import interface
+    1: from p4a.subtyper import interfaces as stifaces
+    1: from slc.publications import interfaces
+       
+       
+         
+       
+    2: class PublicationDescriptor(object):
+    1:     interface.implements(stifaces.IPortalTypedDescriptor)
+       
+    1:     title = u'Publication'
+    1:     description = u'Publication file type'
+    1:     type_interface = interfaces.IPublicationEnhanced
+    1:     for_portal_type = 'File'
+       
+    2: class AbstractPublicationContainerDescriptor(object):
+    1:     interface.implements(stifaces.IPortalTypedFolderishDescriptor)
+       
+    1:     title = u'Publication Container'
+    1:     description = u'Container for holding Publications'
+    1:     type_interface = interfaces.IPublicationContainerEnhanced
+       
+    2: class FolderPublicationContainerDescriptor(AbstractPublicationContainerDescriptor):
+    1:     for_portal_type = 'Folder'
+       
+    2: class LargeFolderPublicationContainerDescriptor(AbstractPublicationContainerDescriptor):
+    1:     for_portal_type = 'Large Plone Folder'
+       
+    2: class TopicPublicationContainerDescriptor(AbstractPublicationContainerDescriptor):
+    1:     for_portal_type = 'Topic'
+       

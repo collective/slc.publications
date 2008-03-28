@@ -1,0 +1,10 @@
+    1: from zope import schema
+    1: from zope.interface import Interface, alsoProvides
+       
+       
+    2: class IPDFParser(Interface):
+           """Parser Utility to parse pdf files
+           """
+       
+    1:     def parse(pdf, owner_password='', user_password=''):
+               """ parses the given pdf file and returns a mapping of attributes """

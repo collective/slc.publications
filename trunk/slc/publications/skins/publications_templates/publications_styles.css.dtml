@@ -1,0 +1,36 @@
+.publicationText{
+margin-left: 100px;
+}
+.publicationImage{
+float:left; width: 90px;
+}
+.publicationLanguageBox {
+border:1px solid orange;
+padding:0.5em;
+margin-top: 1em;
+background-color:#F5DEB3
+}
+.publicationDescription {
+margin-bottom: 2em;
+}
+.publicationField {
+margin-bottom: 0.5em;
+}
+.publicationDate {
+font-weight: normal;
+}
+.publicationOrder {
+border: 1px solid #aaaaaa;
+background-color: #eeeeee;
+padding: 5px;
+margin-top: 20px;
+width:450px;
+}
+.publicationOrderButton {
+margin-left: 20px;
+}
+.publicationBlock { margin-bottom:10px;}
+#related_publications_block {border: 1px dashed #999; padding: 5px; margin:5px; margin-top:20px;}
+#more_pubs_line {border-top: 1px dashed #999; padding: 5px 5px 0px 0px; text-align:right; font-weight: bold;}
+#related_pubs_heading {border-bottom: 1px dashed #999; margin-bottom:5px; }
+#chapterlisting { margin-top: 20px;}

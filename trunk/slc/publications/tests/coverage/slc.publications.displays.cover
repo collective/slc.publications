@@ -1,0 +1,29 @@
+    1: from zope import interface
+    1: from zope import component
+    1: from slc.publications import interfaces
+       
+    1: import p4a.z2utils #Patch CMFDynamicViewFTI
+    1: from Products.CMFDynamicViewFTI import interfaces as cmfdynifaces
+       
+    2: class PublicationContainerDynamicViews(object):
+           
+    1:     interface.implements(cmfdynifaces.IDynamicallyViewable)
+    1:     component.adapts(interfaces.IPublicationContainerEnhanced)
+       
+    1:     def __init__(self, context):
+>>>>>>         self.context = context # Actually ignored...
+               
+    1:     def getAvailableViewMethods(self):
+               """Get a list of registered view method names
+               """
+>>>>>>         return [view for view, name in self.getAvailableLayouts()]
+       
+    1:     def getDefaultViewMethod(self):
+               """Get the default view method name
+               """
+>>>>>>         return "publication-container.html"
+       
+    1:     def getAvailableLayouts(self):
+               """Get the layouts registered for this object.
+               """        
+>>>>>>         return (("publication-container.html", "Publication view"),)

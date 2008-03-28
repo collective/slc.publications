@@ -1,0 +1,37 @@
+    1: from zope.interface import implements
+    1: from Products.CMFPlone import PloneMessageFactory as _
+    1: from Products.Archetypes.atapi import AnnotationStorage
+    1: from Products.Archetypes.atapi import FileWidget
+    1: from Products.validation import V_REQUIRED
+    1: from archetypes.schemaextender.interfaces import ISchemaExtender
+    1: from archetypes.schemaextender.field import ExtensionField
+    1: from plone.app.blob.field import BlobField
+       
+       
+    2: class ExtensionBlobField(ExtensionField, BlobField):
+    1:     """ derivative of blobfield for extending schemas """
+       
+       
+    2: class SchemaExtender(object):
+    1:     implements(ISchemaExtender)
+       
+    1:     def __init__(self, context):
+ 1265:         self.context = context
+       
+    1:     def getFields(self):
+ 1265:         return [
+                   ExtensionBlobField('file',
+ 1265:                 required = True,
+ 1265:                 primary = True,
+ 1265:                 default = '',
+ 1265:                 accessor = 'getFile',
+ 1265:                 mutator = 'setFile',
+ 1265:                 languageIndependent = False,
+ 1265:                 storage = AnnotationStorage(migrate=True),
+ 1265:                 validators = (('isNonEmptyFile', V_REQUIRED),
+                                     ('checkFileMaxSize', V_REQUIRED)),
+ 1265:                 widget = FileWidget(label = _(u'label_file', default=u'File'),
+ 1265:                                     description=_(u''),
+ 1265:                                     show_content_type = False,))
+               ]
+       
