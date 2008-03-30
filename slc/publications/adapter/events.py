@@ -25,7 +25,7 @@ def _findAbbrev(id, langs):
         name = id[:-3]
         if lang in langs:
             return (name, lang)
-    return []
+    return [id]
 
 
 #def objectevent(obj, evt):
@@ -37,7 +37,7 @@ def object_initialized(obj, evt):
         An object has been added to the pub folder. We make sure that
         a) that files are subtyped
         b) translation relations are set
-        I have no idea about the perormance of this. If adding objects in large pub folders 
+        I have no idea about the performance of this. If adding objects in large pub folders 
         is too slow, consider disabling this.
     """
     if not interfaces.IPublicationContainerEnhanced.providedBy(obj.aq_parent):
@@ -50,19 +50,30 @@ def object_initialized(obj, evt):
     # A mapping which stores {lang: obj} mappings under each common naming component
     # E.g. {'test': {'en': atfile1, 'de': atfile2}}
     GROUPS = {}
-    
+
     subtyper = component.getUtility(ISubtyper)
-    for child in obj.aq_parent.objectValues(['ATFile', 'ATBlob']):
+    children = obj.aq_parent.objectValues(['ATFile', 'ATBlob'])
+    print [x for x in children]
+    for child in children:
         if subtyper.existing_type(child) is None:
             subtyper.change_type(child, 'slc.publications.Publication')
+        
         comp = _findAbbrev(child.getId(), langs)
+        childname = comp[0]
         if len(comp)==2:    # comp is a component tuple ('test', 'de')
-            namemap = GROUPS.get(comp[0], {})
-            namemap[comp[1]] = child
-            GROUPS[comp[0]] = namemap
+            childlang = comp[1]
             if child.Language()!= comp[1]:
                 child.setLanguage(comp[1])
+        elif child.Language() != '':
+            childlang = child.Language()
+        else:
+            childlang = default_language
             
+        namemap = GROUPS.get(childname, {})
+        namemap[childlang] = child
+        GROUPS[childname] = namemap
+
+
     for key in GROUPS.keys():
         namemap = GROUPS[key]
         canonical = namemap.get(default_language, None)
@@ -81,7 +92,6 @@ def object_initialized(obj, evt):
                 o.addReference(canonical, RELATIONSHIP)
                 o.invalidateTranslationCache()        
                 o.reindexObject()
-
     
 def generate_image(obj, evt):
     """ EVENT
@@ -149,8 +159,8 @@ def subtype_on_translate(obj, evt):
     """ EVENT: 
         Update the chapter links based on the new set values in chapters
     """    
-    canonical = evt.object
-    target = evt.target
+    canonical = aq_base(aq_inner(evt.object))
+    target = aq_base(aq_inner(evt.target))
     subtyper = component.getUtility(ISubtyper)    
     subtype = subtyper.existing_type(canonical)
     if subtype is not None:
