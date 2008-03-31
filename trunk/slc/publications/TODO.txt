@@ -3,14 +3,18 @@ TODO
 
 - i18n cleanup
 
-- reshen up the skinworks
+- freshen up the skinworks
 
 - add the related publications section
+
+- there is no way currently to start parsing the pdf.
 
 - metadata export needs to be restricted on relevant attributes. (i.e. id  or remoteUrl is unnecessary, but how do I get schemaextended attribs? - perhaps use the same adapter mechanism as with slc.xliff...)
 
 - Review the PDF Parser. There are still other formats in PDF Files, we do not
   cover all of them. Find out why.
+  
+- After bulk uploading e.g. by flash uploader, one may want to automatically parse all or certain files for pdf properties. It could be interesting to add that possibility to the folder.
 
 Potential Risk
 --------------
