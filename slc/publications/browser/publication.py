@@ -222,7 +222,8 @@ class PublicationContainerView(object):
             # it's ok if this doesn't exist, just means no syndication
             return False
             
-            
+
+
 class IGenerateMetadata(interface.Interface):
     def __call__():
         """ download the generated metadata """

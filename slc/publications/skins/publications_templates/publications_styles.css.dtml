@@ -1,6 +1,10 @@
 .publicationText{
-margin-left: 100px;
-}
+margin-left: 90px;
+background-color: transparent; 
+border-bottom: 1px dotted gray; 
+margin-bottom: 1em;
+padding-bottom: 1em;
+} 
 .publicationImage{
 float:left; width: 90px;
 }

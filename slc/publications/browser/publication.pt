@@ -46,13 +46,14 @@
             <metal:fieldMacro use-macro="python: here.widget('description', mode=mode)" />
         </div>
 
-        <div class="publicationField" tal:define="field python:here.getField('isbn');">
+        <div class="publicationField" tal:define="field python:here.getField('isbn'); value python:field.getAccessor(here)()"
+                                      tal:condition="value">
             <div class="label">
                 <label for="field.name" title="The widget's hint"
                        tal:attributes="for python:field.widget.Label(here); title python: field.widget.Label(here)"
                        tal:content="python:field.widget.Label(here)"></label>:
             </div>
-            <div tal:replace="structure python:field.getAccessor(here)()"></div>        
+            <div tal:replace="structure value"></div>        
         </div>
 
         <div class="publicationField" tal:define="field python:here.getField('author');">
@@ -83,8 +84,10 @@
             <tal:size content="structure python:', %s KB' % (here.get_size() / 1024)">0Kb</tal:size>
         </div>
 
-        <div class="publicationOrder" tal:define="field python:here.getField('order_id'); 
-                                                  value python:field.getAccessor(here)()">
+        <div class="publicationOrder" 
+             tal:define="field python:here.getField('order_id'); 
+                         value python:field.getAccessor(here)()"
+             tal:condition="value">
             
             <div class="publicationField" style="float:left">
                 <div class="label">
@@ -109,18 +112,6 @@
             </div>
             <div class="visualClear"></div>                   
         </div>
-
-
-        <div>
-            <span style="float:right" class="discreet"
-                  tal:condition="python:here.portal_membership.checkPermission('Modify portal content', here )">
-                  <metal:fieldMacro use-macro="python: here.widget('metadata_upload', mode=mode)" />
-                  <a href="" tal:attributes="href string:${context_url}/@@generate-metadata">Generate Metadata</a><br/>
-                    
-            </span>
-        </div>
-
-        <div class="visualClear"></div>
 
         <div>&nbsp;</div>
         <tal:comment replace="nothing">
