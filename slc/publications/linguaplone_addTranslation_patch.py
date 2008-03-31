@@ -107,5 +107,5 @@ def addTranslation(self, language, *args, **kwargs):
     afterevent = events.ObjectTranslatedEvent(self, o, language)
     notify(afterevent)             
 
-print "PATCHED LP"
+
 I18NBaseObject.addTranslation = addTranslation
