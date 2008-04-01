@@ -15,7 +15,7 @@ def setupActions(self):
                          'string:${object_url}/@@generate-metadata',
                          '',
                          'View',
-                         'object_actions',
+                         'object_buttons',
                          visible=1
                        )
                                
@@ -25,4 +25,4 @@ def setupVarious(context):
         return
                 
     portal = context.getSite()
-    setupActions(portal)
+    #setupActions(portal)
