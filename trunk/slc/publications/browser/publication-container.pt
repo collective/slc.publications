@@ -28,7 +28,7 @@
             Title or id
         </h1>
 
-        <div tal:replace="structure provider:plone.belowcontenttitle" />
+        <!--div tal:replace="structure provider:plone.belowcontenttitle" /-->
 
         <p metal:use-macro="here/kss_generic_macros/macros/generic_description_view">
             Description
@@ -66,26 +66,24 @@
                                        item_description item/Description;
                                        item_type item/portal_type;
                                        item_type_title item/Type;
-                                       item_modified item/ModificationDate;
-                                       item_created item/CreationDate;
+                                       item_effective item/EffectiveDate;
                                        item_icon python:plone_view.getIcon(item);
                                        item_image item/getImage | item_icon;
                                        item_type_class python:'contenttype-' + normalizeString(item_type);
                                        item_wf_state item/review_state|python: wtool.getInfoFor(item, 'review_state', '');
                                        item_wf_state_class python:'state-' + normalizeString(item_wf_state);
-                                       item_creator item/Creator;
-                                       item_start item/start/ISO|item/StartDate|nothing;
-                                       item_end item/end/ISO|item/EndDate|nothing;
                                    ">
 
                     <dt metal:define-macro="listitem">
 
-                        <div class="field publicationImage">
-                            <img tal:attributes="src string:${item_url}/${item_image}" width="70"/>
-                        </div>
+
                        
+                        <div class="publicationImage">
+                            <img tal:attributes="src string:${item_url}/cover_image" width="70"/>
+                        </div>
                         <h3 class="summary publicationText"
                               tal:attributes="class string:$item_type_class summary">
+                                                                                          
                             <a href="#"
                                tal:attributes="href python:item_url+'/view';
                                                class string:${item_wf_state_class} url"
@@ -96,54 +94,17 @@
 
                         <div class="documentByLine">
 
-                            <span tal:condition="python: item_type == 'Event'"
-                                  i18n:translate="label_event_byline">
-                                (<span tal:content="string:${item/location}"
-                                       class="location"
-                                       i18n:name="location">Oslo</span>, from
-                                 <abbr class="dtstart"
-                                       tal:attributes="title python:item_start"
-                                       tal:content="python:toLocalizedTime(item_start,long_format=1)"
-                                       i18n:name="start">from date</abbr> to
-                                 <abbr class="dtend"
-                                       tal:attributes="title python:item_end"
-                                       tal:content="python:toLocalizedTime(item_end,long_format=1)"
-                                       i18n:name="end">to date</abbr>)
-                            </span>
-
                             <tal:byline condition="show_about">
-                                &mdash;
 
-                                <tal:name tal:condition="item_creator"
-                                    tal:define="author python:mtool.getMemberInfo(item_creator)">
-                                  <span i18n:translate="label_by_author">
-                                    by
-                                  <a href="#"
-                                     tal:attributes="href string:${portal_url}/author/${item_creator}"
-                                     tal:content="python:author and author['fullname'] or item_creator"
-                                     tal:omit-tag="not:author"
-                                     i18n:name="author">
-                                    Bob Dobalina
-                                  </a>
-                                  </span>
-
-                                </tal:name>
-
-                                <tal:modified condition="python: item_type != 'Event'">
-                                    &mdash;
-                                    <tal:mod i18n:translate="box_last_modified">
-                                      last modified
+                                <tal:published>
+                                    <tal:mod i18n:translate="box_published">
+                                      published
                                     </tal:mod>
-                                    <span tal:replace="python:toLocalizedTime(item_modified,long_format=1)">
+                                    <span tal:replace="python:toLocalizedTime(item_effective,long_format=0)">
                                       August 16, 2001 at 23:35:59
                                     </span>
-                                </tal:modified>
+                                </tal:published>
 
-                                <metal:description define-slot="description_slot">
-                                    <tal:comment replace="nothing">
-                                        Place custom listing info for custom types here
-                                    </tal:comment>
-                                </metal:description>
                             </tal:byline>
                         </div>
 
@@ -156,21 +117,9 @@
                         <span class="description" tal:content="item_description">
                             description
                         </span>
-                        <!--div class="publicationLanguageBox"
-                            tal:define="translations item/getTranslatedLanguages"
-                            tal:condition="python: len(translations) > 0">
-                           <span i18n:domain="Publications" i18n:translate="label_available_in">Available in</span>:
-                               <tal:block define="url here/absolute_url;
-                                                  dummy python: translations.sort()"
-                                          repeat="lang translations">
-                                   <span 
-                                      xtal:attributes="href python:item_url+'/languageVersionRedirect?language='+lang[0]"
-                                      tal:content="python: '[%s]' % lang[1]" />
-                               </tal:block>
-                        </div-->
-
 
                     </dd>
+                    <div class="visualClear"></div>
                 </tal:block>
                 </tal:entry>
             </dl>

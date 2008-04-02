@@ -53,7 +53,6 @@ def object_initialized(obj, evt):
 
     subtyper = component.getUtility(ISubtyper)
     children = obj.aq_parent.objectValues(['ATFile', 'ATBlob'])
-    print [x for x in children]
     for child in children:
         if subtyper.existing_type(child) is None:
             subtyper.change_type(child, 'slc.publications.Publication')
