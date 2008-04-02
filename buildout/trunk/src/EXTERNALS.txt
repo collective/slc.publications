@@ -1,0 +1,1 @@
+slc.publications http://svn.plone.org/svn/collective/slc.publications/branches/plone-2.5-compatible/trunk

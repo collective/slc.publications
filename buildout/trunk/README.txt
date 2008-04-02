@@ -8,7 +8,7 @@ sections below.
 
 You probably got here by running something like:
 
- $ paster create -t plone3_buildout
+ $ paster create -t plone2.5_buildout
 
 Now, you need to run:
 

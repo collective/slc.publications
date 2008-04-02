@@ -1,2 +1,4 @@
-LinguaPlone http://svn.plone.org/svn/plone/LinguaPlone/trunk/Products/LinguaPlone/
-
+Archetypes http://svn.plone.org/svn/archetypes/Archetypes/branches/1.4-schemaextender-support
+Five svn://svn.zope.org/repos/main/Products.Five/tags/1.4.4
+FiveSite http://svn.eionet.europa.eu/repositories/Zope/trunk/FiveSite
+LinguaPlone http://svn.plone.org/svn/plone/LinguaPlone/branches/plone-2.5-compatible
