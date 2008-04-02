@@ -2,10 +2,12 @@
     xmlns="http://namespaces.zope.org/zope"
     xmlns:five="http://namespaces.zope.org/five"
     i18n_domain="slc.publications">
-    
-  <adapter
-      name="plone.app.blob.subtypes.file"
-      for="plone.app.blob.interfaces.IATBlob"
-      factory=".subtypes.file.SchemaExtender" />
+
+    <configure zcml:condition="installed plone.app.blob">
+        <adapter
+            name="plone.app.blob.subtypes.file"
+            for="plone.app.blob.interfaces.IATBlob"
+            factory=".subtypes.file.SchemaExtender" />
+    </configure>
 
 </configure>

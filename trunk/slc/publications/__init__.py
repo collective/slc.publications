@@ -24,6 +24,8 @@ import logging
 logger = logging.getLogger('slc.publications')
 logger.debug('Installing slc.publications')
 
+import linguaplone_addTranslation_patch
+
 import os
 import os.path
 from os.path import dirname

@@ -44,12 +44,12 @@ class _ATCTPublication(object):
     """
     interface.implements(interfaces.IPublication)
     component.adapts(atctifaces.IATFile)
-                                               
+
     def __init__(self, context):
         self.context = context
 
     def __str__(self):
-        return '<slc.publication %s title=%s>' % (self.__class__.__name__, self.title)
+        return '<slc.publication %s title="%s">' % (self.__class__.__name__, self.context.title)
     __repr__ = __str__
 
 
@@ -80,7 +80,7 @@ class _ATCTPublication(object):
                 translation = translations[lang][0]
                 if not subtyper.existing_type(translation) or \
                    subtyper.existing_type(translation).name != 'slc.publications.Publication':
-                   subtyper.change_type(translation, 'slc.publications.Publication')
+                    subtyper.change_type(translation, 'slc.publications.Publication')
                    
             else:
                 canonical.addTranslation(lang)
@@ -147,11 +147,3 @@ class _ATCTPublication(object):
             except: pass
 
         return status
-
-
-# Eventhandler
-
-    
-
-
-            

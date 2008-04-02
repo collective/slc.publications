@@ -14,7 +14,6 @@ Note: You can run the tests in this file by typing
 
 Adding Publications
 ===================
-
     >>> self.loginAsPortalOwner()
 
 We will add publications with LinguaPlone support, so we need to setup some languages:
@@ -37,6 +36,9 @@ do not introduce yet another content type.
 
     >>> _ = self.folder.invokeFactory('File', 'mypub')
     >>> mypub = self.folder.mypub
+    >>> mypub.Language()
+    ''
+    >>> mypub.setLanguage(default_language)
     >>> mypub.Language() == default_language
     True
     >>> mypub.setTitle('My english File')
@@ -113,6 +115,7 @@ Such metadata files are uploaded for a Publication object and will try to set me
 
     >>> _ = self.folder.invokeFactory('File', 'metadatapub')
     >>> MetadataPub = self.folder.metadatapub
+    >>> MetadataPub.setLanguage(default_language)
     >>> MetadataPub.setFile(docpdf)
     >>> MetadataPub.unmarkCreationFlag()
     >>> MetadataPub.Language()
@@ -156,6 +159,3 @@ We need to subtype the translated publication as well (this can made much easier
 
     >>> DEFile.getField('isbn').getAccessor(DEFile)()
     '87-418-5901-6'
-
-
-

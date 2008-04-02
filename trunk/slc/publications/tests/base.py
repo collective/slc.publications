@@ -10,13 +10,15 @@ from slc.publications.config import product_globals
 # Plone install (PloneTestCase takes care of these).
 ztc.installProduct('PloneLanguageTool')
 ztc.installProduct('LinguaPlone')
+ztc.installProduct('Five')
+ztc.installProduct('FiveSite')
 
 # Import PloneTestCase - this registers more products with Zope as a side effect
 from Products.PloneTestCase.PloneTestCase import PloneTestCase
 from Products.PloneTestCase.PloneTestCase import FunctionalTestCase
 from Products.PloneTestCase.PloneTestCase import setupPloneSite
 from Products.PloneTestCase.layer import onsetup, PloneSite
-
+    
 @onsetup
 def setup_slc_publications():
     """Set up the additional products required for the Publication Content.
@@ -24,11 +26,14 @@ def setup_slc_publications():
     The @onsetup decorator causes the execution of this body to be deferred
     until the setup of the Plone site testing layer.
     """
-    
+    fiveconfigure.debug_mode = True
+    import Products.Five
+    zcml.load_config('meta.zcml', Products.Five)
+    import Products.FiveSite
+    zcml.load_config('configure.zcml', Products.FiveSite)
     # Load the ZCML configuration for the slc.publications package.
     # This includes the other products below as well.
     
-    fiveconfigure.debug_mode = True
     import slc.publications
     zcml.load_config('configure.zcml', slc.publications)
     fiveconfigure.debug_mode = False
@@ -50,16 +55,29 @@ def setup_slc_publications():
 # PloneTestCase set up this product on installation.
 
 setup_slc_publications()
-setupPloneSite(products=['plone.app.blob', 'slc.publications'])
+extra_products = ['PloneLanguageTool', 'LinguaPlone', 'slc.publications']
+try:
+    import plone.app.blob
+except ImportError, error:
+    # No plone.app.blob installed
+    pass
+else:
+    extra_products.append('plone.app.blob')
+setupPloneSite(products=extra_products)
 
 class PublicationTestCase(PloneTestCase):
     """Base class for integration tests for the 'Publication' product.
     """
+    def _setup(self):
+        PloneTestCase._setup(self)
+        # Set the local component registry
+        from zope.app.component.hooks import setSite
+        setSite(self.portal)
 
-class PublicationFunctionalTestCase(FunctionalTestCase):
+class PublicationFunctionalTestCase(FunctionalTestCase, PublicationTestCase):
     """Base class for functional integration tests for the 'Publication' product.
     """
-    
+
     def loadfile(self, rel_filename):
         home = package_home(product_globals)
         filename = os.path.sep.join([home, rel_filename])

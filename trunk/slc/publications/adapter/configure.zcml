@@ -7,27 +7,16 @@
 
    <!-- Events -->
 
-   <!--subscriber 
-       for="slc.publications.interfaces.IPossiblePublication
-            zope.lifecycleevent.interfaces.IObjectEvent"
-       handler=".adapter.objectevent"
-
    <subscriber 
        for="slc.publications.interfaces.IPublicationEnhanced
-            zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+            zope.app.event.interfaces.IObjectModifiedEvent"
        handler=".events.update_chapters"
    />
 
    <subscriber 
        for="slc.publications.interfaces.IPublicationEnhanced
-            zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+            zope.app.event.interfaces.IObjectModifiedEvent"
        handler=".events.generate_image"
-   />
-
-   <subscriber 
-       for="slc.publications.interfaces.IPossiblePublication
-            Products.Archetypes.interfaces.IObjectInitializedEvent"
-       handler=".events.object_initialized"
    />
 
    <subscriber 
@@ -35,8 +24,6 @@
             ..linguaplone_addTranslation_patch.IObjectTranslationReferenceSetEvent"
        handler=".events.subtype_on_translate"
    />
-/-->
-
 
     <configure zcml:condition="installed slc.xliff">
 
