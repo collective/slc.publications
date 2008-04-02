@@ -6,51 +6,45 @@
       metal:use-macro="here/main_template/macros/master"
       i18n:domain="slc.publications">
 
-
 <metal:cssslot fill-slot="css_slot">
   <style type="text/css" media="all" tal:condition="exists: portal/publications_styles.css"
          tal:content="string:@import url($portal_url/publications_styles.css);">
   </style>
 </metal:cssslot>
 
-
 <body>
 
     <div metal:fill-slot="main">
-    <metal:main-macro define-macro="main"
-                      tal:define="kssClassesView context/@@kss_field_decorator_view;
-                                  getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
-                                  templateId template/getId">
+    <metal:main-macro define-macro="main">
 
-        <div tal:replace="structure provider:plone.abovecontenttitle" />
+        <div metal:use-macro="here/document_actions/macros/document_actions">
+            Document actions (print, sendto etc)
+        </div>
 
-        <h1 metal:use-macro="here/kss_generic_macros/macros/generic_title_view">
+        <h1 tal:content="object_title" class="documentFirstHeading">
             Title or id
         </h1>
 
-        <!--div tal:replace="structure provider:plone.belowcontenttitle" /-->
+        <a href=""
+           class="link-parent"
+           tal:define="parent_url python:here.navigationParent(here, template_id)"
+           tal:condition="parent_url"
+           tal:attributes="href parent_url"
+           i18n:translate="go_to_parent_url">
+        Up one level
+        </a>
 
-        <p metal:use-macro="here/kss_generic_macros/macros/generic_description_view">
+        <p class="documentDescription"
+           tal:content="here/Description"
+           tal:condition="here/Description">
             Description
         </p>
-
-        <div tal:replace="structure provider:plone.abovecontentbody" />
-
-        <div metal:define-macro="text-field-view"
-             id="parent-fieldname-text" class="stx"
-             tal:define="kss_class python:getKssClasses('text',
-                         templateId=templateId, macro='text-field-view');
-                         text here/getText|nothing"
-             tal:condition="text"
-             tal:attributes="class kss_class">
-            <div metal:define-slot="inside" tal:replace="structure text">The body</div>
-        </div>
 
         <metal:listingmacro define-macro="listing">
         <tal:foldercontents define="contentFilter contentFilter|request/contentFilter|python:{'portal_type': 'File'};
                             limit_display limit_display|request/limit_display|nothing;
                             more_url more_url|request/more_url|string:folder_contents;
-                            contentsMethod view/contentsMethod; 
+                            contentsMethod view/contentsMethod;
                             folderContents folderContents|python:contentsMethod(contentFilter);
                             use_view_action site_properties/typesUseViewActionInListings|python:();
                             over_limit python: limit_display and len(folderContents) > limit_display;
@@ -67,23 +61,16 @@
                                        item_type item/portal_type;
                                        item_type_title item/Type;
                                        item_effective item/EffectiveDate;
-                                       item_icon python:plone_view.getIcon(item);
-                                       item_image item/getImage | item_icon;
-                                       item_type_class python:'contenttype-' + normalizeString(item_type);
-                                       item_wf_state item/review_state|python: wtool.getInfoFor(item, 'review_state', '');
+                                       item_type_class python: 'contenttype-' + normalizeString(item_type);
+                                       item_wf_state        item/review_state|python: wtool.getInfoFor(item, 'review_state', '');
                                        item_wf_state_class python:'state-' + normalizeString(item_wf_state);
                                    ">
 
                     <dt metal:define-macro="listitem">
-
-
-                       
                         <div class="publicationImage">
                             <img tal:attributes="src string:${item_url}/cover_image" width="70"/>
                         </div>
-                        <h3 class="summary publicationText"
-                              tal:attributes="class string:$item_type_class summary">
-                                                                                          
+                        <h3 class="summary">
                             <a href="#"
                                tal:attributes="href python:item_url+'/view';
                                                class string:${item_wf_state_class} url"
@@ -93,9 +80,7 @@
                         </h3>
 
                         <div class="documentByLine">
-
                             <tal:byline condition="show_about">
-
                                 <tal:published>
                                     <tal:mod i18n:translate="box_published">
                                       published
@@ -104,10 +89,8 @@
                                       August 16, 2001 at 23:35:59
                                     </span>
                                 </tal:published>
-
                             </tal:byline>
                         </div>
-
                     </dt>
 
                     <dd class="publicationText">
@@ -117,7 +100,6 @@
                         <span class="description" tal:content="item_description">
                             description
                         </span>
-
                     </dd>
                     <div class="visualClear"></div>
                 </tal:block>
@@ -134,9 +116,6 @@
 
         </tal:foldercontents>
         </metal:listingmacro>
-
-        <div tal:replace="structure provider:plone.belowcontentbody" />
-
     </metal:main-macro>
     </div>
 
