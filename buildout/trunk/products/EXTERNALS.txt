@@ -1,0 +1,2 @@
+LinguaPlone http://svn.plone.org/svn/plone/LinguaPlone/trunk/Products/LinguaPlone/
+
