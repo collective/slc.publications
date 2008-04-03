@@ -8,6 +8,8 @@ from slc.publications.utils import _get_storage_folder
 from Products.CMFCore.utils import getToolByName
 from Products.LinguaPlone.config import RELATIONSHIP
 from p4a.subtyper.interfaces import ISubtyper
+from zope.app.event.objectevent import ObjectModifiedEvent
+from slc.publications.interfaces import IObjectInitializedEvent
 
 import logging
 logger = logging.getLogger('slc.publications')
@@ -164,3 +166,10 @@ def subtype_on_translate(obj, evt):
     subtype = subtyper.existing_type(canonical)
     if subtype is not None:
         subtyper.change_type(target, subtype.name)
+
+class ObjectInitializedEvent(ObjectModifiedEvent):
+    """ An object is being initialised, i.e. populated for the first time
+    
+    Copied from Archetypes 1.5.8
+    """
+    interface.implements(IObjectInitializedEvent)

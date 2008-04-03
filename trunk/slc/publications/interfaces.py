@@ -1,7 +1,7 @@
 from zope import schema
 from zope.interface import Interface, alsoProvides
 from zope.app.content import interfaces as contentifaces
-
+from zope.app.event.interfaces import IObjectModifiedEvent
 
 class IAnyPublicationCapable(Interface):
     """Any aspect of publication/content capable.
@@ -27,8 +27,6 @@ class IPublicationContainerEnhanced(Interface):
     """
 
 alsoProvides(IPublicationEnhanced, contentifaces.IContentType)
-
-
 class IPublication(Interface):
     """ Objects which have publication information.
     """
@@ -38,8 +36,6 @@ class IPublicationProvider(Interface):
     """
     publication_items = schema.List(title=u'Publication Items', required=True, readonly=True)    
 
-
-                                    
 class IBasicPublicationSupport(Interface):
     """ Provides certain information about publication support.
     """
@@ -48,10 +44,13 @@ class IBasicPublicationSupport(Interface):
 class IPublicationSupport(IBasicPublicationSupport):
     """ Provides full information about publication support.
     """     
-                                      
+
 class IMediaActivator(Interface):
     """ For seeing the activation status or toggling activation.
     """
     media_activated = schema.Bool(title=u'Media Activated',required=True, readonly=False)
     
     
+class IObjectInitializedEvent(IObjectModifiedEvent):
+    """An object is being initialised, i.e. populated for the first time
+    """

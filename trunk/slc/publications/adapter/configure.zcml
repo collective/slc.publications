@@ -6,7 +6,6 @@
 
 
    <!-- Events -->
-
    <subscriber 
        for="slc.publications.interfaces.IPublicationEnhanced
             zope.app.event.interfaces.IObjectModifiedEvent"
@@ -17,6 +16,12 @@
        for="slc.publications.interfaces.IPublicationEnhanced
             zope.app.event.interfaces.IObjectModifiedEvent"
        handler=".events.generate_image"
+   />
+
+   <subscriber
+       for="slc.publications.interfaces.IPossiblePublication
+            ..interfaces.IObjectInitializedEvent"
+       handler=".events.object_initialized"
    />
 
    <subscriber 
