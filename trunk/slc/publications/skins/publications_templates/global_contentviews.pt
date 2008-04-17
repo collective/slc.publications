@@ -63,9 +63,13 @@
                 
             </li>
         </ul>
-
+        
         <div metal:use-macro="here/@@global_contentmenu/macros/contentMenu">
           Insert Add Content and Publishing pulldown.
+        </div>
+        
+        <div metal:use-macro="here/global_languagemenu/macros/languageMenu">
+          Insert Add Content Language pulldown.
         </div>
 
     </div>

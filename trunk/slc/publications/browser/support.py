@@ -42,7 +42,7 @@ class Support(object):
         return True
 
     @property
-    def can_activate_video(self):
+    def can_activate_publication(self):
         if not self._basic_can:
             return False
         
@@ -51,7 +51,7 @@ class Support(object):
         return not mediaconfig.media_activated
 
     @property
-    def can_deactivate_video(self):
+    def can_deactivate_publication(self):
         if not self._basic_can:
             return False
         
