@@ -16,6 +16,16 @@ Installation
     - archetypes.schemaextender
 
     - LinguaPlone (the product might run without but I have not bothered to make the calls to LP conditional yet...)
+    
+  * Addition requires for Plone 2.5
+  
+    - LinguaPlone plone2.5-compatible (http://svn.plone.org/svn/plone/LinguaPlone/branches/plone-2.5-compatible)
+    
+    - Archetypes with schemaextender support (http://svn.plone.org/svn/archetypes/Archetypes/branches/1.4-schemaextender-support)
+    
+    - Five 1.4.4 (svn://svn.zope.org/repos/main/Products.Five/tags/1.4.4)
+    
+    - FiveSite in order to run unit tests (http://svn.eionet.europa.eu/repositories/Zope/trunk/FiveSite)
 
   * Install egg (see slc.publications egg documentation).
   
