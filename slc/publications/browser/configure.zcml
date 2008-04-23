@@ -102,6 +102,14 @@
       permission="zope.Public"
       allowed_interface=".support.IContextualPublicationSupport"
       />
-            
+           
+           
+    <page
+        for="*"
+        name="publications-by-subject"
+        class=".publications_by_subject.PublicationsBySubjectView"
+        permission="zope2.View"
+    />
+                
 </configure>
       

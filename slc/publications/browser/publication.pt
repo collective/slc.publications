@@ -188,7 +188,7 @@
              tal:define="keywords here/Subject">
             <span i18n:translate="box_show_more_publications">Show more publications on</span>
             <span tal:repeat="key keywords" tal:omit-tag="">
-                <a tal:attributes="href string:show_publications_by_keyword?keywords=$key"
+                <a tal:attributes="href string:@@publications-by-subject?subject=$key"
                    tal:content="python:key.capitalize().replace('_',' ')" />
                <span tal:replace="string:&" tal:condition="not:repeat/key/end"/>
             </span>
