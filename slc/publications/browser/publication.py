@@ -80,14 +80,19 @@ class PublicationPageView(object):
     def fetchRelatedPublications(self, limit=3):
         context = Acquisition.aq_inner(self.context)
         subject = context.Subject()
-        pc = context.portal_catalog
+        
+        pc = cmfutils.getToolByName(context, 'portal_catalog')
+        portal_languages = cmfutils.getToolByName(context, 'portal_languages')
+        preflang = portal_languages.getPreferredLanguage()
+        
         if hasattr(pc, 'getZCatalog'):
             pc = pc.getZCatalog()
         
         PQ = Eq('portal_type', 'File') & \
              In('object_provides', 'slc.publications.interfaces.IPublicationEnhanced') & \
              In('Subject', subject) & \
-             Eq('review_state', 'published')
+             Eq('review_state', 'published') & \
+             Eq('Language', preflang)
 
         RES = pc.evalAdvancedQuery(PQ, (('effective','desc'),) )
         
@@ -107,13 +112,7 @@ class PublicationPageView(object):
         
     def update(self):
         pass
-        # We need to set the locale manually. Can be removed when on Zope2.11
-        #self.request.set('locale', getLocale(self.request))
-        
-        #super(PublicationPageView, self).update()
-        #if not interfaces.IPublication(self.context).publication_data:
-        #    self.context.plone_utils.addPortalMessage( \
-        #        _(u'Unsupported Publication type'))
+
 
 class IPublicationView(interface.Interface):
     """ """
@@ -125,19 +124,7 @@ class PublicationView(object):
     def __init__(self, context, request):
         self.publication_info = interfaces.IPublication(context)
 
-        #mime_type = unicode(context.get_content_type())
-        
-    #def cover_image(self): return self.publication_info.cover_image
 
-    #def author(self): return self.publication_info.author
-    #def publication_date(self): return self.publication_info.publication_date
-    #def isbn(self): return self.publication_info.isbn
-    #def order_id(self): return self.publication_info.order_id
-    #def for_sale(self): return self.publication_info.for_sale
-    #def chapters(self): return self.publication_info.chapters
-    #def metadata_upload(self): return self.publication_info.metadata_upload
-    #def owner_password(self): return self.publication_info.owner_password
-    #def user_password(self): return self.publication_info.user_password
 
 
 def applyChanges(context, form_fields, data, adapters=None):

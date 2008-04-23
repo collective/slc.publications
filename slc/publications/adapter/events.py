@@ -8,6 +8,7 @@ from slc.publications.utils import _get_storage_folder
 from Products.CMFCore.utils import getToolByName
 from Products.LinguaPlone.config import RELATIONSHIP
 from p4a.subtyper.interfaces import ISubtyper
+from Products.Archetypes.interfaces import IObjectInitializedEvent
 
 import logging
 logger = logging.getLogger('slc.publications')
@@ -97,6 +98,9 @@ def generate_image(obj, evt):
         called on objectmodified. Tries to generate the cover image. 
     """
     # Make sure we execute this only on the canonical
+    #If the event is an ObjectInitializedEvent, we skip
+    if IObjectInitializedEvent.providedBy(evt):
+        return
     if obj != obj.getCanonical():
         return
         
