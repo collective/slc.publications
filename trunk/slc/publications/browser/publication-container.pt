@@ -81,7 +81,7 @@
 
                         <div class="documentByLine">
                             <tal:byline condition="show_about">
-                                <tal:published>
+                                <tal:published condition="python:item_effective not in ('None', None)">
                                     <tal:mod i18n:translate="box_published">
                                       published
                                     </tal:mod>
