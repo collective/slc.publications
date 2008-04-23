@@ -89,20 +89,12 @@ class INIParser(object):
             
             for key in schema.keys():
                 value = t_ob.getField(key).getAccessor(t_ob)()
-                #value = getattr(t_ob, schema[key].accessor)()           
                 value = _vTs(value)
                 if not value or key=='id':
                     continue
                 meta.set(lang, key, value )          
 
-# DEP:
-#            for attr in form_fields:
-#                value = attr.field.get(adapted)
-#                value = _vTs(value)
-#                if not value: 
-#                    continue
-#                meta.set( lang, attr.field.getName(), value )
-        
+       
             _retrieve_chapter_attrs(adapted, meta)
         
         out = StringIO.StringIO()
@@ -155,13 +147,17 @@ def _getMeta(section):
         key = elem[0].strip()
         value = elem[1].strip()
 
-        if key=='':
+        if key=='' or value=='':
             continue
             
         if len(key)>2 and key[-2:]=='[]':
             # we have a list notation
             key = key[:-2]
-            elems = value.split(";")
+            if ";" in value:
+                elems = value.split(";")
+            else:
+                elems = value.split(",")
+                
             value = []
             for e in elems:
                 value.append(e.strip())

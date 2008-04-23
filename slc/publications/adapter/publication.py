@@ -1,4 +1,5 @@
 import App.Common
+import os
 from Acquisition import aq_base, aq_inner, aq_parent
 import ConfigParser, StringIO, tempfile, os, urllib, logging, re
 from types import *
@@ -9,6 +10,7 @@ from zope import component
 from slc.publications import interfaces
 from slc.publications.utils import _get_storage_folder
 
+from Products.Archetypes.utils import mapply
 from Products.ATContentTypes import interface as atctifaces
 from Products.CMFCore.utils import getToolByName
 from Products.LinguaPlone.config import RELATIONSHIP
@@ -62,10 +64,71 @@ class _ATCTPublication(object):
         C.processForm(data=1, metadata=1, values=metadata)
         
     def setMetadataMap(self, metadata):
-        """ sets a simple map with metadata on the current context. """
-        self.context.processForm(data=1, metadata=1, values=metadata)
-        #DEP: self._setPublicationMetadata(metadata)
-    
+        """ sets a simple map with metadata on the current context. 
+            we also do some conversions for old metadata ini files.
+        """
+        _marker = []
+        compatibility = {'NACE': 'nace', 
+                         }
+        for comp in compatibility.keys():
+            if metadata.has_key(comp):
+                metadata[compatibility[comp]] = metadata[comp]
+                del metadata[comp]
+
+        # we dont want to set the language explicitly
+        if metadata.has_key('language'):
+            del metadata['language']
+
+        # convert old MTSubject
+        if metadata.has_key('MTSubject'):
+            newmt = []
+            mt = metadata['MTSubject']
+            for m in mt:
+                newmt.append(os.path.basename(str(m)))
+            metadata['multilingual_thesaurus'] = newmt
+            del metadata['MTSubject']
+        
+
+        # convert the old country path notation to ISOCode notation
+        if metadata.has_key('Country'):
+            c = metadata['Country']
+            newc = []
+            for C in c:
+                elems = C.split("/")
+                if len(elems)<2:
+                    continue
+                elif len(elems)==2:
+                    newc.append('EU')
+                else:
+                    if str(elems[2])=='MS':
+                        newc.append('EU')
+                    else:
+                        newc.append(str(elems[2]))
+            metadata['country'] = newc
+            del metadata['Country']
+                        
+        for key in metadata:
+            print "Setting: %s - %s" %(key, metadata[key])
+                
+            field = self.context.getField(key)
+            if field is None:
+                continue
+            
+            result = field.widget.process_form(self.context, field, metadata,
+                                                   empty_marker=_marker,
+                                                   validating=False)
+            if result is _marker or result is None:
+                continue
+                
+            mutator = field.getMutator(self.context)
+            __traceback_info__ = (self.context, field, mutator)
+            result[1]['field'] = field.__name__
+            mapply(mutator, result[0], **result[1])
+
+        self.context.reindexObject()
+                
+                
+                
     def setMetadataIniMap(self, metadata):
         """ Given a complex metadata map from e.g. the ini parser set the metadata on all translations and chapters """
         translations = self.context.getTranslations()
@@ -73,6 +136,7 @@ class _ATCTPublication(object):
         subtyper = component.getUtility(ISubtyper)
         
         for lang in metadata.keys():
+            
             if lang == 'default': 
                 continue    # we skip the default section
 
@@ -90,13 +154,27 @@ class _ATCTPublication(object):
                 
                 translations[lang] = [translation, None]
 
+            # if there is a default, we merge it with the language specifics. 
+            # But only for existing values. So the language sections extend the default
+
             langmap = metadata[lang]
+                
             adapter = interfaces.IPublication(translation)
             for key in langmap.keys():
-                if key == '':
-                    adapter.setMetadataMap(langmap[key])
-                    #DEP: adapter._setPublicationMetadata(langmap[key])
+                if key == '':   
+                    # no key means the publication itself
+                    
+                    # merge defaults
+                    publication_map = langmap['']
+                    defaults = metadata['default']['']
+                    for x in defaults.keys():
+                        if not publication_map.get(x):
+                            publication_map[x] = defaults[x]
+                    print "XXXXXXXXXXXXXX"
+                    print publication_map
+                    adapter.setMetadataMap(publication_map)
                 else:
+                    # if key is available, it contains the name of the chapter
                     adapter.editChapter(key, langmap[key])
 
     def generateImage(self):
