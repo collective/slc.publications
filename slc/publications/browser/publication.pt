@@ -171,11 +171,11 @@
                       alt="Cover Image of Publication" width="80" />
             </div>
             <div class="publicationText">
-                <h2>
+                <h3>
                     <a href="" tal:attributes="href publication/getURL">
                         <span tal:content="publication/Title" />
                     </a>
-                </h2>
+                </h3>
             </div>
 
             <div class="publicationText"
