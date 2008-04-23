@@ -119,7 +119,7 @@
                         </span>
 
                     </dd>
-                    <div class="visualClear"></div>
+                    <div class="visualClear publication-separator"></div>
                 </tal:block>
                 </tal:entry>
             </dl>

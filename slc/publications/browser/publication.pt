@@ -132,7 +132,7 @@
 
 
 
-        <!--div id="chapterlisting"
+        <div id="chapterlisting"
              tal:define="chapters view/chapters"
              tal:condition="chapters">
 
@@ -148,51 +148,45 @@
                 </tal:block>
 
             </tal:repeat>
-        </div-->
+        </div>
 
     </div>
 
     <br clear="all" />
 
 
-    <!--div id="related_publications_block"
+    <div id="related_publications_block"
          tal:condition="PUBS"
-         tal:define="PUBS python:here.fetchRelatedPublications(limit=3);">
+         tal:define="PUBS python:view.fetchRelatedPublications(limit=3);">
 
         <div id="related_pubs_heading">
-            <h2>Related Publications</h2>
+            <h2 i18n:translate="heading_related">Related Publications</h2>
         </div>
 
-        <div class="publicationBlock" tal:repeat="elem PUBS">
-            <span tal:define="publication python:elem.getObject();
-                              file nocall:publication/getPublicationFile">
-            <div class="publicationImage"
-                 tal:condition="python:publication.importCoverImage() is not None">
+        <div class="publicationBlock" tal:repeat="publication PUBS">
+            <div class="publicationImage">
                  <img src="coverImage"
-                      tal:condition="publication/coverImage | nothing"
-                      tal:attributes="src string:${publication/absolute_url}/coverImage;
+                      tal:attributes="src string:${publication/getURL}/cover_image;
                                       alt string:Cover Image of Publication ${publication/getId}"
                       alt="Cover Image of Publication" width="80" />
             </div>
             <div class="publicationText">
                 <h2>
-                    <a href="" tal:attributes="href publication/absolute_url">
-                    <span tal:content="structure publication/getTitleFallback" tal:on-error="here/Title" />
+                    <a href="" tal:attributes="href publication/getURL">
+                        <span tal:content="publication/Title" />
                     </a>
                 </h2>
             </div>
 
             <div class="publicationText"
-                     tal:content="structure publication/getDescriptionFallback"
-                     tal:on-error="here/Description" />
-                <br clear="all" />
-            </span>
+                     tal:content="structure publication/Description"/>
+            <br clear="all" />
 
         </div>
 
         <div id="more_pubs_line"
-             tal:define="keywords here/Subjects">
-            Show more publications on
+             tal:define="keywords here/Subject">
+            <span i18n:translate="box_show_more_publications">Show more publications on</span>
             <span tal:repeat="key keywords" tal:omit-tag="">
                 <a tal:attributes="href string:show_publications_by_keyword?keywords=$key"
                    tal:content="python:key.capitalize().replace('_',' ')" />
@@ -200,7 +194,7 @@
             </span>
         </div>
 
-    </div-->
+    </div>
 
 
 

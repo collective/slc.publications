@@ -11,6 +11,7 @@ from zope.formlib import form
 from zope.app.event import objectevent
 from zope.app.i18n import ZopeMessageFactory as _
 
+from Products.AdvancedQuery import In, Eq, Le, Ge, And, Or
 from Products.CMFCore import utils as cmfutils
 from Products.CMFDefault.formlib.form import getLocale
 
@@ -75,6 +76,35 @@ class PublicationPageView(object):
         chapterlinks = additionals.objectValues('ATLink')
         return chapterlinks
         
+        
+    def fetchRelatedPublications(self, limit=3):
+        context = Acquisition.aq_inner(self.context)
+        subject = context.Subject()
+        pc = context.portal_catalog
+        if hasattr(pc, 'getZCatalog'):
+            pc = pc.getZCatalog()
+        
+        PQ = Eq('portal_type', 'File') & \
+             In('object_provides', 'slc.publications.interfaces.IPublicationEnhanced') & \
+             In('Subject', subject) & \
+             Eq('review_state', 'published')
+
+        RES = pc.evalAdvancedQuery(PQ, (('effective','desc'),) )
+        
+        PUBS = []
+        mypath = "/".join(context.getPhysicalPath())
+        
+        for R in RES:
+            # dont show myself
+            if R.getPath() == mypath:
+                continue
+            PUBS.append(R)
+        
+        if limit >0 and len(PUBS)>limit:
+            PUBS = PUBS[:limit]
+        
+        return PUBS        
+        
     def update(self):
         pass
         # We need to set the locale manually. Can be removed when on Zope2.11
@@ -86,8 +116,8 @@ class PublicationPageView(object):
         #        _(u'Unsupported Publication type'))
 
 class IPublicationView(interface.Interface):
-    def title(): pass
-
+    """ """
+    
 class PublicationView(object):
     """
     """
@@ -212,7 +242,7 @@ class PublicationContainerView(object):
         if self.context.portal_type=='Topic':
             return self.context.queryCatalog
         else:
-            return self.context.getFolderPublications
+            return self.context.getFolderContents
 
     def has_syndication(self):
         try:
