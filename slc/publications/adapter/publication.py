@@ -58,74 +58,15 @@ class _ATCTPublication(object):
     def editChapter(self, chapter, metadata):
         """ add/edit a link object with the given chapter name and modify its metadata """
         additionals = _get_storage_folder(self.context)
+
         C = getattr(additionals, chapter, None)
+
         if C is None:
             return
-        C.processForm(data=1, metadata=1, values=metadata)
-        
-    def setMetadataMap(self, metadata):
-        """ sets a simple map with metadata on the current context. 
-            we also do some conversions for old metadata ini files.
-        """
-        _marker = []
-        compatibility = {'NACE': 'nace', 
-                         }
-        for comp in compatibility.keys():
-            if metadata.has_key(comp):
-                metadata[compatibility[comp]] = metadata[comp]
-                del metadata[comp]
 
-        # we dont want to set the language explicitly
-        if metadata.has_key('language'):
-            del metadata['language']
-
-        # convert old MTSubject
-        if metadata.has_key('MTSubject'):
-            newmt = []
-            mt = metadata['MTSubject']
-            for m in mt:
-                newmt.append(os.path.basename(str(m)))
-            metadata['multilingual_thesaurus'] = newmt
-            del metadata['MTSubject']
+        setMetadataMap(C, metadata)
         
 
-        # convert the old country path notation to ISOCode notation
-        if metadata.has_key('Country'):
-            c = metadata['Country']
-            newc = []
-            for C in c:
-                elems = C.split("/")
-                if len(elems)<2:
-                    continue
-                elif len(elems)==2:
-                    newc.append('EU')
-                else:
-                    if str(elems[2])=='MS':
-                        newc.append('EU')
-                    else:
-                        newc.append(str(elems[2]))
-            metadata['country'] = newc
-            del metadata['Country']
-                        
-        for key in metadata:
-            print "Setting: %s - %s" %(key, metadata[key])
-                
-            field = self.context.getField(key)
-            if field is None:
-                continue
-            
-            result = field.widget.process_form(self.context, field, metadata,
-                                                   empty_marker=_marker,
-                                                   validating=False)
-            if result is _marker or result is None:
-                continue
-                
-            mutator = field.getMutator(self.context)
-            __traceback_info__ = (self.context, field, mutator)
-            result[1]['field'] = field.__name__
-            mapply(mutator, result[0], **result[1])
-
-        self.context.reindexObject()
                 
                 
                 
@@ -170,11 +111,10 @@ class _ATCTPublication(object):
                     for x in defaults.keys():
                         if not publication_map.get(x):
                             publication_map[x] = defaults[x]
-                    print "XXXXXXXXXXXXXX"
-                    print publication_map
-                    adapter.setMetadataMap(publication_map)
+                    setMetadataMap(translation, publication_map)
                 else:
                     # if key is available, it contains the name of the chapter
+                    print "importing a chapter", key
                     adapter.editChapter(key, langmap[key])
 
     def generateImage(self):
@@ -227,9 +167,70 @@ class _ATCTPublication(object):
         return status
 
 
-# Eventhandler
 
+def setMetadataMap(ob, metadata):
+    """ sets a simple map with metadata on the current context. 
+        we also do some conversions for old metadata ini files.
+    """
+    _marker = []
+    compatibility = {'NACE': 'nace', 
+                     }
+    for comp in compatibility.keys():
+        if metadata.has_key(comp):
+            metadata[compatibility[comp]] = metadata[comp]
+            del metadata[comp]
+
+    # we dont want to set the language explicitly
+    if metadata.has_key('language'):
+        del metadata['language']
+
+    # convert old MTSubject
+    if metadata.has_key('MTSubject'):
+        newmt = []
+        mt = metadata['MTSubject']
+        for m in mt:
+            newmt.append(os.path.basename(str(m)))
+        metadata['multilingual_thesaurus'] = newmt
+        del metadata['MTSubject']
     
+
+    # convert the old country path notation to ISOCode notation
+    if metadata.has_key('Country'):
+        c = metadata['Country']
+        newc = []
+        for C in c:
+            elems = C.split("/")
+            if len(elems)<2:
+                continue
+            elif len(elems)==2:
+                newc.append('EU')
+            else:
+                if str(elems[2])=='MS':
+                    newc.append('EU')
+                else:
+                    newc.append(str(elems[2]))
+        metadata['country'] = newc
+        del metadata['Country']
+                    
+    for key in metadata:
+        print "Setting: %s - %s" %(key, metadata[key])
+            
+        field = ob.getField(key)
+        if field is None:
+            continue
+        
+        result = field.widget.process_form(ob, field, metadata,
+                                               empty_marker=_marker,
+                                               validating=False)
+        if result is _marker or result is None:
+            continue
+            
+        mutator = field.getMutator(ob)
+        __traceback_info__ = (ob, field, mutator)
+        result[1]['field'] = field.__name__
+        mapply(mutator, result[0], **result[1])
+
+    ob.reindexObject()
 
 
             
