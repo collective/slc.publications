@@ -51,15 +51,20 @@
                             limit_display limit_display|request/limit_display|nothing;
                             more_url more_url|request/more_url|string:folder_contents;
                             contentsMethod view/contentsMethod; 
+                            Batch python:modules['Products.CMFPlone'].Batch;
+                            b_size python:10;b_start python:0;
+                            b_start request/b_start | b_start;
                             folderContents folderContents|python:contentsMethod(contentFilter);
                             use_view_action site_properties/typesUseViewActionInListings|python:();
                             over_limit python: limit_display and len(folderContents) > limit_display;
                             folderContents python: (over_limit and folderContents[:limit_display]) or folderContents;
+                            batch python:Batch(folderContents, b_size, int(b_start), orphan=1);
                             show_about python:not isAnon or site_properties.allowAnonymousViewAbout">
         <tal:listing condition="folderContents">
+        <div metal:use-macro="here/batch_macros/macros/navigation" />
 
             <dl>
-                <tal:entry tal:repeat="item folderContents">
+                <tal:entry tal:repeat="item batch">
                 <tal:block tal:define="item_url item/getURL|item/absolute_url;
                                        item_id item/getId|item/id;
                                        item_title_or_id item/pretty_title_or_id;
@@ -123,6 +128,7 @@
                 </tal:block>
                 </tal:entry>
             </dl>
+        <div metal:use-macro="here/batch_macros/macros/navigation" />
         </tal:listing>
         <metal:empty metal:define-slot="no_items_in_listing">
             <p class="discreet"
