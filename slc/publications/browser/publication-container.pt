@@ -47,7 +47,7 @@
         </div>
 
         <metal:listingmacro define-macro="listing">
-        <tal:foldercontents define="contentFilter contentFilter|request/contentFilter|python:{'portal_type': 'File'};
+        <tal:foldercontents define="contentFilter contentFilter|request/contentFilter|python:{'portal_type': 'File', 'sort_order': 'desc'};
                             limit_display limit_display|request/limit_display|nothing;
                             more_url more_url|request/more_url|string:folder_contents;
                             contentsMethod view/contentsMethod; 
