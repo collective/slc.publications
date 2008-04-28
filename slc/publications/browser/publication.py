@@ -224,13 +224,18 @@ class PublicationContainerView(object):
         self.context = context
         self.request = request
         
-
-    def contentsMethod(self):
+    def folderContents(self):
+        query = {'portal_type': 'File', 'sort_on': 'effective', 'sort_order': 'reverse'}        
+        
         if self.context.portal_type=='Topic':
-            return self.context.queryCatalog
+            meth = self.context.queryCatalog
         else:
-            return self.context.getFolderContents
-
+            meth = self.context.getFolderContents
+        
+        results = meth(contentFilter=query)
+        return results
+        
+        
     def has_syndication(self):
         try:
             view = self.context.restrictedTraverse('@@rss.xml')

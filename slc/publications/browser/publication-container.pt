@@ -47,17 +47,13 @@
         </div>
 
         <metal:listingmacro define-macro="listing">
-        <tal:foldercontents define="contentFilter contentFilter|request/contentFilter|python:{'portal_type': 'File', 'sort_on': 'effective', 'sort_order': 'desc'};
-                            limit_display limit_display|request/limit_display|nothing;
+        <tal:foldercontents define="limit_display limit_display|request/limit_display|nothing;
                             more_url more_url|request/more_url|string:folder_contents;
-                            contentsMethod view/contentsMethod; 
                             Batch python:modules['Products.CMFPlone'].Batch;
                             b_size python:10;b_start python:0;
                             b_start request/b_start | b_start;
-                            folderContents folderContents|python:contentsMethod(contentFilter);
+                            folderContents view/folderContents;
                             use_view_action site_properties/typesUseViewActionInListings|python:();
-                            over_limit python: limit_display and len(folderContents) > limit_display;
-                            folderContents python: (over_limit and folderContents[:limit_display]) or folderContents;
                             batch python:Batch(folderContents, b_size, int(b_start), orphan=1);
                             show_about python:not isAnon or site_properties.allowAnonymousViewAbout">
         <tal:listing condition="folderContents">
