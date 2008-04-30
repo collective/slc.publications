@@ -4,8 +4,12 @@
 * Added support for slc.xliff
 * refactored the adapter.py into adapter/ subdir
 * Added an eventhandler to automatically set the suptype on files added to a publication folder
-* Added an eventhandler to detect the uploaded language if the filename starts or ends with a lang abbrev
+* Added an eventhandler to detect the uploaded language if the filename starts or 
+  ends with a lang abbrev
   E.g. XX_filename.pdf or filename_XX.pdf or XX-filename.pdf or filename-XX.pdf.
+* Added a patch for linguaplone inserting a new event to allow translating 
+  subtyped objects. Translations need to be subtyped just after the object has 
+  been created and before attributes are edited.
 
 1.0 beta2
 ---------
