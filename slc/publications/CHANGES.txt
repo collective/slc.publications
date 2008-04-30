@@ -1,5 +1,5 @@
-1.0 svn
--------
+1.0 beta3
+---------
 
 * Added support for slc.xliff
 * refactored the adapter.py into adapter/ subdir
