@@ -125,21 +125,19 @@ class SchemaExtender(object):
         return self._fields
 
     def getOrder(self, original):
-        publication = original.get('publication', [])
-
-        #publication.remove('')
-
-        publication.insert(0, 'author')
-        publication.insert(1, 'isbn')
-        publication.insert(2, 'order_id')
-        publication.insert(3, 'for_sale')
-        publication.insert(4, 'chapters')
-        publication.insert(5, 'cover_image')
-        publication.insert(6, 'metadata_upload')
-        publication.insert(7, 'owner_password')
-        publication.insert(8, 'user_password')
-
-        original['publication'] = publication
-
+        order = original.get('publication', [])
+        new_order = [
+            'author',
+            'isbn',
+            'order_id',
+            'for_sale',
+            'chapters',
+            'cover_image',
+            'metadata_upload',
+            'owner_password',
+            'user_password',
+        ]
+        
+        new_order.extend([x for x in order if x not in new_order])
+        original['publication'] = new_order
         return original
-
