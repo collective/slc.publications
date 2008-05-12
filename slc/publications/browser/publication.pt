@@ -81,7 +81,7 @@
                 <strong i18n:domain="slc.publications" 
                        i18n:translate="label_download_full_publication">Download the full publication as PDF</strong>
             </a>
-            <tal:size content="structure python:', %s KB' % (here.get_size() / 1024)">0Kb</tal:size>
+            <tal:size content="structure python:' (%sKb)' % (here.get_size() / 1024)">0Kb</tal:size>
         </div>
 
         <div class="publicationOrder" 
