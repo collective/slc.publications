@@ -53,7 +53,8 @@ class PublicationPageView(object):
     def available_translations(self):
         portal_languages = cmfutils.getToolByName(self.context, 'portal_languages')
         default_language = portal_languages.getDefaultLanguage()
-        
+        ali = portal_languages.getAvailableLanguageInformation()
+
         translations = self.context.getTranslations()
         if len(translations)<1:
             return
@@ -65,7 +66,8 @@ class PublicationPageView(object):
         for lang in lang_codes:
             trans = translations[lang][0]
             url = trans.absolute_url()
-            name = portal_languages.getNameForLanguageCode(lang or default_language)
+            
+            name = ali[lang]['native']
             R.append( (name, url) )
         return R
                 
