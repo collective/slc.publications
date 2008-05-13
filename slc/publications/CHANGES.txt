@@ -27,3 +27,4 @@
 --------
 
 * initial release
+Thanks to Alin Voinea for creating a Plone2.5 backport. Please see the svn repository for that.

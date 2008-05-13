@@ -78,8 +78,13 @@
         <div class="publicationField">
 
             <a href="" tal:attributes="href string:${here/absolute_url}">
-                <strong i18n:domain="slc.publications" 
-                       i18n:translate="label_download_full_publication">Download the full publication as PDF</strong>
+                <strong>
+                    <span tal:omit-tag="" 
+                          i18n:domain="slc.publications" 
+                        i18n:translate="label_download_full_publication">Download the full publication as PDF</span>
+                    <img tal:attributes="src string:${portal_url}/pdf_icon.gif" 
+                         alt="PDF Icon" title="PDF Icon">
+                </strong>
             </a>
             <tal:size content="structure python:' (%sKb)' % (here.get_size() / 1024)">0Kb</tal:size>
         </div>
