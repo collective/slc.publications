@@ -67,7 +67,7 @@ class PublicationPageView(object):
             trans = translations[lang][0]
             url = trans.absolute_url()
             
-            name = ali[lang]['native']
+            name = ali.get(lang, {'native': lang})['native']
             R.append( (name, url) )
         return R
                 
