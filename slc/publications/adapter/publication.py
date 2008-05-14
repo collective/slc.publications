@@ -107,10 +107,11 @@ class _ATCTPublication(object):
                     
                     # merge defaults
                     publication_map = langmap['']
-                    defaults = metadata['default']['']
-                    for x in defaults.keys():
-                        if not publication_map.get(x):
-                            publication_map[x] = defaults[x]
+                    if  metadata.has_key('default'):
+                        defaults = metadata['default']['']
+                        for x in defaults.keys():
+                            if not publication_map.get(x):
+                                publication_map[x] = defaults[x]
                     setMetadataMap(translation, publication_map)
                 else:
                     # if key is available, it contains the name of the chapter
