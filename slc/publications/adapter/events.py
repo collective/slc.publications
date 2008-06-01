@@ -33,7 +33,7 @@ def _findAbbrev(id, langs):
 #    print [obj], [evt]
 
     
-def object_initialized(obj, evt):
+def object_added(evt):
     """ EVENT
         An object has been added to the pub folder. We make sure that
         a) that files are subtyped
@@ -41,7 +41,8 @@ def object_initialized(obj, evt):
         I have no idea about the performance of this. If adding objects in large pub folders 
         is too slow, consider disabling this.
     """
-    if not interfaces.IPublicationContainerEnhanced.providedBy(obj.aq_parent):
+    obj = evt.object
+    if not interfaces.IPublicationContainerEnhanced.providedBy(aq_parent(obj)):
         return
 
     portal_languages = getToolByName(obj, 'portal_languages')
@@ -63,6 +64,7 @@ def object_initialized(obj, evt):
         if len(comp)==2:    # comp is a component tuple ('test', 'de')
             childlang = comp[1]
             if child.Language()!= comp[1]:
+                child.setLanguage('')
                 child.setLanguage(comp[1])
         elif child.Language() != '':
             childlang = child.Language()
@@ -115,7 +117,7 @@ def updateChapterLinksForTranslation(ob):
     """
     pw = getToolByName(ob, 'portal_workflow')
 
-    adapter = component.getAdapter(ob, interfaces.IPublication)    
+    #adapter = component.getAdapter(ob, interfaces.IPublication)    
     chapters = ob.getField('chapters').getAccessor(ob)()
     #DEP: chapters = adapter.publication_data.get('chapters', [])
 

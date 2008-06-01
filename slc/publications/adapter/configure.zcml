@@ -24,12 +24,19 @@
             zope.lifecycleevent.interfaces.IObjectModifiedEvent"
        handler=".events.generate_image"
    />
+<!--slc.publications.interfaces.IPublicationContainerEnhanced
+                   -->
+                   
+  <subscriber for="zope.app.container.interfaces.IObjectAddedEvent"
+       handler=".events.object_added"
+  />
 
-   <subscriber 
+
+   <!--subscriber 
        for="slc.publications.interfaces.IPossiblePublication
             Products.Archetypes.interfaces.IObjectInitializedEvent"
        handler=".events.object_initialized"
-   />
+   /-->
 
    <subscriber 
        for="slc.publications.interfaces.IPublicationEnhanced

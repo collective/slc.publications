@@ -58,7 +58,6 @@ class _ATCTPublication(object):
     def editChapter(self, chapter, metadata):
         """ add/edit a link object with the given chapter name and modify its metadata """
         additionals = _get_storage_folder(self.context)
-
         C = getattr(additionals, chapter, None)
 
         if C is None:
