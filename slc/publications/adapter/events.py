@@ -44,7 +44,9 @@ def object_added(evt):
     obj = evt.object
     if not interfaces.IPublicationContainerEnhanced.providedBy(aq_parent(obj)):
         return
-
+    # Currently this approach is not working properly. 
+    # It requires that the first item uploaded is the canonical one.
+    return 
     portal_languages = getToolByName(obj, 'portal_languages')
     default_language = portal_languages.getDefaultLanguage()
     langs = portal_languages.getSupportedLanguages()
