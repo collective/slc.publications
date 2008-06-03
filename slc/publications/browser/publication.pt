@@ -129,8 +129,11 @@
             <span i18n:domain="Publications" i18n:translate="label_available_in">Available in</span>:
                 <tal:block repeat="lang available_translations">
                     <a href="" 
+                       tal:define="defaultlang here/portal_languages/getDefaultLanguage;
+                                   defaultlang python:here.portal_languages.getNameForLanguageCode(defaultlang);
+                                   langname python:lang[0] and lang[0] or defaultlang"
                        tal:attributes="href python: lang[1]"
-                       tal:content="python: '[%s]' % lang[0]" />
+                       tal:content="python: '[%s]' % langname" />
                 </tal:block>
         </div>
 
