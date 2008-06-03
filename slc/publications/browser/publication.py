@@ -227,14 +227,26 @@ class PublicationContainerView(object):
         self.request = request
         
     def folderContents(self):
-        query = {'portal_type': 'File', 'sort_on': 'effective', 'sort_order': 'reverse'}        
+        query = {}        
+        portal_languages = getToolByName(self.context, 'portal_languages')
+        portal_catalog = getToolByName(self.context, 'portal_catalog')
+        preflang = portal_languages.getPreferredLanguage()
+        
+        currpath = "/".join(self.context.getPhysicalPath())
+        canonicalpath = "/".join(self.context.getCanonical().getPhysicalPath())
         
         if self.context.portal_type=='Topic':
-            meth = self.context.queryCatalog
+            query = {'portal_type': 'File', 'sort_on': 'effective', 'sort_order': 'reverse'}        
+            results = self.context.queryCatalog(contentFilter=query)
         else:
-            meth = self.context.getFolderContents
-        
-        results = meth(contentFilter=query)
+            query = dict(object_provides='slc.publications.interfaces.IPublicationEnhanced', 
+                         sort_on='effective', 
+                         sort_order='reverse',
+                         Language=['', preflang],
+                         path=[currpath, canonicalpath]
+                         )
+            results = portal_catalog(query)    
+
         return results
         
         
