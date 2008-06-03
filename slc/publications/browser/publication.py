@@ -228,8 +228,8 @@ class PublicationContainerView(object):
         
     def folderContents(self):
         query = {}        
-        portal_languages = getToolByName(self.context, 'portal_languages')
-        portal_catalog = getToolByName(self.context, 'portal_catalog')
+        portal_languages = cmfutils.getToolByName(self.context, 'portal_languages')
+        portal_catalog = cmfutils.getToolByName(self.context, 'portal_catalog')
         preflang = portal_languages.getPreferredLanguage()
         
         currpath = "/".join(self.context.getPhysicalPath())
