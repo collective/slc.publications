@@ -118,7 +118,8 @@ def updateChapterLinksForTranslation(ob):
         current portal languages and the chapters in getChapter
     """
     pw = getToolByName(ob, 'portal_workflow')
-
+    if ob is None:
+        return 
     #adapter = component.getAdapter(ob, interfaces.IPublication)    
     chapters = ob.getField('chapters').getAccessor(ob)()
     #DEP: chapters = adapter.publication_data.get('chapters', [])
