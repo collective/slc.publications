@@ -120,10 +120,12 @@ def updateChapterLinksForTranslation(ob):
     pw = getToolByName(ob, 'portal_workflow')
     if ob is None:
         return 
-    #adapter = component.getAdapter(ob, interfaces.IPublication)    
-    chapters = ob.getField('chapters').getAccessor(ob)()
-    #DEP: chapters = adapter.publication_data.get('chapters', [])
-
+    chapterfield = ob.getField('chapters')
+    if chapterfield is None:
+        logger.warn('Publication has no chapterfield: %s' % ob.absolute_url())
+        return
+    chapters = chapterfield.getAccessor(ob)()
+    
     additionals = _get_storage_folder(ob)
     links = additionals.objectIds('ATLink')
 
