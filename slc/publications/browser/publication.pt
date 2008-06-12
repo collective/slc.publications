@@ -14,24 +14,23 @@
 
 <div metal:fill-slot="main"
         tal:define="publication_info context/@@publication_view;
-        context_url string:${context/absolute_url};
-        errors options/state/getErrors | nothing;
-        Iterator python: modules['Products.Archetypes'].IndexIterator;
-        tabindex tabindex|python: Iterator(pos=7000);
-        schematas here/Schemata;
-        fieldsets python: [key for key in schematas.keys() if key != 'metadata'];
-        default_fieldset python:(not schematas or schematas.has_key('default')) and 'default' or fieldsets[0];
-        fieldset request/fieldset|options/fieldset|default_fieldset;
-        fields python: schematas[fieldset].editableFields(here);
-        lockable python: hasattr(here, 'wl_isLocked');
-        isLocked python: lockable and here.wl_isLocked();
-        mode string:view;
+                    context_url string:${context/absolute_url};
+                    errors options/state/getErrors | nothing;
+                    Iterator python: modules['Products.Archetypes'].IndexIterator;
+                    tabindex tabindex|python: Iterator(pos=7000);
+                    schematas here/Schemata;
+                    fieldsets python: [key for key in schematas.keys() if key != 'metadata'];
+                    default_fieldset python:(not schematas or schematas.has_key('default')) and 'default' or fieldsets[0];
+                    fieldset request/fieldset|options/fieldset|default_fieldset;
+                    fields python: schematas[fieldset].editableFields(here);
+                    lockable python: hasattr(here, 'wl_isLocked');
+                    isLocked python: lockable and here.wl_isLocked();
+                    mode string:view;
         ">
 
     <h1>
         <span tal:replace="here/Title">Title of the Publication</span>
     </h1>
-    
     <div class="field publicationImage"
          xtal:condition="here/cover_image | nothing">
          <img src="" 
@@ -117,7 +116,6 @@
             </div>
             <div class="visualClear"></div>                   
         </div>
-
         <div>&nbsp;</div>
         <tal:comment replace="nothing">
             Show this box only when there are more than this translation is available
@@ -143,7 +141,6 @@
 
 
     </div>
-
     <div class="visualClear"></div>
 
     <div id="chapterlisting"

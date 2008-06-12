@@ -41,6 +41,14 @@
       permission="zope2.View"
       />
 
+  <page
+      name="cover_image"
+      class=".publication.CoverImageView"
+      allowed_interface=".publication.ICoverImage"
+      for="slc.publications.interfaces.IPublicationEnhanced"
+      permission="zope2.View"
+      />
+
       
   <page
       name="publication_edit"

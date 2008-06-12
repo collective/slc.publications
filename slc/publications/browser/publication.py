@@ -275,3 +275,26 @@ class GenerateMetadataView(object):
         iniparser = component.getUtility(IINIParser)
 
         return iniparser.retrieve(self.context)
+
+
+class ICoverImage(interface.Interface):
+    def __call__():
+        """ generate the cover image """
+            
+class CoverImageView(object):
+    
+    def __init__(self, context, request):
+        self.context = context
+        self.request = request    
+        
+    def __call__(self):
+        """ download the generated metadata """
+        field = self.context.getField('cover_image')
+        if field is None:
+            return None
+        image = field.getAccessor(self.context)()
+        if not image:
+            adapter = interfaces.IPublication(self.context)
+            adapter.generateImage()
+            image = field.getAccessor(self.context)()
+        return image
