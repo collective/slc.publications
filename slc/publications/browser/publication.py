@@ -84,6 +84,8 @@ class PublicationPageView(object):
         subject = context.Subject()
         
         pc = cmfutils.getToolByName(context, 'portal_catalog')
+        if hasattr(pc, 'getZCatalog'):
+            pc = pc.getZCatalog()
         portal_languages = cmfutils.getToolByName(context, 'portal_languages')
         preflang = portal_languages.getPreferredLanguage()
         
