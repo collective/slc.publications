@@ -12,6 +12,7 @@ from slc.publications.utils import _get_storage_folder
 
 from Products.Archetypes.utils import mapply
 from Products.ATContentTypes import interface as atctifaces
+from plone.app.blob.interfaces import IATBlob
 from Products.CMFCore.utils import getToolByName
 from Products.LinguaPlone.config import RELATIONSHIP
 from ComputedAttribute import ComputedAttribute
@@ -34,6 +35,13 @@ logger = logging.getLogger('slc.publications')
 
 @interface.implementer(interfaces.IPublication)
 @component.adapter(atctifaces.IATFile)
+def ATCTFilePublication(context):
+    if not interfaces.IPublicationEnhanced.providedBy(context):
+        return None
+    return _ATCTPublication(context)
+
+@interface.implementer(interfaces.IPublication)
+@component.adapter(IATBlob)
 def ATCTFilePublication(context):
     if not interfaces.IPublicationEnhanced.providedBy(context):
         return None
