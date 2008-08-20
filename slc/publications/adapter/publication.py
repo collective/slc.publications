@@ -51,7 +51,7 @@ class _ATCTPublication(object):
         self.context = context
 
     def __str__(self):
-        return '<slc.publication %s title=%s>' % (self.__class__.__name__, self.title)
+        return '<slc.publication %s title=%s>' % (self.__class__.__name__, self.context.Title())
     __repr__ = __str__
 
 
