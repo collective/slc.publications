@@ -290,7 +290,7 @@ class CoverImageView(object):
         self.request = request    
         
     def __call__(self):
-        """ download the generated metadata """
+        """ generate the cover image """
         field = self.context.getField('cover_image')
         if field is None:
             return None
