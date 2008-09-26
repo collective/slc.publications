@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-version = '1.0'
+version = '1.0.1'
 
 setup(name='slc.publications',
       version=version,
@@ -31,7 +31,6 @@ setup(name='slc.publications',
           'p4a.subtyper',
           'archetypes.schemaextender',
           
-          # -*- Extra requirements: -*-
       ],
       entry_points="""
       # -*- Entry points: -*-
