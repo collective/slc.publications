@@ -36,10 +36,17 @@ Translations
 ------------
 Note that the ATCT file object by default has a languageIndependent file attribute. That means that you can translate the Title and Description of a file object but not change the real file. Publications changes this behaviour for ATCT and Blob files. 
 
+LinguaPlone is patched
+----------------------
+
+the file linguaplone_addTranslation_patch patches linguaplones addTranslation method.
+It simply adds a new event that is thrown after a translation is created but before 
+its data is set. This is necessary because on translation we need to subtype before we
+can set any data, otherwise the schema will not be extended.
+
 Documentation
 -------------
 See the *doc* directory in this package.
-
 
 Authors
 -------

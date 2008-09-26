@@ -48,9 +48,11 @@ class PublicationPageView(object):
 
     @property
     def template(self):
+        """ return the template """
         return self.index
 
     def available_translations(self):
+        """ list all available translations for this publication """
         portal_languages = cmfutils.getToolByName(self.context, 'portal_languages')
         default_language = portal_languages.getDefaultLanguage()
         ali = portal_languages.getAvailableLanguageInformation()
@@ -72,6 +74,7 @@ class PublicationPageView(object):
         return R
                 
     def chapters(self):
+        """ get the chapters """
         additionals = _get_storage_folder(self.context)
         if additionals is None:
             return []
@@ -80,6 +83,7 @@ class PublicationPageView(object):
         
         
     def fetchRelatedPublications(self, limit=3):
+        """ Query the catalog for related publications """
         context = Acquisition.aq_inner(self.context)
         subject = context.Subject()
         
@@ -119,10 +123,10 @@ class PublicationPageView(object):
 
 
 class IPublicationView(interface.Interface):
-    """ """
+    """Interface  for the Publication View """
     
 class PublicationView(object):
-    """
+    """ Publication View
     """
 
     def __init__(self, context, request):
@@ -132,6 +136,7 @@ class PublicationView(object):
 
 
 def applyChanges(context, form_fields, data, adapters=None):
+    """ apply changes """
     if adapters is None:
         adapters = {}
 
@@ -170,6 +175,7 @@ class PublicationEditForm(formbase.EditForm):
     priority_fields = ['title']
 
     def update(self):
+        """ update the form """
         self.adapters = {}
         form_fields = self.form_fields
         # here we can fiddle...
@@ -177,6 +183,7 @@ class PublicationEditForm(formbase.EditForm):
         super(PublicationEditForm, self).update()
 
     def setUpWidgets(self, ignore_request=False):
+        """ setup edit widgets """
         self.widgets = form.setUpEditWidgets(
             self.form_fields, self.prefix, self.context, self.request,
             adapters=self.adapters, ignore_request=ignore_request
@@ -184,6 +191,7 @@ class PublicationEditForm(formbase.EditForm):
 
     @form.action(_("Apply"), condition=form.haveInputWidgets)
     def handle_edit_action(self, action, data):
+        """ handle edit """
         changed = applyChanges(
             self.context, self.form_fields, data, self.adapters)
         if changed:
@@ -203,6 +211,7 @@ class PublicationEditForm(formbase.EditForm):
 class PublicationEditMacros(formbase.PageForm):
     # short cut to get to macros more easily
     def __getitem__(self, name):
+        """ get item """
         if hasattr(self.template, 'macros'):
             template = self.template
         elif hasattr(self.template, 'default_template'):
@@ -225,10 +234,12 @@ class PublicationContainerView(object):
     """
 
     def __init__(self, context, request):
+        """ init the container view """
         self.context = context
         self.request = request
         
     def folderContents(self):
+        """ customized folder contents """
         query = {}        
         portal_languages = cmfutils.getToolByName(self.context, 'portal_languages')
         portal_catalog = cmfutils.getToolByName(self.context, 'portal_catalog')
@@ -253,6 +264,7 @@ class PublicationContainerView(object):
         
         
     def has_syndication(self):
+        """ support syndication? """
         try:
             view = self.context.restrictedTraverse('@@rss.xml')
             return True
@@ -263,12 +275,15 @@ class PublicationContainerView(object):
 
 
 class IGenerateMetadata(interface.Interface):
+    """ Interface for Metadata Generation """
     def __call__():
         """ download the generated metadata """
             
 class GenerateMetadataView(object):
+    """ Metadata Generation """
     
     def __init__(self, context, request):
+        """ init """
         self.context = context
         self.request = request    
         
@@ -280,11 +295,12 @@ class GenerateMetadataView(object):
 
 
 class ICoverImage(interface.Interface):
+    """ Can have a cover image """
     def __call__():
         """ generate the cover image """
             
 class CoverImageView(object):
-    
+    """ Cover image generation """    
     def __init__(self, context, request):
         self.context = context
         self.request = request    

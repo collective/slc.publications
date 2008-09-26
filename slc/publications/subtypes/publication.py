@@ -7,6 +7,7 @@ from archetypes.schemaextender.field import ExtensionField
 from slc.publications.config import AUTHOR
 
 class ExtensionFieldMixin:
+    """ Helper """
     def translationMutator(self, instance):
         return self.getMutator(instance)
 
@@ -39,6 +40,7 @@ class UserPasswordField(ExtensionField, ExtensionFieldMixin, atapi.StringField):
 
 
 class SchemaExtender(object):
+    """ Extend a file to get more publication related fields """
     implements(IOrderableSchemaExtender)
 
     _fields = [
@@ -119,15 +121,16 @@ class SchemaExtender(object):
             ]
 
     def __init__(self, context):
+        """ init """
         self.context = context
 
     def getFields(self):
+        """ get fields """
         return self._fields
 
     def getOrder(self, original):
+        """ new order """
         publication = original.get('publication', [])
-
-        #publication.remove('')
 
         publication.insert(0, 'author')
         publication.insert(1, 'isbn')

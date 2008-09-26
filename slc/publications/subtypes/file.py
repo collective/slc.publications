@@ -13,12 +13,15 @@ class ExtensionBlobField(ExtensionField, BlobField):
 
 
 class SchemaExtender(object):
+    """ Extend the file to make it not language independant """
     implements(ISchemaExtender)
 
     def __init__(self, context):
+        """ init """
         self.context = context
 
     def getFields(self):
+        """ change the field to be languageIndependant = False"""
         return [
             ExtensionBlobField('file',
                 required = True,

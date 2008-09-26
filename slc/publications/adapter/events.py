@@ -15,6 +15,8 @@ logger = logging.getLogger('slc.publications')
 # Event handler methods
 
 def _findAbbrev(id, langs):
+    """ scan the id for an inplicitly given language abbreviation """
+    
     id = id.rsplit(".", 1)[0]
     if len(id)>3 and id[2] in ['_', '-']:
         lang = id[0:2].lower()
@@ -29,10 +31,6 @@ def _findAbbrev(id, langs):
     return [id]
 
 
-#def objectevent(obj, evt):
-#    print [obj], [evt]
-
-    
 def object_added(evt):
     """ EVENT
         An object has been added to the pub folder. We make sure that

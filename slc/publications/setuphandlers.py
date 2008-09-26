@@ -20,9 +20,8 @@ def setupActions(self):
                        )
                                
 def setupVarious(context):
-        
+    """ setup specials """
     if context.readDataFile('publications-various.txt') is None:
         return
                 
     portal = context.getSite()
-    #setupActions(portal)

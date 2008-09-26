@@ -4,7 +4,7 @@ version = '1.0'
 
 setup(name='slc.publications',
       version=version,
-      description="A content type to store pdf publications",
+      description="A content type to store and parse pdf publications",
       long_description="""\
 """,
       # Get more strings from http://www.python.org/pypi?%3Aaction=list_classifiers
@@ -17,7 +17,7 @@ setup(name='slc.publications',
         ],
       keywords='plone content publications pdf parse metadata',
       author='Syslab.com GmbH',
-      author_email='info@syslab.com GmbH',
+      author_email='info@syslab.com',
       url='http://plone.org/products/PublicationProduct',
       license='GPL',
       packages=find_packages(exclude=['ez_setup']),

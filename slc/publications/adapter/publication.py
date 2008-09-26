@@ -36,6 +36,8 @@ logger = logging.getLogger('slc.publications')
 @interface.implementer(interfaces.IPublication)
 @component.adapter(atctifaces.IATFile)
 def ATCTFilePublication(context):
+    """ Factory to generate the proper Adapter only if the 
+        object is properly subtyped"""
     if not interfaces.IPublicationEnhanced.providedBy(context):
         return None
     return _ATCTPublication(context)
@@ -43,6 +45,8 @@ def ATCTFilePublication(context):
 @interface.implementer(interfaces.IPublication)
 @component.adapter(IATBlob)
 def ATCTFilePublication(context):
+    """ Factory to generate the proper Adapter only if the 
+        object is properly subtyped"""
     if not interfaces.IPublicationEnhanced.providedBy(context):
         return None
     return _ATCTPublication(context)
@@ -50,7 +54,7 @@ def ATCTFilePublication(context):
 _marker=[]
 
 class _ATCTPublication(object):
-    """ 
+    """ Adapter to handle a file as publication
     """
     interface.implements(interfaces.IPublication)
     component.adapts(atctifaces.IATFile)

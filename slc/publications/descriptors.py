@@ -6,6 +6,7 @@ from slc.publications import interfaces
   
 
 class PublicationDescriptor(object):
+    """ This is a publication """
     interface.implements(stifaces.IPortalTypedDescriptor)
 
     title = u'Publication'
@@ -14,6 +15,7 @@ class PublicationDescriptor(object):
     for_portal_type = 'File'
 
 class AbstractPublicationContainerDescriptor(object):
+    """ Container for Publications """
     interface.implements(stifaces.IPortalTypedFolderishDescriptor)
 
     title = u'Publication Container'
@@ -21,11 +23,14 @@ class AbstractPublicationContainerDescriptor(object):
     type_interface = interfaces.IPublicationContainerEnhanced
 
 class FolderPublicationContainerDescriptor(AbstractPublicationContainerDescriptor):
+    """ Container for Publications """
     for_portal_type = 'Folder'
 
 class LargeFolderPublicationContainerDescriptor(AbstractPublicationContainerDescriptor):
+    """ Container for Publications """
     for_portal_type = 'Large Plone Folder'
 
 class TopicPublicationContainerDescriptor(AbstractPublicationContainerDescriptor):
+    """ Container for Publications """
     for_portal_type = 'Topic'
 

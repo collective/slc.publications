@@ -105,6 +105,7 @@ class INIParser(object):
        
        
 def _retrieve_chapter_attrs(ob, meta):
+    """ get the attributes for the chapters """
     portal_languages = getToolByName(ob.context, 'portal_languages')
     default_language = portal_languages.getDefaultLanguage()
     suffix = ob.context.Language() or default_language
@@ -142,6 +143,7 @@ def _vTs(value):
             
 
 def _getMeta(section):
+    """ convert meta info """
     params = {}
     for elem in section:
         key = elem[0].strip()

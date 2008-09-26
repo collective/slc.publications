@@ -16,6 +16,7 @@ class Support(object):
     interface.implements(IContextualPublicationSupport)
     
     def __init__(self, context, request):
+        """ init """
         self.context = context
         self.request = request
         
@@ -33,6 +34,7 @@ class Support(object):
 
     @property
     def _basic_can(self):
+        """ can this be a publication?"""
         if not self.support_enabled:
             return False
 
@@ -41,20 +43,3 @@ class Support(object):
 
         return True
 
-    @property
-    def can_activate_video(self):
-        if not self._basic_can:
-            return False
-        
-        mediaconfig = component.getMultiAdapter((self.context, self.request),
-                                                name='publication-config.html')
-        return not mediaconfig.media_activated
-
-    @property
-    def can_deactivate_video(self):
-        if not self._basic_can:
-            return False
-        
-        mediaconfig = component.getMultiAdapter((self.context, self.request),
-                                                name='publication-config.html')
-        return mediaconfig.media_activated

@@ -10,7 +10,7 @@ except ImportError, err:
 _marker = object()
 
 class ToggleEnhancementsView(object):
-    """
+    """ Toggle the view for Enhancements
     """
 
     def __init__(self, context, request):

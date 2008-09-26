@@ -13,6 +13,7 @@ class PublicationsBySubjectView(BrowserView):
     template = ViewPageTemplateFile('publications_by_subject.pt')
     
     def __call__(self):
+        """ call - XXX: we should think about caching here..."""
         self.request.set('disable_border', True)
         
         context = Acquisition.aq_inner(self.context)
@@ -60,6 +61,7 @@ class PublicationsBySubjectView(BrowserView):
         
         
     def subject(self):
+        """ return the list of subjects """
         subject = self.request.get('subject', [])
         if type(subject) not in [ListType, TupleType]:
             subject = [subject]

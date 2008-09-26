@@ -6,11 +6,12 @@ import p4a.z2utils #Patch CMFDynamicViewFTI
 from Products.CMFDynamicViewFTI import interfaces as cmfdynifaces
 
 class PublicationContainerDynamicViews(object):
-    
+    """ view for a publication container """
     interface.implements(cmfdynifaces.IDynamicallyViewable)
     component.adapts(interfaces.IPublicationContainerEnhanced)
 
     def __init__(self, context):
+        """init """
         self.context = context # Actually ignored...
         
     def getAvailableViewMethods(self):
