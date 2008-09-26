@@ -38,7 +38,7 @@ def setup_slc_publications():
     # the ZCML.
     
     # It seems that files are automatically blobs, but my test won't run without this. (Plone3.1?)
-    ztc.installPackage('plone.app.blob')
+    #ztc.installPackage('plone.app.blob')
     ztc.installPackage('slc.publications')
     
 # The order here is important: We first call the (deferred) function which

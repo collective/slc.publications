@@ -42,9 +42,6 @@ def object_added(evt):
     obj = evt.object
     if not interfaces.IPublicationContainerEnhanced.providedBy(aq_parent(obj)):
         return
-    # Currently this approach is not working properly. 
-    # It requires that the first item uploaded is the canonical one.
-    return 
     portal_languages = getToolByName(obj, 'portal_languages')
     default_language = portal_languages.getDefaultLanguage()
     langs = portal_languages.getSupportedLanguages()
@@ -58,14 +55,15 @@ def object_added(evt):
     for child in children:
         if subtyper.existing_type(child) is None:
             subtyper.change_type(child, 'slc.publications.Publication')
-        
+
         comp = _findAbbrev(child.getId(), langs)
         childname = comp[0]
         if len(comp)==2:    # comp is a component tuple ('test', 'de')
             childlang = comp[1]
             if child.Language()!= comp[1]:
-                child.setLanguage('')
-                child.setLanguage(comp[1])
+                pass
+                #child.setLanguage('')
+                #child.setLanguage(comp[1])
         elif child.Language() != '':
             childlang = child.Language()
         else:
@@ -75,12 +73,12 @@ def object_added(evt):
         namemap[childlang] = child
         GROUPS[childname] = namemap
 
-
+    # Set the proper linguaplone relations. But only if we already have a cacnonical
+    canonical = namemap.get(default_language, None)
+    if canonical is None:
+        return         
     for key in GROUPS.keys():
         namemap = GROUPS[key]
-        canonical = namemap.get(default_language, None)
-        if canonical is None:
-            continue
         if canonical != canonical.getCanonical():
             canonical.setCanonical()
             

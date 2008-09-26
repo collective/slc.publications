@@ -35,10 +35,12 @@
       <implements interface="slc.publications.interfaces.IPossiblePublication" />
     </class>
     
-    <class class="plone.app.blob.content.ATBlob">
-      <implements interface="slc.publications.interfaces.IPossiblePublication" />
-    </class>
-    
+    <configure zcml:condition="installed plone.app.blob">
+        <class class="plone.app.blob.content.ATBlob">
+          <implements interface="slc.publications.interfaces.IPossiblePublication" />
+        </class>
+    </configure>
+   
     <!-- Main adapter to make a file a publication -->
     <adapter factory=".adapter.publication.ATCTFilePublication" />
 

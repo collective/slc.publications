@@ -32,20 +32,22 @@ Now we a) create a new file in it and check that it is automatically transformed
     >>> subtyper.existing_type(mypubfile).name
     'slc.publications.Publication'
 
-If our files comply to the folowing naming convention: XX_filename.ext or filename_XX.ext then we can automatically assume that we can b) make them have a LinguaPlone translation relation. The canonical will be the one which matches the portal default language. Note that this automatism only works if also a canonical is uploaded!
+#If our files comply to the folowing naming convention: XX_filename.ext or #filename_XX.ext then we can automatically assume that we can make them have a #LinguaPlone translation relation. The canonical will be the one which matches the portal #default language. Note that this automatism only works if also a canonical is uploaded!
 
-    >>> _ = pubfolder.invokeFactory('File', 'test_en.pdf')
-    >>> _ = pubfolder.invokeFactory('File', 'test_de.pdf')
-    >>> test_en = getattr(pubfolder, 'test_en.pdf')
-    >>> test_en.processForm()
-    >>> test_de = getattr(pubfolder, 'test_de.pdf')
-    >>> test_de.processForm()
-    >>> test_en.getCanonical() == test_en
-    True
-    >>> test_de.getCanonical() == test_en
-    True
-    >>> test_en.getTranslation('de') == test_de
-    True
+
+
+#    >>> _ = pubfolder.invokeFactory('File', 'test_en.pdf')
+#    >>> test_en = getattr(pubfolder, 'test_en.pdf')
+#    >>> test_en.processForm()
+#    >>> _ = pubfolder.invokeFactory('File', 'test_de.pdf')
+#    >>> test_de = getattr(pubfolder, 'test_de.pdf')
+#    >>> test_de.processForm()
+#    >>> test_en.getCanonical() == test_en
+#    True
+#    >>> test_de.getCanonical() == test_en
+#    True
+#    >>> test_en.getTranslation('de') == test_de
+#    True
     
 
     

@@ -12,7 +12,12 @@ from slc.publications.utils import _get_storage_folder
 
 from Products.Archetypes.utils import mapply
 from Products.ATContentTypes import interface as atctifaces
-from plone.app.blob.interfaces import IATBlob
+try:
+    from plone.app.blob.interfaces import IATBlob
+    HAVE_BLOB = True
+except:
+    HAVE_BLOB = False
+    
 from Products.CMFCore.utils import getToolByName
 from Products.LinguaPlone.config import RELATIONSHIP
 from ComputedAttribute import ComputedAttribute
@@ -42,14 +47,15 @@ def ATCTFilePublication(context):
         return None
     return _ATCTPublication(context)
 
-@interface.implementer(interfaces.IPublication)
-@component.adapter(IATBlob)
-def ATCTFilePublication(context):
-    """ Factory to generate the proper Adapter only if the 
-        object is properly subtyped"""
-    if not interfaces.IPublicationEnhanced.providedBy(context):
-        return None
-    return _ATCTPublication(context)
+if HAVE_BLOB:
+    @interface.implementer(interfaces.IPublication)
+    @component.adapter(IATBlob)
+    def ATCTFilePublication(context):
+        """ Factory to generate the proper Adapter only if the 
+            object is properly subtyped"""
+        if not interfaces.IPublicationEnhanced.providedBy(context):
+            return None
+        return _ATCTPublication(context)
 
 _marker=[]
 
@@ -126,7 +132,6 @@ class _ATCTPublication(object):
                     setMetadataMap(translation, publication_map)
                 else:
                     # if key is available, it contains the name of the chapter
-                    print "importing a chapter", key
                     adapter.editChapter(key, langmap[key])
 
     def generateImage(self):
@@ -179,6 +184,12 @@ class _ATCTPublication(object):
         return status
 
 
+    def setMetadataMap(self, metadata):
+        """ sets a simple map with metadata on the current context. 
+            we also do some conversions for old metadata ini files.
+        """
+        setMetadataMap(self.context, metadata)
+
 
 def setMetadataMap(ob, metadata):
     """ sets a simple map with metadata on the current context. 
@@ -186,6 +197,7 @@ def setMetadataMap(ob, metadata):
     """
     _marker = []
     compatibility = {'NACE': 'nace', 
+                     'keywords': 'subject',
                      }
     for comp in compatibility.keys():
         if metadata.has_key(comp):
@@ -225,7 +237,6 @@ def setMetadataMap(ob, metadata):
         del metadata['Country']
                     
     for key in metadata:
-        print "Setting: %s - %s" %(key, metadata[key])
             
         field = ob.getField(key)
         if field is None:
