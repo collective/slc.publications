@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from Products.LinguaPlone.I18NBaseObject import I18NBaseObject
 from Acquisition import aq_parent, aq_inner
 from Products.LinguaPlone.interfaces import ITranslatable

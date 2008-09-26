@@ -26,6 +26,11 @@ setup(name='slc.publications',
       zip_safe=False,
       install_requires=[
           'setuptools',
+          'p4a.common',
+          'p4a.z2utils',
+          'p4a.subtyper',
+          'archetypes.schemaextender',
+          
           # -*- Extra requirements: -*-
       ],
       entry_points="""
