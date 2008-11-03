@@ -138,6 +138,10 @@ class _ATCTPublication(object):
         """
         try safely to generate the cover image if pdftk and imagemagick are present
         """
+        # First check whether the image is empty. Only generate, if we need one
+        ci = self.context.getField('cover_image').getAccessor(self.context)()
+        if ci:
+            return
         tmp_pdfin = tmp_pdfout = tmp_gifin = None
         try:
             mainpub = self.context.getCanonical()
