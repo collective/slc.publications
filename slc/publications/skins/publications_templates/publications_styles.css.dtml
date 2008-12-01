@@ -1,13 +1,13 @@
 .publicationText{
 margin-left: 90px;
-background-color: transparent; 
+background-color: transparent;
 margin-bottom: 1em;
 padding-bottom: 1em;
-} 
+}
 .publication-separator {
 padding-top:10px;
 margin-bottom:10px;
-border-bottom: 1px dotted gray; 
+border-bottom: 1px dotted gray;
 }
 .publicationImage{
 float:left; width: 90px;
@@ -43,3 +43,7 @@ margin-left: 20px;
 #related_pubs_heading { margin-bottom:5px; }
 #chapterlisting { margin-top: 20px;}
 
+.EstTimeDropdown {
+    font-size: 100%;
+    vertical-align: middle
+    }

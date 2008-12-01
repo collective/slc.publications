@@ -21,7 +21,7 @@ from Products.statusmessages import interfaces as statusmessages_ifaces
 from Products.Five.browser import pagetemplatefile
 from Products.Five.formlib import formbase
 
-from slc.publications import interfaces 
+from slc.publications import interfaces
 from slc.publications.ini.interfaces import IINIParser
 from slc.publications.utils import _get_storage_folder
 
@@ -39,11 +39,8 @@ class PublicationPageView(object):
     adapted_interface = interfaces.IPublication
     media_field = 'file'
 
-    #form_fields = form.FormFields(interfaces.IPublication)
-    #datewidget = DateDisplayWidget
-    #datewidget.displayStyle = "medium"
-    #form_fields['publication_date'].custom_widget = datewidget
-    
+    estimate_template = pagetemplatefile.ViewPageTemplateFile('estimate_template.pt')
+
     label = u'View Publication Info'
 
     @property
@@ -60,19 +57,19 @@ class PublicationPageView(object):
         translations = self.context.getTranslations()
         if len(translations)<1:
             return
-        
+
         lang_codes = translations.keys()
         lang_codes.sort()
-        
+
         R = []
         for lang in lang_codes:
             trans = translations[lang][0]
             url = trans.absolute_url()
-            
+
             name = ali.get(lang, {'native': lang})['native']
             R.append( (name, url) )
         return R
-                
+
     def chapters(self):
         """ get the chapters """
         additionals = _get_storage_folder(self.context)
@@ -80,22 +77,22 @@ class PublicationPageView(object):
             return []
         chapterlinks = additionals.objectValues('ATLink')
         return chapterlinks
-        
-        
+
+
     def fetchRelatedPublications(self, limit=3):
         """ Query the catalog for related publications """
         context = Acquisition.aq_inner(self.context)
         subject = context.Subject()
-        
+
         pc = cmfutils.getToolByName(context, 'portal_catalog')
         if hasattr(pc, 'getZCatalog'):
             pc = pc.getZCatalog()
         portal_languages = cmfutils.getToolByName(context, 'portal_languages')
         preflang = portal_languages.getPreferredLanguage()
-        
+
         if hasattr(pc, 'getZCatalog'):
             pc = pc.getZCatalog()
-        
+
         PQ = Eq('portal_type', 'File') & \
              In('object_provides', 'slc.publications.interfaces.IPublicationEnhanced') & \
              In('Subject', subject) & \
@@ -103,28 +100,68 @@ class PublicationPageView(object):
              Eq('Language', preflang)
 
         RES = pc.evalAdvancedQuery(PQ, (('effective','desc'),) )
-        
+
         PUBS = []
         mypath = "/".join(context.getPhysicalPath())
-        
+
         for R in RES:
             # dont show myself
             if R.getPath() == mypath:
                 continue
             PUBS.append(R)
-        
+
         if limit >0 and len(PUBS)>limit:
             PUBS = PUBS[:limit]
-        
-        return PUBS        
-        
+
+        return PUBS
+
     def update(self):
         pass
 
 
+    def estimated_download_time(self):
+        return self.estimate_template()
+
+    def _format_timestring(self, secs):
+        const = {'sec':1,
+                 'mins':60*60,
+                 'hours':24*60*60}
+        order = ('hours', 'mins', 'sec')
+        smaller = order[-1]
+
+        if type(secs) in [type(0), type(0L)]:
+            if secs < const[smaller]:
+                return '1 %s' % smaller
+            for c in order:
+                if secs/const[c] > 0:
+                    break
+            return '%.1f %s' % (float(secs/float(const[c])), c)
+
+        return "%s secs" % secs
+
+    def get_initial_downloadtime(self):
+        return self._format_timestring( int(self.context.get_size()/57344.0))
+
+    def generate_estimation_js(self):
+        lines = []
+        objsize = float(self.context.get_size())
+        du56 = self._format_timestring(int(objsize/57344.0))
+        dsl256 = self._format_timestring(int(objsize/262144.0))
+        dsl768 = self._format_timestring(int(objsize/786432.0))
+        t1 = self._format_timestring(int(objsize/1536000.0))
+
+
+
+        lines.append("var du56 = '%s';" % du56)
+        lines.append("var dsl256 = '%s';" % dsl256)
+        lines.append("var dsl768 = '%s';" % dsl768)
+        lines.append("var t1 = '%s';" % t1)
+        return "\n".join(lines)
+
+
 class IPublicationView(interface.Interface):
     """Interface  for the Publication View """
-    
+
 class PublicationView(object):
     """ Publication View
     """
@@ -237,32 +274,32 @@ class PublicationContainerView(object):
         """ init the container view """
         self.context = context
         self.request = request
-        
+
     def folderContents(self):
         """ customized folder contents """
-        query = {}        
+        query = {}
         portal_languages = cmfutils.getToolByName(self.context, 'portal_languages')
         portal_catalog = cmfutils.getToolByName(self.context, 'portal_catalog')
         preflang = portal_languages.getPreferredLanguage()
-        
+
         currpath = "/".join(self.context.getPhysicalPath())
         canonicalpath = "/".join(self.context.getCanonical().getPhysicalPath())
-        
+
         if self.context.portal_type=='Topic':
-            query = {'portal_type': 'File', 'sort_on': 'effective', 'sort_order': 'reverse'}        
+            query = {'portal_type': 'File', 'sort_on': 'effective', 'sort_order': 'reverse'}
             results = self.context.queryCatalog(contentFilter=query)
         else:
-            query = dict(object_provides='slc.publications.interfaces.IPublicationEnhanced', 
-                         sort_on='effective', 
+            query = dict(object_provides='slc.publications.interfaces.IPublicationEnhanced',
+                         sort_on='effective',
                          sort_order='reverse',
                          Language=['', preflang],
                          path=[currpath, canonicalpath]
                          )
-            results = portal_catalog(query)    
+            results = portal_catalog(query)
 
         return results
-        
-        
+
+
     def has_syndication(self):
         """ support syndication? """
         try:
@@ -271,22 +308,22 @@ class PublicationContainerView(object):
         except:
             # it's ok if this doesn't exist, just means no syndication
             return False
-            
+
 
 
 class IGenerateMetadata(interface.Interface):
     """ Interface for Metadata Generation """
     def __call__():
         """ download the generated metadata """
-            
+
 class GenerateMetadataView(object):
     """ Metadata Generation """
-    
+
     def __init__(self, context, request):
         """ init """
         self.context = context
-        self.request = request    
-        
+        self.request = request
+
     def __call__(self):
         """ download the generated metadata """
         iniparser = component.getUtility(IINIParser)
@@ -298,13 +335,13 @@ class ICoverImage(interface.Interface):
     """ Can have a cover image """
     def __call__():
         """ generate the cover image """
-            
+
 class CoverImageView(object):
-    """ Cover image generation """    
+    """ Cover image generation """
     def __init__(self, context, request):
         self.context = context
-        self.request = request    
-        
+        self.request = request
+
     def __call__(self):
         """ generate the cover image """
         field = self.context.getField('cover_image')
