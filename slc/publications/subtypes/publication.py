@@ -1,10 +1,9 @@
 from zope.interface import implements
 from Products.CMFPlone import PloneMessageFactory as _
-from Products.Archetypes import atapi 
+from Products.Archetypes import atapi
 from Products.validation import V_REQUIRED
 from archetypes.schemaextender.interfaces import ISchemaExtender, IOrderableSchemaExtender
 from archetypes.schemaextender.field import ExtensionField
-from slc.publications.config import AUTHOR
 
 class ExtensionFieldMixin:
     """ Helper """
@@ -56,7 +55,6 @@ class SchemaExtender(object):
             AuthorField('author',
                 schemata='publication',
                 languageIndependent=True,
-                default=AUTHOR,
                 widget=atapi.StringWidget(
                     label = _(u'label_author', default=u'Author'),
                     description=_(u'description_author', default=u'Fill in the Name of the Author of this Publication.'),
