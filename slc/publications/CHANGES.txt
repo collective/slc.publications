@@ -1,6 +1,7 @@
 1.1 unreleased
 --------------
 
+  * added a download time estimation control
   * removed the hardcoded author from the config file and the schema
 
 1.0 final
