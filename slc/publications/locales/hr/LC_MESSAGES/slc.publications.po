@@ -1,0 +1,359 @@
+# ArchGenXML generated POT File
+# SYSLAB.COM <info@syslab.com>, 2006.
+msgid ""
+msgstr ""
+"Project-Id-Version: PublicationProduct\n"
+"POT-Creation-Date: Wed Mar 29 19:29:24 2006\n"
+"PO-Revision-Date: Wed Mar 29 19:29:24 2006\n"
+"Last-Translator: SYSLAB.COM <info@syslab.com>\n"
+"Language-Team: SYSLAB.COM <info@syslab.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: hr\n"
+"Language-Name: Croatian\n"
+"Preferred-Encodings: latin1 utf-8\n"
+"Domain: slc.publications\n"
+"X-Is-Fallback-For: hr-hr hr-ba\n"
+
+#. Default: "The ISBN Number to order the publication - if available."
+#: PublicationFile.py
+msgid "PublicationProduct_help_ISBN_number"
+msgstr ""
+
+#. Default: "The author of this publication. It is used as backup if the real author of the underlying PDF file displayed here is not set."
+#: Publication.py
+#: PublicationFile.py
+msgid "PublicationProduct_help_author"
+msgstr ""
+
+#. Default: "Add one chapter name per line. This will generate link objects pointing to anchors with that name inside the pdf document. Make sure that the chapternames are the same as the pdf web anchor names on your pdf."
+#: Publication.py
+msgid "PublicationProduct_help_chapters"
+msgstr ""
+
+#. Default: "A thumbnail image of this publication. It is used in overview listings and the publication view."
+#: Publication.py
+msgid "PublicationProduct_help_coverImage"
+msgstr ""
+
+#. Default: "The description of this publication. It is used as backup if the real description of the underlying PDF file displayed here is not set."
+#: Publication.py
+#: PublicationFile.py
+#: PublicationFolder.py
+msgid "PublicationProduct_help_description"
+msgstr ""
+
+#. Default: "Display Publication Images?"
+#: PublicationFolder.py
+msgid "PublicationProduct_help_displayImages"
+msgstr ""
+
+#. Default: "Upload the PDF file containing your publication here."
+#: PublicationFile.py
+msgid "PublicationProduct_help_file"
+msgstr ""
+
+#. Default: "forsale"
+#: Publication.py
+msgid "PublicationProduct_help_forsale"
+msgstr ""
+
+#. Default: "The Id of this publication. This will show up in the URL of this publication."
+#: Publication.py
+#: PublicationFile.py
+msgid "PublicationProduct_help_id"
+msgstr ""
+
+#. Default: "Set the correct language of this publication. This is important. Based on this information, the overview page creates links to the differenc language versions."
+#: PublicationFile.py
+msgid "PublicationProduct_help_language"
+msgstr ""
+
+#. Default: "Upload a textfile (ini style) where each section is named after a language abbreviation and contains the metadata keys and values that should be set on the publication files."
+#: Publication.py
+msgid "PublicationProduct_help_metadataUpload"
+msgstr ""
+
+#. Default: "Type the Order-Id (OPOCE) used to order the publication at the EU Bookshop. If you do so, a link to the EU Bookshop will be generated automatically."
+#: PublicationFile.py
+msgid "PublicationProduct_help_order_id"
+msgstr ""
+
+#. Default: "Enter the owner password for the PDF if you want to parse its metadata and it is secured. This password is used as fallback if no password is specified on the publication file object itself."
+#: Publication.py
+#: PublicationFile.py
+msgid "PublicationProduct_help_ownerPassword"
+msgstr ""
+
+#. Default: "Select this to reparse all contained PDF files for properties. Note that this might overwrite the currently set values."
+#: Publication.py
+#: PublicationFile.py
+#: PublicationFolder.py
+msgid "PublicationProduct_help_parsePDF"
+msgstr ""
+
+#. Default: "Drag and Drop Folders containing your PDF files onto this field. The name of the folder will be used as title and the contained PDF file will be uploaded as the default language Publication. If the folder also contains an image with the name cover_image.jpg, .gif or .png, it will be used as thumbnail."
+#: Publication.py
+msgid "PublicationProduct_help_pdfFilesUpload"
+msgstr ""
+
+#. Default: "Drag and Drop Folders containing your PDF files onto this field. The name of the folder will be used as title and the contained PDF file will be uploaded as the default language Publication. If the folder also contains an image with the name cover_image.jpg, .gif or .png, it will be used as thumbnail."
+#: PublicationFolder.py
+msgid "PublicationProduct_help_pdfFilesUploader"
+msgstr ""
+
+#. Default: "The date when this publication has been published."
+#: Publication.py
+msgid "PublicationProduct_help_publication_date"
+msgstr ""
+
+#. Default: "The Title of this publication. It is used as backup if the real title of the underlying PDF file displayed here is not set. It will then show up in listings and the breadcrumb trail."
+#: Publication.py
+#: PublicationFile.py
+#: PublicationFolder.py
+msgid "PublicationProduct_help_title"
+msgstr ""
+
+#. Default: "Enter the user password for the PDF if you want to parse its metadata and it is secured. This password is used as fallback if no password is specified on the publication file object itself."
+#: Publication.py
+#: PublicationFile.py
+msgid "PublicationProduct_help_userPassword"
+msgstr ""
+
+#. Default: "ISBN-Number"
+#: PublicationFile.py
+msgid "PublicationProduct_label_ISBN_number"
+msgstr ""
+
+#. Default: "Author"
+#: Publication.py
+#: PublicationFile.py
+msgid "PublicationProduct_label_author"
+msgstr ""
+
+#. Default: "Chapters"
+#: PublicationFile.py
+#: Publication.py
+msgid "PublicationProduct_label_chapters"
+msgstr ""
+
+#. Default: "Cover Image"
+#: Publication.py
+msgid "PublicationProduct_label_coverImage"
+msgstr ""
+
+#. Default: "Cover Image"
+#: Publication.py
+msgid "PublicationProduct_label_cover_image"
+msgstr ""
+
+#. Default: "Creator"
+#: PublicationFile.py
+msgid "PublicationProduct_label_creator"
+msgstr ""
+
+#. Default: "Description"
+#: Publication.py
+#: PublicationFile.py
+#: PublicationFolder.py
+msgid "PublicationProduct_label_description"
+msgstr ""
+
+#. Default: "Display Publication Images?"
+#: PublicationFolder.py
+msgid "PublicationProduct_label_displayImages"
+msgstr ""
+
+#. Default: "File"
+#: PublicationFile.py
+msgid "PublicationProduct_label_file"
+msgstr ""
+
+#. Default: "Filemetadatamaps"
+#: Publication.py
+#: PublicationFolder.py
+msgid "PublicationProduct_label_filemetadatamaps"
+msgstr ""
+
+#. Default: "Forsale"
+#: Publication.py
+msgid "PublicationProduct_label_forsale"
+msgstr ""
+
+#. Default: "Full"
+#: PublicationFile.py
+msgid "PublicationProduct_label_full"
+msgstr ""
+
+#. Default: "Id"
+#: Publication.py
+#: PublicationFile.py
+#: PublicationFolder.py
+msgid "PublicationProduct_label_id"
+msgstr ""
+
+#. Default: "Keywords"
+#: Publication.py
+#: PublicationFolder.py
+msgid "PublicationProduct_label_keywords"
+msgstr ""
+
+#. Default: "Language"
+#: PublicationFile.py
+msgid "PublicationProduct_label_language"
+msgstr ""
+
+#. Default: "Metadataupload"
+#: Publication.py
+msgid "PublicationProduct_label_metadataUpload"
+msgstr ""
+
+#. Default: "Metadata_map"
+#: FileMetadataMap.py
+msgid "PublicationProduct_label_metadata_map"
+msgstr ""
+
+#. Default: "Mime2modifier"
+#: FileMetadataTool.py
+msgid "PublicationProduct_label_mime2modifier"
+msgstr ""
+
+#. Default: "Mime_types"
+#: PDFMetadataIO.py
+msgid "PublicationProduct_label_mime_types"
+msgstr ""
+
+#. Default: "Name"
+#: PDFMetadataIO.py
+msgid "PublicationProduct_label_name"
+msgstr ""
+
+#. Default: "Opoce Number"
+#: PublicationFile.py
+msgid "PublicationProduct_label_opoce"
+msgstr ""
+
+#. Default: "Order_id"
+#: PublicationFile.py
+msgid "PublicationProduct_label_order_id"
+msgstr ""
+
+#. Default: "Owner Password"
+#: Publication.py
+#: PublicationFile.py
+msgid "PublicationProduct_label_ownerPassword"
+msgstr ""
+
+#. Default: "Parse PDF Properties"
+#: Publication.py
+#: PublicationFile.py
+#: PublicationFolder.py
+msgid "PublicationProduct_label_parsePDF"
+msgstr ""
+
+#. Default: "Pdffiles"
+#: Publication.py
+msgid "PublicationProduct_label_pdfFiles"
+msgstr ""
+
+#. Default: "Pdffilesupload"
+#: Publication.py
+msgid "PublicationProduct_label_pdfFilesUpload"
+msgstr ""
+
+#. Default: "Pdffilesuploader"
+#: PublicationFolder.py
+msgid "PublicationProduct_label_pdfFilesUploader"
+msgstr ""
+
+#. Default: "Publication Date"
+#: PublicationFile.py
+#: Publication.py
+msgid "PublicationProduct_label_publication_date"
+msgstr ""
+
+#. Default: "Language"
+#: PublicationFile.py
+msgid "PublicationProduct_label_publication_language"
+msgstr ""
+
+#. Default: "Publication Type"
+#: PublicationFile.py
+msgid "PublicationProduct_label_publication_type"
+msgstr ""
+
+#. Default: "Publicationfiles"
+#: Publication.py
+#: PublicationFile.py
+msgid "PublicationProduct_label_publicationfiles"
+msgstr ""
+
+#. Default: "Publications"
+#: PublicationFolder.py
+msgid "PublicationProduct_label_publications"
+msgstr ""
+
+#. Default: "Readerregistry"
+#: FileMetadataTool.py
+msgid "PublicationProduct_label_readerRegistry"
+msgstr ""
+
+#. Default: "Sort-Criteria"
+#: PublicationFolder.py
+msgid "PublicationProduct_label_sort_criteria"
+msgstr ""
+
+#. Default: "Sort-Criterias"
+#: PublicationFolder.py
+msgid "PublicationProduct_label_sort_criterias"
+msgstr ""
+
+#. Default: "Subject"
+#: PublicationFolder.py
+msgid "PublicationProduct_label_subject"
+msgstr ""
+
+#. Default: "Title"
+#: Publication.py
+#: PublicationFile.py
+#: PublicationFolder.py
+msgid "PublicationProduct_label_title"
+msgstr ""
+
+#. Default: "User Password"
+#: Publication.py
+#: PublicationFile.py
+msgid "PublicationProduct_label_userPassword"
+msgstr ""
+
+#. Default: "Vocab"
+#: ContainmentType.py
+msgid "PublicationProduct_label_vocab"
+msgstr ""
+
+#. Default: "Writerregistry"
+#: FileMetadataTool.py
+msgid "PublicationProduct_label_writerRegistry"
+msgstr ""
+
+#. Default: "Available in"
+msgid "label_available_in"
+msgstr "Ova je publikacija dostupna na sljedećim jezicima:"
+
+#. Default: "Download the full publication in PDF "
+msgid "label_download_full_publication"
+msgstr ""
+
+#. Default: "Related Publications"
+msgid "heading_related"
+msgstr ""
+
+#. Default: "Show more publications on"
+msgid "box_show_more_publications"
+msgstr ""
+
+#. Default "Estimated Download Time"
+msgid "label_estimated_download_time"
+msgstr ""
