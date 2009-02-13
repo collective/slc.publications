@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US"
       lang="en-US"
       metal:use-macro="here/main_template/macros/master"
-      i18n:domain="plone">
+      i18n:domain="slc.publications">
 
 
 <metal:cssslot fill-slot="css_slot">
@@ -79,7 +79,6 @@
             <a href="" tal:attributes="href string:${here/absolute_url}">
                 <strong>
                     <span tal:omit-tag=""
-                          i18n:domain="slc.publications"
                         i18n:translate="label_download_full_publication">Download the full publication as PDF</span>
                     <img tal:attributes="src string:${portal_url}/pdf_icon.gif"
                          alt="PDF Icon" title="PDF Icon">
@@ -134,7 +133,7 @@
         <div class="publicationLanguageBox"
              tal:define="available_translations view/available_translations"
              tal:condition="available_translations">
-            <span i18n:domain="Publications" i18n:translate="label_available_in">Available in</span>:
+            <span i18n:translate="label_available_in">Available in</span>:
                 <tal:block repeat="lang available_translations">
                     <a href=""
                        tal:define="defaultlang here/portal_languages/getDefaultLanguage;
