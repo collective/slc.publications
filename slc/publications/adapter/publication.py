@@ -260,4 +260,13 @@ def setMetadataMap(ob, metadata):
     ob.reindexObject()
 
 
+
+class PrettyFormatter(object):
+    
+    def __init__(self, context):
+        self.context = context
+    
+    def formatKeyword(self, kw):
+        kw = kw.capitalize().replace('_',' ')
+        return kw
             

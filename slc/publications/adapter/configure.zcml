@@ -44,6 +44,9 @@
        handler=".events.subtype_on_translate"
    />
 
+	<adapter factory=".publication.PrettyFormatter"
+			 for="slc.publications.interfaces.IPublicationEnhanced"
+			 provides="slc.publications.interfaces.IPrettyFormatter" />
 
     <configure zcml:condition="installed slc.xliff">
 

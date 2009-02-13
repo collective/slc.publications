@@ -55,3 +55,5 @@ class IMediaActivator(Interface):
     media_activated = schema.Bool(title=u'Media Activated',required=True, readonly=False)
     
     
+class IPrettyFormatter(Interface):
+    """ Provides functionality to format strings """

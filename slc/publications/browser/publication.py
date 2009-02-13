@@ -158,6 +158,13 @@ class PublicationPageView(object):
         lines.append("var t1 = '%s';" % t1)
         return "\n".join(lines)
 
+    def getFormattedKeywords(self):
+        """ returns keywords (Subject) set on the Publication formatted in a friendly way"""
+        keywords = self.context.Subject()
+        pf = interfaces.IPrettyFormatter(self.context)
+        keywords = [pf.formatKeyword(key) for key in keywords]
+
+        return keywords
 
 class IPublicationView(interface.Interface):
     """Interface  for the Publication View """

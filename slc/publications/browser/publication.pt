@@ -206,11 +206,11 @@
         </div>
 
         <div id="more_pubs_line"
-             tal:define="keywords here/Subject">
+             tal:define="keywords view/getFormattedKeywords">
             <span i18n:translate="box_show_more_publications">Show more publications on</span>
             <span tal:repeat="key keywords" tal:omit-tag="">
                 <a tal:attributes="href string:@@publications-by-subject?subject=$key"
-                   tal:content="python:key.capitalize().replace('_',' ')" />
+                   tal:content="key" />
                <span tal:replace="string:&" tal:condition="not:repeat/key/end"/>
             </span>
         </div>
