@@ -348,12 +348,12 @@ msgstr "Laden Sie die komplette Publikation im PDF-Format herunter"
 
 #. Default: "Related Publications"
 msgid "heading_related"
-msgstr "Verwandte pubs"
+msgstr ""
 
 #. Default: "Show more publications on"
 msgid "box_show_more_publications"
-msgstr "zeige mehr zu"
+msgstr ""
 
 #. Default "Estimated Download Time"
 msgid "label_estimated_download_time"
-msgstr "geschätzte ladezeit"
+msgstr ""
