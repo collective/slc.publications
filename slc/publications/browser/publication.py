@@ -162,7 +162,7 @@ class PublicationPageView(object):
         """ returns keywords (Subject) set on the Publication formatted in a friendly way"""
         keywords = self.context.Subject()
         pf = interfaces.IPrettyFormatter(self.context)
-        keywords = [pf.formatKeyword(key) for key in keywords]
+        keywords = [dict(id=key, label=pf.formatKeyword(key)) for key in keywords]
 
         return keywords
 

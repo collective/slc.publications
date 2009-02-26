@@ -70,3 +70,10 @@ class PublicationsBySubjectView(BrowserView):
         return ", ".join([x for x in subject])
         
         
+    def subject_label(self):
+        """ return the list of pretty subjects """
+        subject_label = self.request.get('subject_label', [])
+        if type(subject_label) not in [ListType, TupleType]:
+            subject_label = [subject_label]
+
+        return ", ".join([x for x in subject_label])

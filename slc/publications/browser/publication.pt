@@ -209,8 +209,8 @@
              tal:define="keywords view/getFormattedKeywords">
             <span i18n:translate="box_show_more_publications">Show more publications on</span>
             <span tal:repeat="key keywords" tal:omit-tag="">
-                <a tal:attributes="href string:@@publications-by-subject?subject=$key"
-                   tal:content="key" />
+                <a tal:attributes="href string:@@publications-by-subject?subject=${key/id}&subject_label=${key/label}"
+                   tal:content="key/label" />
                <span tal:replace="string:&" tal:condition="not:repeat/key/end"/>
             </span>
         </div>

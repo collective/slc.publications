@@ -18,7 +18,7 @@
 
     <h1>
         <span i18n:translate="heading_all_publications_on" tal:omit-tag="">All Publications on</span>
-        <span tal:content="view/subject" />
+        <span tal:content="view/subject_label" />
     </h1>
 
     <!--div class="publicationDescription">
