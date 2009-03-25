@@ -30,7 +30,7 @@ class PublicationsBySubjectView(BrowserView):
              In('object_provides', 'slc.publications.interfaces.IPublicationEnhanced') & \
              In('Subject', subject) & \
              Eq('review_state', 'published') & \
-             Eq('Language', preflang)
+             Eq('Language', [preflang, ''])
              
         PUBS = portal_catalog.evalAdvancedQuery(PQ, (('effective','desc'),) )
         
