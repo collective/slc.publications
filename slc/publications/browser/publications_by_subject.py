@@ -30,7 +30,7 @@ class PublicationsBySubjectView(BrowserView):
              In('object_provides', 'slc.publications.interfaces.IPublicationEnhanced') & \
              In('Subject', subject) & \
              Eq('review_state', 'published') & \
-             Eq('Language', [preflang, ''])
+             In('Language', [preflang, ''])
              
         PUBS = portal_catalog.evalAdvancedQuery(PQ, (('effective','desc'),) )
         
@@ -50,7 +50,7 @@ class PublicationsBySubjectView(BrowserView):
             
         Q = In('portal_type', ['Folder', 'Large Plone Folder']) & \
             In('object_provides', 'slc.publications.interfaces.IPublicationContainerEnhanced')& \
-            Eq('Language', preflang)
+            In('Language', [preflang, ''])
         PARENTS = portal_catalog.evalAdvancedQuery(Q, (('getObjPositionInParent','asc'),) )
         
         self.publist = publist
