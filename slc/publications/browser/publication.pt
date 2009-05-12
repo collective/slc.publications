@@ -16,8 +16,6 @@
         tal:define="publication_info context/@@publication_view;
                     context_url string:${context/absolute_url};
                     errors options/state/getErrors | nothing;
-                    Iterator python: modules['Products.Archetypes'].IndexIterator;
-                    tabindex tabindex|python: Iterator(pos=7000);
                     schematas here/Schemata;
                     fieldsets python: [key for key in schematas.keys() if key != 'metadata'];
                     default_fieldset python:(not schematas or schematas.has_key('default')) and 'default' or fieldsets[0];
@@ -29,14 +27,18 @@
         ">
 
     <h1>
-        <span tal:replace="here/Title">Title of the Publication</span>
+        <a href="" tal:attributes="href string:${here/absolute_url}">
+            <span tal:replace="here/Title">Title of the Publication</span>
+        </a>
     </h1>
     <div class="field publicationImage"
          xtal:condition="here/cover_image | nothing">
-         <img src=""
-              tal:attributes="src string:${here/absolute_url}/cover_image;
-                              alt here/Title"
-              width="70" height="100">
+        <a href="" tal:attributes="href string:${here/absolute_url}">
+            <img src=""
+                 tal:attributes="src string:${here/absolute_url}/cover_image;
+                                 alt here/Title"
+                 width="70" height="100">
+        </a>
     </div>
 
     <div class="publicationText">
@@ -91,10 +93,6 @@
         <div class="publicationField">
             <tal:duration content="structure view/estimated_download_time">dropdown with javascript</tal:duration>
         </div>
-
-        <!--div class="publicationField">
-            [ <a href="http://network.osha.europa.eu/documentation/" i18n:translate="">Get help with files</a> ]
-        </div-->
 
 
         <div class="publicationOrder"

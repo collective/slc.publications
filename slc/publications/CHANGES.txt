@@ -3,6 +3,9 @@
 
   * added a download time estimation control
   * removed the hardcoded author from the config file and the schema
+  * Trying to make it work without Linguaplone as well
+  * added link to title and image
+  
 
 1.0 final
 --------

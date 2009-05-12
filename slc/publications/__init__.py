@@ -8,8 +8,16 @@ import logging
 logger = logging.getLogger('slc.publications')
 logger.debug('Installing slc.publications')
 
-import linguaplone_addTranslation_patch
-
+try:
+    import Products.LinguaPlone
+    import linguaplone_addTranslation_patch
+    HAVE_LINGUAPLONE=True
+    logger.info('slc.publications :: Patching LinguaPlone addTranslation')
+except:
+    HAVE_LINGUAPLONE=False
+    logger.info('slc.publications :: LinguaPlone not installed. Not patching LinguaPlone addTranslation')
+    
+    
 import os
 import os.path
 from Globals import package_home

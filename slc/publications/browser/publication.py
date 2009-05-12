@@ -21,6 +21,7 @@ from Products.statusmessages import interfaces as statusmessages_ifaces
 from Products.Five.browser import pagetemplatefile
 from Products.Five.formlib import formbase
 
+from slc.publications import HAVE_LINGUAPLONE
 from slc.publications import interfaces
 from slc.publications.ini.interfaces import IINIParser
 from slc.publications.utils import _get_storage_folder
@@ -30,6 +31,7 @@ from p4a.common import at
 from p4a.common import formatting
 
 from zope.app.form.browser import TextAreaWidget, DateDisplayWidget, CollectionInputWidget, OrderedMultiSelectWidget
+
 
 
 
@@ -54,8 +56,12 @@ class PublicationPageView(object):
         default_language = portal_languages.getDefaultLanguage()
         ali = portal_languages.getAvailableLanguageInformation()
 
-        translations = self.context.getTranslations()
-        if len(translations)<1:
+        if HAVE_LINGUAPLONE:
+            translations = self.context.getTranslations()
+        else:
+            translations = {self.context.Language(): (self.context, self.context.Language())}
+
+        if len(translations.keys())<1:
             return
 
         lang_codes = translations.keys()
@@ -96,8 +102,10 @@ class PublicationPageView(object):
         PQ = Eq('portal_type', 'File') & \
              In('object_provides', 'slc.publications.interfaces.IPublicationEnhanced') & \
              In('Subject', subject) & \
-             Eq('review_state', 'published') & \
-             Eq('Language', preflang)
+             Eq('review_state', 'published') 
+
+        if HAVE_LINGUAPLONE:
+            PQ = PQ & Eq('Language', preflang)
 
         RES = pc.evalAdvancedQuery(PQ, (('effective','desc'),) )
 
@@ -290,7 +298,12 @@ class PublicationContainerView(object):
         preflang = portal_languages.getPreferredLanguage()
 
         currpath = "/".join(self.context.getPhysicalPath())
-        canonicalpath = "/".join(self.context.getCanonical().getPhysicalPath())
+        if HAVE_LINGUAPLONE:
+            canonical = self.context.getCanonical()
+        else:
+            canonical = self.context
+            
+        canonicalpath = "/".join(canonical.getPhysicalPath())
 
         if self.context.portal_type=='Topic':
             query = {'portal_type': 'File', 'sort_on': 'effective', 'sort_order': 'reverse'}

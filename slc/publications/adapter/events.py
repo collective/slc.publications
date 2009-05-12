@@ -6,9 +6,15 @@ from zope import component
 from slc.publications import interfaces
 from slc.publications.utils import _get_storage_folder
 from Products.CMFCore.utils import getToolByName
-from Products.LinguaPlone.config import RELATIONSHIP
 from p4a.subtyper.interfaces import ISubtyper
 from Products.Archetypes.interfaces import IObjectInitializedEvent
+
+try:
+    from Products.LinguaPlone.config import RELATIONSHIP
+    HAVE_LINGUAPLONE=True
+except:
+    HAVE_LINGUAPLONE=False
+    RELATIONSHIP = ''
 
 import logging
 logger = logging.getLogger('slc.publications')
@@ -73,25 +79,28 @@ def object_added(evt):
         namemap[childlang] = child
         GROUPS[childname] = namemap
 
-    # Set the proper linguaplone relations. But only if we already have a cacnonical
-    canonical = namemap.get(default_language, None)
-    if canonical is None:
-        return         
-    for key in GROUPS.keys():
-        namemap = GROUPS[key]
-        if canonical != canonical.getCanonical():
-            canonical.setCanonical()
-            
-        for lang in namemap.keys():
-            if lang == default_language:
-                continue
 
-            o = namemap[lang] 
+    # Set the proper linguaplone relations. 
+    # But only if we already have a canonical
+    if HAVE_LINGUAPLONE:
+        canonical = namemap.get(default_language, None)
+        if canonical is None:
+            return         
+        for key in GROUPS.keys():
+            namemap = GROUPS[key]
+            if canonical != canonical.getCanonical():
+                canonical.setCanonical()
+                
+            for lang in namemap.keys():
+                if lang == default_language:
+                    continue
 
-            if o.getCanonical() != canonical:
-                o.addReference(canonical, RELATIONSHIP)
-                o.invalidateTranslationCache()        
-                o.reindexObject()
+                o = namemap[lang] 
+
+                if o.getCanonical() != canonical:
+                    o.addReference(canonical, RELATIONSHIP)
+                    o.invalidateTranslationCache()        
+                    o.reindexObject()
     
 def generate_image(obj, evt):
     """ EVENT
@@ -101,7 +110,8 @@ def generate_image(obj, evt):
     #If the event is an ObjectInitializedEvent, we skip
     if IObjectInitializedEvent.providedBy(evt):
         return
-    if obj != obj.getCanonical():
+        
+    if hasattr(obj.aq_explicit, 'getCanonical') and obj != obj.getCanonical():
         return
         
     interfaces.IPublication(obj).generateImage()
@@ -150,10 +160,15 @@ def update_chapters(obj, evt):
         Update the chapter links based on the new set values in chapters
     """    
     # Make sure we execute this only on the canonical
-    if obj != obj.getCanonical():
-        return
+    if HAVE_LINGUAPLONE:
+        if obj != obj.getCanonical():
+            return
+
             
-    translations = obj.getTranslations()
+    if HAVE_LINGUAPLONE:
+        translations = obj.getTranslations()
+    else:
+        translations = {obj.Language(): (obj, obj.Language())}
 
     for T in translations.keys():
         updateChapterLinksForTranslation(translations[T][0])

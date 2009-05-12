@@ -17,14 +17,14 @@ try:
     HAVE_BLOB = True
 except:
     HAVE_BLOB = False
+
+from slc.publications import HAVE_LINGUAPLONE
+
     
 from Products.CMFCore.utils import getToolByName
-from Products.LinguaPlone.config import RELATIONSHIP
 from ComputedAttribute import ComputedAttribute
 from DateTime import DateTime
 
-from slc.publications.pdf.interfaces import IPDFParser
-from slc.publications.ini.interfaces import IINIParser
 
 try:
     from zope.app.annotation import interfaces as annointerfaces
@@ -89,10 +89,15 @@ class _ATCTPublication(object):
                 
     def setMetadataIniMap(self, metadata):
         """ Given a complex metadata map from e.g. the ini parser set the metadata on all translations and chapters """
-        translations = self.context.getTranslations()
-        canonical = self.context.getCanonical()
         subtyper = component.getUtility(ISubtyper)
-        
+
+        if HAVE_LINGUAPLONE:        
+            translations = self.context.getTranslations()
+            canonical = self.context.getCanonical()
+        else:
+            translations = {self.context.Language(): (self.context, self.context.Language())}
+            canonical = self.context
+
         for lang in metadata.keys():
             
             if lang == 'default': 
@@ -105,12 +110,16 @@ class _ATCTPublication(object):
                    subtyper.change_type(translation, 'slc.publications.Publication')
                    
             else:
-                canonical.addTranslation(lang)
-                translation = canonical.getTranslation(lang)
-                # make the translation a publication as well
-                subtyper.change_type(translation, 'slc.publications.Publication')
-                
-                translations[lang] = [translation, None]
+                if HAVE_LINGUAPLONE:
+                    canonical.addTranslation(lang)
+                    translation = canonical.getTranslation(lang)
+                    # make the translation a publication as well
+                    subtyper.change_type(translation, 'slc.publications.Publication')
+                    translations[lang] = [translation, None]
+                else:
+                    # Skip this. Metadata.ini contains multiple languages 
+                    # but we are not running LP
+                    pass 
 
             # if there is a default, we merge it with the language specifics. 
             # But only for existing values. So the language sections extend the default
@@ -144,7 +153,11 @@ class _ATCTPublication(object):
             return
         tmp_pdfin = tmp_pdfout = tmp_gifin = None
         try:
-            mainpub = self.context.getCanonical()
+            if HAVE_LINGUAPLONE:
+                mainpub = self.context.getCanonical()
+            else:
+                mainpub = self.context
+                
             data = str(mainpub.getFile())
             if not data:
                 return 0

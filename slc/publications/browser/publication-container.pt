@@ -82,8 +82,8 @@
                         <div class="publicationImage">
                             <img tal:attributes="src string:${item_url}/cover_image" width="70"/>
                         </div>
-                        <h3 class="summary publicationText"
-                              tal:attributes="class string:$item_type_class summary">
+                        <div class="summary publicationText"
+                              tal:attributes="class string:$item_type_class summary publicationText">
                                                                                           
                             <a href="#"
                                tal:attributes="href python:item_url+'/view';
@@ -91,7 +91,7 @@
                                tal:content="item_title_or_id">
                                 Item Title
                             </a>
-                        </h3>
+                        </div>
 
                         <div class="documentByLine">
 

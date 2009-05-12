@@ -13,17 +13,17 @@
        handler=".adapter.objectevent"
    /-->
 
-   <subscriber 
-       for="slc.publications.interfaces.IPublicationEnhanced
-            zope.lifecycleevent.interfaces.IObjectModifiedEvent"
-       handler=".events.update_chapters"
-   />
-
-   <subscriber 
-       for="slc.publications.interfaces.IPublicationEnhanced
-            zope.lifecycleevent.interfaces.IObjectModifiedEvent"
-       handler=".events.generate_image"
-   />
+    <subscriber 
+        for="slc.publications.interfaces.IPublicationEnhanced
+             zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+        handler=".events.update_chapters"
+    />
+    
+    <subscriber 
+        for="slc.publications.interfaces.IPublicationEnhanced
+             zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+        handler=".events.generate_image"
+    />
 <!--slc.publications.interfaces.IPublicationContainerEnhanced
                    -->
                    
@@ -38,11 +38,13 @@
        handler=".events.object_initialized"
    /-->
 
-   <subscriber 
-       for="slc.publications.interfaces.IPublicationEnhanced
-            ..linguaplone_addTranslation_patch.IObjectTranslationReferenceSetEvent"
-       handler=".events.subtype_on_translate"
-   />
+    <configure zcml:condition="installed Products.LinguaPlone">
+       <subscriber 
+           for="slc.publications.interfaces.IPublicationEnhanced
+                ..linguaplone_addTranslation_patch.IObjectTranslationReferenceSetEvent"
+           handler=".events.subtype_on_translate"
+       />
+    </configure>
 
 	<adapter factory=".publication.PrettyFormatter"
 			 for="slc.publications.interfaces.IPublicationEnhanced"
