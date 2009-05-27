@@ -1,41 +1,74 @@
 from zope.interface import implements
-from Products.CMFPlone import PloneMessageFactory as _
+
+from AccessControl import ClassSecurityInfo
+
 from Products.Archetypes import atapi
+from Products.Archetypes.config import REFERENCE_CATALOG
+from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import ReferenceBrowserWidget
+from Products.CMFCore import permissions
+from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone import PloneMessageFactory as _
 from Products.validation import V_REQUIRED
+
 from archetypes.schemaextender.interfaces import ISchemaExtender, IOrderableSchemaExtender
 from archetypes.schemaextender.field import ExtensionField
 
 class ExtensionFieldMixin:
-    """ Helper """
+    """ """
     def translationMutator(self, instance):
         return self.getMutator(instance)
 
-class CoverImageField(ExtensionField, ExtensionFieldMixin, atapi.ImageField):
-    """ The cover image """
+class ExtendedImageField(ExtensionField, ExtensionFieldMixin, atapi.ImageField):
+    """"""
 
-class AuthorField(ExtensionField, ExtensionFieldMixin, atapi.StringField):
-    """ The Publicaion Author"""
+class ExtendedBooleanField(ExtensionField, ExtensionFieldMixin, atapi.BooleanField):
+    """"""
 
-class ISBNField(ExtensionField, ExtensionFieldMixin, atapi.StringField):
-    """ The Publications ISBN """
+class ExtendedLinesField(ExtensionField, ExtensionFieldMixin, atapi.LinesField):
+    """"""
 
-class OrderIdField(ExtensionField, ExtensionFieldMixin, atapi.StringField):
-    """ The Publications Order ID """
+class ExtendedFileField(ExtensionField, ExtensionFieldMixin, atapi.FileField):
+    """"""
 
-class ForSaleField(ExtensionField, ExtensionFieldMixin, atapi.BooleanField):
-    """ The Publication id for sale? """
+class ExtendedStringField(ExtensionField, ExtensionFieldMixin, atapi.StringField):
+    """ """
 
-class ChaptersField(ExtensionField, ExtensionFieldMixin, atapi.LinesField):
-    """ The Publication Chapters """
+class ExtendedReferenceField(ExtensionField, ExtensionFieldMixin, atapi.ReferenceField):
+    """ """
 
-class MetadataUploadField(ExtensionField, ExtensionFieldMixin, atapi.FileField):
-    """ The Publication Metadata as ini upload """
+    security = ClassSecurityInfo()
 
-class OwnerPasswordField(ExtensionField, ExtensionFieldMixin, atapi.StringField):
-    """ The Publication PDFs owner password """
+    # security.declarePrivate('get')
+    # def get(self, instance, **kwargs):
+    #     canonical = instance.getCanonical()
+    #     canonical_refs = atapi.ReferenceField.get(self, canonical, **kwargs)
+    #     return canonical_refs
 
-class UserPasswordField(ExtensionField, ExtensionFieldMixin, atapi.StringField):
-    """ The Publication PDFs user password """
+    security.declarePrivate('set')
+    def set(self, instance, value, **kwargs):
+        translations = instance.getTranslations()
+        for lang in translations.keys():
+            translated_instance = translations[lang][0]
+            if translated_instance.UID() == instance.UID():
+                continue
+
+            ref_tool = getToolByName(instance, REFERENCE_CATALOG)
+            if type(value) == list:
+                val_objs = [ref_tool._uidFor(v)[1] for v in value if v]
+            elif value:
+                val_objs = [ref_tool._uidFor(v)[1]]
+            else:
+                val_objs= []
+
+            translated_val_objs = \
+                [o.getTranslation(lang) or o.getCanonical() for o in val_objs]
+
+            atapi.ReferenceField.set(self, 
+                                        translated_instance, 
+                                        translated_val_objs, 
+                                        **kwargs)
+
+        return atapi.ReferenceField.set(self, instance, value, **kwargs)
 
 
 class SchemaExtender(object):
@@ -43,77 +76,142 @@ class SchemaExtender(object):
     implements(IOrderableSchemaExtender)
 
     _fields = [
-            CoverImageField('cover_image',
+            ExtendedReferenceField('relatedItems',
+                relationship = 'relatesTo',
+                multiValued = True,
+                isMetadata = True,
+                languageIndependent = False,
+                index = 'KeywordIndex',
+                write_permission = permissions.ModifyPortalContent,
+                widget = ReferenceBrowserWidget(
+                    allow_search = True,
+                    allow_browse = True,
+                    show_indexes = False,
+                    force_close_on_insert = True,
+                    label = _(u'label_related_items', default=u'Related Items'),
+                    description = '',
+                    visible = {'edit' : 'visible', 'view' : 'invisible' }
+                ),
+            ),
+            ExtendedImageField('cover_image',
                 schemata='publication',
                 sizes={'cover':(70,100)},
                 languageIndependent=True,
                 widget=atapi.ImageWidget(
-                    label = _(u'label_cover_image', default=u'Cover Image'),
-                    description=_(u'description_cover_image', default=u'Upload a cover image. Leave empty to have the system autogenerate one for you.'),
+                    label = _(
+                        u'label_cover_image', 
+                        default=u'Cover Image'
+                    ),
+                    description= _(
+                        u'description_cover_image', 
+                        default=u'Upload a cover image. Leave empty to have the system autogenerate one for you.'
+                    ),
                 ),
             ),
-            AuthorField('author',
+            ExtendedStringField('author',
                 schemata='publication',
                 languageIndependent=True,
                 widget=atapi.StringWidget(
-                    label = _(u'label_author', default=u'Author'),
-                    description=_(u'description_author', default=u'Fill in the Name of the Author of this Publication.'),
+                    label = _(
+                        u'label_author', 
+                        default=u'Author'
+                    ),
+                    description=_(
+                        u'description_author', 
+                        default=u'Fill in the Name of the Author of this Publication.'
+                    ),
                 ),
             ),
-            ISBNField('isbn',
+            ExtendedStringField('isbn',
                 schemata='publication',
                 languageIndependent=False,
                 widget=atapi.StringWidget(
                     label = _(u'label_isbn', default=u'ISBN'),
-                    description=_(u'description_isbn', default=u'Fill in the ISBN Number of this Publication.'),
+                    description=_(
+                        u'description_isbn', 
+                        default=u'Fill in the ISBN Number of this Publication.'
+                    ),
                 ),
             ),
-            OrderIdField('order_id',
+            ExtendedStringField('order_id',
                 schemata='publication',
                 languageIndependent=False,
                 widget=atapi.StringWidget(
                     label = _(u'label_order_id', default=u'Order ID'),
-                    description=_(u'description_order_id', default=u'Fill in the Order ID of this Publication.'),
+                    description=_(
+                        u'description_order_id', 
+                        default=u'Fill in the Order ID of this Publication.'
+                    ),
                 ),
             ),
-            ForSaleField('for_sale',
+            ExtendedBooleanField('for_sale',
                 schemata='publication',
                 languageIndependent=True,
                 widget=atapi.BooleanWidget(
-                    label = _(u'label_for_sale', default=u'For sale?'),
-                    description=_(u'description_for_sale', default=u'Is this Publication for sale?'),
+                    label = _(
+                        u'label_for_sale', 
+                        default=u'For sale?'
+                    ),
+                    description=_(
+                        u'description_for_sale', 
+                        default=u'Is this Publication for sale?'
+                    ),
                 ),
             ),
-            ChaptersField('chapters',
+            ExtendedLinesField('chapters',
                 schemata='publication',
                 languageIndependent=True,
                 widget=atapi.LinesWidget(
-                    label = _(u'label_chapters', default=u'Chapters'),
-                    description=_(u'description_chapters', default=u'Chapters of this Publication. Specify the Link targets defined in your pdf file, one per line.'),
+                    label = _(
+                        u'label_chapters', 
+                        default=u'Chapters'
+                    ),
+                    description=_(
+                        u'description_chapters', 
+                        default=u'Chapters of this Publication. Specify the Link targets defined in your pdf file, one per line.'
+                    ),
                 ),
             ),
-            MetadataUploadField('metadata_upload',
+            ExtendedFileField('metadata_upload',
                 schemata='publication',
                 languageIndependent=True,
                 widget=atapi.FileWidget(
-                    label = _(u'label_metadata_upload', default=u'Metadata INI upload'),
-                    description=_(u'description_metadata_upload', default=u'Upload Metadata in INI style format.'),
+                    label = _(
+                            u'label_metadata_upload', 
+                            default=u'Metadata INI upload'
+                    ),
+                    description=_(
+                            u'description_metadata_upload', 
+                            default=u'Upload Metadata in INI style format.'
+                    ),
                 ),
             ),
-            OwnerPasswordField('owner_password',
+            ExtendedStringField('owner_password',
                 schemata='publication',
                 languageIndependent=False,
                 widget=atapi.StringWidget(
-                    label = _(u'label_owner_password', default=u'Owner Password'),
-                    description=_(u'description_owner_password', default=u'If this publication is protected, speciy the pdf owner password if you want to parse the file.'),
+                    label = _(
+                        u'label_owner_password', 
+                        default=u'Owner Password'
+                    ),
+                    description=_(
+                        u'description_owner_password', 
+                        default=u'If this publication is protected, speciy the pdf owner password if you want to parse the file.'
+                    ),
                 ),
             ),
-            UserPasswordField('user_password',
+            ExtendedStringField('user_password',
                 schemata='publication',
                 languageIndependent=False,
                 widget=atapi.StringWidget(
-                    label = _(u'label_user_password', default=u'User Password'),
-                    description=_(u'description_user_password', default=u'If this publication is protected, speciy the pdf user password if you want to parse the file.'),
+                    label = _(
+                        u'label_user_password', 
+                        default=u'User Password'
+                    ),
+                    description=_(
+                        u'description_user_password', 
+                        default=u'If this publication is protected, speciy the pdf user password if you want to parse the file.'
+                    ),
                 ),
             ),
             ]
