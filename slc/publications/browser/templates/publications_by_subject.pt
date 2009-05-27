@@ -1,0 +1,76 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+      
+<metal:cssslot fill-slot="css_slot">
+  <style type="text/css" media="all" tal:condition="exists: portal/publications_styles.css"
+         tal:content="string:@import url($portal_url/publications_styles.css);">
+  </style>
+</metal:cssslot>
+      
+<body>
+
+<div metal:fill-slot="main"
+        tal:define="Iterator python:modules['Products.Archetypes'].IndexIterator;
+                    tabindex tabindex|python:Iterator(pos=7000);
+                    mode string:view;">
+
+    <h1>
+        <span i18n:translate="heading_all_publications_on" tal:omit-tag="">All Publications on</span>
+        <span tal:content="view/subject_label" />
+    </h1>
+
+    <!--div class="publicationDescription">
+        <span tal:replace="view/description"/>
+    </div-->
+
+
+    <tal:foldercontents define="
+                        more_url more_url|request/more_url|string:folder_contents;
+                        b_start string:0;b_start request/b_start | b_start;
+                        sortfunction python:(('effective', 'cmp', 'desc'),);
+                        publist view/publist;
+                        parents view/parents;
+                        ">
+
+
+    <tal:types condition="parents">
+      <div class="publicationBlock" 
+           tal:repeat="parent parents">
+
+        <tal:section define="parentbrain python:parent[1];
+                             PUBS python:publist.get(parent[0], []);"
+                     condition="PUBS">
+
+            <h2>
+                <span tal:replace="parentbrain/Title" />
+            </h2>
+
+
+            <dl>
+                <div tal:repeat="pub PUBS">                  
+                  <dt>
+                      <h3>
+                          <img src="publication_icon.gif"
+                               alt="Icon Image of Publication" />
+                          <a href="" tal:attributes="href string:${pub/getURL}/view">
+                              <span tal:content="structure pub/Title" />
+                          </a>
+                      </h3>
+                  </dt>
+                  <!--dd tal:content="pub/Description"></dd-->
+                </div>
+              </dl>
+
+        </tal:section>
+      </div>
+    </tal:types>
+
+
+    </tal:foldercontents>
+
+</div>
+
+</body>
+</html>

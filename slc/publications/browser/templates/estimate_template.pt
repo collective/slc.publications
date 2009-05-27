@@ -1,0 +1,32 @@
+<script language="JavaScript" tal:content="view/generate_estimation_js" />
+
+<script language="JavaScript">
+    function getTime(selection) {
+		    var opt = selection.options[selection.selectedIndex].value;
+				var obj = document.getElementById("displayTime");
+
+				if (opt == "du56") {
+				  obj.innerHTML = du56;
+
+				} else if (opt == "dsl256") {
+				  obj.innerHTML = dsl256;
+
+				} else if (opt == "dsl768") {
+				  obj.innerHTML = dsl768;
+
+				} else if (opt == "t1") {
+				  obj.innerHTML = t1;
+				}
+		}
+</script>
+<nobr>
+<span i18n:translate="label_estimated_download_time"
+	i18n:domain="slc.publications">Estimated Download Time:</span>
+<select name="connspeed" class="EstTimeDropdown" onchange="getTime(this);">
+    <option value="du56" selected>Dial-up (56K)</option>
+    <option value="dsl256">DSL/Cable (256K)</option>
+    <option value="dsl768">DSL/Cable (768K)</option>
+    <option value="t1">T1 (1.5M)</option>
+</select>
+<span id="displayTime" name="displayTime" tal:content="view/get_initial_downloadtime"></span>
+</nobr>
