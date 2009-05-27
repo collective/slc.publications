@@ -10,7 +10,7 @@ from Products.AdvancedQuery import In, Eq, Le, Ge, And, Or
 class PublicationsBySubjectView(BrowserView):
     """View for displaying the publications by Subject overview page 
     """
-    template = ViewPageTemplateFile('publications_by_subject.pt')
+    template = ViewPageTemplateFile('templates/publications_by_subject.pt')
     
     def __call__(self):
         """ call - XXX: we should think about caching here..."""

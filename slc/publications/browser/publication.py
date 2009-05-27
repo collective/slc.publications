@@ -11,10 +11,13 @@ from zope.formlib import form
 from zope.app.event import objectevent
 from zope.app.i18n import ZopeMessageFactory as _
 
+from AccessControl import Unauthorized
 from Products.AdvancedQuery import In, Eq, Le, Ge, And, Or
+
 from Products.CMFCore import utils as cmfutils
 from Products.CMFDefault.formlib.form import getLocale
 
+from Products.CMFPlone.utils import base_hasattr
 from Products.CMFPlone import PloneMessageFactory as _
 from Products.statusmessages import interfaces as statusmessages_ifaces
 
@@ -32,16 +35,13 @@ from p4a.common import formatting
 
 from zope.app.form.browser import TextAreaWidget, DateDisplayWidget, CollectionInputWidget, OrderedMultiSelectWidget
 
-
-
-
 class PublicationPageView(object):
     """Page for displaying a publication.
     """
     adapted_interface = interfaces.IPublication
     media_field = 'file'
 
-    estimate_template = pagetemplatefile.ViewPageTemplateFile('estimate_template.pt')
+    estimate_template = pagetemplatefile.ViewPageTemplateFile('templates/estimate_template.pt')
 
     label = u'View Publication Info'
 
@@ -50,16 +50,17 @@ class PublicationPageView(object):
         """ return the template """
         return self.index
 
-    def available_translations(self):
+    def available_translations(self, context=None):
         """ list all available translations for this publication """
-        portal_languages = cmfutils.getToolByName(self.context, 'portal_languages')
+        context = context or Acquisition.aq_inner(self.context)
+        portal_languages = cmfutils.getToolByName(context, 'portal_languages')
         default_language = portal_languages.getDefaultLanguage()
         ali = portal_languages.getAvailableLanguageInformation()
 
         if HAVE_LINGUAPLONE:
-            translations = self.context.getTranslations()
+            translations = context.getTranslations()
         else:
-            translations = {self.context.Language(): (self.context, self.context.Language())}
+            translations = {context.Language(): (context, context.Language())}
 
         if len(translations.keys())<1:
             return
@@ -84,6 +85,30 @@ class PublicationPageView(object):
         chapterlinks = additionals.objectValues('ATLink')
         return chapterlinks
 
+    def getRelatedItems(self):
+        """ Get the references of the relatedItems field
+        """
+        context = Acquisition.aq_inner(self.context)
+        if base_hasattr(context, 'getRelatedItems'):
+            outgoing = context.getRelatedItems()
+            incoming = []
+            # if you want to show up the items which point to this one, too, then use the
+            # line below
+            #incoming = context.getBRefs('relatesTo') 
+            res = []
+            mtool = context.portal_membership
+            
+            in_out = outgoing+incoming
+            for d in range(len(in_out)):
+                try:
+                    obj = in_out[d]
+                except Unauthorized:
+                    continue
+                if obj not in res:
+                    if mtool.checkPermission('View', obj):
+                        res.append(obj)
+            return res
+        return []
 
     def fetchRelatedPublications(self, limit=3):
         """ Query the catalog for related publications """
@@ -93,11 +118,9 @@ class PublicationPageView(object):
         pc = cmfutils.getToolByName(context, 'portal_catalog')
         if hasattr(pc, 'getZCatalog'):
             pc = pc.getZCatalog()
+
         portal_languages = cmfutils.getToolByName(context, 'portal_languages')
         preflang = portal_languages.getPreferredLanguage()
-
-        if hasattr(pc, 'getZCatalog'):
-            pc = pc.getZCatalog()
 
         PQ = Eq('portal_type', 'File') & \
              In('object_provides', 'slc.publications.interfaces.IPublicationEnhanced') & \
@@ -105,7 +128,7 @@ class PublicationPageView(object):
              Eq('review_state', 'published') 
 
         if HAVE_LINGUAPLONE:
-            PQ = PQ & Eq('Language', preflang)
+           PQ = PQ & Eq('Language', preflang)
 
         RES = pc.evalAdvancedQuery(PQ, (('effective','desc'),) )
 
@@ -186,7 +209,6 @@ class PublicationView(object):
 
 
 
-
 def applyChanges(context, form_fields, data, adapters=None):
     """ apply changes """
     if adapters is None:
@@ -219,7 +241,7 @@ class PublicationEditForm(formbase.EditForm):
     """Form for editing publication fields.
     """
 
-    template = pagetemplatefile.ViewPageTemplateFile('publication-edit.pt')
+    template = pagetemplatefile.ViewPageTemplateFile('templates/publication-edit.pt')
     form_fields = form.FormFields(interfaces.IPublication)
     #form_fields['chapters'].custom_widget = CollectionInputWidget
 

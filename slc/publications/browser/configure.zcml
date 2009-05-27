@@ -10,16 +10,24 @@
       name="publication-container.html"
       for="slc.publications.interfaces.IPublicationContainerEnhanced"
       permission="zope2.View"
-      template="publication-container.pt"
+      template="templates/publication-container.pt"
       class=".publication.PublicationContainerView"
       />
-      
             
     <!-- This is the new default view for the file object. 
          It uses the publication_view as helper -->      
+
+  <page
+      name="publication_related_items"
+      for="*"
+      permission="zope2.View"
+      template="templates/related_items.pt"
+      class=".publication.PublicationContainerView"
+      />
+
   <page
       name="file_view"
-      template="publication.pt"
+      template="templates/publication.pt"
       for="slc.publications.interfaces.IPublicationEnhanced"
       class=".publication.PublicationPageView"
       permission="zope2.View"
