@@ -1,8 +1,6 @@
 from zope import interface
 from p4a.subtyper import interfaces as stifaces
 from slc.publications import interfaces
-
-
   
 
 class PublicationDescriptor(object):

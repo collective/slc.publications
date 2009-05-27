@@ -72,21 +72,13 @@ class _ATCTPublication(object):
         return '<slc.publication %s title=%s>' % (self.__class__.__name__, self.context.Title())
     __repr__ = __str__
 
-
     def editChapter(self, chapter, metadata):
         """ add/edit a link object with the given chapter name and modify its metadata """
         additionals = _get_storage_folder(self.context)
         C = getattr(additionals, chapter, None)
-
-        if C is None:
-            return
-
-        setMetadataMap(C, metadata)
+        if C is not None:
+            return setMetadataMap(C, metadata)
         
-
-                
-                
-                
     def setMetadataIniMap(self, metadata):
         """ Given a complex metadata map from e.g. the ini parser set the metadata on all translations and chapters """
         subtyper = component.getUtility(ISubtyper)
@@ -99,7 +91,6 @@ class _ATCTPublication(object):
             canonical = self.context
 
         for lang in metadata.keys():
-            
             if lang == 'default': 
                 continue    # we skip the default section
 
@@ -271,7 +262,6 @@ def setMetadataMap(ob, metadata):
         mapply(mutator, result[0], **result[1])
 
     ob.reindexObject()
-
 
 
 class PrettyFormatter(object):

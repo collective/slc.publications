@@ -79,7 +79,6 @@ def object_added(evt):
         namemap[childlang] = child
         GROUPS[childname] = namemap
 
-
     # Set the proper linguaplone relations. 
     # But only if we already have a canonical
     if HAVE_LINGUAPLONE:
@@ -102,6 +101,7 @@ def object_added(evt):
                     o.invalidateTranslationCache()        
                     o.reindexObject()
     
+
 def generate_image(obj, evt):
     """ EVENT
         called on objectmodified. Tries to generate the cover image. 
@@ -163,7 +163,6 @@ def update_chapters(obj, evt):
     if HAVE_LINGUAPLONE:
         if obj != obj.getCanonical():
             return
-
             
     if HAVE_LINGUAPLONE:
         translations = obj.getTranslations()
