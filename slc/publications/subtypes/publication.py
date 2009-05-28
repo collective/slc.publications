@@ -35,40 +35,12 @@ class ExtendedStringField(ExtensionField, ExtensionFieldMixin, atapi.StringField
 
 class ExtendedReferenceField(ExtensionField, ExtensionFieldMixin, atapi.ReferenceField):
     """ """
-
-    security = ClassSecurityInfo()
-
-    # security.declarePrivate('get')
-    # def get(self, instance, **kwargs):
-    #     canonical = instance.getCanonical()
-    #     canonical_refs = atapi.ReferenceField.get(self, canonical, **kwargs)
-    #     return canonical_refs
-
-    security.declarePrivate('set')
-    def set(self, instance, value, **kwargs):
-        translations = instance.getTranslations()
-        for lang in translations.keys():
-            translated_instance = translations[lang][0]
-            if translated_instance.UID() == instance.UID():
-                continue
-
-            ref_tool = getToolByName(instance, REFERENCE_CATALOG)
-            if type(value) == list:
-                val_objs = [ref_tool._uidFor(v)[1] for v in value if v]
-            elif value:
-                val_objs = [ref_tool._uidFor(v)[1]]
-            else:
-                val_objs= []
-
-            translated_val_objs = \
-                [o.getTranslation(lang) or o.getCanonical() for o in val_objs]
-
-            atapi.ReferenceField.set(self, 
-                                        translated_instance, 
-                                        translated_val_objs, 
-                                        **kwargs)
-
-        return atapi.ReferenceField.set(self, instance, value, **kwargs)
+    def get(self, instance, **kwargs):
+        canonical = instance.getCanonical()
+        canonical_refs = atapi.ReferenceField.get(self, canonical, **kwargs)
+        portal_languages = getToolByName(instance, 'portal_languages')
+        preflang = portal_languages.getPreferredLanguage()
+        return [o.getTranslation(preflang) or o.getCanonical() for o in canonical_refs]
 
 
 class SchemaExtender(object):
@@ -76,11 +48,13 @@ class SchemaExtender(object):
     implements(IOrderableSchemaExtender)
 
     _fields = [
+            # Override relatedItems make it langauge independent and override
+            # the accessor to return langage dependent references.
             ExtendedReferenceField('relatedItems',
                 relationship = 'relatesTo',
                 multiValued = True,
                 isMetadata = True,
-                languageIndependent = False,
+                languageIndependent = True,
                 index = 'KeywordIndex',
                 write_permission = permissions.ModifyPortalContent,
                 widget = ReferenceBrowserWidget(
