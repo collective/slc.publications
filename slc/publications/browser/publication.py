@@ -85,31 +85,6 @@ class PublicationPageView(object):
         chapterlinks = additionals.objectValues('ATLink')
         return chapterlinks
 
-    def getRelatedItems(self):
-        """ Get the references of the relatedItems field
-        """
-        context = Acquisition.aq_inner(self.context)
-        if base_hasattr(context, 'getRelatedItems'):
-            outgoing = context.getRelatedItems()
-            incoming = []
-            # if you want to show up the items which point to this one, too, then use the
-            # line below
-            #incoming = context.getBRefs('relatesTo') 
-            res = []
-            mtool = context.portal_membership
-            
-            in_out = outgoing+incoming
-            for d in range(len(in_out)):
-                try:
-                    obj = in_out[d]
-                except Unauthorized:
-                    continue
-                if obj not in res:
-                    if mtool.checkPermission('View', obj):
-                        res.append(obj)
-            return res
-        return []
-
     def fetchRelatedPublications(self, limit=3):
         """ Query the catalog for related publications """
         context = Acquisition.aq_inner(self.context)

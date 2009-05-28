@@ -9,7 +9,7 @@
     class="relatedItems"
     tal:define="getInfoFor python:wtool.getInfoFor;">
     <tal:allowed condition="isViewTemplate">
-        <tal:relatedItems tal:define="related python:view.getRelatedItems();">
+        <tal:relatedItems tal:define="related here/computeRelatedItems">
             <tal:block tal:condition="python:related">
                 <div class="visualClear" id="clear-space-before-relatedItemBox"><!-- --></div>
                 <fieldset id="relatedItemBox">
