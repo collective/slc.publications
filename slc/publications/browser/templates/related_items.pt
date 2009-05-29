@@ -39,7 +39,6 @@
                                 </a>
                             </span>
                             <br clear="all"/>
-                            <br clear="all"/>
                             <span i18n:translate="label_available_in">Available in</span>:
                                 <tal:block repeat="lang python:view.available_translations(context=item)">
                                     <a href=""
@@ -49,7 +48,7 @@
                                     tal:attributes="href python: lang[1]"
                                     tal:content="python: '[%s]' % langname" />
                                 </tal:block>
-
+                            <br clear="all"/>
                         </li>
                     </tal:related>
                     </ul>
