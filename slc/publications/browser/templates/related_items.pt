@@ -37,7 +37,7 @@
                                     Related Item
                                 </a>
                             </span>
-
+                            <br clear="all"/>
                             <span i18n:translate="label_available_in">Available in</span>:
                                 <tal:block repeat="lang python:view.available_translations(context=item)">
                                     <a href=""
