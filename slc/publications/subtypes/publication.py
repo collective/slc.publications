@@ -10,13 +10,16 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone import PloneMessageFactory as _
 from Products.validation import V_REQUIRED
 
+from Products.LinguaPlone.utils import generateMethods
 from archetypes.schemaextender.interfaces import ISchemaExtender, IOrderableSchemaExtender
 from archetypes.schemaextender.field import ExtensionField
 
+LANGUAGE_INDEPENDENT_INITIALIZED = '_languageIndependent_initialized_slc_publications'
+
 class ExtensionFieldMixin:
     """ """
-    def translationMutator(self, instance):
-        return self.getMutator(instance)
+#    def translationMutator(self, instance):
+#        return self.getMutator(instance)
 
 class ExtendedImageField(ExtensionField, ExtensionFieldMixin, atapi.ImageField):
     """"""
@@ -55,6 +58,8 @@ class SchemaExtender(object):
                 multiValued = True,
                 isMetadata = True,
                 languageIndependent = True,
+                accessor='getRelatedItems',
+                mutator='setRelatedItems',
                 index = 'KeywordIndex',
                 write_permission = permissions.ModifyPortalContent,
                 widget = ReferenceBrowserWidget(
@@ -71,6 +76,8 @@ class SchemaExtender(object):
                 schemata='publication',
                 sizes={'cover':(70,100)},
                 languageIndependent=True,
+                accessor='getCover_image',
+                mutator='setCover_image',
                 widget=atapi.ImageWidget(
                     label = _(
                         u'label_cover_image', 
@@ -85,6 +92,8 @@ class SchemaExtender(object):
             ExtendedStringField('author',
                 schemata='publication',
                 languageIndependent=True,
+                accessor='getAuthor',
+                mutator='setAuthor',   
                 widget=atapi.StringWidget(
                     label = _(
                         u'label_author', 
@@ -121,6 +130,8 @@ class SchemaExtender(object):
             ExtendedBooleanField('for_sale',
                 schemata='publication',
                 languageIndependent=True,
+                accessor='getFor_sale',
+                mutator='setFor_sale',
                 widget=atapi.BooleanWidget(
                     label = _(
                         u'label_for_sale', 
@@ -135,6 +146,8 @@ class SchemaExtender(object):
             ExtendedLinesField('chapters',
                 schemata='publication',
                 languageIndependent=True,
+                accessor='getChapters',
+                mutator='setChapters',
                 widget=atapi.LinesWidget(
                     label = _(
                         u'label_chapters', 
@@ -149,6 +162,8 @@ class SchemaExtender(object):
             ExtendedFileField('metadata_upload',
                 schemata='publication',
                 languageIndependent=True,
+                accessor='getMetadata_upload',
+                mutator='setMetadata_upload',
                 widget=atapi.FileWidget(
                     label = _(
                             u'label_metadata_upload', 
@@ -193,6 +208,18 @@ class SchemaExtender(object):
     def __init__(self, context):
         """ init """
         self.context = context
+        _myfields= list()
+        for f in self._fields:
+            if f.getName() not in ['osha_metadata']:
+                new_f = f.copy()
+                _myfields.append(new_f)
+        self._myfields = _myfields
+        klass = context.__class__
+        if not getattr(klass, LANGUAGE_INDEPENDENT_INITIALIZED, False):
+            fields = [field for field in _myfields if field.languageIndependent]
+            generateMethods(klass, fields)
+            print "called generateMethods on ", klass, self.__class__.__name__
+            setattr(klass, LANGUAGE_INDEPENDENT_INITIALIZED, True)
 
     def getFields(self):
         """ get fields """
