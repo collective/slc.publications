@@ -30,6 +30,7 @@
                             <span tal:attributes="class item_type_class">
                                 <img tal:replace="structure item_icon/html_tag" />
                                 <a href="" class=""
+                                   style="font-weight: bold;"
                                    tal:attributes="href  item_url;
                                                    title item/Description;
                                                    class string:$item_wf_state_class"
@@ -37,6 +38,7 @@
                                     Related Item
                                 </a>
                             </span>
+                            <br clear="all"/>
                             <br clear="all"/>
                             <span i18n:translate="label_available_in">Available in</span>:
                                 <tal:block repeat="lang python:view.available_translations(context=item)">
