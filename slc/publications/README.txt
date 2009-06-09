@@ -48,14 +48,4 @@ Documentation
 -------------
 See the *doc* directory in this package.
 
-Authors
--------
-
-Alexander Pilz <pilz@syslab.com>
-
-Credits
--------
-
-Alin Voinea for Testing and Plone 2.5 backporting
-
 

@@ -1,0 +1,49 @@
+osha.policy Changelog
+=====================
+
+slc.publications 1.1 (2009-06-04)
+---------------------------------
+
+* added a download time estimation control [pilz]
+* removed the hardcoded author from the config file and the schema [pilz]
+* Trying to make it work without Linguaplone as well [pilz]
+* added link to title and image [pilz]
+* Added possibility to add manual relations to other content types. This 
+  includes a language fallback [brand]
+  
+
+slc.publications 1.0 final
+--------------------------
+
+* no changes
+
+slc.publications 1.0 beta3
+--------------------------
+
+* Added support for slc.xliff
+* refactored the adapter.py into adapter/ subdir
+* Added an eventhandler to automatically set the suptype on files added to a publication folder
+* Added an eventhandler to detect the uploaded language if the filename starts or 
+  ends with a lang abbrev
+  E.g. XX_filename.pdf or filename_XX.pdf or XX-filename.pdf or filename-XX.pdf.
+* Added a patch for linguaplone inserting a new event to allow translating 
+  subtyped objects. Translations need to be subtyped just after the object has 
+  been created and before attributes are edited.
+
+slc.publications 1.0 beta2
+--------------------------
+
+* Switch to p4a.subtyper to make publications out of files
+* Use Archetypes.schemaextender to marry normal and publication attributes in one interface
+* readded cover image generation
+
+slc.publications 1.0 beta1
+--------------------------
+
+* Plone 3 compatibility. Removed the PublicationFolder concept and base completely on Linguaplone
+
+slc.publications 0.9 beta
+-------------------------
+
+* initial release
+  Thanks to Alin Voinea for creating a Plone2.5 backport. Please see the svn repository for that.
