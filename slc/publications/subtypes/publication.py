@@ -218,7 +218,6 @@ class SchemaExtender(object):
         if not getattr(klass, LANGUAGE_INDEPENDENT_INITIALIZED, False):
             fields = [field for field in _myfields if field.languageIndependent]
             generateMethods(klass, fields)
-            print "called generateMethods on ", klass, self.__class__.__name__
             setattr(klass, LANGUAGE_INDEPENDENT_INITIALIZED, True)
 
     def getFields(self):
