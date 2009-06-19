@@ -1,8 +1,15 @@
 osha.policy Changelog
 =====================
 
+slc.publications 1.1.2 (2009-06-19)
+-----------------------------------
+
+- svn:ignore cleanup, removed prints
+
+- test fixes (gerken)
+
 slc.publications 1.1.1 (2009-06-04)
----------------------------------
+-----------------------------------
 
 - made a release without the svn revision in the tag
 
