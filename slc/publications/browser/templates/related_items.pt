@@ -11,9 +11,10 @@
     <tal:allowed condition="isViewTemplate">
         <tal:relatedItems tal:define="related here/computeRelatedItems">
             <tal:block tal:condition="python:related">
-                <div class="visualClear" id="clear-space-before-relatedItemBox"><!-- --></div>
-                <fieldset id="relatedItemBox">
-                    <legend i18n:translate="label_related_items">Related content</legend>
+                <div id="related_publications_block">
+                    <div id="related_pubs_heading">
+                        <h2 i18n:translate="heading_related">Related Content</h2>
+                    </div>
                     <ul class="visualNoMarker">
                     <tal:related tal:repeat="item related"
                                  tal:define="use_view_action site_properties/typesUseViewActionInListings|python:();">
@@ -53,7 +54,7 @@
                         </li>
                     </tal:related>
                     </ul>
-                </fieldset>
+                </div>
             </tal:block>
         </tal:relatedItems>
     </tal:allowed>
