@@ -110,7 +110,7 @@
                <a href=""
                       target="_blank"
                       alt="Order a printed copy at EU-Bookshop"
-                      tal:attributes="href     string:http://bookshop.europa.eu/eGetRecords?Template=Test_EUB/en_publication_details&amp;CATNBR=$value" >
+                      tal:attributes="href     string:http://bookshop.europa.eu/eubookshop/bookmarks.action?target=EUB:NOTICE:$value:$lang&amp;request_locale=$lang" >
                           <img src="eu_bookshop.gif"
                                alt="EU Bookshop: You can order a printed copy of this document"
                                title="EU Bookshop: You can order a printed copy of this document">

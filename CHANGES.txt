@@ -1,6 +1,11 @@
 osha.policy Changelog
 =====================
 
+slc.publications 1.1.3 (unreleased)
+-----------------------------------
+
+- changed the link format for the EU Bookshop to fit the new guideline (thomasw)
+
 slc.publications 1.1.2 (2009-06-19)
 -----------------------------------
 
