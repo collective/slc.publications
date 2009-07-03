@@ -1,10 +1,11 @@
 osha.policy Changelog
 =====================
 
-slc.publications 1.1.3 (unreleased)
+slc.publications 1.1.3 (2009-07-03)
 -----------------------------------
 
 - changed the link format for the EU Bookshop to fit the new guideline (thomasw)
+- Make 'related content' box look like the 'related publications' box (jcbrand)
 
 slc.publications 1.1.2 (2009-06-19)
 -----------------------------------
