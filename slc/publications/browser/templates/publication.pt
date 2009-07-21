@@ -75,7 +75,7 @@
 
         <div class="publicationField">
 
-            <a href="" tal:attributes="href string:${here/absolute_url}">
+            <a href="" target="_new" tal:attributes="href string:${here/absolute_url}">
                 <strong>
                     <span tal:omit-tag=""
                         i18n:translate="label_download_full_publication">Download the full publication as PDF</span>
@@ -128,7 +128,7 @@
              tal:condition="available_translations">
             <span i18n:translate="label_available_in">Available in</span>:
                 <tal:block repeat="lang available_translations">
-                    <a href=""
+                    <a href="" target="_new"
                        tal:define="defaultlang here/portal_languages/getDefaultLanguage;
                                    defaultlang python:here.portal_languages.getNameForLanguageCode(defaultlang);
                                    langname python:lang[0] and lang[0] or defaultlang"
