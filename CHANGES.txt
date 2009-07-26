@@ -1,7 +1,7 @@
 osha.policy Changelog
 =====================
 
-slc.publications 1.1.4 (unreleased)
+slc.publications 1.1.4 (2009-07-26)
 -----------------------------------
 
 - have links to publication language versions open in a new window (pilz)
