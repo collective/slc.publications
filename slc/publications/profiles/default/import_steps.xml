@@ -1,11 +1,9 @@
 <?xml version="1.0"?>
 <import-steps>
-  <import-step id="slc.publications.various"
-               version="20071207-01"
-               handler="slc.publications.setuphandlers.setupVarious"
-               title="Publications: miscellaneous import steps">
-    <dependency step="skins" />
-    Various import steps that are not handled by GS import/export
-    handlers.
-  </import-step>
+    <import-step id="slc.publications-install-dependencies"
+        version="20090729"
+        handler="slc.publications.setuphandlers.installDependencies"
+        title="slc.publications install product dependencies">
+            installDependencies
+    </import-step>
 </import-steps>

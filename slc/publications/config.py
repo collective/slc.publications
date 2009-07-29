@@ -5,5 +5,8 @@ __docformat__ = 'plaintext'
 PROJECTNAME = "slc.publications"
 product_globals = globals()
 
-
 DEFAULT_ADD_CONTENT_PERMISSION = "Add portal content"
+
+DEPENDENCIES = [
+        'LinguaPlone',
+        ]
