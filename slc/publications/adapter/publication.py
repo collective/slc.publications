@@ -1,45 +1,21 @@
-import App.Common
+import logging
 import os
-from Acquisition import aq_base, aq_inner, aq_parent
-import ConfigParser, StringIO, tempfile, os, urllib, logging, re
-from types import *
-from persistent.dict import PersistentDict
+import tempfile
+
 from zope import interface
 from zope import component
 
-from slc.publications import interfaces
-from slc.publications.utils import _get_storage_folder
-
 from Products.Archetypes.utils import mapply
 from Products.ATContentTypes import interface as atctifaces
-try:
-    from plone.app.blob.interfaces import IATBlob
-    HAVE_BLOB = True
-except:
-    HAVE_BLOB = False
 
-from slc.publications import HAVE_LINGUAPLONE
-
-    
-from Products.CMFCore.utils import getToolByName
-from ComputedAttribute import ComputedAttribute
-from DateTime import DateTime
-
-
-try:
-    from zope.app.annotation import interfaces as annointerfaces
-except ImportError, err:
-    # Zope 2.10 support
-    from zope.annotation import interfaces as annointerfaces
-
-from p4a.common.descriptors import atfield
 from p4a.subtyper.interfaces import ISubtyper
 
-import logging
-logger = logging.getLogger('slc.publications')
+from slc.publications import interfaces
+from slc.publications import HAVE_LINGUAPLONE
+from slc.publications.utils import _get_storage_folder
 
-@interface.implementer(interfaces.IPublication)
-@component.adapter(atctifaces.IATFile)
+logger = logging.getLogger('slc.publications.adapter.publication.py')
+
 def ATCTFilePublication(context):
     """ Factory to generate the proper Adapter only if the 
         object is properly subtyped"""
@@ -47,18 +23,7 @@ def ATCTFilePublication(context):
         return None
     return _ATCTPublication(context)
 
-if HAVE_BLOB:
-    @interface.implementer(interfaces.IPublication)
-    @component.adapter(IATBlob)
-    def ATCTFilePublication(context):
-        """ Factory to generate the proper Adapter only if the 
-            object is properly subtyped"""
-        if not interfaces.IPublicationEnhanced.providedBy(context):
-            return None
-        return _ATCTPublication(context)
-
 _marker=[]
-
 class _ATCTPublication(object):
     """ Adapter to handle a file as publication
     """

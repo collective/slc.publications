@@ -45,7 +45,19 @@
     </configure>
    
     <!-- Main adapter to make a file a publication -->
-    <adapter factory=".adapter.publication.ATCTFilePublication" />
+    <adapter 
+        factory=".adapter.publication.ATCTFilePublication" 
+        provides="slc.publications.interfaces.IPublication"
+        for="Products.ATContentTypes.interface.IATFile"
+        />
+
+    <configure zcml:condition="installed plone.app.blob">
+        <adapter 
+            factory=".adapter.publication.ATCTFilePublication" 
+            provides="slc.publications.interfaces.IPublication"
+            for="plone.app.blob.interfaces.IATBlob"
+            />
+    </configure>
 
     <utility
         name="slc.publications.Publication"
@@ -126,7 +138,13 @@
     <adapter
         name="slc.publications.subtypes.publication"
         for="slc.publications.interfaces.IPublicationEnhanced"
-        factory=".subtypes.publication.SchemaExtender" />
+        factory=".subtypes.publication.SchemaExtender" 
+        />
 
+    <subscriber
+        for="slc.publications.interfaces.IPublicationEnhanced
+            z3c.widget.flashupload.interfaces.FlashUploadedEvent"
+        handler=".events.process_uploaded_publications"
+        />
 
 </configure>
