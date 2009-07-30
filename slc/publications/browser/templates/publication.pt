@@ -12,8 +12,7 @@
 <body>
 
 <div metal:fill-slot="body"
-        tal:define="publication_info context/@@publication_view;
-                    context_url string:${context/absolute_url};
+        tal:define="context_url string:${context/absolute_url};
                     errors options/state/getErrors | nothing;
                     schematas here/Schemata;
                     fieldsets python: [key for key in schematas.keys() if key != 'metadata'];
