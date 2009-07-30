@@ -1,6 +1,5 @@
 from zope import schema
-from zope.interface import Interface, alsoProvides
-
+from zope.component import Interface
 
 class IPDFParser(Interface):
     """Parser Utility to parse pdf files
