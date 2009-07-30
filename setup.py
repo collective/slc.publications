@@ -8,7 +8,7 @@ from setuptools import setup, find_packages
 def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
-version = '1.1.4'
+version = '1.1.5'
 
 long_description = (
     read('README.txt')
@@ -30,7 +30,10 @@ long_description = (
     + '\n' 
     )
     
-tests_require=['zope.testing']
+tests_require=['zope.testing',
+               'plone.app.blob',
+               'Products.PloneFlashUpload',
+               ]
 
 setup(name='slc.publications',
       version=version,
