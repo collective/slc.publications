@@ -16,27 +16,23 @@ from archetypes.schemaextender.field import ExtensionField
 
 LANGUAGE_INDEPENDENT_INITIALIZED = '_languageIndependent_initialized_slc_publications'
 
-class ExtensionFieldMixin:
-    """ """
-#    def translationMutator(self, instance):
-#        return self.getMutator(instance)
 
-class ExtendedImageField(ExtensionField, ExtensionFieldMixin, atapi.ImageField):
+class ExtendedImageField(ExtensionField, atapi.ImageField):
     """"""
 
-class ExtendedBooleanField(ExtensionField, ExtensionFieldMixin, atapi.BooleanField):
+class ExtendedBooleanField(ExtensionField, atapi.BooleanField):
     """"""
 
-class ExtendedLinesField(ExtensionField, ExtensionFieldMixin, atapi.LinesField):
+class ExtendedLinesField(ExtensionField, atapi.LinesField):
     """"""
 
-class ExtendedFileField(ExtensionField, ExtensionFieldMixin, atapi.FileField):
+class ExtendedFileField(ExtensionField, atapi.FileField):
     """"""
 
-class ExtendedStringField(ExtensionField, ExtensionFieldMixin, atapi.StringField):
+class ExtendedStringField(ExtensionField, atapi.StringField):
     """ """
 
-class ExtendedReferenceField(ExtensionField, ExtensionFieldMixin, atapi.ReferenceField):
+class ExtendedReferenceField(ExtensionField, atapi.ReferenceField):
     """ """
     def get(self, instance, **kwargs):
         canonical = instance.getCanonical()
