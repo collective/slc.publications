@@ -62,15 +62,15 @@ def addTranslation(self, language, *args, **kwargs):
     kwargs[config.KWARGS_TRANSLATION_KEY] = canonical
     if kwargs.get('language', None) != language:
         kwargs['language'] = language
-    o = _createObjectByType(self.portal_type, parent, id, *args, **kwargs)
+    translation = _createObjectByType(self.portal_type, parent, id, *args, **kwargs)
     # If there is a custom factory method that doesn't add the
     # translation relationship, make sure it is done now.
-    if o.getCanonical() != canonical:
-        o.addTranslationReference(canonical)
+    if translation.getCanonical() != canonical:
+        translation.addTranslationReference(canonical)
     self.invalidateTranslationCache()        
     # new event to mark the point where the reference is set but no attributes are copied
     # We need this to hook an adapter to set an subtyping marker interface
-    referencesetevent = ObjectTranslationReferenceSetEvent(self, o, language)
+    referencesetevent = ObjectTranslationReferenceSetEvent(self, translation, language)
     notify(referencesetevent)
     # Copy over the language independent fields
     schema = canonical.Schema()
@@ -85,10 +85,10 @@ def addTranslation(self, language, *args, **kwargs):
             # seems we have some field from archetypes.schemaextender
             # or something else not using ClassGen
             # fall back to default mutator
-            o.getField(field.getName()).set(o, data)
+            translation.getField(field.getName()).set(translation, data)
         else:
             # holy ClassGen crap - we have a generated method!
-            translation_mutator = getattr(o, mutatorname)
+            translation_mutator = getattr(translation, mutatorname)
             translation_mutator(data)
     # If this is a folder, move translated subobjects aswell.
     if self.isPrincipiaFolderish:
@@ -101,12 +101,13 @@ def addTranslation(self, language, *args, **kwargs):
                     lockable.unlock()
                 moveids.append(obj.getId())
         if moveids:
-            o.manage_pasteObjects(self.manage_cutObjects(moveids))
-    o.reindexObject()
+            translation.manage_pasteObjects(self.manage_cutObjects(moveids))
+    translation.reindexObject()
     if isDefaultPage(canonical, self.REQUEST):
-        o._lp_default_page = True
-    afterevent = events.ObjectTranslatedEvent(self, o, language)
+        translation._lp_default_page = True
+    afterevent = events.ObjectTranslatedEvent(self, translation, language)
     notify(afterevent)             
+    return translation 
 
 
 I18NBaseObject.addTranslation = addTranslation
