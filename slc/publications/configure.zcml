@@ -141,10 +141,4 @@
         factory=".subtypes.publication.SchemaExtender" 
         />
 
-    <subscriber
-        for="slc.publications.interfaces.IPublicationEnhanced
-            z3c.widget.flashupload.interfaces.FlashUploadedEvent"
-        handler=".events.process_uploaded_publications"
-        />
-
 </configure>
