@@ -347,12 +347,12 @@ msgstr "Väljaande täielik tekst pdf-formaadis laadige alla siit"
 
 #. Default: "Related Publications"
 msgid "heading_related"
-msgstr ""
+msgstr "Seonduvad väljaanded"
 
 #. Default: "Show more publications on"
 msgid "box_show_more_publications"
-msgstr ""
+msgstr "Veel väljaandeid:"
 
 #. Default "Estimated Download Time"
 msgid "label_estimated_download_time"
-msgstr ""
+msgstr "Hinnanguline allalaadimisaeg"

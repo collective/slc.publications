@@ -347,12 +347,12 @@ msgstr "Stiahnuť celú publikáciu v PDF formáte"
 
 #. Default: "Related Publications"
 msgid "heading_related"
-msgstr ""
+msgstr "Súvisiace publikácie"
 
 #. Default: "Show more publications on"
 msgid "box_show_more_publications"
-msgstr ""
+msgstr "Viac publikácií na"
 
 #. Default "Estimated Download Time"
 msgid "label_estimated_download_time"
-msgstr ""
+msgstr "Predpokladaný čas preberania"

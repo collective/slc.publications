@@ -347,12 +347,12 @@ msgstr "Lejupielādēt pilnu publikāciju PDF formātā"
 
 #. Default: "Related Publications"
 msgid "heading_related"
-msgstr ""
+msgstr "Saistītās publikācijas"
 
 #. Default: "Show more publications on"
 msgid "box_show_more_publications"
-msgstr ""
+msgstr "Parādīt citas publikācijas par"
 
 #. Default "Estimated Download Time"
 msgid "label_estimated_download_time"
-msgstr ""
+msgstr "Paredzamais lejupielādes laiks"

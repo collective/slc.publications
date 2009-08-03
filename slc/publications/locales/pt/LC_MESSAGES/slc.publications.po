@@ -347,13 +347,12 @@ msgstr "ransferir o ficheiro em formato PDF"
 
 #. Default: "Related Publications"
 msgid "heading_related"
-msgstr ""
+msgstr "Publicações relacionadas"
 
 #. Default: "Show more publications on"
 msgid "box_show_more_publications"
-msgstr ""
-
+msgstr "Outras publicações sobre"
 
 #. Default "Estimated Download Time"
 msgid "label_estimated_download_time"
-msgstr ""
+msgstr "Tempo de descarregamento previsto"

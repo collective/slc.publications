@@ -348,12 +348,12 @@ msgstr "Download de gehele publicatie in PDF format  "
 
 #. Default: "Related Publications"
 msgid "heading_related"
-msgstr ""
+msgstr "Hiermee verband houdende publicaties"
 
 #. Default: "Show more publications on"
 msgid "box_show_more_publications"
-msgstr ""
+msgstr "Meer publicaties tonen over"
 
 #. Default "Estimated Download Time"
 msgid "label_estimated_download_time"
-msgstr ""
+msgstr "Geschatte downloadtijd"

@@ -348,12 +348,12 @@ msgstr "Ladda ner hela publikationen i PDF format"
 
 #. Default: "Related Publications"
 msgid "heading_related"
-msgstr ""
+msgstr "Andra publikationer som behandlar dessa frågor"
 
 #. Default: "Show more publications on"
 msgid "box_show_more_publications"
-msgstr ""
+msgstr "Visa mer publikationer om"
 
 #. Default "Estimated Download Time"
 msgid "label_estimated_download_time"
-msgstr ""
+msgstr "Uppskattad nedladdningstid"

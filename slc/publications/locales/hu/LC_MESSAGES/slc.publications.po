@@ -347,12 +347,12 @@ msgstr "A teljes publikáció letöltése PDF -formátumban"
 
 #. Default: "Related Publications"
 msgid "heading_related"
-msgstr ""
+msgstr "Kapcsolódó kiadványok:"
 
 #. Default: "Show more publications on"
 msgid "box_show_more_publications"
-msgstr ""
+msgstr "További kiadványok:"
 
 #. Default "Estimated Download Time"
 msgid "label_estimated_download_time"
-msgstr ""
+msgstr "Becsült letöltési idő"

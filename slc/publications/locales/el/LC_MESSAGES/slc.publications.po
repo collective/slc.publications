@@ -348,12 +348,12 @@ msgstr "Φορτώστε το πλήρες κείμενο σε PDF μορφή"
 
 #. Default: "Related Publications"
 msgid "heading_related"
-msgstr ""
+msgstr "Σχετικές δημοσιεύσεις"
 
 #. Default: "Show more publications on"
 msgid "box_show_more_publications"
-msgstr ""
+msgstr "Άλλες δημοσιεύσεις"
 
 #. Default "Estimated Download Time"
 msgid "label_estimated_download_time"
-msgstr ""
+msgstr "Εκτιμώμενος χρόνος μεταφόρτωσης"

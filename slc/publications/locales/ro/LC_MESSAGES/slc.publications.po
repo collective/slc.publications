@@ -347,12 +347,12 @@ msgstr ""
 
 #. Default: "Related Publications"
 msgid "heading_related"
-msgstr ""
+msgstr "Publicaţii conexe"
 
 #. Default: "Show more publications on"
 msgid "box_show_more_publications"
-msgstr ""
+msgstr "Mai multe publicaţii despre"
 
 #. Default "Estimated Download Time"
 msgid "label_estimated_download_time"
-msgstr ""
+msgstr "Timpul de descărcare estimat"
