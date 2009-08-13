@@ -1,6 +1,14 @@
 osha.policy Changelog
 =====================
 
+slc.publications 1.1.5 (2009-08-13)
+-----------------------------------
+
+- enhanced setuphandlers.py (together with import_steps.xml and config.py) to automatically install dependencies. (jcbrand)
+- remove explicit blob checking in adapter/publication.py and instead do it via zcml, i.e zcml:condition="installed plone.app.blob" (jcbrand)
+- modified addTranslation patch to return the translated item as is done in of LinguaPlone >= 2.3 (jcbrand)
+- various new translations have been added.
+
 slc.publications 1.1.4 (2009-07-26)
 -----------------------------------
 
