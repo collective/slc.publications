@@ -15,19 +15,23 @@
              zope.lifecycleevent.interfaces.IObjectModifiedEvent"
         handler=".events.generate_image"
     />
+
+    <subscriber 
+        for="slc.publications.interfaces.IPublicationEnhanced
+             zope.app.container.interfaces.IObjectRemovedEvent"
+        handler=".events.remove_additionals"
+    />
                    
     <subscriber for="zope.app.container.interfaces.IObjectAddedEvent"
         handler=".events.object_added"
     />
 
     <configure zcml:condition="installed Products.LinguaPlone">
-
        <subscriber 
             for="slc.publications.interfaces.IPublicationEnhanced
                   ..linguaplone_addTranslation_patch.IObjectTranslationReferenceSetEvent"
             handler=".events.subtype_on_translate"
        />
-
     </configure>
 
     <adapter factory=".publication.PrettyFormatter"
@@ -36,7 +40,6 @@
     />
 
     <configure zcml:condition="installed slc.xliff">
-
         <adapter factory=".xliff.PublicationAttributeExtractor" 
                 for="slc.publications.interfaces.IPublicationEnhanced"
                 provides="slc.xliff.interfaces.IAttributeExtractor" 
@@ -46,7 +49,6 @@
                 for="slc.publications.interfaces.IPublicationContainerEnhanced"
                 provides="slc.xliff.interfaces.IAttributeExtractor" 
         />
-
     </configure>
 
 </configure>

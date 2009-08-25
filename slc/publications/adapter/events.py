@@ -38,6 +38,18 @@ def object_added(evt):
             subtyper.change_type(child, 'slc.publications.Publication')
 
 
+def remove_additionals(ob, evt):
+    """ An object has been removed from the pub folder. Ensure that the 
+        additional supporting folder is also removed
+    """
+    additionals_id = ob.getId().replace('.pdf', '')+'_data'
+    container = aq_parent(aq_inner(ob)) 
+    if additionals_id not in container.objectIds():
+        return
+
+    container.manage_delObjects([additionals_id])
+
+
 def generate_image(obj, evt):
     """ EVENT
         called on objectmodified. Tries to generate the cover image. 
