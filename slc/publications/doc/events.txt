@@ -1,0 +1,47 @@
+Overview
+========
+
+This is a doctest designed to test that events are handled as expected. 
+
+Note: You can run the tests in this file by typing
+
+    zopectl test -m slc.publications
+
+
+Initial setup: login, and do necessary imports.
+
+    >>> self.loginAsPortalOwner()
+
+    >>> from zope import event
+    >>> from zope.interface import alsoProvides
+    >>> from zope.app.container.contained import ObjectAddedEvent
+    >>> from zope.app.container.contained import ObjectRemovedEvent
+    >>> from zope.app.container.contained import ObjectModifiedEvent
+    >>> from slc.publications.interfaces import IPublicationEnhanced
+    >>> from slc.publications.interfaces import IPublicationContainerEnhanced
+
+1. Test that uploaded files are subtyped to IPublicationEnhanced.
+
+    >>> alsoProvides(folder, IPublicationContainerEnhanced)
+    >>> fid = folder.invokeFactory('File', 'mypub')
+    >>> file = getattr(folder, fid)
+    >>> f = self.loadfile('doc/UsingthePublicationProduct.pdf')
+    >>> file.setFile(f)
+    >>> event.notify(ObjectAddedEvent(folder, file))
+
+    >>> file = folder._getOb('mypub')
+    >>> IPublicationEnhanced.providedBy(file)
+    True
+
+2. Test that the data folder is created.
+
+    >>> event.notify(ObjectModifiedEvent(file))
+    >>> folder.objectIds() 
+    ['mypub', 'mypub_data']
+
+3. Test that with deleted files, the data folder is also deleted. 
+
+    >>> folder.manage_delObjects(['mypub'])
+    >>> folder.objectIds() 
+    []
+

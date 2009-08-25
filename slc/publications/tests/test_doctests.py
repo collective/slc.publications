@@ -40,7 +40,11 @@ def test_suite():
            Suite('doc/bulkuploading.txt',
                   optionflags=OPTIONFLAGS,
                   package='slc.publications',
-                  test_class=PublicationFunctionalTestCase) 
+                  test_class=PublicationFunctionalTestCase) ,
 
-
+           Suite('doc/events.txt',
+                  optionflags=OPTIONFLAGS,
+                  package='slc.publications',
+                  test_class=PublicationFunctionalTestCase) ,
         ))
+
