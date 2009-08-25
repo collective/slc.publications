@@ -1,13 +1,19 @@
+import logging
+
 from Acquisition import aq_base, aq_inner, aq_parent
 import ConfigParser, StringIO, tempfile, os, urllib, logging, re
 from types import *
+
 from zope import interface
 from zope import component
+
+from Products.CMFCore.utils import getToolByName
+from Products.Archetypes.interfaces import IObjectInitializedEvent
+
+from p4a.subtyper.interfaces import ISubtyper
+
 from slc.publications import interfaces
 from slc.publications.utils import _get_storage_folder
-from Products.CMFCore.utils import getToolByName
-from p4a.subtyper.interfaces import ISubtyper
-from Products.Archetypes.interfaces import IObjectInitializedEvent
 
 try:
     from Products.LinguaPlone.config import RELATIONSHIP
@@ -16,45 +22,14 @@ except:
     HAVE_LINGUAPLONE=False
     RELATIONSHIP = ''
 
-import logging
 logger = logging.getLogger('slc.publications')
-# Event handler methods
-
-def _findAbbrev(id, langs):
-    """ scan the id for an inplicitly given language abbreviation """
-    
-    id = id.rsplit(".", 1)[0]
-    if len(id)>3 and id[2] in ['_', '-']:
-        lang = id[0:2].lower()
-        name = id[3:]
-        if lang in langs:
-            return (name, lang)
-    if len(id)>3 and id[-3] in ['_', '-']:
-        lang = id[-2:]
-        name = id[:-3]
-        if lang in langs:
-            return (name, lang)
-    return [id]
-
 
 def object_added(evt):
-    """ EVENT
-        An object has been added to the pub folder. We make sure that
-        a) that files are subtyped
-        b) translation relations are set
-        I have no idea about the performance of this. If adding objects in large pub folders 
-        is too slow, consider disabling this.
+    """ An object has been added to the pub folder. Make sure that that files are subtyped
     """
     obj = evt.object
     if not interfaces.IPublicationContainerEnhanced.providedBy(aq_parent(obj)):
         return
-    portal_languages = getToolByName(obj, 'portal_languages')
-    default_language = portal_languages.getDefaultLanguage()
-    langs = portal_languages.getSupportedLanguages()
-    
-    # A mapping which stores {lang: obj} mappings under each common naming component
-    # E.g. {'test': {'en': atfile1, 'de': atfile2}}
-    GROUPS = {}
 
     subtyper = component.getUtility(ISubtyper)
     children = obj.aq_parent.objectValues(['ATFile', 'ATBlob'])
@@ -62,45 +37,6 @@ def object_added(evt):
         if subtyper.existing_type(child) is None:
             subtyper.change_type(child, 'slc.publications.Publication')
 
-        comp = _findAbbrev(child.getId(), langs)
-        childname = comp[0]
-        if len(comp)==2:    # comp is a component tuple ('test', 'de')
-            childlang = comp[1]
-            if child.Language()!= comp[1]:
-                pass
-                #child.setLanguage('')
-                #child.setLanguage(comp[1])
-        elif child.Language() != '':
-            childlang = child.Language()
-        else:
-            childlang = default_language
-            
-        namemap = GROUPS.get(childname, {})
-        namemap[childlang] = child
-        GROUPS[childname] = namemap
-
-    # Set the proper linguaplone relations. 
-    # But only if we already have a canonical
-    if HAVE_LINGUAPLONE:
-        canonical = namemap.get(default_language, None)
-        if canonical is None:
-            return         
-        for key in GROUPS.keys():
-            namemap = GROUPS[key]
-            if canonical != canonical.getCanonical():
-                canonical.setCanonical()
-                
-            for lang in namemap.keys():
-                if lang == default_language:
-                    continue
-
-                o = namemap[lang] 
-
-                if o.getCanonical() != canonical:
-                    o.addReference(canonical, RELATIONSHIP)
-                    o.invalidateTranslationCache()        
-                    o.reindexObject()
-    
 
 def generate_image(obj, evt):
     """ EVENT
