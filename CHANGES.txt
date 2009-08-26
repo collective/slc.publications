@@ -1,5 +1,5 @@
 slc.publications Changelog
-=====================
+==========================
 
 slc.publications 1.1.6 (2009-08-26)
 -----------------------------------
@@ -8,7 +8,7 @@ slc.publications 1.1.6 (2009-08-26)
 - Edited the object_added event: removed the code that sets translation
   references, it has been superseded by slc.autotranslate. (jcbrand)
 - Removed _findAbbrev in adapter/events.py, it's no longer being called (jcbrand)
-- Added a new doctest file events.txt to test for the above actions.
+- Added a new doctest file events.txt to test for the above actions. (jcbrand)
 
 slc.publications 1.1.5 (2009-08-13)
 -----------------------------------
