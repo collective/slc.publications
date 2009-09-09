@@ -18,7 +18,7 @@ from slc.publications.utils import _get_storage_folder
 try:
     from Products.LinguaPlone.config import RELATIONSHIP
     HAVE_LINGUAPLONE=True
-except:
+except ImportError:
     HAVE_LINGUAPLONE=False
     RELATIONSHIP = ''
 

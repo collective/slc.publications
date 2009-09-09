@@ -10,7 +10,13 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone import PloneMessageFactory as _
 from Products.validation import V_REQUIRED
 
-from Products.LinguaPlone.utils import generateMethods
+try:
+    from Products.LinguaPlone.utils import generateMethods
+    HAVE_LINGUAPLONE = True
+except ImportError:
+    generateMethods = None
+    HAVE_LINGUAPLONE = False
+
 from archetypes.schemaextender.interfaces import ISchemaExtender, IOrderableSchemaExtender
 from archetypes.schemaextender.field import ExtensionField
 
@@ -211,7 +217,7 @@ class SchemaExtender(object):
                 _myfields.append(new_f)
         self._myfields = _myfields
         klass = context.__class__
-        if not getattr(klass, LANGUAGE_INDEPENDENT_INITIALIZED, False):
+        if HAVE_LINGUAPLONE not getattr(klass, LANGUAGE_INDEPENDENT_INITIALIZED, False):
             fields = [field for field in _myfields if field.languageIndependent]
             generateMethods(klass, fields)
             setattr(klass, LANGUAGE_INDEPENDENT_INITIALIZED, True)
