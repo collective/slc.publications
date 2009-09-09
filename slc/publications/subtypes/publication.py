@@ -217,7 +217,7 @@ class SchemaExtender(object):
                 _myfields.append(new_f)
         self._myfields = _myfields
         klass = context.__class__
-        if HAVE_LINGUAPLONE not getattr(klass, LANGUAGE_INDEPENDENT_INITIALIZED, False):
+        if HAVE_LINGUAPLONE and not getattr(klass, LANGUAGE_INDEPENDENT_INITIALIZED, False):
             fields = [field for field in _myfields if field.languageIndependent]
             generateMethods(klass, fields)
             setattr(klass, LANGUAGE_INDEPENDENT_INITIALIZED, True)
