@@ -24,7 +24,7 @@
                     mode string:view;
         ">
 
-    <h1>
+    <h1 id="slcPublicationTitle">
         <a href="" tal:attributes="href string:${here/absolute_url}">
             <span tal:replace="here/Title">Title of the Publication</span>
         </a>
