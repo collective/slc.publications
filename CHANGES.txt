@@ -1,6 +1,10 @@
 slc.publications Changelog
 ==========================
 
+slc.publications 1.1.8 (Unreleased)
+-----------------------------------
+- Hide the JS-scanner induced PDF icon from the Related publications list on the publication's view (jcbrand)
+
 slc.publications 1.1.7 (2009-09-15)
 -----------------------------------
 - Add try,except to decouple slc.publications from Products.LinguaPlone (jcbrand)

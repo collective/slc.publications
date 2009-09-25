@@ -144,7 +144,7 @@
 
         <h2 i18n:translate="heading_chapterlisting">Chapters in this Publication</h2>
         <tal:repeat repeat="chapter chapters">
-            <h3>
+            <h3 class="relatedPublicationTitle">
                 <a href="" tal:attributes="href chapter/absolute_url" tal:content="chapter/Title"></a>
                 <span tal:condition="python:portal.portal_membership.checkPermission('Modify portal content', here)">
                     [<a tal:attributes="href string:${chapter/absolute_url}/edit">edit</a>]
