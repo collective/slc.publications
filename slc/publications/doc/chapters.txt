@@ -1,8 +1,9 @@
 Chapters
 ========
 
-Chapters are a way to store additional metadata on link objects which point to targets within the pdf file.
-This can be used if the pdf file is large and/or contains chapters on different topics, thus the different metadata.
+Chapters are a way to store additional metadata on link objects which point 
+to targets within the pdf file. This can be used if the pdf file is large 
+and/or contains chapters on different topics, thus the different metadata.
 
 
     >>> self.loginAsPortalOwner()
@@ -24,7 +25,8 @@ We add a new File and make it a publication by subtyping.
     >>> subtyper = getUtility(ISubtyper)
     >>> subtyper.change_type(mypub, 'slc.publications.Publication')
 
-Now we add a chapter and call the ObjectModified event to call the handler that adds the actual Link objects.
+Now we add a chapter and call the ObjectModified event to call the handler 
+that adds the actual Link objects.
 
     >>> from slc.publications.utils import _get_storage_folder
     >>> mypub.getField('chapters').getMutator(mypub)(['chapter1'])
@@ -35,14 +37,13 @@ Now we add a chapter and call the ObjectModified event to call the handler that 
     >>> additionals.objectIds()
     ['chapter1']
     
-If we delete the chapter setting on the publication object, the link in the additionals storage is deleted as well.
+If we delete the chapter setting on the publication object, the link in the 
+additionals storage is deleted as well.
 
     >>> mypub.getField('chapters').getMutator(mypub)([])
     >>> event.notify(objectevent.ObjectModifiedEvent(mypub))
     >>> additionals = _get_storage_folder(mypub)
     >>> additionals.objectIds()
     []
-    
 
-    
 
