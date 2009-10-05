@@ -1,5 +1,11 @@
 Changelog for slc.publications
 
+1.1.9 (unreleased)
+------------------
+
+- Nothing changed yet.
+
+
     (name of developer listed in brackets)
 
 slc.publications - 1.0b1 Unreleased
