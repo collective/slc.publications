@@ -1,8 +1,8 @@
 slc.publications Changelog
 ==========================
 
-slc.publications 1.1.9 (unreleased)
------------------------------------
+1.1.9 (2009-10-06)
+------------------
 - Chapter links now always point to the url. Normally, if you click on a link
  and you have edit rights, you would go to the link view and not to the link 
  target. Since we already offer a second edit link, when somebody has edit 
