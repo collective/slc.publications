@@ -1,5 +1,5 @@
-- Patrick Gerken (Syslab.com GmbH)
-- Jan-Carel Brand (Syslab.com GmbH)
-- Wolfgang Thomas (Syslab.com GmbH)
 - Alexander Pilz (Syslab.com GmbH)
 - Alin Voinea for Testing and Plone 2.5 backporting
+- Jan-Carel Brand (Syslab.com GmbH)
+- Patrick Gerken (Syslab.com GmbH)
+- Wolfgang Thomas (Syslab.com GmbH)

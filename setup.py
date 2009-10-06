@@ -13,15 +13,15 @@ version = '1.1.9'
 long_description = (
     read('README.txt')
     + '\n' +
-    'Change history\n'
-    '**************\n'
-    + '\n' +
-    read('CHANGES.txt')
-    + '\n' +
     'Detailed Documentation\n'
     '**********************\n'
     + '\n' +
     read('slc', 'publications', 'README.txt')
+    + '\n' +
+    'Change history\n'
+    '**************\n'
+    + '\n' +
+    read('CHANGES.txt')
     + '\n' +
     'Contributors\n'
     '************\n'
