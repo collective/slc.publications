@@ -7,7 +7,7 @@
     <subscriber 
         for="slc.publications.interfaces.IPublicationEnhanced
              zope.lifecycleevent.interfaces.IObjectModifiedEvent"
-        handler=".events.update_chapters"
+        handler=".events.ChapterUpdater"
     />
     
     <subscriber 

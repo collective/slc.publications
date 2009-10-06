@@ -9,6 +9,10 @@ slc.publications 1.1.9 (unreleased)
  rights, the regular link can point directly to the place the link points to. 
  (gerken)
 
+- Refactored the Chapter Update functionality. It is not a method any longer
+  but a class. That way one can modify the behaviour without the need to
+  copy the complete functionality (gerken)
+
 slc.publications 1.1.8 (2009-09-30)
 -----------------------------------
 - Hide the JS-scanner induced PDF icon from the Related publications list on the publication's view (jcbrand)

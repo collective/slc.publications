@@ -237,4 +237,4 @@ class PrettyFormatter(object):
     def formatKeyword(self, kw):
         kw = kw.capitalize().replace('_',' ')
         return kw
-            
+
