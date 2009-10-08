@@ -9,13 +9,13 @@ from zope import interface
 from zope import schema
 from zope.formlib import form
 from zope.app.event import objectevent
-from zope.app.i18n import ZopeMessageFactory as _
 
 from AccessControl import Unauthorized
 from Products.AdvancedQuery import In, Eq, Le, Ge, And, Or
 
 from Products.CMFCore import utils as cmfutils
 from Products.CMFDefault.formlib.form import getLocale
+from zope.i18n import translate
 
 from Products.CMFPlone.utils import base_hasattr
 from Products.CMFPlone import PloneMessageFactory as _
@@ -34,6 +34,9 @@ from p4a.common import at
 from p4a.common import formatting
 
 from zope.app.form.browser import TextAreaWidget, DateDisplayWidget, CollectionInputWidget, OrderedMultiSelectWidget
+
+from zope.i18nmessageid import MessageFactory
+_ = MessageFactory('slc.publications')
 
 class PublicationPageView(object):
     """Page for displaying a publication.
@@ -171,6 +174,10 @@ class PublicationPageView(object):
         keywords = [dict(id=key, label=pf.formatKeyword(key)) for key in keywords]
 
         return keywords
+
+    def getTranslatedString(self, value, preflang, default=u''):
+        msg = _(value, default)
+        return translate(msg, target_language=preflang)
 
 class IPublicationView(interface.Interface):
     """Interface  for the Publication View """

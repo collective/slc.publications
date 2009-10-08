@@ -20,8 +20,9 @@
 		}
 </script>
 <nobr>
-<span i18n:translate="label_estimated_download_time"
-	i18n:domain="slc.publications">Estimated Download Time:</span>
+<span tal:define="preflang here/portal_languages/getPreferredLanguage;"
+    tal:replace="python:view.getTranslatedString('label_estimated_download_time', 
+                 preflang, 'Estimated Download Time')">Estimated time</span>:
 <select name="connspeed" class="EstTimeDropdown" onchange="getTime(this);">
     <option value="du56" selected>Dial-up (56K)</option>
     <option value="dsl256">DSL/Cable (256K)</option>

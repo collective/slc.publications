@@ -21,6 +21,7 @@
                     fields python: schematas[fieldset].editableFields(here);
                     lockable python: hasattr(here, 'wl_isLocked');
                     isLocked python: lockable and here.wl_isLocked();
+                    preflang here/portal_languages/getPreferredLanguage;
                     mode string:view;
         ">
 
@@ -76,8 +77,9 @@
 
             <a href="" target="_new" tal:attributes="href string:${here/absolute_url}">
                 <strong>
-                    <span tal:omit-tag=""
-                        i18n:translate="label_download_full_publication">Download the full publication as PDF</span>
+                    <span 
+                        tal:replace="python:view.getTranslatedString('label_download_full_publication', 
+                         preflang, 'Download the full publication as PDF')">Download</span>
                     <img tal:attributes="src string:${portal_url}/pdf_icon.gif"
                          alt="PDF Icon" title="PDF Icon">
                 </strong>
@@ -102,7 +104,8 @@
                 </div>
                 <div tal:replace="structure value"></div>
                 <br />
-                <div i18n:translate="help_order_id">Order a printed copy of this document!</div>
+                <div tal:content="python:view.getTranslatedString('label_order_copy', 
+                   preflang, 'Order a printed copy of this document!')" >Order a printed copy</div>
             </div>
 
             <div style="float:left" class="publicationOrderButton">
@@ -125,7 +128,7 @@
         <div class="publicationLanguageBox"
              tal:define="available_translations view/available_translations"
              tal:condition="available_translations">
-            <span i18n:translate="label_available_in">Available in</span>:
+            <span tal:replace="python:view.getTranslatedString('label_available_in', preflang, 'Available in')">Available in</span>:
                 <tal:block repeat="lang available_translations">
                     <a href="" target="_new"
                        tal:define="defaultlang here/portal_languages/getDefaultLanguage;
@@ -142,7 +145,8 @@
          tal:define="chapters view/chapters"
          tal:condition="chapters">
 
-        <h2 i18n:translate="heading_chapterlisting">Chapters in this Publication</h2>
+        <h2 tal:content="python:view.getTranslatedString('heading_chapterlisting',
+           preflang, 'Chapters in this Publication')">Chapters</h2>
         <tal:repeat repeat="chapter chapters">
             <h3 class="relatedPublicationTitle">
                 <a href="" tal:attributes="href chapter/getRemoteUrl" tal:content="chapter/Title"></a>
@@ -153,7 +157,8 @@
 
             <tal:block condition="chapter/Description">
                 <span tal:replace="chapter/Description"/>
-                <a href="" tal:attributes="href chapter/getRemoteUrl" i18n:translate="box_morelink">Read more ...</a>
+                <a href="" tal:attributes="href chapter/getRemoteUrl"
+             tal:content="python:view.getTranslatedString('box_morelink', preflang, 'Read more...')">Read more ...</a>
             </tal:block>
 
         </tal:repeat>
@@ -170,7 +175,8 @@
         tal:define="PUBS python:view.fetchRelatedPublications(limit=3);">
 
         <div id="related_pubs_heading">
-            <h2 i18n:translate="heading_related">Related Publications</h2>
+            <h2 tal:content="python:view.getTranslatedString('heading_related', 
+             preflang, 'Related Publications')">Related</h2>
         </div>
 
         <div class="publicationBlock" tal:repeat="publication PUBS">
@@ -194,7 +200,8 @@
 
         <div id="more_pubs_line"
             tal:define="keywords view/getFormattedKeywords">
-            <span i18n:translate="box_show_more_publications">Show more publications on</span>
+            <span tal:replace="python:view.getTranslatedString('box_show_more_publications',
+              preflang, 'Show more publications on')">Show more</span>
             <span tal:repeat="key keywords" tal:omit-tag="">
                 <a tal:attributes="href string:@@publications-by-subject?subject=${key/id}&subject_label=${key/label}"
                 tal:content="key/label" />
