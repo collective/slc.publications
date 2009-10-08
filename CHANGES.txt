@@ -4,7 +4,10 @@ Changelog
 1.1.10 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- replaced all occurences of i18n:translate in the publication_view template 
+  with a call to a method on the view that uses MessageFactory. I couldn't figure
+  out why i18n:translate worked for some langs, and not for others such as NL (thomasw)
+
 
 
 1.1.9 (2009-10-06)
