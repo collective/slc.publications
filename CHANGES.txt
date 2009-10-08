@@ -1,6 +1,12 @@
 Changelog
 ==========================
 
+1.1.10 (unreleased)
+-------------------
+
+- Nothing changed yet.
+
+
 1.1.9 (2009-10-06)
 ------------------
 - Chapter links now always point to the url. Normally, if you click on a link
