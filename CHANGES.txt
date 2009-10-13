@@ -1,6 +1,11 @@
 Changelog
 ==========================
 
+1.1.11 (2009-10-13)
+-------------------
+
+- rerelease. There was a mistake where parts of the package did not get into the egg
+
 1.1.10 (2009-10-13)
 -------------------
 
