@@ -106,7 +106,7 @@ class PublicationPageView(object):
              Eq('review_state', 'published') 
 
         if HAVE_LINGUAPLONE:
-           PQ = PQ & Eq('Language', preflang)
+           PQ = PQ & In('Language', [preflang, ''])
 
         RES = pc.evalAdvancedQuery(PQ, (('effective','desc'),) )
 
