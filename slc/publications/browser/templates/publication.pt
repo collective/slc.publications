@@ -61,7 +61,8 @@
                        tal:attributes="for python:field.widget.Label(here); title python:field.widget.Label(here)"
                        tal:content="python:field.widget.Label(here)"></label>:
             </div>
-            <div tal:replace="structure python:field.getAccessor(here)()"></div>
+            <div tal:define="author python:field.getAccessor(here)()" 
+                tal:replace="python:view.getTranslatedString(author, preflang, author)"></div>
         </div>
 
         <div class="publicationField" tal:define="field python:here.getField('effectiveDate');">
