@@ -1,7 +1,7 @@
 Changelog
 ==========================
 
-1.1.12 (unreleased)
+1.1.12 (2009-10-18)
 -------------------
 
 -translate the contents of the author field - workaround since the field is language-independent (thomasw)
