@@ -344,7 +344,7 @@ msgstr "Disponible en"
 
 #. Default: "Download the full publication in PDF "
 msgid "label_download_full_publication"
-msgstr "Télédécharger la publication complète en format PDF"
+msgstr "Télécharger la publication complète en format PDF"
 
 #. Default: "Related Publications"
 msgid "heading_related"
