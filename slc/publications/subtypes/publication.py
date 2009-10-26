@@ -210,15 +210,9 @@ class SchemaExtender(object):
     def __init__(self, context):
         """ init """
         self.context = context
-        _myfields= list()
-        for f in self._fields:
-            if f.getName() not in ['osha_metadata']:
-                new_f = f.copy()
-                _myfields.append(new_f)
-        self._myfields = _myfields
         klass = context.__class__
         if HAVE_LINGUAPLONE and not getattr(klass, LANGUAGE_INDEPENDENT_INITIALIZED, False):
-            fields = [field for field in _myfields if field.languageIndependent]
+            fields = [field for field in self._fields if field.languageIndependent]
             generateMethods(klass, fields)
             setattr(klass, LANGUAGE_INDEPENDENT_INITIALIZED, True)
 
