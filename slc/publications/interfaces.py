@@ -57,3 +57,6 @@ class IMediaActivator(Interface):
     
 class IPrettyFormatter(Interface):
     """ Provides functionality to format strings """
+
+class IAdditionalPublicationInfo(Interface):
+    """ Marker for adapter that provides additional info in the publication view """

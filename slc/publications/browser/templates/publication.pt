@@ -139,6 +139,7 @@
                        tal:content="python: '[%s]' % langname" />
                 </tal:block>
         </div>
+    <span tal:replace="structure view/get_additional_info"></span>
     </div>
     <div class="visualClear"></div>
 

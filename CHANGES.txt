@@ -4,8 +4,9 @@ Changelog
 1.1.13 (unreleased)
 -------------------
 
-- Nothing changed yet.
-
+- removed unnecessary reference to OSHA in subtyper/publication.py (thomasw)
+- typo in FR translation (thomasw)
+- added possibility to display additional info on the view of a publication via an adapter (thomasw)
 
 1.1.12 (2009-10-18)
 -------------------

@@ -179,6 +179,20 @@ class PublicationPageView(object):
         msg = _(value, default)
         return translate(msg, target_language=preflang)
 
+
+    def get_additional_info(self):
+        """ Method for injecting custom content into the view of a Publication
+            Just define an adapter for IPublicationEnhanced that implements IAdditionalPublicationInfo.
+        """
+        adapter = component.queryAdapter(self.context, interfaces.IAdditionalPublicationInfo)
+        if adapter:
+            try:
+                return adapter()
+            except:
+                pass
+        return u""
+
+
 class IPublicationView(interface.Interface):
     """Interface  for the Publication View """
 
