@@ -22,7 +22,6 @@ from zope.event import notify
 # This patch was proposed to the LP Issue tracker: http://plone.org/products/linguaplone/issues/116
 
 from zope.interface import implements
-from zope.interface import Interface
 from zope.interface import Attribute
 from zope.component.interfaces import IObjectEvent
 
