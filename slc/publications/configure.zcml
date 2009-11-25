@@ -55,7 +55,7 @@
         <adapter 
             factory=".adapter.publication.ATCTFilePublication" 
             provides="slc.publications.interfaces.IPublication"
-            for="plone.app.blob.interfaces.IATBlob"
+            for="plone.app.blob.interfaces.IATBlobFile"
             />
     </configure>
 
