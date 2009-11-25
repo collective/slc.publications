@@ -100,7 +100,7 @@ class ChapterUpdater:
             chapterfield = translation.getField('chapters')
             if chapterfield is None:
                 logger.warn('Publication has no chapterfield: %s' % 
-                            translations.absolute_url())
+                            translation.absolute_url())
                 continue
             chapters = chapterfield.getAccessor(translation)()
 
