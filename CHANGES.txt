@@ -6,6 +6,7 @@ Changelog
 
 - Refined overrides.zcml. It will now also work with newer plone.app.blob
   versions and images in blob. (gerken)
+- Added EUPL license (deroiste)
 
 
 1.1.13 (2009-11-09)
