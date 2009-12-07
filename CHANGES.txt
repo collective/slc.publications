@@ -6,6 +6,7 @@ Changelog
 
 - Refined overrides.zcml. It will now also work with newer plone.app.blob
   versions and images in blob. (gerken)
+- Change related publications boxes to "key resources" (manually added) and "related resources" (Keyword based) Change requested by Sarah during Bilbao meeting 30.11-1.12.2009  #439 (pilz)
 - Added EUPL license (deroiste)
 
 
