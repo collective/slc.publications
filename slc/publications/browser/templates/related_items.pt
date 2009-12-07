@@ -13,7 +13,7 @@
             <tal:block tal:condition="python:related">
                 <div id="related_publications_block">
                     <div id="related_pubs_heading">
-                        <h2 i18n:translate="heading_related">Related Content</h2>
+                        <h2 i18n:translate="heading_key_resources">Key Resources</h2>
                     </div>
                     <ul class="visualNoMarker">
                     <tal:related tal:repeat="item related"

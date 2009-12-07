@@ -177,8 +177,8 @@
         tal:define="PUBS python:view.fetchRelatedPublications(limit=3);">
 
         <div id="related_pubs_heading">
-            <h2 tal:content="python:view.getTranslatedString('heading_related', 
-             preflang, 'Related Publications')">Related</h2>
+            <h2 tal:content="python:view.getTranslatedString('heading_related_resources', 
+             preflang, 'Related Resources')">Related Resources</h2>
         </div>
 
         <div class="publicationBlock" tal:repeat="publication PUBS">
