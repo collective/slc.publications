@@ -1,7 +1,7 @@
 Changelog
 ==========================
 
-1.1.14 (unreleased)
+1.1.14 (2009-12-07)
 -------------------
 
 - Refined overrides.zcml. It will now also work with newer plone.app.blob
