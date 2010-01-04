@@ -1,6 +1,5 @@
 import logging
 import transaction
-from zope.component import getUtility
 from Products.CMFCore.utils import getToolByName
 from config import DEPENDENCIES
 
@@ -14,6 +13,7 @@ def installDependencies(self):
     """
     if isNotPublicationsProfile(self):
         return
+
     log.info("installDependencies")
     site = self.getSite()
     qi = getToolByName(site, 'portal_quickinstaller')
@@ -29,6 +29,7 @@ def setupActions(self):
     """
     if isNotPublicationsProfile(self):
         return
+
     tool = getToolByName(self, 'portal_types')
     filetype = getattr(tool, 'File')
     acts = filter(lambda x: x.id == 'generate_metadata', filetype.listActions())
