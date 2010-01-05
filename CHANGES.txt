@@ -4,7 +4,7 @@ Changelog
 1.1.15 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- bugfix: BaseAttributeExtractor was defined incorrectly for the case that slc.xliff is not installed (thomasw)
 
 
 1.1.14 (2009-12-07)
