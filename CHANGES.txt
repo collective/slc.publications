@@ -4,6 +4,8 @@ Changelog
 1.1.15 (unreleased)
 -------------------
 
+- bugfix: file_view calls invokeFactory even for Anonymous users, now catching
+  Unauthorized instead (deroiste)
 - bugfix: BaseAttributeExtractor was defined incorrectly for the case that slc.xliff is not installed (thomasw)
 
 
