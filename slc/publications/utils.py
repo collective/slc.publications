@@ -1,9 +1,6 @@
 from AccessControl import Unauthorized
 from Acquisition import aq_inner, aq_parent
 
-from zope.component import getUtility
-from zope.component.interfaces import IFactory
-
 from Products.CMFCore.utils import getToolByName
 
 from slc.publications.interfaces import IPublicationEnhanced
@@ -28,9 +25,10 @@ def _get_storage_folder(ob):
         #container.invokeFactory("Folder", additionals_id)
         pt = getToolByName(ob, 'portal_types')
         folder_type = pt.getTypeInfo("Folder")
-        factory = getUtility(IFactory, folder_type.factory)
-        data_obj = factory(additionals_id, *args, **kw)
-        container._setObject(additionals_id, data_obj)
+        factory_method = folder_type._getFactoryMethod(
+            container, check_security=0
+            )
+        factory_method(additionals_id)
         additionals = getattr(container, additionals_id)
         additionals.title = 'Additional material on %s' % ob.Title()
         additionals.setExcludeFromNav(True)
