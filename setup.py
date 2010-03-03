@@ -16,7 +16,7 @@ long_description = (
     'Detailed Documentation\n'
     '**********************\n'
     + '\n' +
-    read('slc', 'publications', 'README.txt')
+    read('README.txt')
     + '\n' +
     'Change history\n'
     '**************\n'
