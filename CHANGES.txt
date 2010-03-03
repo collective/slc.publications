@@ -1,11 +1,13 @@
 Changelog
 ==========================
 
-1.1.15 (unreleased)
+1.1.15 (2009-03-03)
 -------------------
 
-- bugfix: file_view calls invokeFactory even for Anonymous users, now catching
-  Unauthorized instead (deroiste)
+- bugfix: file_view creates a folder to hold extra data such as Link
+  objects pointing to chapters in the pdf file. Now bypassing security
+  checks so that this will also be created when an Anonymous user
+  views the publication (deroiste)
 - bugfix: BaseAttributeExtractor was defined incorrectly for the case that slc.xliff is not installed (thomasw)
 
 
