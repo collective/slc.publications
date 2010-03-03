@@ -22,9 +22,10 @@ def _get_storage_folder(ob):
     container = aq_parent(aq_inner(ob))
 
     if additionals_id not in container.objectIds():
-        #container.invokeFactory("Folder", additionals_id)
         pt = getToolByName(ob, 'portal_types')
         folder_type = pt.getTypeInfo("Folder")
+        # Deliberately bypassing the security mechanism so that
+        # Anonymous users can also create this folder
         factory_method = folder_type._getFactoryMethod(
             container, check_security=0
             )
