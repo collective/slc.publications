@@ -11,6 +11,7 @@ from zope.formlib import form
 from zope.app.event import objectevent
 
 from AccessControl import Unauthorized
+from AccessControl import getSecurityManager
 from Products.AdvancedQuery import In, Eq, Le, Ge, And, Or
 
 from Products.CMFCore import utils as cmfutils
@@ -71,9 +72,12 @@ class PublicationPageView(object):
         lang_codes = translations.keys()
         lang_codes.sort()
 
+        sm = getSecurityManager()
         R = []
         for lang in lang_codes:
             trans = translations[lang][0]
+            if not sm.checkPermission('View', trans):
+                continue
             url = trans.absolute_url()
 
             name = ali.get(lang, {'native': lang})['native']

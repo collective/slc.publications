@@ -4,7 +4,8 @@ Changelog
 1.1.16 (unreleased)
 -------------------
 
-- No changes yet
+- Bugfix in publication view: don't show links to translations which the user
+  may not see (thomasw)
 
 1.1.15 (2009-03-03)
 -------------------
