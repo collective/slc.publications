@@ -158,10 +158,10 @@ class PublicationPageView(object):
     def generate_estimation_js(self):
         lines = []
         objsize = float(self.context.get_size())
-        du56 = self._format_timestring(int(objsize/57344.0))
-        dsl256 = self._format_timestring(int(objsize/262144.0))
-        dsl768 = self._format_timestring(int(objsize/786432.0))
-        t1 = self._format_timestring(int(objsize/1536000.0))
+        du56 = self._format_timestring(int(8*objsize/57344.0))
+        dsl256 = self._format_timestring(int(8*objsize/262144.0))
+        dsl768 = self._format_timestring(int(8*objsize/786432.0))
+        t1 = self._format_timestring(int(8*objsize/1536000.0))
 
 
 

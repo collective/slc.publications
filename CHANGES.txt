@@ -4,7 +4,7 @@ Changelog
 1.1.17 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- fixed download speed calculations (pilz)
 
 
 1.1.16 (2010-06-09)
