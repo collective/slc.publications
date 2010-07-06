@@ -4,7 +4,8 @@ Changelog
 1.1.18 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- The EU-Bookshop has changed their URL format for publications yet again.
+  Adapted the publication view accordingly [thomasw]
 
 
 1.1.17 (2010-06-19)
