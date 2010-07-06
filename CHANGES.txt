@@ -1,7 +1,7 @@
 Changelog
 ---------
 
-1.1.18 (unreleased)
+1.1.18 (2010-07-06)
 -------------------
 
 - The EU-Bookshop has changed their URL format for publications yet again.
