@@ -29,6 +29,7 @@ from slc.publications import HAVE_LINGUAPLONE
 from slc.publications import interfaces
 from slc.publications.ini.interfaces import IINIParser
 from slc.publications.utils import _get_storage_folder
+from slc.publications.config import combined_languages_EU
 
 
 from p4a.common import at
@@ -195,6 +196,10 @@ class PublicationPageView(object):
             except:
                 pass
         return u""
+
+    def getCombinedLanguageCode(self, lang=''):
+        """ The EU Bookshop now needs a combined language code """
+        return combined_languages_EU.get(lang, lang)
 
 
 class IPublicationView(interface.Interface):

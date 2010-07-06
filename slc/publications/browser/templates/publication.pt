@@ -109,11 +109,12 @@
                    preflang, 'Order a printed copy of this document!')" >Order a printed copy</div>
             </div>
 
-            <div style="float:left" class="publicationOrderButton">
+            <div style="float:left" class="publicationOrderButton"
+                 tal:define="bookshop_lang python:view.getCombinedLanguageCode(lang)">
                <a href=""
                       target="_blank"
                       alt="Order a printed copy at EU-Bookshop"
-                      tal:attributes="href     string:http://bookshop.europa.eu/eubookshop/bookmarks.action?target=EUB:NOTICE:$value:$lang&amp;request_locale=$lang" >
+                      tal:attributes="href string:http://bookshop.europa.eu/is-bin/INTERSHOP.enfinity/WFS/EU-Bookshop-Site/$bookshop_lang/-/EUR/ViewPublication-Start?PublicationKey=$value" >
                           <img src="eu_bookshop.gif"
                                alt="EU Bookshop: You can order a printed copy of this document"
                                title="EU Bookshop: You can order a printed copy of this document">
