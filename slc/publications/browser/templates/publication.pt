@@ -76,7 +76,8 @@
 
         <div class="publicationField">
 
-            <a href="" target="_new" tal:attributes="href string:${here/absolute_url}">
+            <a href="" target="_new" 
+                       tal:attributes="href string:${here/absolute_url}; onclick string:pageTracker._trackPageview('${here/absolute_url}');;">
                 <strong>
                     <span 
                         tal:replace="python:view.getTranslatedString('label_download_full_publication', 
