@@ -83,6 +83,10 @@ class ChapterUpdater:
     of a publication
     """
     def __init__(self, publication, event):
+        # skip this step if we're in the portal_factory
+        if hasattr(publication, '_p_jar') and publication._p_jar is None:
+            return
+
         self.publication = publication
         self.event = event
         # Make sure we only do this on canonical version
