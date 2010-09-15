@@ -1,16 +1,29 @@
 from AccessControl import Unauthorized
 from Acquisition import aq_inner, aq_parent
+import logging
 
 from Products.CMFCore.utils import getToolByName
 
 from slc.publications.interfaces import IPublicationEnhanced
 
+log = logging.getLogger('slc.publications')
+
+try:
+    from Products.LinguaPlone.config import RELATIONSHIP
+    HAVE_LINGUAPLONE=True
+except ImportError:
+    HAVE_LINGUAPLONE=False
+    RELATIONSHIP = ''
 
 def _get_storage_folder(ob):
     """ Helper Method to fetch the folder containing additional material
         like chapters and further pdf parts
     """
     if not IPublicationEnhanced.providedBy(ob):
+        return None
+
+    # Don't attempt to create the storage folder if we're in the factory
+    if hasattr(ob, '_p_jar') and ob._p_jar is None:
         return None
 
     additionals_id = ob.getId().replace('.pdf', '') + '_data'
@@ -33,6 +46,26 @@ def _get_storage_folder(ob):
         additionals = getattr(container, additionals_id)
         additionals.title = 'Additional material on %s' % ob.Title()
         additionals.setExcludeFromNav(True)
+        # If we're in a LinguaPlone environment and the Publication is not
+        # canonical, language-link the additionals folders.
+        if HAVE_LINGUAPLONE and not ob.isCanonical():
+            can = ob.getCanonical()
+            can_additionals = _get_storage_folder(can)
+            if not can_additionals.getTranslation(ob.Language()):
+                additionals.addTranslationReference(can_additionals)
+            else:
+                # we should probably raise an Error if the're already a
+                # translation
+                wrong = can_additionals.getTranslation(ob.Language())
+                try:
+                    wrong_url = wrong.absolute_url()
+                except:
+                    wrong_url = "URL not available"
+                log.error("The additionals folder of Publication %(can)s is "\
+                "already translated to '%(lang)s' but does not have the id "\
+                "'%(id)s'. The wrong folder is here: %(wrong_url)s." % dict(
+                can=can.absolute_url(), lang=ob.Language(),
+                id=additionals_id, wrong_url=wrong_url))
         additionals.reindexObject()
     else:
         additionals = getattr(container, additionals_id)
