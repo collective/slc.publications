@@ -95,8 +95,8 @@ class ChapterUpdater:
                 return
         
         if HAVE_LINGUAPLONE:
-            translations = [x[0] for x in publication.getTranslations().values() 
-                            if x[0] is not None]
+            translations = [publication] + [x[0] for x in publication.getTranslations().values()
+                            if (x[0] is not None and x[0] != publication)]
         else:
             translations = [self.publication]
 
@@ -126,9 +126,18 @@ class ChapterUpdater:
         return reference_container.objectIds('ATLink')
 
     def addChapter(self, translation, chapter):
-        reference_container = _get_storage_folder(translation)
-        reference_container.invokeFactory('Link', chapter)
-        new_chapter = getattr(reference_container, chapter)
+        if HAVE_LINGUAPLONE and not translation.isCanonical():
+            can = translation.getCanonical()
+            can_reference_container = _get_storage_folder(can)
+            link = getattr(can_reference_container, chapter, None)
+            if not link:
+                # XXX what to do in this case? Should not happen
+                return
+            new_chapter = link.addTranslation(translation.Language())
+        else:
+            reference_container = _get_storage_folder(translation)
+            reference_container.invokeFactory('Link', chapter)
+            new_chapter = getattr(reference_container, chapter)
         new_chapter.setTitle(chapter)
         new_chapter.setLanguage(translation.Language())
         remote_url = "/%s#%s" % (urllib.unquote(translation.absolute_url(1)), 
