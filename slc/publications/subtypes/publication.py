@@ -22,23 +22,37 @@ from archetypes.schemaextender.field import ExtensionField
 
 LANGUAGE_INDEPENDENT_INITIALIZED = '_languageIndependent_initialized_slc_publications'
 
+class ExtensionFieldMixin:
 
-class ExtendedImageField(ExtensionField, atapi.ImageField):
+    def getMutator(self, instance):
+        def mutator(value, **kw):
+            self.set(instance, value, **kw)
+
+        methodName = getattr(self, 'mutator', None)
+        if methodName is None:  # Use default setter
+            return mutator
+        
+        method = getattr(instance, methodName, None)
+        if method is None:   # Use default setter
+            return mutator
+        return method
+
+class ExtendedImageField(ExtensionFieldMixin, ExtensionField, atapi.ImageField):
     """"""
 
-class ExtendedBooleanField(ExtensionField, atapi.BooleanField):
+class ExtendedBooleanField(ExtensionFieldMixin, ExtensionField, atapi.BooleanField):
     """"""
 
-class ExtendedLinesField(ExtensionField, atapi.LinesField):
+class ExtendedLinesField(ExtensionFieldMixin, ExtensionField, atapi.LinesField):
     """"""
 
-class ExtendedFileField(ExtensionField, atapi.FileField):
+class ExtendedFileField(ExtensionFieldMixin, ExtensionField, atapi.FileField):
     """"""
 
-class ExtendedStringField(ExtensionField, atapi.StringField):
+class ExtendedStringField(ExtensionFieldMixin, ExtensionField, atapi.StringField):
     """ """
 
-class ExtendedReferenceField(ExtensionField, atapi.ReferenceField):
+class ExtendedReferenceField(ExtensionFieldMixin, ExtensionField, atapi.ReferenceField):
     """ """
     def get(self, instance, **kwargs):
         canonical = instance.getCanonical()
