@@ -69,5 +69,12 @@ def _get_storage_folder(ob):
         additionals.reindexObject()
     else:
         additionals = getattr(container, additionals_id)
+        # For legacy Publications, check if language-linking is necessary
+        # XXX fixme: this should probably go into a migration step!
+        if HAVE_LINGUAPLONE and not ob.isCanonical():
+            can = ob.getCanonical()
+            can_additionals = _get_storage_folder(can)
+            if not can_additionals.getTranslation(ob.Language()):
+                additionals.addTranslationReference(can_additionals)
 
     return additionals
