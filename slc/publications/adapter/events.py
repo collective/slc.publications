@@ -142,6 +142,7 @@ class ChapterUpdater:
                 return
             try:
                 new_chapter = link.addTranslation(translation.Language())
+                new_chapter.setTitle(link.Title())
             except AlreadyTranslated:
                 logger.error('We have an illegal translation in Publication %(pub)s '\
                 'for chapter %(chapter)s in language %(lang)s. The illegal '\
@@ -153,8 +154,8 @@ class ChapterUpdater:
             reference_container = _get_storage_folder(translation)
             reference_container.invokeFactory('Link', chapter)
             new_chapter = getattr(reference_container, chapter)
-        new_chapter.setTitle(chapter)
-        new_chapter.setLanguage(translation.Language())
+            new_chapter.setTitle(chapter)
+            new_chapter.setLanguage(translation.Language())
         remote_url = "/%s#%s" % (urllib.unquote(translation.absolute_url(1)), 
                                  chapter)
         new_chapter.edit(remote_url)
