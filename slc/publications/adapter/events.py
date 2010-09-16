@@ -16,11 +16,14 @@ from slc.publications import interfaces
 from slc.publications.utils import _get_storage_folder
 
 try:
-    from Products.LinguaPlone.config import RELATIONSHIP
+    from Products.LinguaPlone.I18NBaseObject import AlreadyTranslated
     HAVE_LINGUAPLONE=True
 except ImportError:
     HAVE_LINGUAPLONE=False
-    RELATIONSHIP = ''
+    class AlreadyTranslated(Exception):
+        """Raised when trying to create an existing translation."""
+        pass
+
 
 logger = logging.getLogger('slc.publications')
 
@@ -101,26 +104,29 @@ class ChapterUpdater:
             translations = [self.publication]
 
         for translation in translations:
-            chapterfield = translation.getField('chapters')
-            if chapterfield is None:
-                logger.warn('Publication has no chapterfield: %s' % 
-                            translation.absolute_url())
-                continue
-            chapters = chapterfield.getAccessor(translation)()
+            self._manage_chapters(translation)
 
-            reference_container = _get_storage_folder(translation)
-            references = self.getReferences(reference_container)
+    def _manage_chapters(self, translation):
+        chapterfield = translation.getField('chapters')
+        if chapterfield is None:
+            logger.warn('Publication has no chapterfield: %s' % 
+                        translation.absolute_url())
+            return
+        chapters = chapterfield.getAccessor(translation)()
 
-            outdated = []
-            for reference in references:
-                if reference not in chapters:
-                    outdated.append(reference)
-            reference_container.manage_delObjects(ids = outdated)
+        reference_container = _get_storage_folder(translation)
+        references = self.getReferences(reference_container)
 
-            for chapter in chapters:
-                chapter = chapter.encode('utf-8')
-                if chapter not in references:
-                    self.addChapter(translation, chapter)
+        outdated = []
+        for reference in references:
+            if reference not in chapters:
+                outdated.append(reference)
+        reference_container.manage_delObjects(ids = outdated)
+
+        for chapter in chapters:
+            chapter = chapter.encode('utf-8')
+            if chapter not in references:
+                self.addChapter(translation, chapter)
 
     def getReferences(self, reference_container):
         return reference_container.objectIds('ATLink')
@@ -131,9 +137,18 @@ class ChapterUpdater:
             can_reference_container = _get_storage_folder(can)
             link = getattr(can_reference_container, chapter, None)
             if not link:
-                # XXX what to do in this case? Should not happen
+                # XXX what to do in this case (chapter not available in the
+                # canonical folder)? Should not happen
                 return
-            new_chapter = link.addTranslation(translation.Language())
+            try:
+                new_chapter = link.addTranslation(translation.Language())
+            except AlreadyTranslated:
+                logger.error('We have an illegal translation in Publication %(pub)s '\
+                'for chapter %(chapter)s in language %(lang)s. The illegal '\
+                'translation can be found here: %(bad)s' % dict(pub=can.absolute_url(),
+                chapter=link.absolute_url(), lang=translation.Language(), bad=
+                link.getTranslation(translation.Language()).absolute_url()))
+                return
         else:
             reference_container = _get_storage_folder(translation)
             reference_container.invokeFactory('Link', chapter)
@@ -157,4 +172,17 @@ class ChapterUpdater:
     def setState(self, chapter, language):
         comment = "Publish publication in %s in language %s" % \
                   (chapter, language)
-        self.portal_workflow.doActionFor(chapter, 'publish', comment)
+        self.portal_workflow.doActionFor(chapter, 'publish', comment=comment)
+
+class TranslationChapterUpdater(ChapterUpdater):
+    """
+    This adapter will take care of updating the Chapters
+    of a publication
+    """
+    def __init__(self, publication, event):
+        # skip this step if we're in the portal_factory
+        if hasattr(publication, '_p_jar') and publication._p_jar is None:
+            return
+
+        self.publication = event.target
+        self._manage_chapters(self.publication)

@@ -9,7 +9,7 @@
              zope.lifecycleevent.interfaces.IObjectModifiedEvent"
         handler=".events.ChapterUpdater"
     />
-    
+
     <subscriber 
         for="slc.publications.interfaces.IPublicationEnhanced
              zope.lifecycleevent.interfaces.IObjectModifiedEvent"
@@ -32,6 +32,11 @@
                   ..linguaplone_addTranslation_patch.IObjectTranslationReferenceSetEvent"
             handler=".events.subtype_on_translate"
        />
+        <subscriber 
+            for="slc.publications.interfaces.IPublicationEnhanced
+                 Products.LinguaPlone.events.IObjectTranslatedEvent"
+            handler=".events.TranslationChapterUpdater"
+        />
     </configure>
 
     <adapter factory=".publication.PrettyFormatter"
