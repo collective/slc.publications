@@ -1,7 +1,7 @@
 Changelog
 ---------
 
-1.1.20 (unreleased)
+1.1.20 (2010-10-05)
 -------------------
 
 - Enhancements / Bugfixes for translated Publications with chapters. Chapters (ATLinks) are now
