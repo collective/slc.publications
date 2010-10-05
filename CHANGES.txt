@@ -5,7 +5,10 @@ Changelog
 -------------------
 
 - Enhancements / Bugfixes for translated Publications with chapters. Chapters (ATLinks) are now
-  correctly copied over from the canonical to translations [thomasw]
+  correctly copied over from the canonical to translations 
+  [thomasw]
+- Now propagating values of languageIndependent schema-extended fields actually works for LinguaPlone 2.2 
+  [thomasw]
 
 1.1.19 (2010-07-14)
 -------------------
