@@ -1,11 +1,10 @@
 Changelog
 ---------
 
-1.1.21 (unreleased)
+1.1.21 (2010-11-05)
 -------------------
 
-- Nothing changed yet.
-
+- 2 bugfixes concerning _get_storage_folder [thomasw]
 
 1.1.20 (2010-10-05)
 -------------------
