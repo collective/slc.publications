@@ -22,10 +22,6 @@ def _get_storage_folder(ob):
     if not IPublicationEnhanced.providedBy(ob):
         return None
 
-    # Don't attempt to create the storage folder if we're in the factory
-    if hasattr(ob, '_p_jar') and ob._p_jar is None:
-        return None
-
     additionals_id = ob.getId().replace('.pdf', '') + '_data'
 
     if additionals_id == ob.getId():
