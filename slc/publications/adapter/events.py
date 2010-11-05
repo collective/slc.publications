@@ -115,6 +115,8 @@ class ChapterUpdater:
         chapters = chapterfield.getAccessor(translation)()
 
         reference_container = _get_storage_folder(translation)
+        if reference_container is None:
+            return
         references = self.getReferences(reference_container)
 
         outdated = []
