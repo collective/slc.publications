@@ -4,13 +4,14 @@ Changelog
 1.1.23 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- item url in related_items always points to /view now. Fixes #1148
+  [pilz]
 
 
 1.1.22 (2010-11-22)
 -------------------
 
-- item url in related items always points to /view now. Fixes #1148
+- item url in publication_relatedItems always points to /view now. Fixes #1148
   [pilz]
 
 
