@@ -192,7 +192,7 @@
             </div>
             <div class="publicationText">
                 <h3>
-                    <a href="" tal:attributes="href publication/getURL">
+                    <a href="" tal:attributes="href string:${publication/getURL}/view">
                         <span tal:content="publication/Title" />
                     </a>
                 </h3>
