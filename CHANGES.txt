@@ -1,10 +1,11 @@
 Changelog
 ---------
 
-1.1.24 (unreleased)
+1.1.24 (2010-11-26)
 -------------------
 
-- Nothing changed yet.
+- item url in Related Resources now really really points to /view. Really.
+  Fixes #1148 [thomasw]
 
 
 1.1.23 (2010-11-23)
