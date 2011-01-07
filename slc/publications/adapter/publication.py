@@ -117,20 +117,24 @@ class _ATCTPublication(object):
             data = str(mainpub.getFile())
             if not data:
                 return 0
-            tmp_pdfin = tempfile.mkstemp(suffix='.pdf')
-            tmp_pdfout = tempfile.mkstemp(suffix='.pdf')
-            tmp_gifin = tempfile.mkstemp(suffix='.gif')
-            fhout = open(tmp_pdfout[1], "w")
-            fhimg = open(tmp_gifin[1], "r")
+            
+            fd, tmp_pdfin = tempfile.mkstemp(suffix='.pdf')
+            os.close(fd)
+            fd, tmp_pdfout = tempfile.mkstemp(suffix='.pdf')
+            os.close(fd)
+            fd, tmp_gifin = tempfile.mkstemp(suffix='.gif')
+            os.close(fd)
+            fhout = open(tmp_pdfout, "w")
+            fhimg = open(tmp_gifin, "r")
             fhout.write(data)
             fhout.seek(0)
-            cmd = "pdftk %s cat 1 output %s" %(tmp_pdfout[1], tmp_pdfin[1])
+            cmd = "pdftk %s cat 1 output %s" %(tmp_pdfout, tmp_pdfin)
             logger.info(cmd)
             res = os.popen(cmd)
             result = res.read()
             if result:
                 logger.warn("popen-1: %s" % (result))
-            cmd = "convert %s -resize 80x113 %s" %(tmp_pdfin[1], tmp_gifin[1])
+            cmd = "convert %s -resize 80x113 %s" %(tmp_pdfin, tmp_gifin)
             res = os.popen(cmd)
             result = res.read()
             if result:
@@ -145,13 +149,13 @@ class _ATCTPublication(object):
 
         # try to clean up
         if tmp_pdfin is not None:
-            try: os.remove(tmp_pdfin[1])
+            try: os.remove(tmp_pdfin)
             except: pass
         if tmp_pdfout is not None:
-            try: os.remove(tmp_pdfout[1])
+            try: os.remove(tmp_pdfout)
             except: pass
         if tmp_gifin is not None:
-            try: os.remove(tmp_gifin[1])
+            try: os.remove(tmp_gifin)
             except: pass
 
         return status
