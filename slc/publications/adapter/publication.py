@@ -16,20 +16,23 @@ from slc.publications.utils import _get_storage_folder
 
 logger = logging.getLogger('slc.publications.adapter.publication.py')
 
+
 def ATCTFilePublication(context):
-    """ Factory to generate the proper Adapter only if the 
+    """ Factory to generate the proper Adapter only if the
         object is properly subtyped"""
     if not interfaces.IPublicationEnhanced.providedBy(context):
         return None
     return _ATCTPublication(context)
 
-_marker=[]
+_marker = []
+
+
 class _ATCTPublication(object):
     """ Adapter to handle a file as publication
     """
     interface.implements(interfaces.IPublication)
     component.adapts(atctifaces.IATFile)
-                                               
+
     def __init__(self, context):
         self.context = context
 
@@ -43,12 +46,12 @@ class _ATCTPublication(object):
         C = getattr(additionals, chapter, None)
         if C is not None:
             return setMetadataMap(C, metadata)
-        
+
     def setMetadataIniMap(self, metadata):
         """ Given a complex metadata map from e.g. the ini parser set the metadata on all translations and chapters """
         subtyper = component.getUtility(ISubtyper)
 
-        if HAVE_LINGUAPLONE:        
+        if HAVE_LINGUAPLONE:
             translations = self.context.getTranslations()
             canonical = self.context.getCanonical()
         else:
@@ -56,15 +59,15 @@ class _ATCTPublication(object):
             canonical = self.context
 
         for lang in metadata.keys():
-            if lang == 'default': 
+            if lang == 'default':
                 continue    # we skip the default section
 
             if translations.has_key(lang):
                 translation = translations[lang][0]
                 if not subtyper.existing_type(translation) or \
-                   subtyper.existing_type(translation).name != 'slc.publications.Publication':
-                   subtyper.change_type(translation, 'slc.publications.Publication')
-                   
+                    subtyper.existing_type(translation).name != 'slc.publications.Publication':
+                    subtyper.change_type(translation, 'slc.publications.Publication')
+
             else:
                 if HAVE_LINGUAPLONE:
                     canonical.addTranslation(lang)
@@ -73,20 +76,20 @@ class _ATCTPublication(object):
                     subtyper.change_type(translation, 'slc.publications.Publication')
                     translations[lang] = [translation, None]
                 else:
-                    # Skip this. Metadata.ini contains multiple languages 
+                    # Skip this. Metadata.ini contains multiple languages
                     # but we are not running LP
-                    pass 
+                    pass
 
-            # if there is a default, we merge it with the language specifics. 
+            # if there is a default, we merge it with the language specifics.
             # But only for existing values. So the language sections extend the default
 
             langmap = metadata[lang]
-                
+
             adapter = interfaces.IPublication(translation)
             for key in langmap.keys():
-                if key == '':   
+                if key == '':
                     # no key means the publication itself
-                    
+
                     # merge defaults
                     publication_map = langmap['']
                     if  metadata.has_key('default'):
@@ -113,11 +116,11 @@ class _ATCTPublication(object):
                 mainpub = self.context.getCanonical()
             else:
                 mainpub = self.context
-                
+
             data = str(mainpub.getFile())
             if not data:
                 return 0
-            
+
             fd, tmp_pdfin = tempfile.mkstemp(suffix='.pdf')
             os.close(fd)
             fd, tmp_pdfout = tempfile.mkstemp(suffix='.pdf')
@@ -128,13 +131,13 @@ class _ATCTPublication(object):
             fhimg = open(tmp_gifin, "r")
             fhout.write(data)
             fhout.seek(0)
-            cmd = "pdftk %s cat 1 output %s" %(tmp_pdfout, tmp_pdfin)
+            cmd = "pdftk %s cat 1 output %s" % (tmp_pdfout, tmp_pdfin)
             logger.info(cmd)
             res = os.popen(cmd)
             result = res.read()
             if result:
                 logger.warn("popen-1: %s" % (result))
-            cmd = "convert %s -resize 80x113 %s" %(tmp_pdfin, tmp_gifin)
+            cmd = "convert %s -resize 80x113 %s" % (tmp_pdfin, tmp_gifin)
             res = os.popen(cmd)
             result = res.read()
             if result:
@@ -144,36 +147,41 @@ class _ATCTPublication(object):
             self.context.getField('cover_image').getMutator(self.context)(coverdata)
             status = 1
         except Exception, e:
-            logger.warn("generateImage: Could not autoconvert because: %s" %e)
+            logger.warn("generateImage: Could not autoconvert because: %s" % e)
             status = 0
 
         # try to clean up
         if tmp_pdfin is not None:
-            try: os.remove(tmp_pdfin)
-            except: pass
+            try:
+                os.remove(tmp_pdfin)
+            except:
+                pass
         if tmp_pdfout is not None:
-            try: os.remove(tmp_pdfout)
-            except: pass
+            try:
+                os.remove(tmp_pdfout)
+            except:
+                pass
         if tmp_gifin is not None:
-            try: os.remove(tmp_gifin)
-            except: pass
+            try:
+                os.remove(tmp_gifin)
+            except:
+                pass
 
         return status
 
-
     def setMetadataMap(self, metadata):
-        """ sets a simple map with metadata on the current context. 
+        """ sets a simple map with metadata on the current context.
             we also do some conversions for old metadata ini files.
         """
         setMetadataMap(self.context, metadata)
 
 
 def setMetadataMap(ob, metadata):
-    """ sets a simple map with metadata on the current context. 
+    """ sets a simple map with metadata on the current context.
         we also do some conversions for old metadata ini files.
     """
     _marker = []
-    compatibility = {'NACE': 'nace', 
+    compatibility = {'NACE': 'nace',
                      'keywords': 'subject',
                      }
     for comp in compatibility.keys():
@@ -193,7 +201,6 @@ def setMetadataMap(ob, metadata):
             newmt.append(os.path.basename(str(m)))
         metadata['multilingual_thesaurus'] = newmt
         del metadata['MTSubject']
-    
 
     # convert the old country path notation to ISOCode notation
     if metadata.has_key('Country'):
@@ -201,30 +208,30 @@ def setMetadataMap(ob, metadata):
         newc = []
         for C in c:
             elems = C.split("/")
-            if len(elems)<2:
+            if len(elems) < 2:
                 continue
-            elif len(elems)==2:
+            elif len(elems) == 2:
                 newc.append('EU')
             else:
-                if str(elems[2])=='MS':
+                if str(elems[2]) == 'MS':
                     newc.append('EU')
                 else:
                     newc.append(str(elems[2]))
         metadata['country'] = newc
         del metadata['Country']
-                    
+
     for key in metadata:
-            
+
         field = ob.getField(key)
         if field is None:
             continue
-        
+
         result = field.widget.process_form(ob, field, metadata,
                                                empty_marker=_marker,
                                                validating=False)
         if result is _marker or result is None:
             continue
-            
+
         mutator = field.getMutator(ob)
         __traceback_info__ = (ob, field, mutator)
         result[1]['field'] = field.__name__
@@ -234,11 +241,10 @@ def setMetadataMap(ob, metadata):
 
 
 class PrettyFormatter(object):
-    
+
     def __init__(self, context):
         self.context = context
-    
-    def formatKeyword(self, kw):
-        kw = kw.capitalize().replace('_',' ')
-        return kw
 
+    def formatKeyword(self, kw):
+        kw = kw.capitalize().replace('_', ' ')
+        return kw
