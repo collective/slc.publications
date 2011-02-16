@@ -4,8 +4,8 @@ Changelog
 1.1.25 (unreleased)
 -------------------
 
-- Nothing changed yet.
-
+- Deleted onclick event (call to pageTracker) on PDF download link. Instead added
+  class publicationURL around all download links [thomasw]
 
 1.1.24 (2010-11-26)
 -------------------
