@@ -74,10 +74,10 @@
             <div tal:replace="structure python:toLocalizedTime(field.getAccessor(here)())"></div>
         </div>
 
-        <div class="publicationField">
+        <div class="publicationField publicationURL">
 
             <a href="" target="_new" 
-                       tal:attributes="href string:${here/absolute_url}; onclick string:pageTracker._trackPageview('${here/absolute_url}');;">
+                       tal:attributes="href string:${here/absolute_url}">
                 <strong>
                     <span 
                         tal:replace="python:view.getTranslatedString('label_download_full_publication', 
@@ -128,7 +128,7 @@
             Show this box only when there are more than this translation is available
         </tal:comment>
 
-        <div class="publicationLanguageBox"
+        <div class="publicationLanguageBox publicationURL"
              tal:define="available_translations view/available_translations"
              tal:condition="available_translations">
             <span tal:replace="python:view.getTranslatedString('label_available_in', preflang, 'Available in')">Available in</span>:

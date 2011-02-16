@@ -40,16 +40,17 @@
                                 </a>
                             </span>
                             <br clear="all"/>
-                            <span i18n:translate="label_available_in">Available in</span>:
-                                <tal:block repeat="lang python:view.available_translations(context=item)">
-                                    <a href=""
-                                    tal:define="defaultlang here/portal_languages/getDefaultLanguage;
-                                                defaultlang python:here.portal_languages.getNameForLanguageCode(defaultlang);
-                                                langname python:lang[0] and lang[0] or defaultlang"
-                                    tal:attributes="href python: lang[1]"
-                                    tal:content="python: '[%s]' % langname" />
-                                </tal:block>
-                            <br clear="all"/>
+                            <div class="publicationURL">
+                               <span i18n:translate="label_available_in">Available in</span>:
+                                    <tal:block repeat="lang python:view.available_translations(context=item)">
+                                        <a href=""
+                                        tal:define="defaultlang here/portal_languages/getDefaultLanguage;
+                                                    defaultlang python:here.portal_languages.getNameForLanguageCode(defaultlang);
+                                                    langname python:lang[0] and lang[0] or defaultlang"
+                                        tal:attributes="href python: lang[1]"
+                                        tal:content="python: '[%s]' % langname" />
+                                    </tal:block>
+                            </div>
                             <br clear="all"/>
                         </li>
                     </tal:related>
