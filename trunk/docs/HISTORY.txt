@@ -1,9 +1,7 @@
-Changelog for slc.publications
+Changelog
+=========
 
-    (name of developer listed in brackets)
+1.0-eea (2011-02-17)
+--------------------
 
-slc.publications - 1.0b1 Unreleased
-
-    - Initial package structure.
-      [zopeskel]
-
+- Plone 2.5 compatible

@@ -1,13 +1,18 @@
+""" Installer
+"""
 from setuptools import setup, find_packages
+import os
+from os.path import join
 
-version = '1.0b1'
+NAME = 'slc.publications'
+PATH = NAME.split('.') + ['version.txt']
+VERSION = open(join(*PATH)).read().strip()
 
-setup(name='slc.publications',
-      version=version,
+setup(name=NAME,
+      version=VERSION,
       description="A content type to store pdf publications",
-      long_description="""\
-""",
-      # Get more strings from http://www.python.org/pypi?%3Aaction=list_classifiers
+      long_description=open("README.txt").read() + "\n" +
+                       open(os.path.join("docs", "HISTORY.txt")).read(),
       classifiers=[
         "Framework :: Plone",
         "Framework :: Zope2",
