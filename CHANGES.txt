@@ -4,8 +4,7 @@ Changelog
 1.1.26 (unreleased)
 -------------------
 
-- Nothing changed yet.
-
+- Show belowcontenttitle on the publication view [thomasw]
 
 1.1.25 (2011-02-21)
 -------------------
