@@ -30,6 +30,9 @@
             <span tal:replace="here/Title">Title of the Publication</span>
         </a>
     </h1>
+
+    <div tal:replace="structure provider:plone.belowcontenttitle" />
+
     <div class="field publicationImage"
          xtal:condition="here/cover_image | nothing">
         <a href="" tal:attributes="href string:${here/absolute_url}">
