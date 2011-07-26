@@ -2,9 +2,16 @@
     xmlns="http://namespaces.zope.org/browser"
     xmlns:zope="http://namespaces.zope.org/zope"
     xmlns:five="http://namespaces.zope.org/five"
+    xmlns:browser="http://namespaces.zope.org/browser"
     i18n_domain="slc.publications">
     
-      
+    <include package="z3c.jbot" file="meta.zcml" />
+
+    <!-- Need to override several templates -->
+    <browser:jbot
+        directory="jbot"
+        />
+
       
   <page
       name="publication-container.html"

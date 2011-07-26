@@ -8,14 +8,14 @@ from zope import component
 from zope import interface
 from zope import schema
 from zope.formlib import form
-from zope.app.event import objectevent
+from zope.lifecycleevent import Attributes, ObjectModifiedEvent
 
 from AccessControl import Unauthorized
 from AccessControl import getSecurityManager
 from Products.AdvancedQuery import In, Eq, Le, Ge, And, Or
 
 from Products.CMFCore import utils as cmfutils
-from Products.CMFDefault.formlib.form import getLocale
+#from Products.CMFDefault.formlib.form import getLocale
 from zope.i18n import translate
 
 from Products.CMFPlone.utils import base_hasattr
@@ -23,7 +23,7 @@ from Products.CMFPlone import PloneMessageFactory as _
 from Products.statusmessages import interfaces as statusmessages_ifaces
 
 from Products.Five.browser import pagetemplatefile
-from Products.Five.formlib import formbase
+from five.formlib import formbase
 
 from slc.publications import HAVE_LINGUAPLONE
 from slc.publications import interfaces
@@ -248,7 +248,7 @@ class PublicationEditForm(formbase.EditForm):
 
     template = pagetemplatefile.ViewPageTemplateFile('templates/publication-edit.pt')
     form_fields = form.FormFields(interfaces.IPublication)
-    #form_fields['chapters'].custom_widget = CollectionInputWidget
+    #form_fields['chapters'].customq_widget = CollectionInputWidget
 
     label = u'Edit Publication Data'
     priority_fields = ['title']
@@ -274,9 +274,9 @@ class PublicationEditForm(formbase.EditForm):
         changed = applyChanges(
             self.context, self.form_fields, data, self.adapters)
         if changed:
-            attrs = objectevent.Attributes(interfaces.IPublication, *changed)
+            attrs = Attributes(interfaces.IPublication, *changed)
             event.notify(
-                objectevent.ObjectModifiedEvent(self.context, attrs)
+                ObjectModifiedEvent(self.context, attrs)
                 )
             # TODO: Needs locale support. See also Five.form.EditView.
             self.status = _("Successfully updated")

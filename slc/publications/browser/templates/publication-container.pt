@@ -20,6 +20,8 @@
     <metal:main-macro define-macro="main"
                       tal:define="kssClassesView context/@@kss_field_decorator_view;
                                   getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
+                                  toLocalizedTime nocall:context/@@plone/toLocalizedTime;
+                                  normalizeString nocall:context/@@plone/normalizeString;
                                   templateId template/getId">
 
         <div tal:replace="structure provider:plone.abovecontenttitle" />
@@ -52,6 +54,7 @@
                             Batch python:modules['Products.CMFPlone'].Batch;
                             b_size python:10;b_start python:0;
                             b_start request/b_start | b_start;
+                            isAnon context/@@plone_portal_state/anonymous;
                             folderContents view/folderContents;
                             use_view_action site_properties/typesUseViewActionInListings|python:();
                             batch python:Batch(folderContents, b_size, int(b_start), orphan=1);

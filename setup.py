@@ -64,7 +64,9 @@ setup(name='slc.publications',
           'p4a.z2utils',
           'p4a.subtyper',
           'archetypes.schemaextender',
-          
+          'Products.AdvancedQuery',
+          'Products.LinguaPlone',
+
       ],
       tests_require=tests_require,
       extras_require=dict(tests=tests_require),

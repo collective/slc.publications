@@ -15,6 +15,9 @@
         tal:define="context_url string:${context/absolute_url};
                     errors options/state/getErrors | nothing;
                     schematas here/Schemata;
+                    toLocalizedTime nocall:context/@@plone/toLocalizedTime;
+                    portal context/@@plone_portal_state/portal;
+                    wtool context/portal_workflow;
                     fieldsets python: [key for key in schematas.keys() if key != 'metadata'];
                     default_fieldset python:(not schematas or schematas.has_key('default')) and 'default' or fieldsets[0];
                     fieldset request/fieldset|options/fieldset|default_fieldset;

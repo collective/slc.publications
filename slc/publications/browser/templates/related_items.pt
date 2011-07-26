@@ -7,7 +7,8 @@
 <body>
 <div metal:define-macro="relatedItems"
     class="relatedItems"
-    tal:define="getInfoFor python:wtool.getInfoFor;">
+    tal:define="getInfoFor python:wtool.getInfoFor;
+    isViewTemplate context/@@plone_context_state/is_view_template">
     <tal:allowed condition="isViewTemplate">
         <tal:relatedItems tal:define="related here/computeRelatedItems">
             <tal:block tal:condition="python:related">
