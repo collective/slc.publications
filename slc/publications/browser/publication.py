@@ -18,7 +18,7 @@ from Products.CMFCore import utils as cmfutils
 #from Products.CMFDefault.formlib.form import getLocale
 from zope.i18n import translate
 
-from Products.CMFPlone.utils import base_hasattr
+from Products.CMFPlone.utils import base_hasattr, getSiteEncoding
 from Products.CMFPlone import PloneMessageFactory as _
 from Products.statusmessages import interfaces as statusmessages_ifaces
 
@@ -185,6 +185,8 @@ class PublicationPageView(object):
         return keywords
 
     def getTranslatedString(self, value, preflang, default=u''):
+        if not isinstance(value, unicode):
+            value = value.decode(getSiteEncoding(self))
         msg = _(value, default)
         return translate(msg, target_language=preflang)
 
