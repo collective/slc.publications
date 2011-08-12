@@ -7,9 +7,13 @@ product_globals = globals()
 
 DEFAULT_ADD_CONTENT_PERMISSION = "Add portal content"
 
-DEPENDENCIES = [
-        'LinguaPlone',
-        ]
+from slc.publications import HAVE_LINGUAPLONE
+
+DEPENDENCIES = ['p4a.subtyper', ]
+
+if HAVE_LINGUAPLONE:
+    DEPENDENCIES.append('LinguaPlone')
+
 
 combined_languages_EU = dict(
     da='da_DK',     # special!

@@ -8,12 +8,8 @@ from slc.publications.interfaces import IPublicationEnhanced
 
 log = logging.getLogger('slc.publications')
 
-try:
-    from Products.LinguaPlone.config import RELATIONSHIP
-    HAVE_LINGUAPLONE=True
-except ImportError:
-    HAVE_LINGUAPLONE=False
-    RELATIONSHIP = ''
+from slc.publications import HAVE_LINGUAPLONE, RELATIONSHIP
+
 
 def _get_storage_folder(ob):
     """ Helper Method to fetch the folder containing additional material

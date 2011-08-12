@@ -13,6 +13,24 @@
 - Report bugs at http://plone.org/products/slc.publications/
 
 
+About
+=====
+
+The Publication Product can be used to organise printed publications that are
+available online for download. Publications usually have a publication date,
+order and ISBN numbers, and an author. They may exist in several language versions.
+Once stored in the Publication Product, they can be displayed using
+auto-generated overviews.
+
+LinguaPlone
+-----------
+
+If LinguaPlone is installed, multiple language versions of a publication can be uploaded. A box that offers a link to every language version will be displayed.
+
+  .. Note::
+
+   LinguaPlone needs to be installed separately, e.g. by adding it to the buildout.
+
 Credits
 =======
 

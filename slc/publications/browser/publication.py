@@ -55,6 +55,10 @@ class PublicationPageView(object):
         """ return the template """
         return self.index
 
+    @property
+    def have_linguaplone(self):
+        return HAVE_LINGUAPLONE
+
     def available_translations(self, context=None):
         """ list all available translations for this publication """
         context = context or Acquisition.aq_inner(self.context)

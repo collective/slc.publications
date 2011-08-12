@@ -13,18 +13,7 @@ version = '1.1.27dev'
 long_description = (
     read('README.txt')
     + '\n' +
-    'Detailed Documentation\n'
-    '**********************\n'
-    + '\n' +
-    read('README.txt')
-    + '\n' +
-    'Change history\n'
-    '**************\n'
-    + '\n' +
     read('CHANGES.txt')
-    + '\n' +
-    'Contributors\n'
-    '************\n'
     + '\n' +
     read('CONTRIBUTORS.txt')
     + '\n' 
@@ -65,7 +54,6 @@ setup(name='slc.publications',
           'p4a.subtyper',
           'archetypes.schemaextender',
           'Products.AdvancedQuery',
-          'Products.LinguaPlone',
 
       ],
       tests_require=tests_require,

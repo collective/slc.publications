@@ -9,12 +9,19 @@ logger = logging.getLogger('slc.publications')
 logger.debug('Installing slc.publications')
 
 try:
-    import Products.LinguaPlone
+    from Products.LinguaPlone.I18NBaseObject import AlreadyTranslated
+    from Products.LinguaPlone.utils import generateMethods
+    from Products.LinguaPlone.config import RELATIONSHIP
     import linguaplone_addTranslation_patch
     HAVE_LINGUAPLONE=True
     logger.info('slc.publications :: Patching LinguaPlone addTranslation')
-except:
+except ImportError:
     HAVE_LINGUAPLONE=False
+    class AlreadyTranslated(Exception):
+        """Raised when trying to create an existing translation."""
+        pass
+    generateMethods = None
+    RELATIONSHIP = ""
     logger.info('slc.publications :: LinguaPlone not installed. Not patching LinguaPlone addTranslation')
     
     

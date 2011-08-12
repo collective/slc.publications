@@ -10,12 +10,8 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone import PloneMessageFactory as _
 from Products.validation import V_REQUIRED
 
-try:
-    from Products.LinguaPlone.utils import generateMethods
-    HAVE_LINGUAPLONE = True
-except ImportError:
-    generateMethods = None
-    HAVE_LINGUAPLONE = False
+
+from slc.publications import HAVE_LINGUAPLONE, generateMethods
 
 from archetypes.schemaextender.interfaces import ISchemaExtender, IOrderableSchemaExtender
 from archetypes.schemaextender.field import ExtensionField
@@ -55,11 +51,14 @@ class ExtendedStringField(ExtensionFieldMixin, ExtensionField, atapi.StringField
 class ExtendedReferenceField(ExtensionFieldMixin, ExtensionField, atapi.ReferenceField):
     """ """
     def get(self, instance, **kwargs):
-        canonical = instance.getCanonical()
-        canonical_refs = atapi.ReferenceField.get(self, canonical, **kwargs)
-        portal_languages = getToolByName(instance, 'portal_languages')
-        preflang = portal_languages.getPreferredLanguage()
-        return [o.getTranslation(preflang) or o.getCanonical() for o in canonical_refs]
+        if HAVE_LINGUAPLONE:
+            canonical = instance.getCanonical()
+            canonical_refs = atapi.ReferenceField.get(self, canonical, **kwargs)
+            portal_languages = getToolByName(instance, 'portal_languages')
+            preflang = portal_languages.getPreferredLanguage()
+            return [o.getTranslation(preflang) or o.getCanonical() for o in canonical_refs]
+        else:
+            return atapi.ReferenceField.get(self, instance, **kwargs)
 
 
 class SchemaExtender(object):

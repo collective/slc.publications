@@ -15,15 +15,7 @@ from p4a.subtyper.interfaces import ISubtyper
 from slc.publications import interfaces
 from slc.publications.utils import _get_storage_folder
 
-try:
-    from Products.LinguaPlone.I18NBaseObject import AlreadyTranslated
-    HAVE_LINGUAPLONE=True
-except ImportError:
-    HAVE_LINGUAPLONE=False
-    class AlreadyTranslated(Exception):
-        """Raised when trying to create an existing translation."""
-        pass
-
+from slc.publications import HAVE_LINGUAPLONE, AlreadyTranslated
 
 logger = logging.getLogger('slc.publications')
 
@@ -96,8 +88,6 @@ class ChapterUpdater:
         if HAVE_LINGUAPLONE:
             if self.publication != self.publication.getCanonical():
                 return
-        
-        if HAVE_LINGUAPLONE:
             translations = [publication] + [x[0] for x in publication.getTranslations().values()
                             if (x[0] is not None and x[0] != publication)]
         else:

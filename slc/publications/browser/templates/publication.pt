@@ -25,6 +25,7 @@
                     lockable python: hasattr(here, 'wl_isLocked');
                     isLocked python: lockable and here.wl_isLocked();
                     preflang here/portal_languages/getPreferredLanguage;
+                    have_linguaplone view/have_linguaplone;
                     mode string:view;
         ">
 
@@ -131,12 +132,12 @@
         </div>
         <div>&nbsp;</div>
         <tal:comment replace="nothing">
-            Show this box only when there are more than this translation is available
+            Show this box only when there are more than this translation is available and only if LinguaPlone is present
         </tal:comment>
 
         <div class="publicationLanguageBox publicationURL"
              tal:define="available_translations view/available_translations"
-             tal:condition="available_translations">
+             tal:condition="python:have_linguaplone and available_translations">
             <span tal:replace="python:view.getTranslatedString('label_available_in', preflang, 'Available in')">Available in</span>:
                 <tal:block repeat="lang available_translations">
                     <a href="" target="_new"
