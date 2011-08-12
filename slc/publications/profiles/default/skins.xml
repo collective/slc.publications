@@ -10,7 +10,7 @@
          meta_type="Filesystem Directory View"
          directory="slc.publications:skins/publications_templates"/>
  
- <skin-path name="Plone Default">
+ <skin-path name="*">
   <layer insert-after="custom" 
          name="publications_templates"/>
  </skin-path>
