@@ -21,7 +21,6 @@ long_description = (
     
 tests_require=['zope.testing',
                'plone.app.blob',
-               'Products.PloneFlashUpload',
                ]
 
 setup(name='slc.publications',
