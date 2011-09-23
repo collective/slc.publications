@@ -28,8 +28,7 @@
 
     <configure zcml:condition="installed Products.LinguaPlone">
        <subscriber 
-            for="slc.publications.interfaces.IPublicationEnhanced
-                  ..linguaplone_addTranslation_patch.IObjectTranslationReferenceSetEvent"
+            for="..linguaplone_addTranslation_patch.IObjectTranslationReferenceSetEvent"
             handler=".events.subtype_on_translate"
        />
         <subscriber 

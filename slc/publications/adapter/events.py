@@ -61,16 +61,19 @@ def generate_image(obj, evt):
     
 # Event handler to catch our own patched event while translation named IObjectTranslationReferenceSetEvent
 # We need this to be able to subtype an object while it is translated.
-def subtype_on_translate(obj, evt):
-    """ EVENT: 
-        Update the chapter links based on the new set values in chapters
-    """    
-    canonical = aq_base(aq_inner(evt.object))
-    target = aq_base(aq_inner(evt.target))
-    subtyper = component.getUtility(ISubtyper)    
+def subtype_on_translate(evt):
+    """
+        If a publication gets translated, make sure the translation is sub-typed
+    """
+    # obj is the newly creation version aka the translation
+    obj = evt.object
+    canonical = obj.getCanonical()
+    if not interfaces.IPublicationEnhanced.providedBy(canonical):
+        return
+    subtyper = component.getUtility(ISubtyper)
     subtype = subtyper.existing_type(canonical)
     if subtype is not None:
-        subtyper.change_type(target, subtype.name)
+        subtyper.change_type(obj, subtype.name)
 
 class ChapterUpdater:
     """

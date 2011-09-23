@@ -43,6 +43,7 @@ def _get_storage_folder(ob):
         if HAVE_LINGUAPLONE and not ob.isCanonical():
             can = ob.getCanonical()
             can_additionals = _get_storage_folder(can)
+            additionals.setLanguage(ob.Language())
             if not can_additionals.getTranslation(ob.Language()):
                 additionals.addTranslationReference(can_additionals)
             else:
