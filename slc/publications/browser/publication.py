@@ -323,6 +323,9 @@ class PublicationContainerView(object):
         self.context = context
         self.request = request
 
+    def getName(self):
+        return self.__name__
+
     def folderContents(self):
         """ customized folder contents """
         query = {}

@@ -22,7 +22,7 @@
                                   getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
                                   toLocalizedTime nocall:context/@@plone/toLocalizedTime;
                                   normalizeString nocall:context/@@plone/normalizeString;
-                                  templateId template/getId">
+                                  templateId view/getName">
 
         <div tal:replace="structure provider:plone.abovecontenttitle" />
 
