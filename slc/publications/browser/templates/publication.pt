@@ -64,7 +64,7 @@
                        tal:attributes="for python:field.widget.Label(here); title python:field.widget.Label(here)"
                        tal:content="python:field.widget.Label(here)"></label>:
             </div>
-            <div tal:define="author python:field.getAccessor(here)()" 
+            <div tal:define="author python:field.getAccessor(here)()"
                 tal:replace="python:view.getTranslatedString(author, preflang, author)"></div>
         </div>
 
@@ -79,11 +79,11 @@
 
         <div class="publicationField publicationURL">
 
-            <a href="" target="_new" 
+            <a href="" target="_new"
                        tal:attributes="href string:${here/absolute_url}">
                 <strong>
-                    <span 
-                        tal:replace="python:view.getTranslatedString('label_download_full_publication', 
+                    <span
+                        tal:replace="python:view.getTranslatedString('label_download_full_publication',
                          preflang, 'Download the full publication as PDF')">Download</span>
                     <img tal:attributes="src string:${portal_url}/pdf_icon.gif"
                          alt="PDF Icon" title="PDF Icon">
@@ -109,22 +109,22 @@
                 </div>
                 <div tal:replace="structure value"></div>
                 <br />
-                <div tal:content="python:view.getTranslatedString('label_order_copy', 
+                <div tal:content="python:view.getTranslatedString('label_order_copy',
                    preflang, 'Order a printed copy of this document!')" >Order a printed copy</div>
             </div>
 
             <div style="float:left" class="publicationOrderButton"
-                 tal:define="bookshop_lang python:view.getCombinedLanguageCode(lang)">
-               <a href=""
-                      target="_blank"
-                      alt="Order a printed copy at EU-Bookshop"
-                      tal:attributes="href string:http://bookshop.europa.eu/is-bin/INTERSHOP.enfinity/WFS/EU-Bookshop-Site/$bookshop_lang/-/EUR/ViewPublication-Start?PublicationKey=$value" >
-                          <img src="eu_bookshop.gif"
-                               alt="EU Bookshop: You can order a printed copy of this document"
-                               title="EU Bookshop: You can order a printed copy of this document">
+                 tal:define="lang_upper python:lang.upper()">
+               <a href="" target="_blank"
+                  alt="Order a printed copy at EU-Bookshop"
+                  tal:attributes="href string:http://bookshop.europa.eu/uri?target=EUB:NOTICE:$value:$lang_upper">
+                 <img alt="EU Bookshop: You can order a printed copy of this document"
+                      title="EU Bookshop: You can order a printed copy of this document"
+                      tal:attributes="src string:${portal_url}/eu_bookshop.gif"/>
                </a>
             </div>
             <div class="visualClear"></div>
+
         </div>
         <div>&nbsp;</div>
         <tal:comment replace="nothing">
@@ -182,7 +182,7 @@
         tal:define="PUBS python:view.fetchRelatedPublications(limit=3);">
 
         <div id="related_pubs_heading">
-            <h2 tal:content="python:view.getTranslatedString('heading_related_resources', 
+            <h2 tal:content="python:view.getTranslatedString('heading_related_resources',
              preflang, 'Related Resources')">Related Resources</h2>
         </div>
 
