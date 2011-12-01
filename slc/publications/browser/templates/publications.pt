@@ -1,0 +1,57 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+
+  <metal:cssslot fill-slot="css_slot">
+    <style type="text/css" media="all" tal:condition="exists: portal/publications_styles.css"
+           tal:content="string:@import url($portal_url/publications_styles.css);">
+    </style>
+  </metal:cssslot>
+
+  <body>
+
+    <div metal:fill-slot="main">
+
+      <table id="resultTable" class="highDensity" summary="All publications">
+        <thead>
+          <tr>
+            <th i18n:translate="listingheader_title">
+              Title
+            </th>
+            <th i18n:translate="listingheader_date">
+              Date
+            </th>
+            <th i18n:translate="listingheader_type">
+              Type
+            </th>
+            <th i18n:translate="listingheader_size">
+              Size
+            </th>
+          </tr>
+        </thead>
+
+        <tbody class="dependsType-or dependsOn-typelist-equals-reports dependsOn-typelist-equals-all"
+               tal:repeat="publication view/get_publications">
+          <tr class="dependsType-or dependsOn-msd-on">
+            <td>
+              <a tal:attributes="href publication/path"
+                 tal:content="publication/title"/>
+            </td>
+            <td tal:content="python:toLocalizedTime(publication['effective_date'])"/>
+            <td tal:content="publication/type">
+              Reports
+            </td>
+            <td>
+              <em class="discrete size"
+                  tal:content="publication/size"/>
+            </td>
+          </tr>
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </body>
+</html>
