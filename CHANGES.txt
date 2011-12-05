@@ -1,7 +1,7 @@
 Changelog
 ---------
 
-1.1.27 (unreleased)
+1.1.27 (2011-12-05)
 -------------------
 
 - Adjusted the url for the EU bookshop so that the correct language is
