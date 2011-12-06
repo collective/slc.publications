@@ -2,9 +2,8 @@
     xmlns="http://namespaces.zope.org/browser"
     xmlns:zope="http://namespaces.zope.org/zope"
     xmlns:five="http://namespaces.zope.org/five"
+    xmlns:browser="http://namespaces.zope.org/browser"
     i18n_domain="slc.publications">
-
-
 
   <page
       name="publication-container.html"
@@ -44,6 +43,13 @@
   <page
       name="publications_view"
       class=".publications.PublicationsView"
+      for="*"
+      permission="zope2.View"
+      />
+
+  <page
+      name="publications_view.json"
+      class=".publications.PublicationsJSONView"
       for="*"
       permission="zope2.View"
       />
@@ -98,7 +104,6 @@
       class=".media.ToggleEnhancementsView"
       />
 
-
   <menuItem
       menu="object_buttons"
       for="slc.publications.interfaces.IAnyPublicationCapable"
@@ -126,13 +131,17 @@
       allowed_interface=".support.IContextualPublicationSupport"
       />
 
-
     <page
         for="*"
         name="publications-by-subject"
         class=".publications_by_subject.PublicationsBySubjectView"
         permission="zope2.View"
     />
+
+    <browser:resourceDirectory
+        name="slc.publications"
+        directory="resources"
+        />
 
 </configure>
 
