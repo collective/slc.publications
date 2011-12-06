@@ -48,14 +48,18 @@ class _ATCTPublication(object):
             return setMetadataMap(C, metadata)
 
     def setMetadataIniMap(self, metadata):
-        """ Given a complex metadata map from e.g. the ini parser set the metadata on all translations and chapters """
+        """ Given a complex metadata map from e.g. the ini parser set
+        the metadata on all translations and chapters """
         subtyper = component.getUtility(ISubtyper)
 
         if HAVE_LINGUAPLONE:
             translations = self.context.getTranslations()
             canonical = self.context.getCanonical()
         else:
-            translations = {self.context.Language(): (self.context, self.context.Language())}
+            translations = {
+                self.context.Language(): (
+                    self.context, self.context.Language()
+                    )}
             canonical = self.context
 
         for lang in metadata.keys():
@@ -64,16 +68,19 @@ class _ATCTPublication(object):
 
             if translations.has_key(lang):
                 translation = translations[lang][0]
-                if not subtyper.existing_type(translation) or \
-                    subtyper.existing_type(translation).name != 'slc.publications.Publication':
-                    subtyper.change_type(translation, 'slc.publications.Publication')
+                if (not subtyper.existing_type(translation)
+                    or subtyper.existing_type(
+                        translation).name != 'slc.publications.Publication'):
+                    subtyper.change_type(
+                        translation, 'slc.publications.Publication')
 
             else:
                 if HAVE_LINGUAPLONE:
                     canonical.addTranslation(lang)
                     translation = canonical.getTranslation(lang)
                     # make the translation a publication as well
-                    subtyper.change_type(translation, 'slc.publications.Publication')
+                    subtyper.change_type(
+                        translation, 'slc.publications.Publication')
                     translations[lang] = [translation, None]
                 else:
                     # Skip this. Metadata.ini contains multiple languages
@@ -81,7 +88,8 @@ class _ATCTPublication(object):
                     pass
 
             # if there is a default, we merge it with the language specifics.
-            # But only for existing values. So the language sections extend the default
+            # But only for existing values. So the language sections
+            # extend the default
 
             langmap = metadata[lang]
 
