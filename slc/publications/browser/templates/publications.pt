@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
       lang="en"
       metal:use-macro="here/main_template/macros/master"
-      i18n:domain="plone">
+      i18n:domain="osha">
 
   <metal:cssslot fill-slot="css_slot">
     <style type="text/css" media="all" tal:condition="exists: portal/publications_styles.css"
@@ -9,9 +9,64 @@
     </style>
   </metal:cssslot>
 
+  <metal:javascriptslot fill-slot="javascript_head_slot">
+    <script type="text/javascript" charset="utf-8"
+            tal:attributes="src string:$portal_url/++resource++slc.publications/publications.js" >
+    </script>
+  </metal:javascriptslot>
+
   <body>
 
     <div metal:fill-slot="main">
+
+      <form id="publicationsFilter"
+            tal:define="form request/form;
+                        selected_type python:form.get('typelist', '');
+                        SearchableText python:form.get('SearchableText', '');
+                        selected_keywords python:form.get('keywords', '')">
+        <p tal:content="selected_type">
+        </p>
+        <h4 i18n:translate="">Search publications</h4>
+        <p i18n:translate="">For a simple text search, enter your
+        search term here. Multiple words may be found by combining
+        them with AND and OR.</p>
+        <fieldset>
+          <input name="SearchableText" type="text"
+                 tal:attributes="value SearchableText"/>
+          <button id="queryPublications" type="submit">Search</button>
+        </fieldset>
+
+        <h4 i18n:translate="heading_publication_types">Types</h4>
+        <fieldset>
+          <select name="typelist">
+            <option value=""
+                    i18n:translate="option_publication_all_types"
+                    tal:attributes="selected python:selected_type == '' and 'selected' or ''">
+              All types
+            </option>
+
+            <tal:pub_types define="pub_types view/publication_types">
+              <option tal:repeat="pub_type pub_types"
+                      tal:attributes="value pub_type;
+                                      selected python:selected_type == pub_type and 'selected' or ''"
+                      tal:content="python:pub_types[pub_type]">
+              </option>
+            </tal:pub_types>
+          </select>
+        </fieldset>
+
+        <h4 i18n:translate="">Keywords</h4>
+        <p>Select one of the following keywords to filter the
+        publications.</p>
+        <fieldset class="checkList">
+          <label tal:repeat="keyword view/get_keywords">
+            <input  type="checkbox" name="keywords"
+                    tal:attributes="value keyword;
+                                    checked python: True and keyword in selected_keywords or ''" />
+            <span i18n:translate="" tal:replace="keyword"/>
+          </label>
+        </fieldset>
+      </form>
 
       <table id="resultTable" class="highDensity" summary="All publications">
         <thead>
@@ -38,7 +93,7 @@
               <a tal:attributes="href publication/path"
                  tal:content="publication/title"/>
             </td>
-            <td tal:content="python:toLocalizedTime(publication['effective_date'])"/>
+            <td tal:content="publication/effective_date"/>
             <td tal:content="publication/type">
               Reports
             </td>

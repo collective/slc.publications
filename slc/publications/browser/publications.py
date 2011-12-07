@@ -50,6 +50,7 @@ class PublicationsView(BrowserView):
             'review_state'   : 'published',
             'SearchableText' : form.get("SearchableText", ''),
             'path'       : type_path,
+            'Subject': form.get("keywords", ""),
                  }
         brains = self.pc.searchResults(query)
         publications = []
