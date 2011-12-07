@@ -228,7 +228,7 @@ class SchemaExtender(object):
                         u'description_user_password',
                         default=(u'If this publication is protected, specify '
                                  'the pdf user password if you want to parse '
-                                 'the file.'
+                                 'the file.')
                     ),
                 ),
             ),
