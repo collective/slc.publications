@@ -1,24 +1,17 @@
 import Acquisition
-import AccessControl
-import datetime
-import urllib
 
 from zope import event
 from zope import component
 from zope import interface
-from zope import schema
 from zope.formlib import form
 from zope.app.event import objectevent
 
-from AccessControl import Unauthorized
 from AccessControl import getSecurityManager
 from Products.AdvancedQuery import In, Eq, Le, Ge, And, Or
 
 from Products.CMFCore import utils as cmfutils
-from Products.CMFDefault.formlib.form import getLocale
 from zope.i18n import translate
 
-from Products.CMFPlone.utils import base_hasattr
 from Products.CMFPlone import PloneMessageFactory as _
 from Products.statusmessages import interfaces as statusmessages_ifaces
 
@@ -32,10 +25,9 @@ from slc.publications.utils import _get_storage_folder
 from slc.publications.config import combined_languages_EU
 
 
-from p4a.common import at
-from p4a.common import formatting
-
-from zope.app.form.browser import TextAreaWidget, DateDisplayWidget, CollectionInputWidget, OrderedMultiSelectWidget
+from zope.app.form.browser import (
+    TextAreaWidget, DateDisplayWidget, CollectionInputWidget,
+    OrderedMultiSelectWidget)
 
 from zope.i18nmessageid import MessageFactory
 _ = MessageFactory('slc.publications')
@@ -46,7 +38,8 @@ class PublicationPageView(object):
     adapted_interface = interfaces.IPublication
     media_field = 'file'
 
-    estimate_template = pagetemplatefile.ViewPageTemplateFile('templates/estimate_template.pt')
+    estimate_template = pagetemplatefile.ViewPageTemplateFile(
+        'templates/estimate_template.pt')
 
     label = u'View Publication Info'
 
@@ -108,7 +101,7 @@ class PublicationPageView(object):
         PQ = Eq('portal_type', 'File') & \
              In('object_provides', 'slc.publications.interfaces.IPublicationEnhanced') & \
              In('Subject', subject) & \
-             Eq('review_state', 'published') 
+             Eq('review_state', 'published')
 
         if HAVE_LINGUAPLONE:
            PQ = PQ & In('Language', [preflang, ''])
@@ -186,10 +179,12 @@ class PublicationPageView(object):
 
 
     def get_additional_info(self):
-        """ Method for injecting custom content into the view of a Publication
-            Just define an adapter for IPublicationEnhanced that implements IAdditionalPublicationInfo.
-        """
-        adapter = component.queryAdapter(self.context, interfaces.IAdditionalPublicationInfo)
+        """ Method for injecting custom content into the view of a
+            Publication Just define an adapter for
+            IPublicationEnhanced that implements
+            IAdditionalPublicationInfo. """
+        adapter = component.queryAdapter(
+            self.context, interfaces.IAdditionalPublicationInfo)
         if adapter:
             try:
                 return adapter()
@@ -329,7 +324,7 @@ class PublicationContainerView(object):
             canonical = self.context.getCanonical()
         else:
             canonical = self.context
-            
+
         canonicalpath = "/".join(canonical.getPhysicalPath())
 
         if self.context.portal_type=='Topic':
@@ -400,3 +395,4 @@ class CoverImageView(object):
             adapter.generateImage()
             image = field.getAccessor(self.context)()
         return image
+
