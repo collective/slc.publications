@@ -30,5 +30,5 @@ jQuery(document).ready(function() {
     // Don't warn the user that they have already submitted the form
     jQuery("#queryPublications").unbind('click');
 
-    recentcarousel = jQuery(".recentcarousel").jcarousel({scroll: 1});
+    var recentcarousel = jQuery(".recentcarousel").jcarousel({scroll: 1});
 });

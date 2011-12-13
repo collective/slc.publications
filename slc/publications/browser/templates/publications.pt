@@ -6,9 +6,6 @@
   <metal:cssslot fill-slot="css_slot">
     <link rel="stylesheet" type="text/css" media="screen" title="no title"
           charset="utf-8"
-          tal:attributes="href string:${portal_url}/lipstick.css" />
-    <link rel="stylesheet" type="text/css" media="screen" title="no title"
-          charset="utf-8"
           tal:attributes="href string:${portal_url}/collage.css"/>
     <link rel="stylesheet" type="text/css" media="screen" title="no title"
           charset="utf-8"
@@ -90,9 +87,8 @@
               </tr>
             </thead>
 
-            <tbody class="dependsType-or dependsOn-typelist-equals-reports dependsOn-typelist-equals-all"
-                   tal:repeat="publication view/get_publications">
-              <tr class="dependsType-or dependsOn-msd-on">
+            <tbody tal:repeat="publication view/get_publications">
+              <tr>
                 <td>
                   <a tal:attributes="href publication/path"
                      tal:content="publication/title"/>
