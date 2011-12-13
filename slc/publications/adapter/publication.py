@@ -37,11 +37,13 @@ class _ATCTPublication(object):
         self.context = context
 
     def __str__(self):
-        return '<slc.publication %s title=%s>' % (self.__class__.__name__, self.context.Title())
+        return '<slc.publication %s title=%s>' % (
+            self.__class__.__name__, self.context.Title())
     __repr__ = __str__
 
     def editChapter(self, chapter, metadata):
-        """ add/edit a link object with the given chapter name and modify its metadata """
+        """ add/edit a link object with the given chapter name and
+        modify its metadata """
         additionals = _get_storage_folder(self.context)
         C = getattr(additionals, chapter, None)
         if C is not None:
@@ -112,7 +114,8 @@ class _ATCTPublication(object):
 
     def generateImage(self):
         """
-        try safely to generate the cover image if pdftk and imagemagick are present
+        try safely to generate the cover image if pdftk and
+        imagemagick are present
         """
         # First check whether the image is empty. Only generate, if we need one
         ci = self.context.getField('cover_image').getAccessor(self.context)()
@@ -152,7 +155,8 @@ class _ATCTPublication(object):
                 logger.warn("popen-2: %s" % (result))
             #fhimg.seek(0)
             coverdata = fhimg.read()
-            self.context.getField('cover_image').getMutator(self.context)(coverdata)
+            self.context.getField(
+                'cover_image').getMutator(self.context)(coverdata)
             status = 1
         except Exception, e:
             logger.warn("generateImage: Could not autoconvert because: %s" % e)
