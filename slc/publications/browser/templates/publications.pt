@@ -105,7 +105,10 @@
             </tbody>
 
           </table>
-
+          <a id="show-all"
+             tal:condition="view/has_more_results"
+             tal:attributes="href string:publications_view?show-all=True&${request/QUERY_STRING}"
+             i18n:translate="">Show all</a>
         </div>
         <div id="portlets">
           <div class="portlet">

@@ -26,6 +26,8 @@ class PublicationsView(BrowserView):
     template = ViewPageTemplateFile('templates/publications.pt')
     template.id = "publications-view"
 
+    has_more_results = False
+
     def __init__(self, context, request):
         self.context = context
         self.request = request
@@ -60,18 +62,25 @@ class PublicationsView(BrowserView):
                 'slc.publications.interfaces.IPublicationEnhanced',
             'review_state'   : 'published',
             'SearchableText' : form.get("SearchableText", ''),
-            'path'       : type_path,
-            'Subject': form.get("keywords", ""),
-                 }
+            'path'           : type_path,
+            'Subject'        : form.get("keywords", ""),
+            }
         brains = self.pc.searchResults(query)
+
+        show_all = form.get("show-all", False)
+        max_results = 20
+        results = show_all and brains or brains[:max_results]
+        if len(brains) > max_results and show_all == False:
+            self.has_more_results = True
+
         publications = []
-        for brain in brains:
-            obj = brain.getObject()
-            path = brain.getPath()
-            date = self.context.toLocalizedTime(brain.effective)
+        for result in results:
+            obj = result.getObject()
+            path = result.getPath()
+            date = self.context.toLocalizedTime(result.effective)
 
             publications.append(
-                {"title"          : brain.Title,
+                {"title"          : result.Title,
                  "effective_date" : date,
                  "size"           : obj.getObjSize(),
                  "path"           : path,

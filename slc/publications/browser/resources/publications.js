@@ -23,6 +23,13 @@ jQuery(document).ready(function() {
         PUBS.queryPublications();
         return false;
     });
+    jQuery("#show-all").click(function () {
+        jQuery("#publicationsFilter")
+            .append("<input type='hidden' name='show-all' value='True'/>")
+        PUBS.queryPublications();
+        jQuery("#show-all").remove();
+        return false;
+    });
     jQuery("input[name=SearchableText]").keyup(function () {
         PUBS.queryPublications();
     });
