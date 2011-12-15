@@ -14,7 +14,7 @@
 
   <metal:javascriptslot fill-slot="javascript_head_slot">
     <script type="text/javascript" charset="utf-8"
-            tal:attributes="src string:$portal_url/++resource++slc.publications/publications.js?v=2" >
+            tal:attributes="src string:$portal_url/++resource++slc.publications/publications.js?v=3" >
     </script>
     <script type="text/javascript" charset="utf-8"
             tal:attributes="src string:$portal_url/++resource++osha.theme.behaviour/jquery.hoverIntent.js" >

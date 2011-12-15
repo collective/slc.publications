@@ -21,6 +21,7 @@ PUBS.queryPublications = function () {
 jQuery(document).ready(function() {
     jQuery("#publicationsFilter :input").change(function () {
         PUBS.queryPublications();
+        jQuery("#show-all").remove();
         return false;
     });
     jQuery("#show-all").click(function () {
