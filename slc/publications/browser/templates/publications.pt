@@ -91,15 +91,15 @@
               <tr>
                 <td>
                   <a tal:attributes="href publication/path"
-                     tal:content="publication/title"/>
+                     tal:content="structure publication/title"/>
                 </td>
                 <td tal:content="publication/effective_date"/>
-                <td tal:content="publication/type">
+                <td tal:content="structure publication/type">
                   Reports
                 </td>
                 <td>
                   <em class="discrete size"
-                      tal:content="publication/size"/>
+                      tal:content="structure publication/size"/>
                 </td>
               </tr>
             </tbody>

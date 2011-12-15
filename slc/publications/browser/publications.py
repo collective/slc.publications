@@ -80,7 +80,8 @@ class PublicationsView(BrowserView):
             date = self.context.toLocalizedTime(result.effective)
 
             publications.append(
-                {"title"          : result.Title.decode("utf-8"),
+                {"title"          : result.Title.decode("utf-8").replace(
+                        "'", "&#39;"),
                  "effective_date" : date,
                  "size"           : obj.getObjSize(),
                  "path"           : path + "/view",
