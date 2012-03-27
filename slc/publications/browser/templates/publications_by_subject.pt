@@ -12,9 +12,7 @@
 <body>
 
 <div metal:fill-slot="main"
-        tal:define="Iterator python:modules['Products.Archetypes'].IndexIterator;
-                    tabindex tabindex|python:Iterator(pos=7000);
-                    mode string:view;">
+        tal:define="mode string:view;">
 
     <h1>
         <span i18n:translate="heading_all_publications_on" tal:omit-tag="">All Publications on</span>
