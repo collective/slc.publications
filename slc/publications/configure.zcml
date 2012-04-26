@@ -68,9 +68,9 @@
         name="slc.publications.FolderPublicationContainer"
         factory=".descriptors.FolderPublicationContainerDescriptor" />
 
-    <utility
+    <!--utility
         name="slc.publications.LargeFolderPublicationContainer"
-        factory=".descriptors.LargeFolderPublicationContainerDescriptor" />
+        factory=".descriptors.LargeFolderPublicationContainerDescriptor" /-->
 
     <utility
         name="slc.publications.TopicPublicationContainer"

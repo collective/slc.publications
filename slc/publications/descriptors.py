@@ -23,12 +23,14 @@ class AbstractPublicationContainerDescriptor(object):
 class FolderPublicationContainerDescriptor(AbstractPublicationContainerDescriptor):
     """ Container for Publications """
     for_portal_type = 'Folder'
+    title = u'Publication Container (Folder)'
 
-class LargeFolderPublicationContainerDescriptor(AbstractPublicationContainerDescriptor):
-    """ Container for Publications """
-    for_portal_type = 'Large Plone Folder'
+#class LargeFolderPublicationContainerDescriptor(AbstractPublicationContainerDescriptor):
+#    """ Container for Publications """
+#    for_portal_type = 'Large Plone Folder'
 
 class TopicPublicationContainerDescriptor(AbstractPublicationContainerDescriptor):
     """ Container for Publications """
     for_portal_type = 'Topic'
+    title = u'Publication Container (Topic)'
 
