@@ -16,12 +16,8 @@ long_description = (
     read('CHANGES.txt')
     + '\n' +
     read('CONTRIBUTORS.txt')
-    + '\n' 
+    + '\n'
     )
-    
-tests_require=['zope.testing',
-               'plone.app.blob',
-               ]
 
 setup(name='slc.publications',
       version=version,
@@ -53,14 +49,17 @@ setup(name='slc.publications',
           'p4a.subtyper',
           'archetypes.schemaextender',
           'Products.AdvancedQuery',
-
       ],
-      tests_require=tests_require,
-      extras_require=dict(tests=tests_require),
-      test_suite = 'slc.publications.tests.test_docs.test_suite',
+      extras_require={
+          'test': [
+              'zope.testing',
+              'plone.app.blob',
+          ],
+      },
+      test_suite='slc.publications.tests.test_docs.test_suite',
       entry_points="""
       [z3c.autoinclude.plugin]
       target = plone
       """,
-      )      
-      
+      )
+
