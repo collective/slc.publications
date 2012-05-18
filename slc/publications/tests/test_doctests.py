@@ -1,13 +1,10 @@
-import os, sys
+# -*- coding: utf-8 -*-
+"""Doctest runner."""
 
-import glob
+from slc.publications.tests.base import IntegrationTestCase
+from Testing import ZopeTestCase as ztc
 import doctest
-import unittest
-from Globals import package_home
-from base import PublicationFunctionalTestCase
-from Testing.ZopeTestCase import FunctionalDocFileSuite as Suite
-
-from slc.publications.config import product_globals
+import unittest2 as unittest
 
 OPTIONFLAGS = (doctest.REPORT_ONLY_FIRST_FAILURE |
                doctest.ELLIPSIS |
@@ -15,36 +12,52 @@ OPTIONFLAGS = (doctest.REPORT_ONLY_FIRST_FAILURE |
 
 
 def test_suite():
-    return unittest.TestSuite((
 
-            Suite('doc/subtyping.txt',
-                   optionflags=OPTIONFLAGS,
-                   package='slc.publications',
-                   test_class=PublicationFunctionalTestCase) ,
+    return unittest.TestSuite([
 
-            Suite('pdf/pdfparser.txt',
-                   optionflags=OPTIONFLAGS,
-                   package='slc.publications',
-                   test_class=PublicationFunctionalTestCase) ,
+        ztc.ZopeDocFileSuite(
+            'doc/subtyping.txt',
+            package='slc.publications',
+            test_class=IntegrationTestCase,
+            optionflags=OPTIONFLAGS,
+        ),
 
-            Suite('ini/iniparser.txt',
-                   optionflags=OPTIONFLAGS,
-                   package='slc.publications',
-                   test_class=PublicationFunctionalTestCase) ,
+        ztc.ZopeDocFileSuite(
+            'pdf/pdfparser.txt',
+            package='slc.publications',
+            test_class=IntegrationTestCase,
+            optionflags=OPTIONFLAGS,
+        ),
 
-            Suite('doc/chapters.txt',
-                   optionflags=OPTIONFLAGS,
-                   package='slc.publications',
-                   test_class=PublicationFunctionalTestCase) ,
+        ztc.ZopeDocFileSuite(
+            'doc/events.txt',
+            package='slc.publications',
+            test_class=IntegrationTestCase,
+            optionflags=OPTIONFLAGS,
+        ),
 
-           Suite('doc/bulkuploading.txt',
-                  optionflags=OPTIONFLAGS,
-                  package='slc.publications',
-                  test_class=PublicationFunctionalTestCase) ,
+        ztc.ZopeDocFileSuite(
+            'doc/bulkuploading.txt',
+            package='slc.publications',
+            test_class=IntegrationTestCase,
+            optionflags=OPTIONFLAGS,
+        ),
 
-           Suite('doc/events.txt',
-                  optionflags=OPTIONFLAGS,
-                  package='slc.publications',
-                  test_class=PublicationFunctionalTestCase) ,
-        ))
+        ztc.ZopeDocFileSuite(
+            'doc/chapters.txt',
+            package='slc.publications',
+            test_class=IntegrationTestCase,
+            optionflags=OPTIONFLAGS,
+        ),
 
+        ztc.ZopeDocFileSuite(
+            'ini/iniparser.txt',
+            package='slc.publications',
+            test_class=IntegrationTestCase,
+            optionflags=OPTIONFLAGS,
+        ),
+
+    ])
+
+if __name__ == '__main__':
+    unittest.main(defaultTest='test_suite')

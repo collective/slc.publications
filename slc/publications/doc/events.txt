@@ -16,7 +16,7 @@ Initial setup: login, and do necessary imports.
     >>> from zope.interface import alsoProvides
     >>> from zope.app.container.contained import ObjectAddedEvent
     >>> from zope.app.container.contained import ObjectRemovedEvent
-    >>> from zope.app.container.contained import ObjectModifiedEvent
+    >>> from zope.lifecycleevent import ObjectModifiedEvent
     >>> from slc.publications.interfaces import IPublicationEnhanced
     >>> from slc.publications.interfaces import IPublicationContainerEnhanced
 

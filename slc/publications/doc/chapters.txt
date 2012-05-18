@@ -31,7 +31,7 @@ that adds the actual Link objects.
     >>> from slc.publications.utils import _get_storage_folder
     >>> mypub.getField('chapters').getMutator(mypub)(['chapter1'])
     >>> from zope import event
-    >>> from zope.app.event import objectevent
+    >>> from zope import lifecycleevent as objectevent
     >>> event.notify(objectevent.ObjectModifiedEvent(mypub))
     >>> additionals = _get_storage_folder(mypub)
     >>> additionals.objectIds()

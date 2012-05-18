@@ -122,7 +122,7 @@ We now have an english document (and reused the english pdf file loaded already 
 We add a translation for this.
 
     >>> MetadataPub.addTranslation('de')
-    <ATBlob at /plone/Members/test_user_1_/metadatapub-de>
+    <ATFile at /plone/folder/UsingthePublicationProduct.pdf>
     >>> MetadataPub_de = MetadataPub.getTranslation('de')
     >>> german_de_pdf = self.loadfile('tests/data/GermanOSHA_de.pdf')
     >>> MetadataPub_de.setFile(german_de_pdf)

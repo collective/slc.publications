@@ -1,50 +1,89 @@
+ # -*- coding: utf-8 -*-
+"""Base TestCases for slc.publications tests."""
+
 import os
-from Products.Five import zcml
-from Products.Five import fiveconfigure
-from Testing import ZopeTestCase as ztc
-from StringIO import StringIO
+import unittest2 as unittest
+
 from Globals import package_home
 from slc.publications.config import product_globals
+from plone.app.testing import FunctionalTesting
+from plone.app.testing import IntegrationTesting
+from plone.app.testing import PLONE_FIXTURE
+from plone.app.testing import PloneSandboxLayer
+from plone.app.testing import applyProfile
+from plone.app.testing import quickInstallProduct
+from plone.app.testing import setRoles
+from plone.app.testing import TEST_USER_ID
+from plone.app.testing import TEST_USER_NAME
+from plone.app.testing import TEST_USER_PASSWORD
+from plone.app.testing import login
+from plone.testing import z2
+from plone.testing.z2 import Browser
+from StringIO import StringIO
+from Testing import ZopeTestCase as ztc
+from zope.configuration import xmlconfig
 
-# Let Zope know about the two products we require above-and-beyond a basic
-# Plone install (PloneTestCase takes care of these).
 
-# Import PloneTestCase - this registers more products with Zope as a side effect
-from Products.PloneTestCase.PloneTestCase import PloneTestCase
-from Products.PloneTestCase.PloneTestCase import FunctionalTestCase
-from Products.PloneTestCase.PloneTestCase import setupPloneSite
-from Products.PloneTestCase.layer import onsetup, PloneSite
-from Products.Five import fiveconfigure, zcml
-from Products.PloneTestCase import layer
+class SlcPublications(PloneSandboxLayer):
 
-SiteLayer = layer.PloneSite
+    defaultBases = (PLONE_FIXTURE,)
 
-class PublicationsLayer(SiteLayer):
-    @classmethod
-    def setUp(cls):
-        ztc.installProduct('PloneLanguageTool')
-        ztc.installProduct('LinguaPlone')
-        fiveconfigure.debug_mode = True
+    def setUpZope(self, app, configurationContext):
         import slc.publications
-        import plone.app.blob
-        zcml.load_config('configure.zcml', slc.publications)
-        zcml.load_config('configure.zcml', plone.app.blob)
-        fiveconfigure.debug_mode = False
-        ztc.installPackage('slc.publications')
-        ztc.installPackage('plone.app.blob')
-        setupPloneSite(products=['plone.app.blob', 'slc.publications'])
-        SiteLayer.setUp()
+        xmlconfig.file('configure.zcml', slc.publications,
+            context=configurationContext)
+
+        z2.installProduct(app, 'Products.LinguaPlone')
+        z2.installProduct(app, "slc.publications")
+
+        # required for python scripts e.g. manage_add*
+        z2.installProduct(app, 'Products.PythonScripts')
+
+        import Products.LinguaPlone
+        self.loadZCML('configure.zcml', package=Products.LinguaPlone)
+        import slc.publications
+        self.loadZCML('configure.zcml', package=slc.publications)
+
+    def setUpPloneSite(self, portal):
+        # Install all the Plone stuff + content (including the
+        # Members folder)
+        applyProfile(portal, 'Products.CMFPlone:plone')
+        applyProfile(portal, 'Products.CMFPlone:plone-content')
+
+        quickInstallProduct(portal, "Products.LinguaPlone")
+
+        applyProfile(portal, 'slc.publications:default')
+
+        # Login as manager and create a test folder
+        setRoles(portal, TEST_USER_ID, ['Manager'])
+        login(portal, TEST_USER_NAME)
+        portal.invokeFactory('Folder', 'folder')
+
+        # Enable Members folder
+        from plone.app.controlpanel.security import ISecuritySchema
+        security_adapter = ISecuritySchema(portal)
+        security_adapter.set_enable_user_folders(True)
+
+        # Commit so that the test browser sees these objects
+        portal.portal_catalog.clearFindAndRebuild()
+        import transaction
+        transaction.commit()
+
+    def tearDownZope(self, app):
+        z2.uninstallProduct(app, "slc.publications")
 
 
-class PublicationTestCase(PloneTestCase):
-    """Base class for integration tests for the 'Publication' product.
-    """
-    layer = PublicationsLayer
+SLC_PUBLICATIONS_FIXTURE = SlcPublications()
+SLC_PUBLICATIONS_INTEGRATION_TESTING = IntegrationTesting(
+    bases=(SLC_PUBLICATIONS_FIXTURE,), name="SlcPublications:Integration")
+SLC_PUBLICATIONS_FUNCTIONAL_TESTING = FunctionalTesting(
+    bases=(SLC_PUBLICATIONS_FIXTURE,), name="SlcPublications:Functional")
 
-class PublicationFunctionalTestCase(FunctionalTestCase):
-    """Base class for functional integration tests for the 'Publication' product.
-    """
-    layer = PublicationsLayer
+
+class IntegrationTestCase(unittest.TestCase):
+    """Base class for integration tests."""
+
+    layer = SLC_PUBLICATIONS_INTEGRATION_TESTING
 
     def loadfile(self, rel_filename):
         home = package_home(product_globals)
@@ -52,3 +91,33 @@ class PublicationFunctionalTestCase(FunctionalTestCase):
         data = StringIO(open(filename, 'r').read())
         data.filename = os.path.basename(rel_filename)
         return data
+
+    def loginAsPortalOwner(self):
+        """A convenience method that is used in doctests that were written
+        before plone.app.testing existed. We have this method here now to
+        avoid changing these doctests.
+        """
+        setRoles(self.layer['portal'], TEST_USER_ID, ['Manager'])
+        login(self.layer['portal'], TEST_USER_NAME)
+
+    @property
+    def portal(self):
+        """A convenience method that is used in doctests that were written
+        before plone.app.testing existed. We have this method here now to
+        avoid changing these doctests.
+        """
+        return self.layer['portal']
+
+    @property
+    def folder(self):
+        """A convenience method that is used in doctests that were written
+        before plone.app.testing existed. We have this method here now to
+        avoid changing these doctests.
+        """
+        return self.layer['portal'].folder
+
+
+class FunctionalTestCase(unittest.TestCase):
+    """Base class for functional tests."""
+
+    layer = SLC_PUBLICATIONS_FUNCTIONAL_TESTING
