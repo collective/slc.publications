@@ -2,7 +2,7 @@
 
 .. Note!
    -----
-   
+
    - code repository
    - bug tracker
    - questions/comments feedback mail
@@ -31,6 +31,17 @@ If LinguaPlone is installed, multiple language versions of a publication can be 
 
    LinguaPlone needs to be installed separately, e.g. by adding it to the buildout.
 
+
+Dependencies
+============
+
+You need the following libs available on your system:
+
+ * ``pdfinfo`` (part of the ``xpdf`` package)
+ * ``ghostscript``
+ * ``convert`` (part of ``ImageMagick``)
+ * ``pdftk`` (http://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/)
+ 
 Credits
 =======
 
