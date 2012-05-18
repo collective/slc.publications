@@ -6,6 +6,7 @@ from types import *
 
 from zope import interface
 from zope import component
+from zope.app.component.hooks import getSite
 
 from Products.CMFCore.utils import getToolByName
 from Products.Archetypes.interfaces import IObjectInitializedEvent
@@ -82,7 +83,9 @@ class ChapterUpdater:
     """
     def __init__(self, publication, event):
         # skip this step if we're in the portal_factory
-        if hasattr(publication, '_p_jar') and publication._p_jar is None:
+        portal = getSite()
+        portal_factory = portal.portal_factory
+        if portal_factory.isTemporary(publication):
             return
 
         self.publication = publication
