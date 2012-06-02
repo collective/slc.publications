@@ -109,15 +109,25 @@ class PublicationPageView(object):
         portal_languages = cmfutils.getToolByName(context, 'portal_languages')
         preflang = portal_languages.getPreferredLanguage()
 
-        PQ = Eq('portal_type', 'File') & \
-             In('object_provides', 'slc.publications.interfaces.IPublicationEnhanced') & \
-             In('Subject', subject) & \
-             Eq('review_state', 'published') 
+        query = {
+            'portal_type': 'File',
+            'object_provides': 'slc.publications.interfaces.IPublicationEnhanced',
+            'Subject': subject,
+            'review_state': 'published',
+        }
+        # PQ = Eq('portal_type', 'File') & \
+        #     In('object_provides', 'slc.publications.interfaces.IPublicationEnhanced') & \
+        #     In('Subject', subject) & \
+        #     Eq('review_state', 'published')
 
         if HAVE_LINGUAPLONE:
-           PQ = PQ & In('Language', [preflang, ''])
+            # PQ = PQ & In('Language', [preflang, ''])
+            query['Language'] = [preflang, '']
 
-        RES = pc.evalAdvancedQuery(PQ, (('effective','desc'),) )
+        # RES = pc.evalAdvancedQuery(PQ, (('effective','desc'),) )
+        query['sort_on'] = 'effective'
+        query['sort_order'] = 'descending'
+        RES = pc(query)
 
         PUBS = []
         mypath = "/".join(context.getPhysicalPath())
@@ -338,7 +348,7 @@ class PublicationContainerView(object):
             canonical = self.context.getCanonical()
         else:
             canonical = self.context
-            
+
         canonicalpath = "/".join(canonical.getPhysicalPath())
 
         if self.context.portal_type=='Topic':
