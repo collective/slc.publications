@@ -7,16 +7,15 @@ If you are uploading such files using FTP or a Bulk Uploader like FlashUpload in
 
 First we need some languages and a folder which is subtyped to be a publication folder
 
-    >>> self.loginAsPortalOwner()
-    >>> portal_languages = self.portal.portal_languages
+    >>> portal_languages = portal.portal_languages
     >>> portal_languages.addSupportedLanguage('en')
     >>> portal_languages.addSupportedLanguage('de')
     >>> portal_languages.getSupportedLanguages()
     ['en', 'de']
     >>> portal_languages.setDefaultLanguage('en')
 
-    >>> _ = self.folder.invokeFactory('Folder', 'pubfolder')
-    >>> pubfolder = getattr(self.folder, 'pubfolder')
+    >>> _ = folder.invokeFactory('Folder', 'pubfolder')
+    >>> pubfolder = getattr(folder, 'pubfolder')
     >>> from p4a.subtyper.interfaces import ISubtyper
     >>> from zope.component import getUtility
     >>> subtyper = getUtility(ISubtyper)
@@ -48,6 +47,5 @@ Now we a) create a new file in it and check that it is automatically transformed
 #    True
 #    >>> test_en.getTranslation('de') == test_de
 #    True
-    
 
-    
+

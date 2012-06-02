@@ -15,12 +15,9 @@ from plone.app.testing import quickInstallProduct
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
 from plone.app.testing import TEST_USER_NAME
-from plone.app.testing import TEST_USER_PASSWORD
 from plone.app.testing import login
 from plone.testing import z2
-from plone.testing.z2 import Browser
 from StringIO import StringIO
-from Testing import ZopeTestCase as ztc
 from zope.configuration import xmlconfig
 
 
@@ -84,37 +81,6 @@ class IntegrationTestCase(unittest.TestCase):
     """Base class for integration tests."""
 
     layer = SLC_PUBLICATIONS_INTEGRATION_TESTING
-
-    def loadfile(self, rel_filename):
-        home = package_home(product_globals)
-        filename = os.path.sep.join([home, rel_filename])
-        data = StringIO(open(filename, 'r').read())
-        data.filename = os.path.basename(rel_filename)
-        return data
-
-    def loginAsPortalOwner(self):
-        """A convenience method that is used in doctests that were written
-        before plone.app.testing existed. We have this method here now to
-        avoid changing these doctests.
-        """
-        setRoles(self.layer['portal'], TEST_USER_ID, ['Manager'])
-        login(self.layer['portal'], TEST_USER_NAME)
-
-    @property
-    def portal(self):
-        """A convenience method that is used in doctests that were written
-        before plone.app.testing existed. We have this method here now to
-        avoid changing these doctests.
-        """
-        return self.layer['portal']
-
-    @property
-    def folder(self):
-        """A convenience method that is used in doctests that were written
-        before plone.app.testing existed. We have this method here now to
-        avoid changing these doctests.
-        """
-        return self.layer['portal'].folder
 
 
 class FunctionalTestCase(unittest.TestCase):

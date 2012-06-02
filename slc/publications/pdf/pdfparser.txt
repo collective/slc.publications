@@ -7,10 +7,10 @@ Note: Make sure "pdfinfo" is in the path of your zope user and is callable.
 
 First we need a pdf file to parse. We load a demonstration pdf file from data/testpdf_en.pdf.
 
-    >>> testpdf_en = self.loadfile('pdf/data/testpdf_en.pdf')
-    
+    >>> testpdf_en = loadfile('pdf/data/testpdf_en.pdf')
+
 Then we get the parser utility.
-    
+
     >>> from zope.component import getUtility
     >>> from slc.publications.pdf.interfaces import IPDFParser
     >>> pdfparser = getUtility(IPDFParser)
@@ -32,6 +32,5 @@ Now we can retrieve the metadata by calling the parse method.
     'pilz'
     >>> metadata['topic']
     ('young workers', 'stress')
-    
-    
-    
+
+

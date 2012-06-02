@@ -5,10 +5,10 @@ slc.publications comes with a component to parse ini config style files for meta
 
 First we need an ini file to parse. We load one from the data directory.
 
-    >>> metadata_ini = self.loadfile('ini/data/metadata.ini')
-    
+    >>> metadata_ini = loadfile('ini/data/metadata.ini')
+
 Then we get the parser utility.
-    
+
     >>> from zope.component import getUtility
     >>> from slc.publications.ini.interfaces import IINIParser
     >>> iniparser = getUtility(IINIParser)
@@ -18,8 +18,8 @@ Now we can retrieve the metadata by calling the parse method.
     >>> metadata_ini = iniparser.parse(metadata_ini.getvalue())
     >>> metadata_ini is not False
     True
-    
-    
+
+
     >>> metadata_ini['en']['']['title']
     'Memorandum of Understanding'
     >>> metadata_ini['en']['']['description']
@@ -34,6 +34,5 @@ Now we can retrieve the metadata by calling the parse method.
     'Vereinbarung'
     >>> metadata_ini['en']['ch1']['title']
     'Preamble'
-    
-    
-    
+
+
