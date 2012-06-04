@@ -49,6 +49,7 @@ setup(name='slc.publications',
           'p4a.subtyper',
           'archetypes.schemaextender',
           'Products.AdvancedQuery',
+          'z3c.jbot',
       ],
       extras_require={
           'test': [
