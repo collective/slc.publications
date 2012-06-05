@@ -1,44 +1,28 @@
-import Acquisition
-import AccessControl
-import datetime
-import urllib
+ # -*- coding: utf-8 -*-
 
-from zope import event
-from zope import component
-from zope import interface
-from zope import schema
-from zope.formlib import form
-from zope.lifecycleevent import Attributes, ObjectModifiedEvent
-
-from AccessControl import Unauthorized
 from AccessControl import getSecurityManager
-from Products.AdvancedQuery import In, Eq, Le, Ge, And, Or
-
-from Products.CMFCore import utils as cmfutils
-#from Products.CMFDefault.formlib.form import getLocale
-from zope.i18n import translate
-
-from Products.CMFPlone.utils import base_hasattr, getSiteEncoding
-from Products.CMFPlone import PloneMessageFactory as _
-from Products.statusmessages import interfaces as statusmessages_ifaces
-
-from Products.Five.browser import pagetemplatefile
 from five.formlib import formbase
-
+from Products.CMFCore import utils as cmfutils
+from Products.CMFPlone.utils import getSiteEncoding
+from Products.Five.browser import pagetemplatefile
+from Products.statusmessages import interfaces as statusmessages_ifaces
 from slc.publications import HAVE_LINGUAPLONE
 from slc.publications import interfaces
+from slc.publications.config import combined_languages_EU
 from slc.publications.ini.interfaces import IINIParser
 from slc.publications.utils import _get_storage_folder
-from slc.publications.config import combined_languages_EU
-
-
-from p4a.common import at
-from p4a.common import formatting
-
-from zope.app.form.browser import TextAreaWidget, DateDisplayWidget, CollectionInputWidget, OrderedMultiSelectWidget
-
+from zope import component
+from zope import event
+from zope import interface
+from zope.formlib import form
+from zope.i18n import translate
 from zope.i18nmessageid import MessageFactory
+from zope.lifecycleevent import Attributes, ObjectModifiedEvent
+
+import Acquisition
+
 _ = MessageFactory('slc.publications')
+
 
 class PublicationPageView(object):
     """Page for displaying a publication.
@@ -63,7 +47,6 @@ class PublicationPageView(object):
         """ list all available translations for this publication """
         context = context or Acquisition.aq_inner(self.context)
         portal_languages = cmfutils.getToolByName(context, 'portal_languages')
-        default_language = portal_languages.getDefaultLanguage()
         ali = portal_languages.getAvailableLanguageInformation()
 
         if HAVE_LINGUAPLONE:
@@ -71,7 +54,7 @@ class PublicationPageView(object):
         else:
             translations = {context.Language(): (context, context.Language())}
 
-        if len(translations.keys())<1:
+        if len(translations.keys()) < 1:
             return
 
         lang_codes = translations.keys()
@@ -86,7 +69,7 @@ class PublicationPageView(object):
             url = trans.absolute_url()
 
             name = ali.get(lang, {'native': lang})['native']
-            R.append( (name, url) )
+            R.append((name, url))
         return R
 
     def chapters(self):
@@ -138,7 +121,7 @@ class PublicationPageView(object):
                 continue
             PUBS.append(R)
 
-        if limit >0 and len(PUBS)>limit:
+        if limit > 0 and len(PUBS) > limit:
             PUBS = PUBS[:limit]
 
         return PUBS
@@ -146,14 +129,13 @@ class PublicationPageView(object):
     def update(self):
         pass
 
-
     def estimated_download_time(self):
         return self.estimate_template()
 
     def _format_timestring(self, secs):
-        const = {'sec':1,
-                 'mins':60*60,
-                 'hours':24*60*60}
+        const = {'sec': 1,
+                 'mins': 60 * 60,
+                 'hours': 24 * 60 * 60}
         order = ('hours', 'mins', 'sec')
         smaller = order[-1]
 
@@ -161,24 +143,22 @@ class PublicationPageView(object):
             if secs < const[smaller]:
                 return '1 %s' % smaller
             for c in order:
-                if secs/const[c] > 0:
+                if secs / const[c] > 0:
                     break
-            return '%.1f %s' % (float(secs/float(const[c])), c)
+            return '%.1f %s' % (float(secs / float(const[c])), c)
 
         return "%s secs" % secs
 
     def get_initial_downloadtime(self):
-        return self._format_timestring( int(self.context.get_size()/57344.0))
+        return self._format_timestring(int(self.context.get_size() / 57344.0))
 
     def generate_estimation_js(self):
         lines = []
         objsize = float(self.context.get_size())
-        du56 = self._format_timestring(int(8*objsize/57344.0))
-        dsl256 = self._format_timestring(int(8*objsize/262144.0))
-        dsl768 = self._format_timestring(int(8*objsize/786432.0))
-        t1 = self._format_timestring(int(8*objsize/1536000.0))
-
-
+        du56 = self._format_timestring(int(8 * objsize / 57344.0))
+        dsl256 = self._format_timestring(int(8 * objsize / 262144.0))
+        dsl768 = self._format_timestring(int(8 * objsize / 786432.0))
+        t1 = self._format_timestring(int(8 * objsize / 1536000.0))
 
         lines.append("var du56 = '%s';" % du56)
         lines.append("var dsl256 = '%s';" % dsl256)
@@ -200,7 +180,6 @@ class PublicationPageView(object):
         msg = _(value, default)
         return translate(msg, target_language=preflang)
 
-
     def get_additional_info(self):
         """ Method for injecting custom content into the view of a Publication
             Just define an adapter for IPublicationEnhanced that implements IAdditionalPublicationInfo.
@@ -221,13 +200,13 @@ class PublicationPageView(object):
 class IPublicationView(interface.Interface):
     """Interface  for the Publication View """
 
+
 class PublicationView(object):
     """ Publication View
     """
 
     def __init__(self, context, request):
         self.publication_info = interfaces.IPublication(context)
-
 
 
 def applyChanges(context, form_fields, data, adapters=None):
@@ -250,7 +229,7 @@ def applyChanges(context, form_fields, data, adapters=None):
             adapters[interface] = adapter
 
         name = form_field.__name__
-        newvalue = data.get(name, form_field) # using form_field as marker
+        newvalue = data.get(name, form_field)  # using form_field as marker
         if (newvalue is not form_field) and (field.get(adapter) != newvalue):
             changed.append(name)
             field.set(adapter, newvalue)
@@ -301,7 +280,8 @@ class PublicationEditForm(formbase.EditForm):
         statusmessages_ifaces.IStatusMessage(
             self.request).addStatusMessage(self.status, 'info')
         redirect = self.request.response.redirect
-        return redirect(self.context.absolute_url()+'/view')
+        return redirect(self.context.absolute_url() + '/view')
+
 
 class PublicationEditMacros(formbase.PageForm):
     # short cut to get to macros more easily
@@ -323,6 +303,7 @@ class PublicationEditMacros(formbase.PageForm):
         if name == 'macros':
             return macros
         return macros[name]
+
 
 class PublicationContainerView(object):
     """View for publication containers.
@@ -351,7 +332,7 @@ class PublicationContainerView(object):
 
         canonicalpath = "/".join(canonical.getPhysicalPath())
 
-        if self.context.portal_type=='Topic':
+        if self.context.portal_type == 'Topic':
             query = {'portal_type': 'File', 'sort_on': 'effective', 'sort_order': 'reverse'}
             results = self.context.queryCatalog(contentFilter=query)
         else:
@@ -365,22 +346,21 @@ class PublicationContainerView(object):
 
         return results
 
-
     def has_syndication(self):
         """ support syndication? """
         try:
-            view = self.context.restrictedTraverse('@@rss.xml')
+            self.context.restrictedTraverse('@@rss.xml')
             return True
         except:
             # it's ok if this doesn't exist, just means no syndication
             return False
 
 
-
 class IGenerateMetadata(interface.Interface):
     """ Interface for Metadata Generation """
     def __call__():
         """ download the generated metadata """
+
 
 class GenerateMetadataView(object):
     """ Metadata Generation """
@@ -401,6 +381,7 @@ class ICoverImage(interface.Interface):
     """ Can have a cover image """
     def __call__():
         """ generate the cover image """
+
 
 class CoverImageView(object):
     """ Cover image generation """

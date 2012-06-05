@@ -1,12 +1,13 @@
  # -*- coding: utf-8 -*-
 
-import Acquisition
-import os
-from types import ListType
-from types import TupleType
+from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from Products.CMFCore.utils import getToolByName
+from types import ListType
+from types import TupleType
+
+import Acquisition
+import os
 
 
 class PublicationsBySubjectView(BrowserView):
