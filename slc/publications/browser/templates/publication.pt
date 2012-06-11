@@ -38,8 +38,7 @@
 
     <div tal:replace="structure provider:plone.belowcontenttitle" />
 
-    <div class="field publicationImage"
-         xtal:condition="here/cover_image | nothing">
+    <div class="field publicationImage">
         <a href="" tal:attributes="href string:${here/absolute_url}">
             <img src=""
                  tal:attributes="src string:${here/absolute_url}/cover_image;
