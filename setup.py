@@ -27,9 +27,9 @@ long_description = (
     '************\n'
     + '\n' +
     read('CONTRIBUTORS.txt')
-    + '\n' 
+    + '\n'
     )
-    
+
 tests_require=['zope.testing',
                'plone.app.blob',
                'Products.PloneFlashUpload',
@@ -59,12 +59,11 @@ setup(name='slc.publications',
       include_package_data=True,
       zip_safe=False,
       install_requires=[
-          'setuptools',
-          'p4a.common',
-          'p4a.z2utils',
-          'p4a.subtyper',
           'archetypes.schemaextender',
-          
+          'p4a.common',
+          'p4a.subtyper',
+          'p4a.z2utils',
+          'setuptools',
       ],
       tests_require=tests_require,
       extras_require=dict(tests=tests_require),
@@ -73,5 +72,5 @@ setup(name='slc.publications',
       [z3c.autoinclude.plugin]
       target = plone
       """,
-      )      
-      
+      )
+
