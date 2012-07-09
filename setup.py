@@ -60,6 +60,7 @@ setup(name='slc.publications',
       zip_safe=False,
       install_requires=[
           'archetypes.schemaextender',
+          'ordereddict',
           'p4a.common',
           'p4a.subtyper',
           'p4a.z2utils',
