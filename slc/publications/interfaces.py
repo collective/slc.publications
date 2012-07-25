@@ -1,7 +1,7 @@
 from zope import schema
 from zope.interface import Interface, alsoProvides
 from zope.app.content import interfaces as contentifaces
-
+from Products.ATContentTypes.interfaces import IATFile
 
 class IAnyPublicationCapable(Interface):
     """Any aspect of publication/content capable.
@@ -17,7 +17,7 @@ class IPossiblePublicationContainer(IAnyPublicationCapable):
         form of publication should implement this interface.
     """
 
-class IPublicationEnhanced(Interface):
+class IPublicationEnhanced(IATFile):
     """ Marker interface for publications
     """
         
