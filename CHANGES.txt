@@ -1,10 +1,10 @@
 Changelog
 =========
 
-4.0a2 (unreleased)
-------------------
+4.0 (2012-09-17)
+----------------
 
-- Nothing changed yet.
+- Plone 4 release
 
 
 4.0a1 (2012-02-02)
