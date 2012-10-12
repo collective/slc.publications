@@ -49,6 +49,20 @@
       />
 
   <page
+      name="publications_view"
+      class=".publications.PublicationsView"
+      for="*"
+      permission="zope2.View"
+      />
+
+  <page
+      name="publications_view.json"
+      class=".publications.PublicationsJSONView"
+      for="*"
+      permission="zope2.View"
+      />
+
+  <page
       name="generate-metadata"
       class=".publication.GenerateMetadataView"
       allowed_interface=".publication.IGenerateMetadata"
