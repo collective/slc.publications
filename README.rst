@@ -44,7 +44,7 @@ You need the following libs available on your system:
  * ``ghostscript``
  * ``convert`` (part of ``ImageMagick``)
  * ``pdftk`` (http://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/)
- 
+
 Credits
 =======
 
