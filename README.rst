@@ -11,7 +11,7 @@ slc.publications
    - questions/comments feedback mail
 
 
-- Code repository: http://svn.plone.org/svn/collective/slc.publications
+- Code repository: https://github.com/collective/slc.publications
 - Questions and comments to info (at) syslab (dot) com
 - Report bugs at http://plone.org/products/slc.publications/
 
