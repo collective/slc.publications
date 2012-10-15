@@ -1,3 +1,6 @@
+Contributors
+============
+
 - Alexander Pilz (Syslab.com GmbH)
 - Alin Voinea for Testing and Plone 2.5 backporting
 - Jan-Carel Brand (Syslab.com GmbH)

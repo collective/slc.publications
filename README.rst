@@ -1,3 +1,6 @@
+slc.publications
+****************
+
 .. contents::
 
 .. Note!
