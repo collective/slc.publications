@@ -5,6 +5,7 @@ This module contains the slc.publications package
 import os
 from setuptools import setup, find_packages
 
+
 def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
@@ -16,14 +17,12 @@ long_description = (
     read('CHANGES.rst')
     + '\n' +
     read('CONTRIBUTORS.rst')
-    + '\n'
-    )
+    + '\n')
 
 setup(name='slc.publications',
       version=version,
       description="A content type to store and parse pdf publications",
       long_description=long_description,
-      # Get more strings from http://www.python.org/pypi?%3Aaction=list_classifiers
       classifiers=[
         "Framework :: Plone",
         "Framework :: Zope2",
@@ -31,7 +30,8 @@ setup(name='slc.publications',
         "Programming Language :: Python",
         "Topic :: Software Development :: Libraries :: Python Modules",
         "License :: OSI Approved :: GNU General Public License (GPL)",
-        "License :: OSI Approved :: European Union Public Licence 1.1 (EUPL 1.1)",
+        "License :: OSI Approved :: European Union Public Licence "\
+            "1.1 (EUPL 1.1)",
         ],
       keywords='plone content publications pdf parse metadata',
       author='Syslab.com GmbH',
@@ -62,4 +62,3 @@ setup(name='slc.publications',
       target = plone
       """,
       )
-
