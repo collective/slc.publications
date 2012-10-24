@@ -147,6 +147,11 @@
         class=".publications_by_subject.PublicationsBySubjectView"
         permission="zope2.View"
     />
+
+    <browser:resourceDirectory
+        name="slc.publications.browser"
+        directory="resources"
+        />
                 
 </configure>
       
