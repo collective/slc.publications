@@ -169,7 +169,7 @@ class PublicationsView(BrowserView):
         # try to clean up
         if tmp_pdf_in is not None:
             try:
-                os.remove(tmp_pdfin)
+                os.remove(tmp_pdf_in)
             except:
                 pass
         if tmp_dir is not None:
