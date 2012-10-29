@@ -19,7 +19,7 @@ class ObjectTranslationReferenceSetEvent(object):
     """Sent before an object is translated."""
     implements(IObjectTranslationReferenceSetEvent)
 
-    def __init__(self, context, language):        
+    def __init__(self, context, language):
         self.object = context
         self.language = language
 
@@ -31,7 +31,8 @@ def addTranslationReference(self, translation):
         double = self.getTranslation(language)
         raise AlreadyTranslated(double.absolute_url())
     self.addReference(translation, RELATIONSHIP)
-    referencesetevent = ObjectTranslationReferenceSetEvent(self, self.Language())
+    referencesetevent = ObjectTranslationReferenceSetEvent(
+        self, self.Language())
     notify(referencesetevent)
 
 I18NBaseObject.addTranslationReference = addTranslationReference

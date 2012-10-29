@@ -1,14 +1,11 @@
-from AccessControl import Unauthorized
 from Acquisition import aq_inner, aq_parent
-import logging
-
 from Products.CMFCore.utils import getToolByName
-
+from slc.publications import HAVE_LINGUAPLONE
 from slc.publications.interfaces import IPublicationEnhanced
 
-log = logging.getLogger('slc.publications')
+import logging
 
-from slc.publications import HAVE_LINGUAPLONE, RELATIONSHIP
+log = logging.getLogger('slc.publications')
 
 
 def _get_storage_folder(ob):

@@ -30,7 +30,8 @@ class PublicationPageView(object):
     adapted_interface = interfaces.IPublication
     media_field = 'file'
 
-    estimate_template = pagetemplatefile.ViewPageTemplateFile('templates/estimate_template.pt')
+    estimate_template = pagetemplatefile.ViewPageTemplateFile(
+        'templates/estimate_template.pt')
 
     label = u'View Publication Info'
 
@@ -167,10 +168,13 @@ class PublicationPageView(object):
         return "\n".join(lines)
 
     def getFormattedKeywords(self):
-        """ returns keywords (Subject) set on the Publication formatted in a friendly way"""
+        """Returns keywords (Subject) set on the Publication formatted in
+        a friendly way.
+        """
         keywords = self.context.Subject()
         pf = interfaces.IPrettyFormatter(self.context)
-        keywords = [dict(id=key, label=pf.formatKeyword(key)) for key in keywords]
+        keywords = [dict(id=key, label=pf.formatKeyword(key))
+                    for key in keywords]
 
         return keywords
 
@@ -182,9 +186,11 @@ class PublicationPageView(object):
 
     def get_additional_info(self):
         """ Method for injecting custom content into the view of a Publication
-            Just define an adapter for IPublicationEnhanced that implements IAdditionalPublicationInfo.
+        Just define an adapter for IPublicationEnhanced that implements
+        IAdditionalPublicationInfo.
         """
-        adapter = component.queryAdapter(self.context, interfaces.IAdditionalPublicationInfo)
+        adapter = component.queryAdapter(
+            self.context, interfaces.IAdditionalPublicationInfo)
         if adapter:
             try:
                 return adapter()
@@ -241,7 +247,8 @@ class PublicationEditForm(formbase.EditForm):
     """Form for editing publication fields.
     """
 
-    template = pagetemplatefile.ViewPageTemplateFile('templates/publication-edit.pt')
+    template = pagetemplatefile.ViewPageTemplateFile(
+        'templates/publication-edit.pt')
     form_fields = form.FormFields(interfaces.IPublication)
     #form_fields['chapters'].customq_widget = CollectionInputWidget
 
@@ -320,7 +327,8 @@ class PublicationContainerView(object):
     def folderContents(self):
         """ customized folder contents """
         query = {}
-        portal_languages = cmfutils.getToolByName(self.context, 'portal_languages')
+        portal_languages = cmfutils.getToolByName(
+            self.context, 'portal_languages')
         portal_catalog = cmfutils.getToolByName(self.context, 'portal_catalog')
         preflang = portal_languages.getPreferredLanguage()
 
@@ -333,15 +341,20 @@ class PublicationContainerView(object):
         canonicalpath = "/".join(canonical.getPhysicalPath())
 
         if self.context.portal_type == 'Topic':
-            query = {'portal_type': 'File', 'sort_on': 'effective', 'sort_order': 'reverse'}
+            query = {
+                'portal_type': 'File',
+                'sort_on': 'effective',
+                'sort_order': 'reverse'
+            }
             results = self.context.queryCatalog(contentFilter=query)
         else:
-            query = dict(object_provides='slc.publications.interfaces.IPublicationEnhanced',
-                         sort_on='effective',
-                         sort_order='reverse',
-                         Language=['', preflang],
-                         path=[currpath, canonicalpath]
-                         )
+            query = dict(
+                object_provides='slc.publications.interfaces.IPublicationEnhanced',
+                sort_on='effective',
+                sort_order='reverse',
+                Language=['', preflang],
+                path=[currpath, canonicalpath]
+            )
             results = portal_catalog(query)
 
         return results

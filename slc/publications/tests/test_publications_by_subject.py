@@ -34,8 +34,10 @@ class TestPublicationsBySubjectView(IntegrationTestCase):
         alsoProvides(self.pubs1, IPublicationContainerEnhanced)
         alsoProvides(self.pubs2, IPublicationContainerEnhanced)
         self.subtyper = getUtility(ISubtyper)
-        self.subtyper.change_type(self.pubs1, u'slc.publications.FolderPublicationContainer')
-        self.subtyper.change_type(self.pubs2, u'slc.publications.FolderPublicationContainer')
+        self.subtyper.change_type(
+            self.pubs1, u'slc.publications.FolderPublicationContainer')
+        self.subtyper.change_type(
+            self.pubs2, u'slc.publications.FolderPublicationContainer')
 
         # add some publications
         self.pubs1.invokeFactory('File', 'pub1')

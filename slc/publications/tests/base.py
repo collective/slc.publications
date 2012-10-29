@@ -1,11 +1,6 @@
  # -*- coding: utf-8 -*-
 """Base TestCases for slc.publications tests."""
 
-import os
-import unittest2 as unittest
-
-from Globals import package_home
-from slc.publications.config import product_globals
 from plone.app.testing import FunctionalTesting
 from plone.app.testing import IntegrationTesting
 from plone.app.testing import PLONE_FIXTURE
@@ -17,8 +12,9 @@ from plone.app.testing import TEST_USER_ID
 from plone.app.testing import TEST_USER_NAME
 from plone.app.testing import login
 from plone.testing import z2
-from StringIO import StringIO
 from zope.configuration import xmlconfig
+
+import unittest2 as unittest
 
 
 class SlcPublications(PloneSandboxLayer):

@@ -50,7 +50,8 @@ class PublicationsBySubjectView(BrowserView):
         publist = {}
         parentlist = []
 
-        # we implement a simple sorting by folder id to have a grouping. This is not too nice yet
+        # we implement a simple sorting by folder id to have a grouping.
+        # This is not too nice yet
 
         for P in PUBS:
             path = P.getPath()

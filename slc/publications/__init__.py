@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-
 __author__ = """SYSLAB.COM <info@syslab.com>"""
 __docformat__ = 'plaintext'
 
@@ -23,8 +22,8 @@ except ImportError:
     generateMethods = None
     RELATIONSHIP = ""
     logger.info('slc.publications :: LinguaPlone not installed. Not patching LinguaPlone addTranslation')
-    
-    
+
+
 import os
 import os.path
 from Globals import package_home
@@ -46,7 +45,6 @@ ATFileSchema['file'].required = False
 finalizeATCTSchema(ATFileSchema)
 
 
-
 def initialize(context):
     """initialize product (called by zope)"""
 
@@ -57,9 +55,8 @@ def initialize(context):
 
     cmfutils.ContentInit(
         PROJECTNAME + ' Content',
-        content_types      = content_types,
-        permission         = DEFAULT_ADD_CONTENT_PERMISSION,
-        extra_constructors = constructors,
-        fti                = ftis,
+        content_types=content_types,
+        permission=DEFAULT_ADD_CONTENT_PERMISSION,
+        extra_constructors=constructors,
+        fti=ftis,
         ).initialize(context)
-

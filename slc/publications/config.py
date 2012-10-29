@@ -1,4 +1,3 @@
-
 __author__ = """SYSLAB.COM <info@syslab.com>"""
 __docformat__ = 'plaintext'
 

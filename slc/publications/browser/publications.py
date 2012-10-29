@@ -56,14 +56,14 @@ class PublicationsView(BrowserView):
 
     def get_publications(self):
         form = self.request.form
-        type_path = self.path+"/"+form.get('typelist', '')
+        type_path = self.path + "/" + form.get('typelist', '')
         query = {
             'object_provides':
                 'slc.publications.interfaces.IPublicationEnhanced',
-            'review_state'   : 'published',
-            'SearchableText' : form.get("SearchableText", ''),
-            'path'           : type_path,
-            'Subject'        : form.get("keywords", ""),
+            'review_state': 'published',
+            'SearchableText': form.get("SearchableText", ''),
+            'path': type_path,
+            'Subject': form.get("keywords", ""),
             }
         brains = self.pc.searchResults(query)
 
@@ -79,28 +79,27 @@ class PublicationsView(BrowserView):
             path = result.getPath()
             date = self.context.toLocalizedTime(result.effective)
 
-            publications.append(
-                {"title"          : result.Title.decode("utf-8").replace(
-                        "'", "&#39;"),
-                 "effective_date" : date,
-                 "size"           : obj.getObjSize(),
-                 "path"           : path + "/view",
-                 "type"           : self.get_publication_type(path),
+            publications.append({
+                "title": result.Title.decode("utf-8").replace("'", "&#39;"),
+                 "effective_date": date,
+                 "size": obj.getObjSize(),
+                 "path": path + "/view",
+                 "type": self.get_publication_type(path),
                  })
         return publications
 
     def get_carousel_details(self):
         query = {'object_provides':
                      'slc.publications.interfaces.IPublicationEnhanced',
-                 'review_state'   : 'published'}
+                 'review_state': 'published'}
         pubs = [i.getObject() for i in self.pc.searchResults(query)[:5]]
         pub_details = []
         for pub in pubs:
             pub_details.append({
-                    "absolute_url" : pub.absolute_url(),
-                    "title"        : pub.Title(),
-                    "images"       : [],
-                    "description"  : pub.Description(),
+                    "absolute_url": pub.absolute_url(),
+                    "title": pub.Title(),
+                    "images": [],
+                    "description": pub.Description(),
                     "images": self._get_carousel_images(pub)})
         return pub_details
 
@@ -115,7 +114,6 @@ class PublicationsView(BrowserView):
             i for i in pub_folder_contents
             if i.startswith("carousel_")]
         return images
-
 
     def _generate_carousel_images(self, pub, pub_folder):
         pub_folder = _get_storage_folder(pub)
@@ -162,8 +160,7 @@ class PublicationsView(BrowserView):
                 img.close()
 
                 pub_folder.invokeFactory(
-                    "Image", "carousel_%s.gif" % i, image = img_data)
-
+                    "Image", "carousel_%s.gif" % i, image=img_data)
 
         except Exception, e:
             logger.warn("generateImage: Could not autoconvert because: %s" % e)
@@ -202,7 +199,7 @@ class PublicationsView(BrowserView):
     def get_publication_type(self, path):
         """The publication type is determined by the folder"""
         for pub_type in self.publication_types.keys():
-            pub_type_path = self.path+"/"+pub_type
+            pub_type_path = self.path + "/" + pub_type
             if pub_type_path in path:
                 return self.publication_types[pub_type]
         return _(u"Unknown")

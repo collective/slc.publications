@@ -37,25 +37,34 @@ class _ATCTPublication(object):
         self.context = context
 
     def __str__(self):
-        return '<slc.publication %s title=%s>' % (self.__class__.__name__, self.context.Title())
+        return '<slc.publication %s title=%s>' % (
+            self.__class__.__name__, self.context.Title())
     __repr__ = __str__
 
     def editChapter(self, chapter, metadata):
-        """ add/edit a link object with the given chapter name and modify its metadata """
+        """ add/edit a link object with the given chapter name and modify
+        its metadata
+        """
         additionals = _get_storage_folder(self.context)
         C = getattr(additionals, chapter, None)
         if C is not None:
             return setMetadataMap(C, metadata)
 
     def setMetadataIniMap(self, metadata):
-        """ Given a complex metadata map from e.g. the ini parser set the metadata on all translations and chapters """
+        """ Given a complex metadata map from e.g. the ini parser set the
+        metadata on all translations and chapters
+        """
         subtyper = component.getUtility(ISubtyper)
 
         if HAVE_LINGUAPLONE:
             translations = self.context.getTranslations()
             canonical = self.context.getCanonical()
         else:
-            translations = {self.context.Language(): (self.context, self.context.Language())}
+            translations = {
+                self.context.Language(): (
+                    self.context, self.context.Language()
+                )
+            }
             canonical = self.context
 
         for lang in metadata.keys():
@@ -66,14 +75,16 @@ class _ATCTPublication(object):
                 translation = translations[lang][0]
                 if not subtyper.existing_type(translation) or \
                     subtyper.existing_type(translation).name != 'slc.publications.Publication':
-                    subtyper.change_type(translation, 'slc.publications.Publication')
+                    subtyper.change_type(
+                        translation, 'slc.publications.Publication')
 
             else:
                 if HAVE_LINGUAPLONE:
                     canonical.addTranslation(lang)
                     translation = canonical.getTranslation(lang)
                     # make the translation a publication as well
-                    subtyper.change_type(translation, 'slc.publications.Publication')
+                    subtyper.change_type(
+                        translation, 'slc.publications.Publication')
                     translations[lang] = [translation, None]
                 else:
                     # Skip this. Metadata.ini contains multiple languages
@@ -81,7 +92,8 @@ class _ATCTPublication(object):
                     pass
 
             # if there is a default, we merge it with the language specifics.
-            # But only for existing values. So the language sections extend the default
+            # But only for existing values. So the language sections extend
+            # the default
 
             langmap = metadata[lang]
 
@@ -104,7 +116,8 @@ class _ATCTPublication(object):
 
     def generateImage(self):
         """
-        try safely to generate the cover image if pdftk and imagemagick are present
+        try safely to generate the cover image if pdftk and imagemagick are
+        present
         """
         # First check whether the image is empty. Only generate, if we need one
         ci = self.context.getField('cover_image').getAccessor(self.context)()
@@ -144,7 +157,8 @@ class _ATCTPublication(object):
                 logger.warn("popen-2: %s" % (result))
             #fhimg.seek(0)
             coverdata = fhimg.read()
-            self.context.getField('cover_image').getMutator(self.context)(coverdata)
+            self.context.getField('cover_image').getMutator(
+                self.context)(coverdata)
             status = 1
         except Exception, e:
             logger.warn("generateImage: Could not autoconvert because: %s" % e)

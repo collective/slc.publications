@@ -24,19 +24,19 @@ class SchemaExtender(object):
         """ change the field to be languageIndependant = False"""
         return [
             ExtensionBlobField('file',
-                required = True,
-                primary = True,
-                searchable = True,
-                default = '',
-                accessor = 'getFile',
-                mutator = 'setFile',
-                index_method = 'getIndexValue',
-                languageIndependent = False,
-                storage = AnnotationStorage(migrate=True),
-                validators = (('isNonEmptyFile', V_REQUIRED),
-                              ('checkFileMaxSize', V_REQUIRED)),
-                widget = FileWidget(label = _(u'label_file', default=u'File'),
-                                    description=_(u''),
-                                    show_content_type = False,))
+                required=True,
+                primary=True,
+                searchable=True,
+                default='',
+                accessor='getFile',
+                mutator='setFile',
+                index_method='getIndexValue',
+                languageIndependent=False,
+                storage=AnnotationStorage(migrate=True),
+                validators=(('isNonEmptyFile', V_REQUIRED),
+                            ('checkFileMaxSize', V_REQUIRED)),
+                widget=FileWidget(
+                    label=_(u'label_file', default=u'File'),
+                    description=_(u''),
+                    show_content_type=False,))
         ]
-

@@ -31,7 +31,8 @@ class TestPublicationPageView(IntegrationTestCase):
         self.pubs = self.portal.pubs
         alsoProvides(self.pubs, IPublicationContainerEnhanced)
         self.subtyper = getUtility(ISubtyper)
-        self.subtyper.change_type(self.pubs, u'slc.publications.FolderPublicationContainer')
+        self.subtyper.change_type(
+            self.pubs, u'slc.publications.FolderPublicationContainer')
 
         # add some publications
         self.pubs.invokeFactory('File', 'pub1')

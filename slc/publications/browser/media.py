@@ -1,5 +1,3 @@
-from zope import interface
-from zope.formlib import form
 from slc.publications import interfaces
 try:
     from zope.app.annotation import interfaces as annointerfaces
@@ -8,6 +6,7 @@ except ImportError, err:
     from zope.annotation import interfaces as annointerfaces
 
 _marker = object()
+
 
 class ToggleEnhancementsView(object):
     """ Toggle the view for Enhancements
@@ -28,11 +27,11 @@ class ToggleEnhancementsView(object):
             activated = 'Media+activated'
 
         response.redirect(self.context.absolute_url() + \
-                          '/view?portal_status_message='+activated)
+                          '/view?portal_status_message=' + activated)
 
     def _set_media_activated(self, v):
         interfaces.IMediaActivator(self.context).media_activated = v
+
     def _get_media_activated(self):
         return interfaces.IMediaActivator(self.context).media_activated
     media_activated = property(_get_media_activated, _set_media_activated)
-
