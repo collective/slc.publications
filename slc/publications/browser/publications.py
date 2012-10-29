@@ -153,7 +153,6 @@ class PublicationsView(BrowserView):
                 if os.path.splitext(gif)[1] == '.gif']
             imgfiles.sort()
 
-            carousel_images = []
             for i, img in enumerate(imgfiles):
                 img = open(os.path.join(tmp_dir, img), "r")
                 img_data = img.read()

@@ -71,7 +71,7 @@ class _ATCTPublication(object):
             if lang == 'default':
                 continue    # we skip the default section
 
-            if translations.has_key(lang):
+            if lang in translations:
                 translation = translations[lang][0]
                 if not subtyper.existing_type(translation) or \
                     subtyper.existing_type(translation).name != 'slc.publications.Publication':
@@ -104,7 +104,7 @@ class _ATCTPublication(object):
 
                     # merge defaults
                     publication_map = langmap['']
-                    if  metadata.has_key('default'):
+                    if 'default' in metadata:
                         defaults = metadata['default']['']
                         for x in defaults.keys():
                             if not publication_map.get(x):
@@ -199,16 +199,16 @@ def setMetadataMap(ob, metadata):
                      'keywords': 'subject',
                      }
     for comp in compatibility.keys():
-        if metadata.has_key(comp):
+        if comp in metadata:
             metadata[compatibility[comp]] = metadata[comp]
             del metadata[comp]
 
     # we dont want to set the language explicitly
-    if metadata.has_key('language'):
+    if 'language' in metadata:
         del metadata['language']
 
     # convert old MTSubject
-    if metadata.has_key('MTSubject'):
+    if 'MTSubject' in metadata:
         newmt = []
         mt = metadata['MTSubject']
         for m in mt:
@@ -217,7 +217,7 @@ def setMetadataMap(ob, metadata):
         del metadata['MTSubject']
 
     # convert the old country path notation to ISOCode notation
-    if metadata.has_key('Country'):
+    if 'Country' in metadata:
         c = metadata['Country']
         newc = []
         for C in c:

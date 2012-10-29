@@ -1,4 +1,3 @@
-from Acquisition import aq_base, aq_inner
 from types import *
 from interfaces import IPDFParser
 from zope import interface
@@ -175,13 +174,13 @@ class PDFParser(object):
         # that as most explicit
 
         l = self._guessLanguage(pdf)
-        if l and not META_MAP.has_key('language'):
+        if l and not 'language' in META_MAP:
             META_MAP['language'] = l
 
         # Finally we'll do some plone specific rewritings
         # It would be smart to hook some kind of adapter here so that one
         # can define his own rewritings
-        if META_MAP.has_key('keywords'):
+        if 'keywords' in META_MAP:
             META_MAP['subject_keywords'] = list(META_MAP['keywords'])
         return META_MAP
 
