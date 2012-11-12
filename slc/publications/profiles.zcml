@@ -10,6 +10,5 @@
       description="Extension profile for publications."
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
-  
 
 </configure>

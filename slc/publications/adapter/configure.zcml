@@ -1,37 +1,37 @@
 <configure xmlns="http://namespaces.zope.org/zope"
            xmlns:browser="http://namespaces.zope.org/browser"
            xmlns:zcml="http://namespaces.zope.org/zcml"
-           xmlns:five="http://namespaces.zope.org/five"    
+           xmlns:five="http://namespaces.zope.org/five"
            i18n_domain="slc.publications">
 
-    <subscriber 
+    <subscriber
         for="slc.publications.interfaces.IPublicationEnhanced
              zope.lifecycleevent.interfaces.IObjectModifiedEvent"
         handler=".events.ChapterUpdater"
     />
 
-    <subscriber 
+    <subscriber
         for="slc.publications.interfaces.IPublicationEnhanced
              zope.lifecycleevent.interfaces.IObjectModifiedEvent"
         handler=".events.generate_image"
     />
 
-    <subscriber 
+    <subscriber
         for="slc.publications.interfaces.IPublicationEnhanced
              zope.app.container.interfaces.IObjectRemovedEvent"
         handler=".events.remove_additionals"
     />
-                   
+
     <subscriber for="zope.app.container.interfaces.IObjectAddedEvent"
         handler=".events.object_added"
     />
 
     <configure zcml:condition="installed Products.LinguaPlone">
-       <subscriber 
+       <subscriber
             for="..linguaplone_addTranslation_patch.IObjectTranslationReferenceSetEvent"
             handler=".events.subtype_on_translate"
        />
-        <subscriber 
+        <subscriber
             for="slc.publications.interfaces.IPublicationEnhanced
                  Products.LinguaPlone.events.IObjectTranslatedEvent"
             handler=".events.TranslationChapterUpdater"
@@ -40,18 +40,18 @@
 
     <adapter factory=".publication.PrettyFormatter"
              for="slc.publications.interfaces.IPublicationEnhanced"
-             provides="slc.publications.interfaces.IPrettyFormatter" 
+             provides="slc.publications.interfaces.IPrettyFormatter"
     />
 
     <configure zcml:condition="installed slc.xliff">
-        <adapter factory=".xliff.PublicationAttributeExtractor" 
+        <adapter factory=".xliff.PublicationAttributeExtractor"
                 for="slc.publications.interfaces.IPublicationEnhanced"
-                provides="slc.xliff.interfaces.IAttributeExtractor" 
+                provides="slc.xliff.interfaces.IAttributeExtractor"
         />
 
         <adapter factory=".xliff.PublicationContainerAttributeExtractor"
                 for="slc.publications.interfaces.IPublicationContainerEnhanced"
-                provides="slc.xliff.interfaces.IAttributeExtractor" 
+                provides="slc.xliff.interfaces.IAttributeExtractor"
         />
     </configure>
 

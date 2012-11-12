@@ -4,15 +4,14 @@
     xmlns:five="http://namespaces.zope.org/five"
     xmlns:browser="http://namespaces.zope.org/browser"
     i18n_domain="slc.publications">
-    
-    <include package="z3c.jbot" file="meta.zcml" />
 
-    <!-- Need to override several templates -->
-    <browser:jbot
-        directory="jbot"
-        />
+  <include package="z3c.jbot" file="meta.zcml" />
 
-      
+  <!-- Need to override several templates -->
+  <browser:jbot
+      directory="jbot"
+      />
+
   <page
       name="publication-container.html"
       for="slc.publications.interfaces.IPublicationContainerEnhanced"
@@ -20,9 +19,9 @@
       template="templates/publication-container.pt"
       class=".publication.PublicationContainerView"
       />
-            
-    <!-- This is the new default view for the file object. 
-         It uses the publication_view as helper -->      
+
+  <!-- This is the new default view for the file object.
+       It uses the publication_view as helper -->
 
   <page
       name="publication_related_items"
@@ -39,7 +38,7 @@
       class=".publication.PublicationPageView"
       permission="zope2.View"
       />
-      
+
   <page
       name="publication_view"
       class=".publication.PublicationView"
@@ -78,7 +77,6 @@
       permission="zope2.View"
       />
 
-      
   <page
       name="publication_edit"
       for="slc.publications.interfaces.IPublicationEnhanced"
@@ -92,27 +90,25 @@
       permission="cmf.ModifyPortalContent"
       class=".publication.PublicationEditMacros"
       />
-      
-  <zope:adapter 
+
+  <zope:adapter
         factory="..displays.PublicationContainerDynamicViews"
-        />      
-      
-      
+        />
+
   <page
       name="publication-config.html"
       for="slc.publications.interfaces.IPossiblePublicationContainer"
       permission="cmf.ModifyPortalContent"
       class=".media.ToggleEnhancementsView"
       />
-            
+
   <page
       name="publication-config.html"
       for="slc.publications.interfaces.IPossiblePublication"
       permission="cmf.ModifyPortalContent"
       class=".media.ToggleEnhancementsView"
-      />      
-      
-      
+      />
+
   <menuItem
       menu="object_buttons"
       for="slc.publications.interfaces.IAnyPublicationCapable"
@@ -129,9 +125,8 @@
       action="${object_url}/publication-config.html"
       filter="object/@@slcpublicationsupport/can_activate_publication"
       permission="cmf.ModifyPortalContent"
-      />      
-      
-      
+      />
+
   <page
       name="slcpublicationsupport"
       for="*"
@@ -139,19 +134,17 @@
       permission="zope.Public"
       allowed_interface=".support.IContextualPublicationSupport"
       />
-           
-           
-    <page
-        for="*"
-        name="publications-by-subject"
-        class=".publications_by_subject.PublicationsBySubjectView"
-        permission="zope2.View"
-    />
 
-    <browser:resourceDirectory
-        name="slc.publications.browser"
-        directory="resources"
-        />
-                
+  <page
+       for="*"
+       name="publications-by-subject"
+       class=".publications_by_subject.PublicationsBySubjectView"
+       permission="zope2.View"
+       />
+
+  <browser:resourceDirectory
+       name="slc.publications.browser"
+       directory="resources"
+       />
+
 </configure>
-      
