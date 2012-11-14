@@ -57,14 +57,17 @@ class PublicationsView(BrowserView):
     def get_publications(self):
         form = self.request.form
         type_path = self.path + "/" + form.get('typelist', '')
+        keywords = form.get("keywords")
         query = {
             'object_provides':
                 'slc.publications.interfaces.IPublicationEnhanced',
             'review_state': 'published',
             'SearchableText': form.get("SearchableText", ''),
             'path': type_path,
-            'Subject': form.get("keywords", ""),
             }
+        if keywords:
+            query['Subject'] = keywords
+
         brains = self.pc.searchResults(query)
 
         show_all = form.get("show-all", False)
