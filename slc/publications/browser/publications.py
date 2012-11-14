@@ -9,6 +9,7 @@ from ordereddict import OrderedDict
 
 from zope.app.component.hooks import getSite
 
+from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone import PloneMessageFactory as _
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -77,10 +78,12 @@ class PublicationsView(BrowserView):
             self.has_more_results = True
 
         publications = []
+        translations = getToolByName(self.context, 'translation_service')
+
         for result in results:
             obj = result.getObject()
             path = result.getPath()
-            date = self.context.toLocalizedTime(result.effective)
+            date = translations.ulocalized_time(result.effective)
 
             publications.append({
                 "title": result.Title.decode("utf-8").replace("'", "&#39;"),
