@@ -36,17 +36,19 @@
   <body>
 
     <div metal:fill-slot="main">
-
-      <div id="content">
         <div id="mainContent">
-          <h1>Publications</h1>
+
+          <h1 tal:content="context/Title">Publications</h1>
+
           <div class="introduction">
             <p>All of the Agency´s publications can be downloaded free
             of charge.</p>
           </div>
 
-          <ul class="recentcarousel" id="pubSchwusch">
-            <span tal:repeat="item view/get_carousel_details"
+          <ul class="recentcarousel" id="pubSchwusch"
+              tal:define="carousel_details view/get_carousel_details"
+              tal:condition="carousel_details">
+            <span tal:repeat="item carousel_details"
                   tal:omit-tag="">
               <li tal:define="images item/images">
                 <h2>
@@ -69,7 +71,9 @@
               </li>
             </span>
           </ul>
-          <table id="resultTable" class="highDensity" summary="All publications">
+          <table id="resultTable" class="highDensity" summary="All publications"
+                 tal:define="publications view/get_publications"
+                 tal:condition="publications">
             <thead>
               <tr>
                 <th i18n:translate="listingheader_title">
@@ -87,7 +91,7 @@
               </tr>
             </thead>
 
-            <tbody tal:repeat="publication view/get_publications">
+            <tbody tal:repeat="publication publications">
               <tr>
                 <td>
                   <a tal:attributes="href publication/path"
@@ -162,9 +166,7 @@
             </form>
           </div>
         </div>
-      </div>
 
     </div>
-
   </body>
 </html>
