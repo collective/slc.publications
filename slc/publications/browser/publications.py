@@ -68,6 +68,8 @@ class PublicationsView(BrowserView):
             'review_state': 'published',
             'SearchableText': form.get("SearchableText", ''),
             'path': type_path,
+            'sort_on': 'effective',
+            'sort_order': 'descending'
             }
         if keywords:
             query['Subject'] = keywords
@@ -95,11 +97,11 @@ class PublicationsView(BrowserView):
 
             publications.append({
                 "title": result.Title.decode("utf-8").replace("'", "&#39;"),
-                 "effective_date": date,
-                 "size": obj.getObjSize(),
-                 "path": path + "/view",
-                 "type": self.get_publication_type(path),
-                 })
+                "effective_date": date,
+                "size": obj.getObjSize(),
+                "path": path + "/view",
+                "type": self.get_publication_type(path),
+            })
         return publications
 
     def get_carousel_details(self):
