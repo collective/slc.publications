@@ -85,7 +85,13 @@ class PublicationsView(BrowserView):
         for result in results:
             obj = result.getObject()
             path = result.getPath()
-            date = translations.ulocalized_time(result.effective)
+
+            try:
+                date = translations.ulocalized_time(result.effective)
+            except ValueError:
+                # this usually happens if the effective date is not in allowed
+                # range (year should be > 1900)
+                date = u''
 
             publications.append({
                 "title": result.Title.decode("utf-8").replace("'", "&#39;"),
