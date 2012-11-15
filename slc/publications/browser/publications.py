@@ -20,6 +20,9 @@ from slc.publications.utils import _get_storage_folder
 
 logger = logging.getLogger('slc.publications.publications.publications.py')
 
+# Constants
+MAX_RESULTS = 20
+
 
 class PublicationsView(BrowserView):
     """ Filter/Search for Publications """
@@ -72,9 +75,8 @@ class PublicationsView(BrowserView):
         brains = self.pc.searchResults(query)
 
         show_all = form.get("show-all", False)
-        max_results = 20
-        results = show_all and brains or brains[:max_results]
-        if len(brains) > max_results and show_all == False:
+        results = show_all and brains or brains[:MAX_RESULTS]
+        if len(brains) > MAX_RESULTS and show_all == False:
             self.has_more_results = True
 
         publications = []
