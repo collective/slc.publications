@@ -210,11 +210,12 @@ class PublicationsView(BrowserView):
         return _(u"Unknown")
 
     def get_keywords(self):
-        brains = self.pc.searchResults(
-            {'object_provides':
-             'slc.publications.interfaces.IPublicationEnhanced',
-             'review_state': "published",
-             })
+        brains = self.pc.searchResults({
+            'object_provides':
+            'slc.publications.interfaces.IPublicationEnhanced',
+            'review_state': "published",
+            'path': self.path,
+        })
         keywords = set()
         for brain in brains:
             for keyword in brain.Subject:
