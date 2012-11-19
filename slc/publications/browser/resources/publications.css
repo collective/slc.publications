@@ -715,8 +715,8 @@ dl.grid dt label {
 /* @group Portlets */
 
 #portlets {
-	width: 160px;
-	float: left;
+	width: 150px;
+	float: right;
 	font: 11px/18px Verdana, "Lucida Grande", Lucida, sans-serif;
 	color: #666;
 }
@@ -729,7 +729,7 @@ dl.grid dt label {
 .portlet {
 	margin-bottom: 20px;
 	float: left;
-	width: 160px;
+	width: 150px;
 }
 
 .portlet h2 {
@@ -756,6 +756,11 @@ dl.grid dt label {
 .portlet dt {
 	font-weight: bold;
 	font-style: italic;
+}
+
+#publicationsFilter button{
+    float: right;
+    margin-top: 1em;
 }
 
 /* @group Download */
