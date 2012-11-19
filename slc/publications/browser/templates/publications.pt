@@ -45,6 +45,9 @@
                         of charge.</p>
                 </div>
 
+                <h2 i18n:translate="heading_latest_publications">
+                    Latest publications</h2>
+
                 <ul class="recentcarousel" id="pubSchwusch"
                     tal:define="carousel_details view/get_carousel_details"
                     tal:condition="carousel_details">
@@ -71,6 +74,8 @@
                         </li>
                     </span>
                 </ul>
+
+                <h2 i18n:translate="heading_results">Results</h2>
 
                 <table id="resultTable" class="highDensity" summary="All publications"
                        tal:define="publications view/get_publications">
@@ -129,7 +134,7 @@
                                       selected_keywords python:form.get('keywords', '')">
                         <p tal:content="selected_type">
                         </p>
-                        <h4 i18n:translate="">Search publications</h4>
+                        <h4 i18n:translate="">Search all publications</h4>
                         <p i18n:translate="">For a simple text search, enter your
                             search term here. Multiple words may be found by combining
                             them with AND and OR.</p>
@@ -140,6 +145,7 @@
                         </fieldset>
 
                         <h4 i18n:translate="heading_publication_types">Types</h4>
+                        <p>Select the type of publications to show.</p>
                         <fieldset>
                             <select name="typelist">
                                 <option value=""
