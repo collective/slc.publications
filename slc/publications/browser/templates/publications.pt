@@ -73,8 +73,7 @@
                 </ul>
 
                 <table id="resultTable" class="highDensity" summary="All publications"
-                       tal:define="publications view/get_publications"
-                       tal:condition="publications">
+                       tal:define="publications view/get_publications">
                     <thead>
                         <tr>
                             <th i18n:translate="listingheader_title">
@@ -108,8 +107,13 @@
                             </td>
                         </tr>
                     </tbody>
-
                 </table>
+
+                <p id="noResults" style="display:none;"
+                   i18n:translate="noresults_text">
+                    No results found.
+                </p>
+
                 <a id="show-all"
                    tal:condition="view/has_more_results"
                    tal:attributes="href string:publications_view?show-all=True&${request/QUERY_STRING}"

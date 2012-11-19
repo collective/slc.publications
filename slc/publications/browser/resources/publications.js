@@ -13,13 +13,20 @@ PUBS.queryPublications = function () {
                            val.type + '</td><td><em class="discrete size">' +
                            val.size + '</em></td></tr>');
             });
-            results = jQuery('<tbody/>', {html: items.join('')});
-            jQuery("#resultTable tbody").replaceWith(results);
+            if (items.length > 0){
+                results = jQuery('<tbody/>', {html: items.join('')});
+                jQuery("#resultTable tbody").replaceWith(results);
+                jQuery("#resultTable").show();
+                jQuery("#noResults").hide();
+            }
+            else{
+                jQuery("#resultTable").hide();
+                jQuery("#noResults").show();
+            }
         });
 };
 
 jQuery(document).ready(function() {
-    debugger;
     jQuery("#publicationsFilter :input").change(function () {
         PUBS.queryPublications();
         jQuery("#show-all").remove();
