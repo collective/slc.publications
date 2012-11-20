@@ -28,4 +28,6 @@ class PublicationContainerDynamicViews(object):
     def getAvailableLayouts(self):
         """Get the layouts registered for this object.
         """
-        return (("publication-container.html", "Publication view"),)
+        return (
+            ("publication-container.html", "Publication view"),
+            ("publications_view", "Publication search view"),)
