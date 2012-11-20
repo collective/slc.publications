@@ -21,7 +21,7 @@ from slc.publications.utils import _get_storage_folder
 logger = logging.getLogger('slc.publications.publications.publications.py')
 
 # Constants
-MAX_RESULTS = 20
+MAX_RESULTS = 10
 
 
 class PublicationsView(BrowserView):

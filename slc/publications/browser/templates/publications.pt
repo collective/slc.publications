@@ -14,7 +14,7 @@
 
     <metal:javascriptslot fill-slot="javascript_head_slot">
         <script type="text/javascript" charset="utf-8"
-                tal:attributes="src string:$portal_url/++resource++slc.publications.browser/publications.js?v=4" >
+                tal:attributes="src string:$portal_url/++resource++slc.publications.browser/publications.js?v=5" >
         </script>
         <script type="text/javascript" charset="utf-8"
                 tal:attributes="src string:$portal_url/++resource++osha.theme.behaviour/jquery.hoverIntent.js" >
@@ -115,14 +115,20 @@
                 </table>
 
                 <p id="noResults" style="display:none;"
-                   i18n:translate="noresults_text">
+                   i18n:translate="label_no_results">
                     No results found.
                 </p>
 
                 <a id="show-all"
                    tal:condition="view/has_more_results"
                    tal:attributes="href string:publications_view?show-all=True&${request/QUERY_STRING}"
-                   i18n:translate="">Show all</a>
+                   i18n:translate="label_show_all">Show all</a>
+
+                <a id="show-latest"
+                   style="display:none;"
+                   tal:attributes="href string:publications_view?${request/QUERY_STRING}"
+                   i18n:translate="label_show_latest">Show only latest 10</a>
+
             </div>
 
             <div id="portlets">
