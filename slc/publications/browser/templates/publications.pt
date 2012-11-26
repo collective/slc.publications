@@ -145,7 +145,7 @@
                             search term here. Multiple words may be found by combining
                             them with AND and OR.</p>
                         <fieldset>
-                            <input name="SearchableText" type="text"
+                            <input class="wide" name="SearchableText" type="text"
                                    tal:attributes="value SearchableText"/>
                             <button id="queryPublications" type="submit">Search</button>
                         </fieldset>
@@ -153,7 +153,7 @@
                         <h4 i18n:translate="heading_publication_types">Types</h4>
                         <p>Select the type of publications to show.</p>
                         <fieldset>
-                            <select name="typelist">
+                            <select class="wide" name="typelist">
                                 <option value=""
                                         i18n:translate="option_publication_all_types"
                                         tal:attributes="selected python:selected_type == '' and 'selected' or ''">

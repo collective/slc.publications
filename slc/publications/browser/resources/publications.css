@@ -406,7 +406,6 @@ body {
 #content:before {
 	content: " ";
 	width: 100%;
-	padding: 10px 0 0;
 	display: block;
 	position: absolute;
 	-webkit-box-shadow: 0 0 15px rgba(0,0,0,0.3);
@@ -721,11 +720,6 @@ dl.grid dt label {
 	color: #666;
 }
 
-#portlets input,
-#portlets select{
-    width: 100%;
-}
-
 .portlet {
 	margin-bottom: 20px;
 	float: left;
@@ -762,6 +756,16 @@ dl.grid dt label {
     float: right;
     margin-top: 1em;
 }
+
+#publicationsFilter input.wide{
+    width: 97%;
+    padding-left: 3%;
+}
+
+.wide{
+    width: 100%;
+}
+
 
 /* @group Download */
 
