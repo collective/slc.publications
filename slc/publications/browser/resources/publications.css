@@ -1439,7 +1439,6 @@ button:active
 }
 
 
-
 /* @end */
 
 /* @group Wide */
@@ -1548,6 +1547,7 @@ button:active
 	display: none !important;
 }
 
+
 #pubSchwusch {
 	float: left;
 	position: relative;
@@ -1570,7 +1570,7 @@ button:active
 	height: 273px;
 	z-index: 2;
 	position: absolute;
-	left: -40px;
+	left: -10px;
 }
 
 #pubSchwusch p.previews img {
