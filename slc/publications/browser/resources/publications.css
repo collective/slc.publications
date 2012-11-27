@@ -2097,7 +2097,7 @@ ul.checkList li {
 }
 
 .checkList label input[type="checkbox"] {
-	float: left;
+
 	margin: 4px 1px 0 -18px !important;
 }
 
