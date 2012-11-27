@@ -77,6 +77,13 @@
 
                 <h2 i18n:translate="heading_results">Results</h2>
 
+                <div id="loading" style="display:none;">
+                    <img tal:attributes="src string:$portal_url/++resource++slc.publications.browser/loader.gif" alt="Loader" />
+                    <span i18n:translate="loading_message">
+                        Loading...
+                    </span>
+                </div>
+
                 <table id="resultTable" class="highDensity" summary="All publications"
                        tal:define="publications view/get_publications">
                     <thead>

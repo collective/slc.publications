@@ -40,6 +40,9 @@
             }
         }
 
+        // show "Loading..." message
+        $('#loading').show()
+
         $.getJSON(
             "publications_view.json?" + query, function (data) {
                 var items = [],
@@ -59,6 +62,9 @@
 
                 showResults();
                 toggleShowAll();
+
+                // hide "Loading..." message
+                $('#loading').hide()
             });
     }
 
