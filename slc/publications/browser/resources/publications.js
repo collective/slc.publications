@@ -93,6 +93,25 @@
             queryPublications();
         });
 
+        // show tooltips
+        $('a.tooltip').each(function(){
+            var helptext = $($(this).attr('rel'));
+
+            $(this).qtip({
+                content: { text: helptext },
+                position: {
+                    corner: {
+                        target: 'leftMiddle',
+                        tooltip: 'rightMiddle'
+                    }
+                },
+                show: { when: { event: 'click' } },
+                hide: { when: { event: 'unfocus' } },
+                style: { tip: { corner: 'rightMiddle' } }
+            });
+
+        })
+
         // Don't warn the user that they have already submitted the form
         $("#queryPublications").unbind('click');
 

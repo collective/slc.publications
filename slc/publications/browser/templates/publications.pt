@@ -30,6 +30,9 @@
         </script>
         <script src="#" tal:attributes="src string:$portal_url/++resource++osha.theme.behaviour/base.js" type="text/javascript" charset="utf-8">
         </script>
+        <script type="text/javascript" charset="utf-8"
+                tal:attributes="src string:$portal_url/++resource++slc.publications.browser/jquery.qtip-1.0.0-rc3.min.js">
+        </script>
 
     </metal:javascriptslot>
 
@@ -158,7 +161,16 @@
                         </fieldset>
 
                         <h4 i18n:translate="heading_publication_types">Types</h4>
-                        <p>Select the type of publications to show.</p>
+                        <p>Select the type of publications to show.
+                            <a href="#" class="tooltip" rel="#types-help"
+                               i18n:translate="label_help">
+                                (help)
+                            </a>
+                            <div id="types-help" style="display:none;">
+                                Some more info about publication types...
+                            </div>
+                        </p>
+
                         <fieldset>
                             <select class="wide" name="typelist">
                                 <option value=""
