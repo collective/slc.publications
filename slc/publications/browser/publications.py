@@ -60,14 +60,17 @@ class PublicationsView(BrowserView):
 
     def get_publications(self):
         form = self.request.form
-        type_path = self.path + "/" + form.get('typelist', '')
+        typelist = form.get("typelist", "")
+        search_path = self.path
+        if typelist:
+             search_path += "/" + typelist
         keywords = form.get("keywords")
         query = {
             'object_provides':
                 'slc.publications.interfaces.IPublicationEnhanced',
             'review_state': 'published',
             'SearchableText': form.get("SearchableText", ''),
-            'path': type_path,
+            'path': search_path,
             'sort_on': 'effective',
             'sort_order': 'descending'
             }
