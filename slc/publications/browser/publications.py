@@ -99,7 +99,7 @@ class PublicationsView(BrowserView):
                 date = u''
 
             publications.append({
-                "title": result.Title.decode("utf-8").replace("'", "&#39;"),
+                "title": result.Title.replace("'", "&#39;"),
                 "effective_date": date,
                 "size": obj.getObjSize(),
                 "path": path + "/view",
