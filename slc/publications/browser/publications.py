@@ -39,20 +39,23 @@ class PublicationsView(BrowserView):
         self.portal = getSite()
         self.pc = self.portal.portal_catalog
         self.path = '/'.join(context.getPhysicalPath())
-        self.publication_types = OrderedDict({
-                "factsheets": _(u"Factsheets"),
-                "reports": _(u"Reports"),
-                "literature_reviews": _(u"Literature reviews"),
-                "e-facts": _(u"E-facts"),
-                "outlook": _(u"Outlook"),
-                "forum": _(u"Forum"),
-                "magazine": _(u"Magazine"),
-                "annual_report": _(u"Annual report"),
-                "work_programmes": _(u"Work programmes"),
-                "evaluation_reports": _(
-                    u"Evaluation reports of Agency activities "),
-                "other": _(u"Other Publications")
-                })
+        # The order of items in an OrderedDict cannot be set on
+        # creation, but the order items are added is maintained
+        pub_types = OrderedDict()
+        pub_types["factsheets"] = _(u"Factsheets")
+        pub_types["reports"] = _(u"Reports")
+        pub_types["literature_reviews"] = _(u"Literature reviews")
+        pub_types["e-facts"] = _(u"E-facts")
+        pub_types["outlook"] = _(u"Outlook")
+        pub_types["magazine"] = _(u"Magazine")
+        pub_types["annual_report"] = _(u"Annual report")
+        pub_types["work_programmes"] = _(u"Work programmes")
+        pub_types["evaluation_reports"] = _(
+            u"Evaluation reports of Agency activities")
+        pub_types["presentations"] = _(u"Presentations (ppt)")
+        pub_types["other"] = _(u"Other Publications")
+        pub_types["forum"] = _(u"Forum")
+        self.publication_types = pub_types
         self.keywords = self.get_keywords()
 
     def __call__(self):
