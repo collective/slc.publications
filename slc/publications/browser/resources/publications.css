@@ -1511,8 +1511,8 @@ button:active
     float: left;
     width: 548px;
     height: 325px;
-    margin-left: -74px;
-    padding-left: 74px;
+    margin-left: -15px;
+    padding-left: 15px;
 }
 
 #mainContent .jcarousel-clip:before {
@@ -1583,7 +1583,7 @@ button:active
     height: 273px;
     z-index: 2;
     position: absolute;
-    left: -10px;
+    left: -15px;
 }
 
 #pubSchwusch p.previews img {
