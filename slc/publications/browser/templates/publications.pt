@@ -166,14 +166,40 @@
 
                         <h4 i18n:translate="heading_publication_types">Types</h4>
                         <p>Select the type of publications to show.
-                            <a href="#" class="tooltip" rel="#types-help"
-                               i18n:translate="label_help">
-                                (help)
-                            </a>
-                            <div id="types-help" style="display:none;">
-                                Some more info about publication types...
-                            </div>
+                        <a href="#" class="tooltip" rel="#types-help"
+                           i18n:translate="label_help">
+                          (help)
+                        </a>
                         </p>
+
+                        <div id="types-help" style="display:none;">
+                          <dl>
+                            <dt>Factsheets</dt>
+                            <dd>provide brief introductions to the Agency and to our activities</dd>
+                            <dt>Reports</dt>
+                            <dd>present the outcome of research, which will help to inform discussion among EU and national authorities, trade unions and experts on how to take forward issues in health and safety</dd>
+                            <dt>Literature reviews</dt>
+                            <dd>provide an overview of the most important issues related to this topic</dd>
+                            <dt>E-facts</dt>
+                            <dd>online only articles aimed at workers, employers and occupational safety and health professionals</dd>
+                            <dt>Outlook</dt>
+                            <dd>present and future trends of relevance to occupational safety and health</dd>
+                            <dt>Magazine</dt>
+                            <dd> in-depth information and analysis from leading experts and practitioners in occupational safety and health</dd>
+                            <dt>Annual report</dt>
+                            <dd>a valuable reference source for anyone interested in obtaining a comprehensive overview of the Agency and its work</dd>
+                            <dt>Work programmes</dt>
+                            <dd>describes the planned activities for the year ahead</dd>
+                            <dt>Evaluation reports of Agency activities</dt>
+                            <dd>an independent assessment of our work and contribute to improving our performance</dd>
+                            <dt>Presentations (ppt)</dt>
+                            <dd></dd>
+                            <dt>Other Publications</dt>
+                            <dd>ad hoc publications and documents</dd>
+                            <dt>Forum</dt>
+                            <dd>addresses specific issues in safety and health, and aims to provide information and promote discussion</dd>
+                          </dl>
+                        </div>
 
                         <fieldset>
                             <select class="wide" name="typelist">
