@@ -9,7 +9,7 @@
               tal:attributes="href string:${portal_url}/collage.css"/>
         <link rel="stylesheet" type="text/css" media="screen" title="no title"
               charset="utf-8"
-              tal:attributes="href string:${portal_url}/++resource++slc.publications.browser/publications.css?v=1" />
+              tal:attributes="href string:${portal_url}/++resource++slc.publications.browser/publications.css?v=2" />
     </metal:cssslot>
 
     <metal:javascriptslot fill-slot="javascript_head_slot">
@@ -141,8 +141,10 @@
 
             </div>
 
-            <div id="portlets">
-                <div class="portlet">
+            <div id="portlets"
+>
+                <div class="portlet"
+                     tal:define="lang_code context/@@plone_portal_state/language">
                     <form id="publicationsFilter"
                           tal:define="form request/form;
                                       selected_type python:form.get('typelist', '');
@@ -150,6 +152,8 @@
                                       selected_keywords python:form.get('keywords', '')">
                         <p tal:content="selected_type">
                         </p>
+                        <h4><a i18n:translate="" tal:attributes="href string:${portal_url}/${lang_code}/oshmail">OSHmail Newsletters</a></h4>
+                        <p/>
                         <h4 i18n:translate="">Search all publications</h4>
                         <p i18n:translate="">For a simple text search, enter your
                             search term here. Multiple words may be found by combining
