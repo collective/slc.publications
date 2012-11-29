@@ -6,9 +6,9 @@
 
     // fetch the publications based on provided search criteria and populate
     // the results table
-    function queryPublications () {
-        var query=$("#publicationsFilter").serialize(),
-            resultsCount=0;
+    function queryPublications() {
+        var query = $("#publicationsFilter").serialize(),
+            resultsCount = 0;
 
         // helper function to toggle the display of 'Show all' and
         // 'Show only latest 10' links
@@ -16,12 +16,10 @@
             if (resultsCount < MAX_RESULTS) {
                 $("#show-all").hide();
                 $("#show-latest").hide();
-            }
-            else if (showAll) {
+            } else if (showAll) {
                 $("#show-all").hide();
                 $("#show-latest").show();
-            }
-            else {
+            } else {
                 $("#show-all").show();
                 $("#show-latest").hide();
             }
@@ -33,18 +31,18 @@
             if (resultsCount > 0) {
                 $("#resultTable").show();
                 $("#noResults").hide();
-            }
-            else{
+            } else {
                 $("#resultTable").hide();
                 $("#noResults").show();
             }
         }
 
         // show "Loading..." message
-        $('#loading').show()
+        $('#loading').show();
 
         $.getJSON(
-            "publications_view.json?" + query, function (data) {
+            "publications_view.json?" + query,
+            function (data) {
                 var items = [],
                     results = "";
 
@@ -64,11 +62,12 @@
                 toggleShowAll();
 
                 // hide "Loading..." message
-                $('#loading').hide()
-            });
+                $('#loading').hide();
+            }
+        );
     }
 
-    $(document).ready(function() {
+    $(document).ready(function () {
 
         $("#publicationsFilter :input").change(function () {
             queryPublications();
@@ -94,7 +93,7 @@
         });
 
         // show tooltips
-        $('a.tooltip').each(function(){
+        $('a.tooltip').each(function () {
             var helptext = $($(this).attr('rel'));
 
             $(this).qtip({
@@ -113,7 +112,7 @@
                 }
             });
 
-        })
+        });
 
         // Don't warn the user that they have already submitted the form
         $("#queryPublications").unbind('click');
