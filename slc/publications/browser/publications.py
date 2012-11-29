@@ -1,3 +1,4 @@
+import json
 import logging
 import os
 import subprocess
@@ -101,8 +102,13 @@ class PublicationsView(BrowserView):
                 # range (year should be > 1900)
                 date = u''
 
+            title = result.Title.replace("'", "&#39;")
+            # Searches without SearchableText are sent to the normal
+            # portal_catalog and the Title returned is a string
+            if not isinstance(title, unicode):
+                title.decode("utf-8")
             publications.append({
-                "title": result.Title.replace("'", "&#39;"),
+                "title": title,
                 "effective_date": date,
                 "size": obj.getObjSize(),
                 "path": path + "/view",
@@ -243,6 +249,4 @@ class PublicationsJSONView(PublicationsView):
     """Return search results in JSON"""
 
     def __call__(self):
-        """JSON"""
-        pubs = self.get_publications()
-        return str(pubs).replace("'", '"').replace('u"', '"')
+        return json.dumps(self.get_publications())
