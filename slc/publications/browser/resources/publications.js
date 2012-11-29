@@ -102,12 +102,13 @@
                     corner: {
                         target: 'leftMiddle',
                         tooltip: 'rightMiddle'
-                    }
+                    },
+                    adjust: { x: -15, y: 0 }
                 },
                 show: { when: { event: 'click' } },
                 hide: { when: { event: 'unfocus' } },
                 style: {
-                    tip: { corner: 'rightMiddle' },
+                    //tip: { corner: 'rightMiddle' },
                     width: 625
                 }
             });
