@@ -107,7 +107,10 @@
                 },
                 show: { when: { event: 'click' } },
                 hide: { when: { event: 'unfocus' } },
-                style: { tip: { corner: 'rightMiddle' } }
+                style: {
+                    tip: { corner: 'rightMiddle' },
+                    width: 625
+                }
             });
 
         })
