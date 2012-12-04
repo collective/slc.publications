@@ -41,7 +41,7 @@
 
             <div id="mainContent">
 
-                <h1 tal:content="context/Title">Publications</h1>
+                <h1 tal:content="context/Title">Publications library</h1>
 
                 <div class="introduction">
                     <p>All of the Agency´s publications can be downloaded free
@@ -78,7 +78,7 @@
                     </span>
                 </ul>
 
-                <h2 i18n:translate="heading_results">Results</h2>
+                <h2 i18n:translate="heading_results">Publications</h2>
 
                 <div id="loading" style="display:none;">
                     <img tal:attributes="src string:$portal_url/++resource++slc.publications.browser/loader.gif" alt="Loader" />
@@ -156,22 +156,21 @@
                         <h4><a i18n:translate="" tal:attributes="href string:${portal_url}/${lang_code}/news/oshmail">OSHmail Newsletters</a></h4>
                         <p/>
                         <h4 i18n:translate="">Search all publications</h4>
-                        <p i18n:translate="">For a simple text search, enter your
-                            search term here. Multiple words may be found by combining
-                            them with AND and OR.</p>
                         <fieldset>
-                            <input class="wide" name="SearchableText" type="text"
+                            <input class="wide" id="queryPublicationsText" name="SearchableText" type="text"
                                    tal:attributes="value SearchableText"/>
-                            <button id="queryPublications" type="submit">Search</button>
+                            <input id="queryPublications" type="image" src="https://www.google.com/uds/css/v2/search_box_icon.png" class="gsc-search-button  gsc-search-button-v2" title="search">
                         </fieldset>
 
-                        <h4 i18n:translate="heading_publication_types">Types</h4>
-                        <p>Select the type of publications to show.
-                        <a href="#" class="tooltip" rel="#types-help"
-                           i18n:translate="label_help">
-                          (help)
-                        </a>
-                        </p>
+                        <h4 i18n:translate="heading_publication_types">
+                            Select type
+                        </h4>
+                        <div class="tooltip-wrapper">
+                            <a href="#" class="tooltip" rel="#types-help"
+                               i18n:translate="label_help">
+                                (help)
+                            </a>
+                        </div>
 
                         <div id="types-help" style="display:none;">
                           <dl>
@@ -220,9 +219,7 @@
                             </select>
                         </fieldset>
 
-                        <h4 i18n:translate="">Keywords</h4>
-                        <p>Select one of the following keywords to filter the
-                            publications.</p>
+                        <h4 i18n:translate="">Filter by keywords</h4>
                         <fieldset class="checkList">
                             <label tal:repeat="keyword view/get_keywords">
                                 <input  type="checkbox" name="keywords"

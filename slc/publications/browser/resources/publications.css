@@ -190,10 +190,26 @@ ul.linkList a {
     margin: 0;
 }
 
+.tooltip-wrapper{
+    margin-bottom: 1em;
+}
+
 .qtip{
     box-shadow: 0 0 2em 0.5em #666666;
 }
 
+#queryPublications{
+    float: right;
+    margin-right: 0;
+    margin-top: 0.6em;
+}
+
+#queryPublicationsText{
+    background: none;
+    box-shadow: none;
+    height: 23px;
+    margin-top: 4px;
+}
 
 /* @end */
 
