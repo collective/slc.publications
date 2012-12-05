@@ -151,10 +151,6 @@
                                       selected_type python:form.get('typelist', '');
                                       SearchableText python:form.get('SearchableText', '');
                                       selected_keywords python:form.get('keywords', '')">
-                        <p tal:content="selected_type">
-                        </p>
-                        <h4><a i18n:translate="" tal:attributes="href string:${portal_url}/${lang_code}/news/oshmail">OSHmail Newsletters</a></h4>
-                        <p/>
                         <h4 i18n:translate="">Search all publications</h4>
                         <fieldset>
                             <input class="wide" id="queryPublicationsText" name="SearchableText" type="text"
