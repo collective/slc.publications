@@ -22,6 +22,7 @@ from slc.publications.utils import _get_storage_folder
 logger = logging.getLogger('slc.publications.publications.publications.py')
 
 # Constants
+CAROUSEL_ITEMS = 4
 MAX_RESULTS = 10
 
 
@@ -117,18 +118,25 @@ class PublicationsView(BrowserView):
         return publications
 
     def get_carousel_details(self):
-        query = {'object_provides':
-                     'slc.publications.interfaces.IPublicationEnhanced',
-                 'review_state': 'published'}
-        pubs = [i.getObject() for i in self.pc.searchResults(query)[:5]]
+        query = {
+            'object_provides':
+                'slc.publications.interfaces.IPublicationEnhanced',
+            'review_state': 'published',
+            'sort_on': 'Date',
+            'sort_order': 'descending'
+        }
+        pubs = [i.getObject() for i in
+                self.pc.searchResults(query)[:CAROUSEL_ITEMS]]
         pub_details = []
         for pub in pubs:
             pub_details.append({
-                    "absolute_url": pub.absolute_url(),
-                    "title": pub.Title(),
-                    "images": [],
-                    "description": pub.Description(),
-                    "images": self._get_carousel_images(pub)})
+                "absolute_url": pub.absolute_url(),
+                "title": pub.Title(),
+                "images": [],
+                "description": pub.Description(),
+                "images": self._get_carousel_images(pub),
+                "date": pub.Date()
+            })
         return pub_details
 
     def _get_carousel_images(self, pub):
