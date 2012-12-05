@@ -33,11 +33,14 @@
         <script type="text/javascript" charset="utf-8"
                 tal:attributes="src string:$portal_url/++resource++slc.publications.browser/jquery.qtip-1.0.0-rc3.min.js">
         </script>
-
+        <script type="text/javascript"
+            src="++resource++osha.theme.behaviour/highlights-carousel.js"
+            language="javascript"></script>
     </metal:javascriptslot>
 
     <body>
-        <div metal:fill-slot="main">
+        <div metal:fill-slot="main"
+             tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime;">
 
             <div id="mainContent">
 
@@ -51,32 +54,37 @@
                 <h2 i18n:translate="heading_latest_publications">
                     Latest publications</h2>
 
-                <ul class="recentcarousel" id="pubSchwusch"
+                <div id="highlightsContainer"
                     tal:define="carousel_details view/get_carousel_details"
                     tal:condition="carousel_details">
-                    <span tal:repeat="item carousel_details"
-                          tal:omit-tag="">
-                        <li tal:define="images item/images">
-                            <h2>
-                                <a tal:attributes="href string:${item/absolute_url}/view"
-                                   tal:content="item/title">Title</a>
-                            </h2>
-                            <p class="previews">
-                                <a tal:attributes="href string:${item/absolute_url}/view">
-                                    <tal:imgs repeat="image images">
-                                        <img tal:attributes="src string:${item/absolute_url}_data/${image}/image_preview;
-                                                             class string:page-${repeat/image/number}"/>
-                                    </tal:imgs>
-                                </a>
-                            </p>
-                            <p>
-                                <span tal:replace="item/description">Description</span>
-                                <a tal:attributes="href item/absolute_url"
-                                   i18n:translate="label_learn_more">Learn more</a>
-                            </p>
-                        </li>
-                    </span>
-                </ul>
+                    <div class="carouselContainer" id="highlights">
+                        <div id="highlights-content">
+                            <tal:rep repeat="item carousel_details">
+                                <div tal:define="no repeat/item/number"
+                                     tal:attributes="id string:highlights-$no">
+                                    <tal:item tal:define="images item/images;
+                                                          image python: images and images[0] or None">
+                                        <h3><a tal:attributes="href string:${item/absolute_url}/view" tal:content="item/title">Publication title</a></h3>
+                                        <a tal:attributes="href string:${item/absolute_url}/view">
+                                            <img tal:condition="image"
+                                                 tal:attributes="src string:${item/absolute_url}_data/${image}/image_preview;"/>
+                                        </a>
+                                        <p class="hpteaserdate" tal:content="python:toLocalizedTime(item['date'])"/>
+                                        <p class="teaser_content" tal:content="item/description"></p>
+                                        <p class="teaser_more"><a class="more" tal:attributes="href string:${item/absolute_url}/view"><span tal:omit-tag="" i18n:translate="alert_label_more">More</span>&hellip;</a></p>
+                                    </tal:item>
+                                </div>
+                            </tal:rep>
+                        </div>
+                        <ul id="highlights-tabs">
+                            <tal:rep repeat="item carousel_details">
+                                <li class="ui-corner-top" tal:define="no repeat/item/number">
+                                    <a href="#highlights-1" tal:attributes="href string:#highlights-$no; title item/title" tal:content="no">1</a>
+                                </li>
+                            </tal:rep>
+                        </ul>
+                    </div>
+                </div>
 
                 <h2 i18n:translate="heading_results">Publications</h2>
 
