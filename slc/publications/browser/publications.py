@@ -67,7 +67,7 @@ class PublicationsView(BrowserView):
         typelist = form.get("typelist", "")
         search_path = self.path
         if typelist:
-             search_path += "/" + typelist
+            search_path += "/" + typelist
         keywords = form.get("keywords")
         query = {
             'object_provides':
