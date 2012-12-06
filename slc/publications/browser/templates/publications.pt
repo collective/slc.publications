@@ -40,7 +40,8 @@
 
     <body>
         <div metal:fill-slot="main"
-             tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime;">
+             tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime;
+                         ploneview nocall:context/@@plone">
 
             <div id="mainContent">
 
@@ -62,15 +63,13 @@
                             <tal:rep repeat="item carousel_details">
                                 <div tal:define="no repeat/item/number"
                                      tal:attributes="id string:highlights-$no">
-                                    <tal:item tal:define="images item/images;
-                                                          image python: images and images[0] or None">
+                                    <tal:item>
                                         <h3><a tal:attributes="href string:${item/absolute_url}/view" tal:content="item/title">Publication title</a></h3>
                                         <a tal:attributes="href string:${item/absolute_url}/view">
-                                            <img tal:condition="image"
-                                                 tal:attributes="src string:${item/absolute_url}_data/${image}/image_preview;"/>
+                                            <img tal:attributes="src string:${item/absolute_url}/cover_image;"/>
                                         </a>
                                         <p class="hpteaserdate" tal:content="python:toLocalizedTime(item['date'])"/>
-                                        <p class="teaser_content" tal:content="item/description"></p>
+                                        <p class="teaser_content" tal:content="python:ploneview.cropText(item['description'], length=400, ellipsis='...')"></p>
                                         <p class="teaser_more"><a class="more" tal:attributes="href string:${item/absolute_url}/view"><span tal:omit-tag="" i18n:translate="alert_label_more">More</span>&hellip;</a></p>
                                     </tal:item>
                                 </div>
