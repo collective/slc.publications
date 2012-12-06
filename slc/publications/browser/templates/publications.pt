@@ -3,238 +3,238 @@
       metal:use-macro="here/main_template/macros/master"
       i18n:domain="osha">
 
-    <metal:cssslot fill-slot="css_slot">
-        <link rel="stylesheet" type="text/css" media="screen" title="no title"
-              charset="utf-8"
-              tal:attributes="href string:${portal_url}/collage.css"/>
-        <link rel="stylesheet" type="text/css" media="screen" title="no title"
-              charset="utf-8"
-              tal:attributes="href string:${portal_url}/++resource++slc.publications.browser/publications.css?v=2" />
-    </metal:cssslot>
+  <metal:cssslot fill-slot="css_slot">
+    <link rel="stylesheet" type="text/css" media="screen" title="no title"
+          charset="utf-8"
+          tal:attributes="href string:${portal_url}/collage.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" title="no title"
+          charset="utf-8"
+          tal:attributes="href string:${portal_url}/++resource++slc.publications.browser/publications.css?v=2" />
+  </metal:cssslot>
 
-    <metal:javascriptslot fill-slot="javascript_head_slot">
-        <script type="text/javascript" charset="utf-8"
-                tal:attributes="src string:$portal_url/++resource++slc.publications.browser/publications.js?v=5" >
-        </script>
-        <script type="text/javascript" charset="utf-8"
-                tal:attributes="src string:$portal_url/++resource++osha.theme.behaviour/jquery.hoverIntent.js" >
-        </script>
-        <script type="text/javascript" charset="utf-8"
-                tal:attributes="src string:$portal_url/++resource++osha.theme.behaviour/jquery.hoverIntent.minified.js">
-        </script>
-        <script type="text/javascript" charset="utf-8"
-                tal:attributes="src string:$portal_url/++resource++osha.theme.behaviour/jquery.jcarousel.pack.js">
-        </script>
-        <script type="text/javascript" charset="utf-8"
-                tal:attributes="src string:$portal_url/++resource++osha.theme.behaviour/jquery.masonry.min.js">
-        </script>
-        <script src="#" tal:attributes="src string:$portal_url/++resource++osha.theme.behaviour/base.js" type="text/javascript" charset="utf-8">
-        </script>
-        <script type="text/javascript" charset="utf-8"
-                tal:attributes="src string:$portal_url/++resource++slc.publications.browser/jquery.qtip-1.0.0-rc3.min.js">
-        </script>
-        <script type="text/javascript"
+  <metal:javascriptslot fill-slot="javascript_head_slot">
+    <script type="text/javascript" charset="utf-8"
+            tal:attributes="src string:$portal_url/++resource++slc.publications.browser/publications.js?v=5" >
+    </script>
+    <script type="text/javascript" charset="utf-8"
+            tal:attributes="src string:$portal_url/++resource++osha.theme.behaviour/jquery.hoverIntent.js" >
+    </script>
+    <script type="text/javascript" charset="utf-8"
+            tal:attributes="src string:$portal_url/++resource++osha.theme.behaviour/jquery.hoverIntent.minified.js">
+    </script>
+    <script type="text/javascript" charset="utf-8"
+            tal:attributes="src string:$portal_url/++resource++osha.theme.behaviour/jquery.jcarousel.pack.js">
+    </script>
+    <script type="text/javascript" charset="utf-8"
+            tal:attributes="src string:$portal_url/++resource++osha.theme.behaviour/jquery.masonry.min.js">
+    </script>
+    <script src="#" tal:attributes="src string:$portal_url/++resource++osha.theme.behaviour/base.js" type="text/javascript" charset="utf-8">
+    </script>
+    <script type="text/javascript" charset="utf-8"
+            tal:attributes="src string:$portal_url/++resource++slc.publications.browser/jquery.qtip-1.0.0-rc3.min.js">
+    </script>
+    <script type="text/javascript"
             src="++resource++osha.theme.behaviour/highlights-carousel.js"
             language="javascript"></script>
-    </metal:javascriptslot>
+  </metal:javascriptslot>
 
-    <body>
-        <div metal:fill-slot="main"
-             tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime;
-                         ploneview nocall:context/@@plone">
+  <body>
+    <div metal:fill-slot="main"
+         tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime;
+                     ploneview nocall:context/@@plone">
 
-            <div id="mainContent">
+      <div id="mainContent">
 
-                <h1 tal:content="context/Title">Publications library</h1>
+        <h1 tal:content="context/Title">Publications library</h1>
 
-                <div class="introduction">
-                    <p>All of the Agency´s publications can be downloaded free
-                        of charge.</p>
-                </div>
-
-                <h2 i18n:translate="heading_latest_publications">
-                    Latest publications</h2>
-
-                <div id="highlightsContainer"
-                    tal:define="carousel_details view/get_carousel_details"
-                    tal:condition="carousel_details">
-                    <div class="carouselContainer" id="highlights">
-                        <div id="highlights-content">
-                            <tal:rep repeat="item carousel_details">
-                                <div tal:define="no repeat/item/number"
-                                     tal:attributes="id string:highlights-$no">
-                                    <tal:item>
-                                        <h3><a tal:attributes="href string:${item/absolute_url}/view" tal:content="item/title">Publication title</a></h3>
-                                        <a tal:attributes="href string:${item/absolute_url}/view">
-                                            <img tal:attributes="src string:${item/absolute_url}/cover_image;"/>
-                                        </a>
-                                        <p class="hpteaserdate" tal:content="python:toLocalizedTime(item['date'])"/>
-                                        <p class="teaser_content" tal:content="python:ploneview.cropText(item['description'], length=400, ellipsis='...')"></p>
-                                        <p class="teaser_more"><a class="more" tal:attributes="href string:${item/absolute_url}/view"><span tal:omit-tag="" i18n:translate="alert_label_more">More</span>&hellip;</a></p>
-                                    </tal:item>
-                                </div>
-                            </tal:rep>
-                        </div>
-                        <ul id="highlights-tabs">
-                            <tal:rep repeat="item carousel_details">
-                                <li class="ui-corner-top" tal:define="no repeat/item/number">
-                                    <a href="#highlights-1" tal:attributes="href string:#highlights-$no; title item/title" tal:content="no">1</a>
-                                </li>
-                            </tal:rep>
-                        </ul>
-                    </div>
-                </div>
-
-                <h2 i18n:translate="heading_results">Publications</h2>
-
-                <div id="loading" style="display:none;">
-                    <img tal:attributes="src string:$portal_url/++resource++slc.publications.browser/loader.gif" alt="Loader" />
-                    <span i18n:translate="loading_message">
-                        Loading...
-                    </span>
-                </div>
-
-                <table id="resultTable" class="highDensity" summary="All publications"
-                       tal:define="publications view/get_publications">
-                    <thead>
-                        <tr>
-                            <th i18n:translate="listingheader_title">
-                                Title
-                            </th>
-                            <th i18n:translate="listingheader_date">
-                                Date
-                            </th>
-                            <th i18n:translate="listingheader_type">
-                                Type
-                            </th>
-                            <th i18n:translate="listingheader_size">
-                                Size
-                            </th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        <tr tal:repeat="publication publications"
-                            tal:attributes="class python: 'type-' + '-'.join(publication['type'].lower().split())">
-                            <td>
-                                <a tal:attributes="href publication/path"
-                                   tal:content="structure publication/title"/>
-                            </td>
-                            <td tal:content="publication/effective_date"/>
-                            <td tal:content="structure publication/type">
-                                Reports
-                            </td>
-                            <td>
-                                <em class="discrete size"
-                                    tal:content="structure publication/size"/>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <p id="noResults" style="display:none;"
-                   i18n:translate="label_no_results">
-                    No results found.
-                </p>
-
-                <a id="show-all"
-                   tal:condition="view/has_more_results"
-                   tal:attributes="href string:publications_view?show-all=True&${request/QUERY_STRING}"
-                   i18n:translate="label_show_all">Show all</a>
-
-                <a id="show-latest"
-                   style="display:none;"
-                   tal:attributes="href string:publications_view?${request/QUERY_STRING}"
-                   i18n:translate="label_show_latest">Show only latest 10</a>
-
-            </div>
-
-            <div id="portlets"
->
-                <div class="portlet"
-                     tal:define="lang_code context/@@plone_portal_state/language">
-                    <form id="publicationsFilter"
-                          tal:define="form request/form;
-                                      selected_type python:form.get('typelist', '');
-                                      SearchableText python:form.get('SearchableText', '');
-                                      selected_keywords python:form.get('keywords', '')">
-                        <h4 i18n:translate="">Search all publications</h4>
-                        <fieldset>
-                            <input class="wide" id="queryPublicationsText" name="SearchableText" type="text"
-                                   tal:attributes="value SearchableText"/>
-                            <input id="queryPublications" type="image" src="https://www.google.com/uds/css/v2/search_box_icon.png" class="gsc-search-button  gsc-search-button-v2" title="search">
-                        </fieldset>
-
-                        <h4 i18n:translate="heading_publication_types">
-                            Select type
-                        </h4>
-                        <div class="tooltip-wrapper">
-                            <a href="#" class="tooltip" rel="#types-help"
-                               i18n:translate="label_help">
-                                (help)
-                            </a>
-                        </div>
-
-                        <div id="types-help" style="display:none;">
-                          <dl>
-                            <dt>Factsheets</dt>
-                            <dd>provide brief introductions to the Agency and to our activities</dd>
-                            <dt>Reports</dt>
-                            <dd>present the outcome of research, which will help to inform discussion among EU and national authorities, trade unions and experts on how to take forward issues in health and safety</dd>
-                            <dt>Literature reviews</dt>
-                            <dd>provide an overview of the most important issues related to this topic</dd>
-                            <dt>E-facts</dt>
-                            <dd>online only articles aimed at workers, employers and occupational safety and health professionals</dd>
-                            <dt>Outlook</dt>
-                            <dd>present and future trends of relevance to occupational safety and health</dd>
-                            <dt>Magazine</dt>
-                            <dd> in-depth information and analysis from leading experts and practitioners in occupational safety and health</dd>
-                            <dt>Annual report</dt>
-                            <dd>a valuable reference source for anyone interested in obtaining a comprehensive overview of the Agency and its work</dd>
-                            <dt>Work programmes</dt>
-                            <dd>describes the planned activities for the year ahead</dd>
-                            <dt>Evaluation reports of Agency activities</dt>
-                            <dd>an independent assessment of our work and contribute to improving our performance</dd>
-                            <dt>Presentations (ppt)</dt>
-                            <dd></dd>
-                            <dt>Other Publications</dt>
-                            <dd>ad hoc publications and documents</dd>
-                            <dt>Forum</dt>
-                            <dd>addresses specific issues in safety and health, and aims to provide information and promote discussion</dd>
-                          </dl>
-                        </div>
-
-                        <fieldset>
-                            <select class="wide" name="typelist">
-                                <option value=""
-                                        i18n:translate="option_publication_all_types"
-                                        tal:attributes="selected python:selected_type == '' and 'selected' or ''">
-                                    All types
-                                </option>
-
-                                <tal:pub_types define="pub_types view/publication_types">
-                                    <option tal:repeat="pub_type pub_types"
-                                            tal:attributes="value pub_type;
-                                                            selected python:selected_type == pub_type and 'selected' or ''"
-                                            tal:content="python:pub_types[pub_type]">
-                                    </option>
-                                </tal:pub_types>
-                            </select>
-                        </fieldset>
-
-                        <h4 i18n:translate="">Filter by keywords</h4>
-                        <fieldset class="checkList">
-                            <label tal:repeat="keyword view/get_keywords">
-                                <input  type="checkbox" name="keywords"
-                                        tal:attributes="value keyword;
-                                                        checked python: True and keyword in selected_keywords or ''" />
-                                <span i18n:translate="" tal:replace="keyword"/>
-                            </label>
-                        </fieldset>
-                    </form>
-                </div>
-            </div>
-
+        <div class="introduction">
+          <p>All of the Agency´s publications can be downloaded free
+          of charge.</p>
         </div>
+
+        <h2 i18n:translate="heading_latest_publications">
+        Latest publications</h2>
+
+        <div id="highlightsContainer"
+             tal:define="carousel_details view/get_carousel_details"
+             tal:condition="carousel_details">
+          <div class="carouselContainer" id="highlights">
+            <div id="highlights-content">
+              <tal:rep repeat="item carousel_details">
+                <div tal:define="no repeat/item/number"
+                     tal:attributes="id string:highlights-$no">
+                  <tal:item>
+                    <h3><a tal:attributes="href string:${item/absolute_url}/view" tal:content="item/title">Publication title</a></h3>
+                    <a tal:attributes="href string:${item/absolute_url}/view">
+                      <img tal:attributes="src string:${item/absolute_url}/cover_image;"/>
+                    </a>
+                    <p class="hpteaserdate" tal:content="python:toLocalizedTime(item['date'])"/>
+                    <p class="teaser_content" tal:content="python:ploneview.cropText(item['description'], length=400, ellipsis='...')"></p>
+                    <p class="teaser_more"><a class="more" tal:attributes="href string:${item/absolute_url}/view"><span tal:omit-tag="" i18n:translate="alert_label_more">More</span>&hellip;</a></p>
+                  </tal:item>
+                </div>
+              </tal:rep>
+            </div>
+            <ul id="highlights-tabs">
+              <tal:rep repeat="item carousel_details">
+                <li class="ui-corner-top" tal:define="no repeat/item/number">
+                  <a href="#highlights-1" tal:attributes="href string:#highlights-$no; title item/title" tal:content="no">1</a>
+                </li>
+              </tal:rep>
+            </ul>
+          </div>
+        </div>
+
+        <h2 i18n:translate="heading_results">Publications</h2>
+
+        <div id="loading" style="display:none;">
+          <img tal:attributes="src string:$portal_url/++resource++slc.publications.browser/loader.gif" alt="Loader" />
+          <span i18n:translate="loading_message">
+            Loading...
+          </span>
+        </div>
+
+        <table id="resultTable" class="highDensity" summary="All publications"
+               tal:define="publications view/get_publications">
+          <thead>
+            <tr>
+              <th i18n:translate="listingheader_title">
+                Title
+              </th>
+              <th i18n:translate="listingheader_date">
+                Date
+              </th>
+              <th i18n:translate="listingheader_type">
+                Type
+              </th>
+              <th i18n:translate="listingheader_size">
+                Size
+              </th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr tal:repeat="publication publications"
+                tal:attributes="class python: 'type-' + '-'.join(publication['type'].lower().split())">
+              <td>
+                <a tal:attributes="href publication/path"
+                   tal:content="structure publication/title"/>
+              </td>
+              <td tal:content="publication/effective_date"/>
+              <td tal:content="structure publication/type">
+                Reports
+              </td>
+              <td>
+                <em class="discrete size"
+                    tal:content="structure publication/size"/>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p id="noResults" style="display:none;"
+           i18n:translate="label_no_results">
+          No results found.
+        </p>
+
+        <a id="show-all"
+           tal:condition="view/has_more_results"
+           tal:attributes="href string:publications_view?show-all=True&${request/QUERY_STRING}"
+           i18n:translate="label_show_all">Show all</a>
+
+        <a id="show-latest"
+           style="display:none;"
+           tal:attributes="href string:publications_view?${request/QUERY_STRING}"
+           i18n:translate="label_show_latest">Show only latest 10</a>
+
+      </div>
+
+      <div id="portlets"
+           >
+        <div class="portlet"
+             tal:define="lang_code context/@@plone_portal_state/language">
+          <form id="publicationsFilter"
+                tal:define="form request/form;
+                            selected_type python:form.get('typelist', '');
+                            SearchableText python:form.get('SearchableText', '');
+                            selected_keywords python:form.get('keywords', '')">
+            <h4 i18n:translate="">Search all publications</h4>
+            <fieldset>
+              <input class="wide" id="queryPublicationsText" name="SearchableText" type="text"
+                     tal:attributes="value SearchableText"/>
+              <input id="queryPublications" type="image" src="https://www.google.com/uds/css/v2/search_box_icon.png" class="gsc-search-button  gsc-search-button-v2" title="search">
+              </fieldset>
+
+              <h4 i18n:translate="heading_publication_types">
+                Select type
+              </h4>
+              <div class="tooltip-wrapper">
+                <a href="#" class="tooltip" rel="#types-help"
+                   i18n:translate="label_help">
+                  (help)
+                </a>
+              </div>
+
+              <div id="types-help" style="display:none;">
+                <dl>
+                  <dt>Factsheets</dt>
+                  <dd>provide brief introductions to the Agency and to our activities</dd>
+                  <dt>Reports</dt>
+                  <dd>present the outcome of research, which will help to inform discussion among EU and national authorities, trade unions and experts on how to take forward issues in health and safety</dd>
+                  <dt>Literature reviews</dt>
+                  <dd>provide an overview of the most important issues related to this topic</dd>
+                  <dt>E-facts</dt>
+                  <dd>online only articles aimed at workers, employers and occupational safety and health professionals</dd>
+                  <dt>Outlook</dt>
+                  <dd>present and future trends of relevance to occupational safety and health</dd>
+                  <dt>Magazine</dt>
+                  <dd> in-depth information and analysis from leading experts and practitioners in occupational safety and health</dd>
+                  <dt>Annual report</dt>
+                  <dd>a valuable reference source for anyone interested in obtaining a comprehensive overview of the Agency and its work</dd>
+                  <dt>Work programmes</dt>
+                  <dd>describes the planned activities for the year ahead</dd>
+                  <dt>Evaluation reports of Agency activities</dt>
+                  <dd>an independent assessment of our work and contribute to improving our performance</dd>
+                  <dt>Presentations (ppt)</dt>
+                  <dd></dd>
+                  <dt>Other Publications</dt>
+                  <dd>ad hoc publications and documents</dd>
+                  <dt>Forum</dt>
+                  <dd>addresses specific issues in safety and health, and aims to provide information and promote discussion</dd>
+                </dl>
+              </div>
+
+              <fieldset>
+                <select class="wide" name="typelist">
+                  <option value=""
+                          i18n:translate="option_publication_all_types"
+                          tal:attributes="selected python:selected_type == '' and 'selected' or ''">
+                    All types
+                  </option>
+
+                  <tal:pub_types define="pub_types view/publication_types">
+                    <option tal:repeat="pub_type pub_types"
+                            tal:attributes="value pub_type;
+                                            selected python:selected_type == pub_type and 'selected' or ''"
+                            tal:content="python:pub_types[pub_type]">
+                    </option>
+                  </tal:pub_types>
+                </select>
+              </fieldset>
+
+              <h4 i18n:translate="">Filter by keywords</h4>
+              <fieldset class="checkList">
+                <label tal:repeat="keyword view/get_keywords">
+                  <input  type="checkbox" name="keywords"
+                          tal:attributes="value keyword;
+                                          checked python: True and keyword in selected_keywords or ''" />
+                  <span i18n:translate="" tal:replace="keyword"/>
+                </label>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+
+      </div>
     </body>
-</html>
+  </html>
