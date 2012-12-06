@@ -44,19 +44,45 @@ class PublicationsView(BrowserView):
         # The order of items in an OrderedDict cannot be set on
         # creation, but the order items are added is maintained
         pub_types = OrderedDict()
-        pub_types["factsheets"] = _(u"Factsheets")
-        pub_types["reports"] = _(u"Reports")
-        pub_types["literature_reviews"] = _(u"Literature reviews")
-        pub_types["e-facts"] = _(u"E-facts")
-        pub_types["outlook"] = _(u"Outlook")
-        pub_types["magazine"] = _(u"Magazine")
-        pub_types["annual_report"] = _(u"Annual report")
-        pub_types["work_programmes"] = _(u"Work programmes")
-        pub_types["evaluation_reports"] = _(
-            u"Evaluation reports of Agency activities")
-        pub_types["presentations"] = _(u"Presentations (ppt)")
-        pub_types["other"] = _(u"Other Publications")
-        pub_types["forum"] = _(u"Forum")
+        pub_types["articles"] = {
+            "title": _(u"Articles"),
+            "description": _(u"help_articles")}
+        pub_types["factsheets"] = {
+            "title": _(u"Factsheets"),
+            "description": _(u"help_factsheets")}
+        pub_types["reports"] = {
+            "title": _(u"Reports"),
+            "description": _(u"help_reports")}
+        pub_types["literature_reviews"] = {
+            "title": _(u"Literature reviews"),
+            "description": _(u"help_literature_reviews")}
+        pub_types["e-facts"] = {
+            "title": _(u"E-facts"),
+            "description": _(u"help_e-facts")}
+        pub_types["outlook"] = {
+            "title": _(u"Outlook"),
+            "description": _(u"help_outlook")}
+        pub_types["magazine"] = {
+            "title": _(u"Magazine"),
+            "description": _(u"help_magazine")}
+        pub_types["annual_report"] = {
+            "title": _(u"Annual report"),
+            "description": _(u"help_annual_report")}
+        pub_types["work_programmes"] = {
+            "title": _(u"Work programmes"),
+            "description": _(u"help_work_programmes")}
+        pub_types["evaluation_reports"] = {
+            "title": _(u"Evaluation reports of Agency activities"),
+            "description": _(u"help_evaluation_reports")}
+        pub_types["presentations"] = {
+            "title": _(u"Presentations (ppt)"),
+            "description": _(u"help_presentations")}
+        pub_types["other"] = {
+            "title": _(u"Other Publications"),
+            "description": _(u"help_other_publications")}
+        pub_types["forum"] = {
+            "title": _(u"Forum"),
+            "description": _(u"help_forum")}
         self.publication_types = pub_types
         self.keywords = self.get_keywords()
 
@@ -234,10 +260,9 @@ class PublicationsView(BrowserView):
     def get_publication_type(self, path):
         """The publication type is determined by the folder"""
         for pub_type in self.publication_types.keys():
-            pub_type_path = self.path + "/" + pub_type
-            if pub_type_path in path:
-                return self.publication_types[pub_type]
-        return _(u"Unknown")
+            if pub_type in path:
+                return pub_type
+        return "unknown"
 
     def get_keywords(self):
         brains = self.pc.searchResults({

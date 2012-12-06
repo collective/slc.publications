@@ -41,19 +41,18 @@
   <body>
     <div metal:fill-slot="main"
          tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime;
-                     ploneview nocall:context/@@plone">
+                     ploneview nocall:context/@@plone;
+                     pub_types view/publication_types">
 
       <div id="mainContent">
-
-        <h1 tal:content="context/Title">Publications library</h1>
+        <h1 i18n:translate="heading_publications_library">Publications library</h1>
 
         <div class="introduction">
-          <p>All of the Agency´s publications can be downloaded free
+          <p i18n:translate="">All of the Agency´s publications can be downloaded free
           of charge.</p>
         </div>
 
-        <h2 i18n:translate="heading_latest_publications">
-        Latest publications</h2>
+        <h2 i18n:translate="heading_latest_publications">Latest publications</h2>
 
         <div id="highlightsContainer"
              tal:define="carousel_details view/get_carousel_details"
@@ -85,11 +84,11 @@
           </div>
         </div>
 
-        <h2 i18n:translate="heading_results">Publications</h2>
+        <h2 i18n:translate="heading_publication_results">Publications</h2>
 
         <div id="loading" style="display:none;">
           <img tal:attributes="src string:$portal_url/++resource++slc.publications.browser/loader.gif" alt="Loader" />
-          <span i18n:translate="loading_message">
+          <span i18n:translate="message_loading">
             Loading...
           </span>
         </div>
@@ -115,15 +114,17 @@
 
           <tbody>
             <tr tal:repeat="publication publications"
-                tal:attributes="class python: 'type-' + '-'.join(publication['type'].lower().split())">
+                tal:attributes="class python: 'type-' + '-'.join(publication['type'])" >
               <td>
                 <a tal:attributes="href publication/path"
                    tal:content="structure publication/title"/>
               </td>
               <td tal:content="publication/effective_date"/>
-              <td tal:content="structure publication/type">
-                Reports
-              </td>
+              <tal:pub_type define="pub_type python:pub_types.get(publication['type'])">
+                <td tal:content="pub_type/title | nothing">
+                  Reports
+                </td>
+              </tal:pub_type>
               <td>
                 <em class="discrete size"
                     tal:content="structure publication/size"/>
@@ -149,8 +150,7 @@
 
       </div>
 
-      <div id="portlets"
-           >
+      <div id="portlets">
         <div class="portlet"
              tal:define="lang_code context/@@plone_portal_state/language">
           <form id="publicationsFilter"
@@ -158,49 +158,50 @@
                             selected_type python:form.get('typelist', '');
                             SearchableText python:form.get('SearchableText', '');
                             selected_keywords python:form.get('keywords', '')">
-            <h4 i18n:translate="">Search all publications</h4>
+            <label i18n:translate="label_search_publications">Search all publications</label>
             <fieldset>
               <input class="wide" id="queryPublicationsText" name="SearchableText" type="text"
                      tal:attributes="value SearchableText"/>
               <input id="queryPublications" type="image" src="https://www.google.com/uds/css/v2/search_box_icon.png" class="gsc-search-button  gsc-search-button-v2" title="search">
               </fieldset>
 
-              <h4 i18n:translate="heading_publication_types">
+              <label i18n:translate="label_publication_types">
                 Select type
-              </h4>
+              </label>
               <div class="tooltip-wrapper">
-                <a href="#" class="tooltip" rel="#types-help"
-                   i18n:translate="label_help">
-                  (help)
-                </a>
+                (<a href="#" class="tooltip" rel="#types-help"
+                   i18n:translate="Help">help</a>)
               </div>
 
               <div id="types-help" style="display:none;">
                 <dl>
-                  <dt>Factsheets</dt>
-                  <dd>provide brief introductions to the Agency and to our activities</dd>
-                  <dt>Reports</dt>
-                  <dd>present the outcome of research, which will help to inform discussion among EU and national authorities, trade unions and experts on how to take forward issues in health and safety</dd>
-                  <dt>Literature reviews</dt>
-                  <dd>provide an overview of the most important issues related to this topic</dd>
-                  <dt>E-facts</dt>
-                  <dd>online only articles aimed at workers, employers and occupational safety and health professionals</dd>
-                  <dt>Outlook</dt>
-                  <dd>present and future trends of relevance to occupational safety and health</dd>
-                  <dt>Magazine</dt>
-                  <dd> in-depth information and analysis from leading experts and practitioners in occupational safety and health</dd>
-                  <dt>Annual report</dt>
-                  <dd>a valuable reference source for anyone interested in obtaining a comprehensive overview of the Agency and its work</dd>
-                  <dt>Work programmes</dt>
-                  <dd>describes the planned activities for the year ahead</dd>
-                  <dt>Evaluation reports of Agency activities</dt>
-                  <dd>an independent assessment of our work and contribute to improving our performance</dd>
-                  <dt>Presentations (ppt)</dt>
-                  <dd></dd>
-                  <dt>Other Publications</dt>
-                  <dd>ad hoc publications and documents</dd>
-                  <dt>Forum</dt>
-                  <dd>addresses specific issues in safety and health, and aims to provide information and promote discussion</dd>
+                  <tal:type_help repeat="pub_type pub_types">
+                    <dt tal:content="python:pub_types[pub_type]['title']">Factsheets</dt>
+                    <dd tal:content="python:pub_types[pub_type]['description']">provide brief introductions to the Agency and to our activities</dd>
+                  </tal:type_help>
+                  <!-- <dd i18n:translate="help_publication_factsheets" i18n:translate="help_publication_factsheets">provide brief introductions to the Agency and to our activities</dd> -->
+                  <!-- <dt>Reports</dt> -->
+                  <!-- <dd i18n:translate="help_publication_reports">present the outcome of research, which will help to inform discussion among EU and national authorities, trade unions and experts on how to take forward issues in health and safety</dd> -->
+                  <!-- <dt>Literature reviews</dt> -->
+                  <!-- <dd i18n:translate="help_publication_literature_reviews">provide an overview of the most important issues related to this topic</dd> -->
+                  <!-- <dt>E-facts</dt> -->
+                  <!-- <dd i18n:translate="help_publication_e-facts">online only articles aimed at workers, employers and occupational safety and health professionals</dd> -->
+                  <!-- <dt>Outlook</dt> -->
+                  <!-- <dd i18n:translate="help_publication_outlook">present and future trends of relevance to occupational safety and health</dd> -->
+                  <!-- <dt>Magazine</dt> -->
+                  <!-- <dd i18n:translate="help_publication_magazine"> in-depth information and analysis from leading experts and practitioners in occupational safety and health</dd> -->
+                  <!-- <dt>Annual report</dt> -->
+                  <!-- <dd i18n:translate="help_publication_annual_report">a valuable reference source for anyone interested in obtaining a comprehensive overview of the Agency and its work</dd> -->
+                  <!-- <dt>Work programmes</dt> -->
+                  <!-- <dd i18n:translate="help_publication_work_programmes">describes the planned activities for the year ahead</dd> -->
+                  <!-- <dt>Evaluation reports of Agency activities</dt> -->
+                  <!-- <dd i18n:translate="help_publication_evaluation_reports">an independent assessment of our work and contribute to improving our performance</dd> -->
+                  <!-- <dt>Presentations (ppt)</dt> -->
+                  <!-- <dd i18n:translate="help_publication_presentations"></dd> -->
+                  <!-- <dt>Other Publications</dt> -->
+                  <!-- <dd i18n:translate="help_publication_other_publications">ad hoc publications and documents</dd> -->
+                  <!-- <dt>Forum</dt> -->
+                  <!-- <dd i18n:translate="help_publication_forum">addresses specific issues in safety and health, and aims to provide information and promote discussion</dd> -->
                 </dl>
               </div>
 
@@ -222,7 +223,7 @@
                 </select>
               </fieldset>
 
-              <h4 i18n:translate="">Filter by keywords</h4>
+              <label i18n:translate="label_filter_by_keywords">Filter by keywords</label>
               <fieldset class="checkList">
                 <label tal:repeat="keyword view/get_keywords">
                   <input  type="checkbox" name="keywords"
