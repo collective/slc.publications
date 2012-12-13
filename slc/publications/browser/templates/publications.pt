@@ -160,15 +160,15 @@
                             selected_type python:form.get('typelist', '');
                             SearchableText python:form.get('SearchableText', '');
                             selected_keywords python:form.get('keywords', '')">
-            <label i18n:translate="label_search_publications">Search all publications</label>
+            <label class="heading" i18n:translate="label_search_publications">Search all publications</label>
             <fieldset>
               <input class="wide" id="queryPublicationsText" name="SearchableText" type="text"
                      tal:attributes="value SearchableText"/>
               <input id="queryPublications" type="image" src="https://www.google.com/uds/css/v2/search_box_icon.png" class="gsc-search-button  gsc-search-button-v2" title="search">
               </fieldset>
 
-              <label i18n:translate="label_publication_types">
-                Select type
+              <label class="heading" i18n:translate="label_publication_types">
+                Select publication type
               </label>
               <div class="tooltip-wrapper">
                 (<a href="#" class="tooltip" rel="#types-help"
@@ -234,7 +234,7 @@
                 </select>
               </fieldset>
 
-              <label i18n:translate="label_filter_by_keywords">Filter by keywords</label>
+              <label class="heading" i18n:translate="label_filter_by_keywords">Filter by keywords</label>
               <fieldset class="checkList">
                 <label tal:repeat="keyword view/get_keywords">
                   <input  type="checkbox" name="keywords"
