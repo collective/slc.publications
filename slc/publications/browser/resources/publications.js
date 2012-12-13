@@ -51,7 +51,7 @@
                 $.each(data, function (key, val) {
                     var link = "<a href='" + val.path + "'>" + val.title + "</a>";
                     items.push('<tr><td>' + link + '</td><td>' +
-                               val.effective_date + '</td><td>' +
+                               val.year + '</td><td>' +
                                val.type + '</td><td><em class="discrete size">' +
                                val.size + '</em></td></tr>');
                 });

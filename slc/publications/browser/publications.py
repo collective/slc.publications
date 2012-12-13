@@ -117,27 +117,19 @@ class PublicationsView(BrowserView):
             self.has_more_results = True
 
         publications = []
-        translations = getToolByName(self.context, 'translation_service')
 
         for result in results:
             obj = result.getObject()
             path = result.getPath()
-
-            try:
-                date = translations.ulocalized_time(result.effective)
-            except ValueError:
-                # this usually happens if the effective date is not in allowed
-                # range (year should be > 1900)
-                date = u''
-
             title = result.Title.replace("'", "&#39;")
+
             # Searches without SearchableText are sent to the normal
             # portal_catalog and the Title returned is a string
             if not isinstance(title, unicode):
                 title.decode("utf-8")
             publications.append({
                 "title": title,
-                "effective_date": date,
+                "year": result.effective.year(),
                 "size": obj.getObjSize(),
                 "path": path + "/view",
                 "type": self.get_publication_type(path),

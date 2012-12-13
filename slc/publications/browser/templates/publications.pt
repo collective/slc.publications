@@ -102,8 +102,8 @@
               <th i18n:translate="listingheader_title">
                 Title
               </th>
-              <th i18n:translate="listingheader_date">
-                Date
+              <th i18n:translate="listingheader_year">
+                Year
               </th>
               <th i18n:translate="listingheader_type">
                 Type
@@ -121,7 +121,7 @@
                 <a tal:attributes="href publication/path"
                    tal:content="structure publication/title"/>
               </td>
-              <td tal:content="publication/effective_date"/>
+              <td tal:content="publication/year"/>
               <tal:pub_type define="pub_type python:pub_types.get(publication['type'])">
                 <td tal:content="pub_type/title | nothing">
                   Reports
