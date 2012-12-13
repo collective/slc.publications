@@ -85,12 +85,18 @@ class PublicationsView(BrowserView):
             # portal_catalog and the Title returned is a string
             if not isinstance(title, unicode):
                 title.decode("utf-8")
+
+            pub_type = self.get_publication_type(path)
+            type_info = self.publication_types.get(pub_type)
+            type_title = type_info and type_info['title'] or u''
+
             publications.append({
                 "title": title,
                 "year": result.effective.year(),
                 "size": obj.getObjSize(),
                 "path": path + "/view",
-                "type": self.get_publication_type(path),
+                "type": pub_type,
+                "type_title": type_title
             })
         return publications
 

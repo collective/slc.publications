@@ -77,11 +77,11 @@ pub_types["magazine"] = {
     "title": _(u"Magazine"),
     "description": _(u"help_magazine")}
 
-pub_types["other_publications"] = {
+pub_types["other"] = {
     "title": _(u"Other Publications"),
     "description": _(u"help_other_publications")}
 
-pub_types["corporate_publications"] = {
+pub_types["corporate"] = {
     "title": _(u"Corporate publications"),
     "description": _(u"help_corporate_publications")}
 

@@ -122,11 +122,9 @@
                    tal:content="structure publication/title"/>
               </td>
               <td tal:content="publication/year"/>
-              <tal:pub_type define="pub_type python:pub_types.get(publication['type'])">
-                <td tal:content="pub_type/title | nothing">
+                <td i18n:translate="" tal:content="publication/type_title">
                   Reports
                 </td>
-              </tal:pub_type>
               <td>
                 <em class="discrete size"
                     tal:content="structure publication/size"/>
@@ -228,7 +226,7 @@
                     <option tal:repeat="pub_type pub_types"
                             tal:attributes="value pub_type;
                                             selected python:selected_type == pub_type and 'selected' or ''"
-                            tal:content="python:pub_types[pub_type]">
+                            tal:content="python:pub_types[pub_type]['title']">
                     </option>
                   </tal:pub_types>
                 </select>

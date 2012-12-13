@@ -52,7 +52,7 @@
                     var link = "<a href='" + val.path + "'>" + val.title + "</a>";
                     items.push('<tr><td>' + link + '</td><td>' +
                                val.year + '</td><td>' +
-                               val.type + '</td><td><em class="discrete size">' +
+                               val.type_title + '</td><td><em class="discrete size">' +
                                val.size + '</em></td></tr>');
                 });
 
