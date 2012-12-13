@@ -1,4 +1,5 @@
 import json
+import locale
 import logging
 import os
 import subprocess
@@ -265,6 +266,11 @@ class PublicationsView(BrowserView):
         return "unknown"
 
     def get_keywords(self):
+        """Return keyword ids, sorted alphabetically by keyword titles
+        (multi-lingual aware).
+
+        :returns: List of keyword ids
+        """
         brains = self.pc.searchResults({
             'object_provides':
             'slc.publications.interfaces.IPublicationEnhanced',
@@ -275,7 +281,27 @@ class PublicationsView(BrowserView):
         for brain in brains:
             for keyword in brain.Subject:
                 keywords.add(keyword)
-        return keywords
+
+        # this reads the environment and inits the right locale
+        locale.setlocale(locale.LC_ALL, "")
+
+        # sort the keywords by translated keyword title, properly handling
+        # unicode characters
+        # XXX: This could probably be written a little cleaner and more
+        # efficient
+        translation_tool = getToolByName(self.context, 'translation_service')
+        language_tool = getToolByName(self.context, 'portal_languages')
+        lang = language_tool.getPreferredLanguage()
+        results = {}
+        for keyword in keywords:
+            title = translation_tool.translate(
+                keyword, 'osha', target_language=lang)
+            results[title] = keyword
+        sorted_titles = sorted(results.iterkeys(), cmp=locale.strcoll)
+
+        # return just the keyword ids, they will be translated in the
+        # template anyway
+        return [results[title] for title in sorted_titles]
 
 
 class PublicationsJSONView(PublicationsView):
