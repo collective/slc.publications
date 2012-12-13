@@ -181,29 +181,38 @@
                     <dt tal:content="python:pub_types[pub_type]['title']">Factsheets</dt>
                     <dd tal:content="python:pub_types[pub_type]['description']">provide brief introductions to the Agency and to our activities</dd>
                   </tal:type_help>
-                  <!-- <dd i18n:translate="help_publication_factsheets" i18n:translate="help_publication_factsheets">provide brief introductions to the Agency and to our activities</dd> -->
-                  <!-- <dt>Reports</dt> -->
-                  <!-- <dd i18n:translate="help_publication_reports">present the outcome of research, which will help to inform discussion among EU and national authorities, trade unions and experts on how to take forward issues in health and safety</dd> -->
-                  <!-- <dt>Literature reviews</dt> -->
-                  <!-- <dd i18n:translate="help_publication_literature_reviews">provide an overview of the most important issues related to this topic</dd> -->
-                  <!-- <dt>E-facts</dt> -->
-                  <!-- <dd i18n:translate="help_publication_e-facts">online only articles aimed at workers, employers and occupational safety and health professionals</dd> -->
-                  <!-- <dt>Outlook</dt> -->
-                  <!-- <dd i18n:translate="help_publication_outlook">present and future trends of relevance to occupational safety and health</dd> -->
-                  <!-- <dt>Magazine</dt> -->
-                  <!-- <dd i18n:translate="help_publication_magazine"> in-depth information and analysis from leading experts and practitioners in occupational safety and health</dd> -->
-                  <!-- <dt>Annual report</dt> -->
-                  <!-- <dd i18n:translate="help_publication_annual_report">a valuable reference source for anyone interested in obtaining a comprehensive overview of the Agency and its work</dd> -->
-                  <!-- <dt>Work programmes</dt> -->
-                  <!-- <dd i18n:translate="help_publication_work_programmes">describes the planned activities for the year ahead</dd> -->
-                  <!-- <dt>Evaluation reports of Agency activities</dt> -->
-                  <!-- <dd i18n:translate="help_publication_evaluation_reports">an independent assessment of our work and contribute to improving our performance</dd> -->
-                  <!-- <dt>Presentations (ppt)</dt> -->
-                  <!-- <dd i18n:translate="help_publication_presentations"></dd> -->
-                  <!-- <dt>Other Publications</dt> -->
-                  <!-- <dd i18n:translate="help_publication_other_publications">ad hoc publications and documents</dd> -->
-                  <!-- <dt>Forum</dt> -->
-                  <!-- <dd i18n:translate="help_publication_forum">addresses specific issues in safety and health, and aims to provide information and promote discussion</dd> -->
+                  <!--dt>Reports</dt-->
+                  <!--dd>Present the outcome of research, which will help to inform discussion among EU and national authorities, trade unions and experts on how to take forward issues in health and safety.</dd-->
+
+                  <!--dt>Literature reviews</dt-->
+                  <!--dd>Provide an overview of the most important issues related to this topic.</dd-->
+
+                  <!--dt>E-facts</dt-->
+                  <!--dd>Online only articles aimed at workers, employers and occupational safety and health professionals.</dd-->
+
+                  <!--dt>Articles</dt-->
+                  <!--dd>Articles from leading safety and health experts on issues of topical concern.</dd-->
+
+                  <!--dt>Promotional Material</dt-->
+                  <!--dd>A selection of promotional literature presenting Agency projects and services and mainly used at exhibitions and events.</dd-->
+
+                  <!--dt>Factsheets</dt-->
+                  <!--dd>Provide brief introductions to the Agency and to our activities.</dd-->
+
+                  <!--dt>Presentations (PPT)</dt-->
+                  <!--dd>PPT presentations on various safety and health topics and EU-OSHA projects which can be freely adapted and reused. All English versions are also available on Slideshare (<a href="http://www.slideshare.net/euosha">http://www.slideshare.net/euosha</a>).</dd-->
+
+                  <!--dt>Magazine</dt-->
+                  <!--dd>In-depth information and analysis from leading experts and practitioners in occupational safety and health.</dd-->
+
+                  <!--dt>Other publications</dt-->
+                  <!--dd>Ad hoc publications and documents.</dd-->
+
+                  <!--dt>Corporate publications</dt-->
+                  <!--dd></dd-->
+
+                  <!--dt>Evaluation reports</dt-->
+                  <!--dd>An independent assessment of our work and contribute to improving our performance.</dd-->
                 </dl>
               </div>
 

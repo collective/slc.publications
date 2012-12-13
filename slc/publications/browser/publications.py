@@ -7,16 +7,15 @@ import tempfile
 
 from DateTime import DateTime
 
-from ordereddict import OrderedDict
 
 from zope.app.component.hooks import getSite
 
 from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone import PloneMessageFactory as _
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from slc.publications import HAVE_LINGUAPLONE
+from slc.publications.config import PUB_TYPES
 from slc.publications.utils import _get_storage_folder
 
 
@@ -43,49 +42,7 @@ class PublicationsView(BrowserView):
         self.portal = getSite()
         self.pc = self.portal.portal_catalog
         self.path = '/'.join(context.getPhysicalPath())
-        # The order of items in an OrderedDict cannot be set on
-        # creation, but the order items are added is maintained
-        pub_types = OrderedDict()
-        pub_types["articles"] = {
-            "title": _(u"Articles"),
-            "description": _(u"help_articles")}
-        pub_types["factsheets"] = {
-            "title": _(u"Factsheets"),
-            "description": _(u"help_factsheets")}
-        pub_types["reports"] = {
-            "title": _(u"Reports"),
-            "description": _(u"help_reports")}
-        pub_types["literature_reviews"] = {
-            "title": _(u"Literature reviews"),
-            "description": _(u"help_literature_reviews")}
-        pub_types["e-facts"] = {
-            "title": _(u"E-facts"),
-            "description": _(u"help_e-facts")}
-        pub_types["outlook"] = {
-            "title": _(u"Outlook"),
-            "description": _(u"help_outlook")}
-        pub_types["magazine"] = {
-            "title": _(u"Magazine"),
-            "description": _(u"help_magazine")}
-        pub_types["annual_report"] = {
-            "title": _(u"Annual report"),
-            "description": _(u"help_annual_report")}
-        pub_types["work_programmes"] = {
-            "title": _(u"Work programmes"),
-            "description": _(u"help_work_programmes")}
-        pub_types["evaluation_reports"] = {
-            "title": _(u"Evaluation reports of Agency activities"),
-            "description": _(u"help_evaluation_reports")}
-        pub_types["presentations"] = {
-            "title": _(u"Presentations (ppt)"),
-            "description": _(u"help_presentations")}
-        pub_types["other"] = {
-            "title": _(u"Other Publications"),
-            "description": _(u"help_other_publications")}
-        pub_types["forum"] = {
-            "title": _(u"Forum"),
-            "description": _(u"help_forum")}
-        self.publication_types = pub_types
+        self.publication_types = PUB_TYPES
         self.keywords = self.get_keywords()
 
     def __call__(self):
