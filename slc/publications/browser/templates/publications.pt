@@ -52,35 +52,37 @@
           of charge.</p>
         </div>
 
-        <h2 i18n:translate="heading_latest_publications">Latest publications</h2>
+        <div id="latest-publications">
+          <h2 i18n:translate="heading_latest_publications">Latest publications</h2>
 
-        <div id="highlightsContainer"
-             tal:define="carousel_details view/get_carousel_details"
-             tal:condition="carousel_details">
-          <div class="carouselContainer" id="highlights">
-            <div id="highlights-content">
-              <tal:rep repeat="item carousel_details">
-                <div tal:define="no repeat/item/number"
-                     tal:attributes="id string:highlights-$no">
-                  <tal:item>
-                    <h3><a tal:attributes="href string:${item/absolute_url}/view" tal:content="item/title">Publication title</a></h3>
-                    <a tal:attributes="href string:${item/absolute_url}/view">
-                      <img tal:attributes="src string:${item/absolute_url}/cover_image;"/>
-                    </a>
-                    <p class="hpteaserdate" tal:content="python:toLocalizedTime(item['date'])"/>
-                    <p class="teaser_content" tal:content="python:ploneview.cropText(item['description'], length=400, ellipsis='...')"></p>
-                    <p class="teaser_more"><a class="more" tal:attributes="href string:${item/absolute_url}/view"><span tal:omit-tag="" i18n:translate="alert_label_more">More</span>&hellip;</a></p>
-                  </tal:item>
-                </div>
-              </tal:rep>
+          <div id="highlightsContainer"
+               tal:define="carousel_details view/get_carousel_details"
+               tal:condition="carousel_details">
+            <div class="carouselContainer" id="highlights">
+              <div id="highlights-content">
+                <tal:rep repeat="item carousel_details">
+                  <div tal:define="no repeat/item/number"
+                       tal:attributes="id string:highlights-$no">
+                    <tal:item>
+                      <h3><a tal:attributes="href string:${item/absolute_url}/view" tal:content="item/title">Publication title</a></h3>
+                      <a tal:attributes="href string:${item/absolute_url}/view">
+                        <img tal:attributes="src string:${item/absolute_url}/cover_image;"/>
+                      </a>
+                      <p class="hpteaserdate" tal:content="python:toLocalizedTime(item['date'])"/>
+                      <p class="teaser_content" tal:content="python:ploneview.cropText(item['description'], length=400, ellipsis='...')"></p>
+                      <p class="teaser_more"><a class="more" tal:attributes="href string:${item/absolute_url}/view"><span tal:omit-tag="" i18n:translate="alert_label_more">More</span>&hellip;</a></p>
+                    </tal:item>
+                  </div>
+                </tal:rep>
+              </div>
+              <ul id="highlights-tabs">
+                <tal:rep repeat="item carousel_details">
+                  <li class="ui-corner-top" tal:define="no repeat/item/number">
+                    <a href="#highlights-1" tal:attributes="href string:#highlights-$no; title item/title" tal:content="no">1</a>
+                  </li>
+                </tal:rep>
+              </ul>
             </div>
-            <ul id="highlights-tabs">
-              <tal:rep repeat="item carousel_details">
-                <li class="ui-corner-top" tal:define="no repeat/item/number">
-                  <a href="#highlights-1" tal:attributes="href string:#highlights-$no; title item/title" tal:content="no">1</a>
-                </li>
-              </tal:rep>
-            </ul>
           </div>
         </div>
 

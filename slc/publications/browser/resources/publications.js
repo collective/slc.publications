@@ -35,6 +35,8 @@
                 $("#resultTable").hide();
                 $("#noResults").show();
             }
+            // hide latest publications
+            $("#latest-publications").hide();
         }
 
         // show "Loading..." message
