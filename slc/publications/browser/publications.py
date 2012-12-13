@@ -25,6 +25,7 @@ logger = logging.getLogger('slc.publications.publications.publications.py')
 # Constants
 CAROUSEL_ITEMS = 4
 MAX_RESULTS = 10
+IGNORE_KEYWORDS = (u'publications',)
 
 
 class PublicationsView(BrowserView):
@@ -272,7 +273,8 @@ class PublicationsView(BrowserView):
         keywords = set()
         for brain in brains:
             for keyword in brain.Subject:
-                keywords.add(keyword)
+                if keyword not in IGNORE_KEYWORDS:
+                    keywords.add(keyword)
 
         # this reads the environment and inits the right locale
         locale.setlocale(locale.LC_ALL, "")
