@@ -9,7 +9,7 @@
           tal:attributes="href string:${portal_url}/collage.css"/>
     <link rel="stylesheet" type="text/css" media="screen" title="no title"
           charset="utf-8"
-          tal:attributes="href string:${portal_url}/++resource++slc.publications.browser/publications.css?v=2" />
+          tal:attributes="href string:${portal_url}/++resource++slc.publications.browser/publications.css?v=3" />
   </metal:cssslot>
 
   <metal:javascriptslot fill-slot="javascript_head_slot">
@@ -69,7 +69,7 @@
                         <img tal:attributes="src string:${item/absolute_url}/cover_image;"/>
                       </a>
                       <p class="hpteaserdate" tal:content="python:toLocalizedTime(item['date'])"/>
-                      <p class="teaser_content" tal:content="python:ploneview.cropText(item['description'], length=400, ellipsis='...')"></p>
+                      <p class="teaser_content" tal:content="python:ploneview.cropText(item['description'], length=300, ellipsis='...')"></p>
                       <p class="teaser_more"><a class="more" tal:attributes="href string:${item/absolute_url}/view"><span tal:omit-tag="" i18n:translate="alert_label_more">More</span>&hellip;</a></p>
                     </tal:item>
                   </div>

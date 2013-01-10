@@ -167,6 +167,14 @@ ul.linkList a {
     margin-bottom: 0;
 }
 
+#latest-publications #highlights{
+    padding-bottom: 1.5em;
+}
+
+#latest-publications img {
+    max-height: 120px;
+}
+
 .message .footer {
     padding: 10px;
     margin: -30px -10px 0;
