@@ -210,8 +210,23 @@ ul.linkList a {
     box-shadow: 0 0 2em 0.5em #666666;
 }
 
+.qtip-wrapper{
+    overflow: visible !important;
+}
 .qtip-title{
-    height: 28px;
+    height: 0px;
+    background-color: transparent !important;
+}
+
+.qtip-button{
+    float: left !important;
+    left: -15px;
+    position: absolute !important;
+    top: -10px;
+}
+
+#types-help{
+    padding: 1em;
 }
 
 #queryPublications{

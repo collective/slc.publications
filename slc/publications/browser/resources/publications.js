@@ -113,7 +113,7 @@
                 content: {
                     text: helptext,
                     title: {
-                        text: 'Publication types',
+                        text: '',
                         button: '<img onclick="return false;" src="pb_close.png" alt="Close" />'
                     }
                 },
