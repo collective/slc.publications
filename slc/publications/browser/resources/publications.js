@@ -110,13 +110,19 @@
             var helptext = $($(this).attr('rel'));
 
             $(this).qtip({
-                content: { text: helptext },
+                content: {
+                    text: helptext,
+                    title: {
+                        text: 'Publication types',
+                        button: '<img onclick="return false;" src="pb_close.png" alt="Close" />'
+                    }
+                },
                 position: {
                     corner: {
-                        target: 'leftMiddle',
-                        tooltip: 'rightMiddle'
+                        target: 'leftBottom',
+                        tooltip: 'rightTop'
                     },
-                    adjust: { x: -15, y: 0 }
+                    adjust: { x: -15, y: -50 }
                 },
                 show: { when: { event: 'click' } },
                 hide: { when: { event: 'unfocus' } },
