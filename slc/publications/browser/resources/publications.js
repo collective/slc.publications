@@ -35,8 +35,12 @@
                 $("#resultTable").hide();
                 $("#noResults").show();
             }
-            // hide latest publications
-            $("#latest-publications").hide();
+            // hide featured publications
+            $("#highlightsContainer").hide();
+            $("#show-highlights").show();
+
+            // change results header
+            $("#publication-results-heading").text('Publications');
         }
 
         // show "Loading..." message
@@ -89,6 +93,13 @@
             queryPublications();
             return false;
         });
+
+        $("#show-highlights a").click(function () {
+            $("#highlightsContainer").show();
+            $("#show-highlights").hide();
+            return false;
+        });
+
 
         $("input[name=SearchableText]").keyup(function () {
             queryPublications();

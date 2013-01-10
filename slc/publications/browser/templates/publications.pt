@@ -9,12 +9,12 @@
           tal:attributes="href string:${portal_url}/collage.css"/>
     <link rel="stylesheet" type="text/css" media="screen" title="no title"
           charset="utf-8"
-          tal:attributes="href string:${portal_url}/++resource++slc.publications.browser/publications.css?v=3" />
+          tal:attributes="href string:${portal_url}/++resource++slc.publications.browser/publications.css?v=4" />
   </metal:cssslot>
 
   <metal:javascriptslot fill-slot="javascript_head_slot">
     <script type="text/javascript" charset="utf-8"
-            tal:attributes="src string:$portal_url/++resource++slc.publications.browser/publications.js?v=5" >
+            tal:attributes="src string:$portal_url/++resource++slc.publications.browser/publications.js?v=6" >
     </script>
     <script type="text/javascript" charset="utf-8"
             tal:attributes="src string:$portal_url/++resource++osha.theme.behaviour/jquery.hoverIntent.js" >
@@ -53,8 +53,12 @@
         </div>
 
         <div id="latest-publications">
-          <h2 i18n:translate="heading_latest_publications">Latest publications</h2>
-
+          <p id="show-highlights" style="display:none;">
+            <a i18n:translate="link_toggle_publications_carousel"
+               tal:attributes="href context/absolute_url">
+              + show featured publications
+            </a>
+          </p>
           <div id="highlightsContainer"
                tal:define="carousel_details view/get_carousel_details"
                tal:condition="carousel_details">
@@ -86,7 +90,7 @@
           </div>
         </div>
 
-        <h2 i18n:translate="heading_publication_results">Publications</h2>
+        <h2 id="publication-results-heading" i18n:translate="heading_publication_results">Latest Publications</h2>
 
         <div id="loading" style="display:none;">
           <img tal:attributes="src string:$portal_url/++resource++slc.publications.browser/loader.gif" alt="Loader" />
