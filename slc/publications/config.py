@@ -45,48 +45,86 @@ combined_languages_EU = dict(
 # creation, but the order items are added is maintained
 pub_types = OrderedDict()
 
+pub_types["corporate"] = {
+    "title": _(u"Corporate publications"),
+    "description": _(
+        u"help_corporate_publications",
+        default=u"The Agency's strategy, annual management plan and annual "
+            "report (full and summary versions) provide a comprehensive "
+            "overview of EU-OSHA's activities and governance.")}
+
 pub_types["reports"] = {
     "title": _(u"Reports"),
-    "description": _(u"help_reports")}
+    "description": _(
+        u"help_reports",
+        default="Present the outcome of research, which will help to inform "
+            "discussion among EU and national authorities, trade unions and "
+            "experts on how to take forward issues in health and safety.")}
 
 pub_types["literature_reviews"] = {
     "title": _(u"Literature reviews"),
-    "description": _(u"help_literature_reviews")}
+    "description": _(
+        u"help_literature_reviews",
+        default="Provide an overview of the most important issues related "
+        "to this topic.")}
 
 pub_types["e-facts"] = {
     "title": _(u"E-facts"),
-    "description": _(u"help_e-facts")}
+    "description": _(
+        u"help_e-facts",
+        default="Online only articles aimed at workers, employers and "
+            "occupational safety and health professionals.")}
 
 pub_types["articles"] = {
     "title": _(u"Articles"),
-    "description": _(u"help_articles")}
+    "description": _(
+        u"help_articles",
+        default="Articles from leading safety and health experts on issues "
+            "of topical concern.")}
 
 pub_types["promotional_material"] = {
     "title": _(u"Promotional Material"),
-    "description": _(u"help_promotional_material")}
+    "description": _(
+        u"help_promotional_material",
+        default="A selection of promotional literature presenting Agency "
+            "projects and services and mainly used at exhibitions and "
+            "events.")}
 
 pub_types["factsheets"] = {
     "title": _(u"Factsheets"),
-    "description": _(u"help_factsheets")}
+    "description": _(
+        u"help_factsheets",
+        default="Provide brief introductions to the Agency and to our "
+            "activities.")}
 
 pub_types["presentations"] = {
     "title": _(u"Presentations (PPT)"),
-    "description": _(u"help_presentations")}
+    "description": _(
+        u"help_presentations",
+        default="PPT presentations on various safety and health topics and "
+            "EU-OSHA projects which can be freely adapted and reused. All "
+            "English versions are also available on Slideshare "
+            "(<a href='http://www.slideshare.net/euosha'>"
+            "http://www.slideshare.net/euosha</a>)")}
 
 pub_types["magazine"] = {
     "title": _(u"Magazine"),
-    "description": _(u"help_magazine")}
+    "description": _(
+        u"help_magazine",
+        default="In-depth information and analysis from leading experts and "
+            "practitioners in occupational safety and health.")}
 
 pub_types["other"] = {
     "title": _(u"Other Publications"),
-    "description": _(u"help_other_publications")}
-
-pub_types["corporate"] = {
-    "title": _(u"Corporate publications"),
-    "description": _(u"help_corporate_publications")}
+    "description": _(
+        u"help_other_publications",
+        default="Ad hoc publications and documents.")}
 
 pub_types["evaluation_reports"] = {
     "title": _(u"Evaluation reports"),
-    "description": _(u"help_evaluation_reports")}
+    "description": _(
+        u"help_evaluation_reports",
+        default="An independent assessment of our work and contribute to "
+            "improving our performance.")}
 
 PUB_TYPES = pub_types.copy()
