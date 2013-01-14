@@ -49,7 +49,7 @@
 
         <div class="introduction">
           <p i18n:translate="">All of the Agency´s publications can be downloaded free
-          of charge.</p>
+            of charge.</p>
         </div>
 
         <div id="latest-publications"
@@ -129,9 +129,9 @@
                    tal:content="structure publication/title"/>
               </td>
               <td tal:content="publication/year"/>
-                <td i18n:translate="" tal:content="publication/type_title">
-                  Reports
-                </td>
+              <td i18n:translate="" tal:content="publication/type_title">
+                Reports
+              </td>
               <td>
                 <em class="discrete size"
                     tal:content="structure publication/size"/>
@@ -171,56 +171,56 @@
                      tal:attributes="value SearchableText"/>
               <input id="queryPublications" type="image" src="https://www.google.com/uds/css/v2/search_box_icon.png" class="gsc-search-button  gsc-search-button-v2" title="search">
               <input type="hidden" name="hideHighlights" value="True" />
-              </fieldset>
+            </fieldset>
 
-              <label class="heading" i18n:translate="label_publication_types">
-                Select publication type
-              </label>
-              <div class="tooltip-wrapper">
-                (<a href="#types-help" class="tooltip" rel="#types-help"
-                   i18n:translate="Help">help</a>)
-              </div>
+            <label class="heading" i18n:translate="label_publication_types">
+              Select publication type
+            </label>
+            <div class="tooltip-wrapper">
+              (<a href="#types-help" class="tooltip" rel="#types-help"
+                  i18n:translate="Help">help</a>)
+            </div>
 
-              <div id="types-help" style="display:none;">
-                <dl>
-                  <tal:type_help repeat="pub_type pub_types">
-                    <dt tal:content="python:pub_types[pub_type]['title']">Factsheets</dt>
-                    <dd tal:content="structure python:pub_types[pub_type]['description']">provide brief introductions to the Agency and to our activities</dd>
-                  </tal:type_help>
-                </dl>
-              </div>
+            <div id="types-help" style="display:none;">
+              <dl>
+                <tal:type_help repeat="pub_type pub_types">
+                  <dt tal:content="python:pub_types[pub_type]['title']">Factsheets</dt>
+                  <dd tal:content="structure python:pub_types[pub_type]['description']">provide brief introductions to the Agency and to our activities</dd>
+                </tal:type_help>
+              </dl>
+            </div>
 
-              <fieldset>
-                <select class="wide" name="typelist">
-                  <option value=""
-                          i18n:translate="option_publication_all_types"
-                          tal:attributes="selected python:selected_type == '' and 'selected' or ''">
-                    All types
+            <fieldset>
+              <select class="wide" name="typelist">
+                <option value=""
+                        i18n:translate="option_publication_all_types"
+                        tal:attributes="selected python:selected_type == '' and 'selected' or ''">
+                  All types
+                </option>
+
+                <tal:pub_types define="pub_types view/publication_types">
+                  <option tal:repeat="pub_type pub_types"
+                          tal:attributes="value pub_type;
+                                          selected python:selected_type == pub_type and 'selected' or ''"
+                          tal:content="python:pub_types[pub_type]['title']">
                   </option>
+                </tal:pub_types>
+              </select>
+            </fieldset>
 
-                  <tal:pub_types define="pub_types view/publication_types">
-                    <option tal:repeat="pub_type pub_types"
-                            tal:attributes="value pub_type;
-                                            selected python:selected_type == pub_type and 'selected' or ''"
-                            tal:content="python:pub_types[pub_type]['title']">
-                    </option>
-                  </tal:pub_types>
-                </select>
-              </fieldset>
-
-              <label class="heading" i18n:translate="label_filter_by_keywords">Filter by keywords</label>
-              <fieldset class="checkList">
-                <label tal:repeat="keyword view/get_keywords">
-                  <input  type="checkbox" name="keywords"
-                          tal:attributes="value keyword;
-                                          checked python: True and keyword in selected_keywords or ''" />
-                  <span i18n:translate="" tal:replace="keyword"/>
-                </label>
-              </fieldset>
-            </form>
-          </div>
+            <label class="heading" i18n:translate="label_filter_by_keywords">Filter by keywords</label>
+            <fieldset class="checkList">
+              <label tal:repeat="keyword view/get_keywords">
+                <input  type="checkbox" name="keywords"
+                        tal:attributes="value keyword;
+                                        checked python: True and keyword in selected_keywords or ''" />
+                <span i18n:translate="" tal:replace="keyword"/>
+              </label>
+            </fieldset>
+          </form>
         </div>
-
       </div>
-    </body>
-  </html>
+
+    </div>
+  </body>
+</html>
