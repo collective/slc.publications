@@ -52,8 +52,10 @@
           of charge.</p>
         </div>
 
-        <div id="latest-publications">
-          <p id="show-highlights" style="display:none;">
+        <div id="latest-publications"
+             tal:define="hideHighlights request/form/hideHighlights|nothing;">
+          <p id="show-highlights"
+             tal:attributes="style python: not hideHighlights and 'display:none' or None">
             <a i18n:translate="link_toggle_publications_carousel"
                tal:attributes="href context/absolute_url">
               + show featured publications
@@ -61,7 +63,8 @@
           </p>
           <div id="highlightsContainer"
                tal:define="carousel_details view/get_carousel_details"
-               tal:condition="carousel_details">
+               tal:condition="carousel_details"
+               tal:attributes="style python: hideHighlights and 'display:none' or None">
             <div class="carouselContainer" id="highlights">
               <div id="highlights-content">
                 <tal:rep repeat="item carousel_details">
@@ -167,6 +170,7 @@
               <input class="wide" id="queryPublicationsText" name="SearchableText" type="text"
                      tal:attributes="value SearchableText"/>
               <input id="queryPublications" type="image" src="https://www.google.com/uds/css/v2/search_box_icon.png" class="gsc-search-button  gsc-search-button-v2" title="search">
+              <input type="hidden" name="hideHighlights" value="True" />
               </fieldset>
 
               <label class="heading" i18n:translate="label_publication_types">
