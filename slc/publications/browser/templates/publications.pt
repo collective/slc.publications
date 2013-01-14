@@ -173,7 +173,7 @@
                 Select publication type
               </label>
               <div class="tooltip-wrapper">
-                (<a href="#" class="tooltip" rel="#types-help"
+                (<a href="#types-help" class="tooltip" rel="#types-help"
                    i18n:translate="Help">help</a>)
               </div>
 
