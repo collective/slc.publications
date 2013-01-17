@@ -9,7 +9,7 @@
           tal:attributes="href string:${portal_url}/collage.css"/>
     <link rel="stylesheet" type="text/css" media="screen" title="no title"
           charset="utf-8"
-          tal:attributes="href string:${portal_url}/++resource++slc.publications.browser/publications.css?v=5" />
+          tal:attributes="href string:${portal_url}/++resource++slc.publications.browser/publications.css?v=6" />
   </metal:cssslot>
 
   <metal:javascriptslot fill-slot="javascript_head_slot">
@@ -45,10 +45,12 @@
                      pub_types view/publication_types">
 
       <div id="mainContent">
-        <h1 i18n:translate="heading_publications_library">Publications library</h1>
+        <h1 class="documentFirstHeading"
+            i18n:translate="heading_publications_library">Publications
+          library</h1>
 
-        <div class="introduction">
-          <p i18n:translate="">All of the Agency´s publications can be downloaded free
+        <div id="publications-description" class="documentDescription">
+          <p i18n:translate="">All publications can be downloaded free
             of charge.</p>
         </div>
 
