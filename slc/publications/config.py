@@ -114,12 +114,6 @@ pub_types["magazine"] = {
         default="In-depth information and analysis from leading experts and "
             "practitioners in occupational safety and health.")}
 
-pub_types["other"] = {
-    "title": _(u"Other Publications"),
-    "description": _(
-        u"help_other_publications",
-        default="Ad hoc publications and documents.")}
-
 pub_types["evaluation_reports"] = {
     "title": _(u"Evaluation reports"),
     "description": _(
