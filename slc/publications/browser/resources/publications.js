@@ -40,7 +40,9 @@
             $("#show-highlights").show();
 
             // change results header
-            $("#publication-results-heading").text('Publications');
+            $("#publication-results-heading-latest").hide();
+            $("#publication-results-heading").hide();
+            
         }
 
         // show "Loading..." message
