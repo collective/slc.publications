@@ -1,22 +1,27 @@
-# ArchGenXML generated POT File
-# SYSLAB.COM <info@syslab.com>, 2006.
+##############################################################################
+#
+# Copyright (c) 2003-2004 Zope Foundation and Contributors.
+# All Rights Reserved.
+#
+# This software is subject to the provisions of the Zope Public License,
+# Version 2.1 (ZPL).  A copy of the ZPL should accompany this distribution.
+# THIS SOFTWARE IS PROVIDED "AS IS" AND ANY AND ALL EXPRESS OR IMPLIED
+# WARRANTIES ARE DISCLAIMED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+# WARRANTIES OF TITLE, MERCHANTABILITY, AGAINST INFRINGEMENT, AND FITNESS
+# FOR A PARTICULAR PURPOSE.
+#
+##############################################################################
 msgid ""
 msgstr ""
-"Project-Id-Version: osha\n"
+"Project-Id-Version: 1.0\n"
 "POT-Creation-Date: Thu Jan 31 13:20:16 2013\n"
-"PO-Revision-Date: 2005-02-01 12:00+0100\n"
-"Last-Translator: EU\n"
-"Language-Team: EU\n"
-"Language: \n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Zope 3 Developers <zope-dev@zope.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"Language-Code: cs\n"
-"Language-Name: Czech\n"
-"Preferred-Encodings: UTF-8\n"
-"Domain: slc.publications\n"
+"Generated-By: zope/app/locales/extract.py\n"
 
 #: slc.publications:/browser/publication.py:272
 msgid "Apply"
@@ -35,43 +40,43 @@ msgstr ""
 msgid "${DYNAMIC_CONTENT}"
 msgstr ""
 
-#. Default: "No results found."
 #: slc.publications:/browser/templates/publications.pt:148
+#. Default: "No results found."
 msgid "label_no_results"
 msgstr ""
 
-#. Default: "Show only latest 10"
 #: slc.publications:/browser/templates/publications.pt:159
+#. Default: "Show only latest 10"
 msgid "label_show_latest"
 msgstr ""
 
-#. Default: "Search all publications"
 #: slc.publications:/browser/templates/publications.pt:174
+#. Default: "Search all publications"
 msgid "label_search_publications"
 msgstr ""
 
-#. Default: "Select publication type"
 #: slc.publications:/browser/templates/publications.pt:182
+#. Default: "Select publication type"
 msgid "label_publication_types"
 msgstr ""
 
-#. Default: "help"
 #: slc.publications:/browser/templates/publications.pt:186
+#. Default: "help"
 msgid "Help"
 msgstr ""
 
-#. Default: "All types"
 #: slc.publications:/browser/templates/publications.pt:201
+#. Default: "All types"
 msgid "option_publication_all_types"
 msgstr ""
 
-#. Default: "Filter by keywords"
 #: slc.publications:/browser/templates/publications.pt:217
+#. Default: "Filter by keywords"
 msgid "label_filter_by_keywords"
 msgstr ""
 
-#. Default: "Publications library"
 #: slc.publications:/browser/templates/publications.pt:48
+#. Default: "Publications library"
 msgid "heading_publications_library"
 msgstr ""
 
@@ -79,18 +84,18 @@ msgstr ""
 msgid "All publications can be downloaded free of charge."
 msgstr ""
 
-#. Default: "+ show featured publications"
 #: slc.publications:/browser/templates/publications.pt:61
+#. Default: "+ show featured publications"
 msgid "link_toggle_publications_carousel"
 msgstr ""
 
-#. Default: "Latest Publications"
 #: slc.publications:/browser/templates/publications.pt:98
+#. Default: "Latest Publications"
 msgid "heading_publication_results_latest"
 msgstr ""
 
-#. Default: "Key Resources"
 #: slc.publications:/browser/templates/related_items.pt:17
+#. Default: "Key Resources"
 msgid "heading_key_resources"
 msgstr ""
 
@@ -98,8 +103,8 @@ msgstr ""
 msgid "Presentations (PPT)"
 msgstr ""
 
-#. Default: "PPT presentations on various safety and health topics and EU-OSHA projects which can be freely adapted and reused. All English versions are also available on Slideshare (<a href='http://www.slideshare.net/euosha'>http://www.slideshare.net/euosha</a>)"
 #: slc.publications:/config.py:102
+#. Default: "PPT presentations on various safety and health topics and EU-OSHA projects which can be freely adapted and reused. All English versions are also available on Slideshare (<a href='http://www.slideshare.net/euosha'>http://www.slideshare.net/euosha</a>)"
 msgid "help_presentations"
 msgstr ""
 
@@ -107,8 +112,8 @@ msgstr ""
 msgid "Magazine"
 msgstr ""
 
-#. Default: "In-depth information and analysis from leading experts and practitioners in occupational safety and health."
 #: slc.publications:/config.py:112
+#. Default: "In-depth information and analysis from leading experts and practitioners in occupational safety and health."
 msgid "help_magazine"
 msgstr ""
 
@@ -116,8 +121,8 @@ msgstr ""
 msgid "Evaluation reports"
 msgstr ""
 
-#. Default: "An independent assessment of our work and contribute to improving our performance."
 #: slc.publications:/config.py:119
+#. Default: "An independent assessment of our work and contribute to improving our performance."
 msgid "help_evaluation_reports"
 msgstr ""
 
@@ -125,8 +130,8 @@ msgstr ""
 msgid "Corporate publications"
 msgstr ""
 
-#. Default: "The Agency's strategy, annual management plan and annual report (full and summary versions) provide a comprehensive overview of EU-OSHA's activities and governance."
 #: slc.publications:/config.py:50
+#. Default: "The Agency's strategy, annual management plan and annual report (full and summary versions) provide a comprehensive overview of EU-OSHA's activities and governance."
 msgid "help_corporate_publications"
 msgstr ""
 
@@ -134,8 +139,8 @@ msgstr ""
 msgid "Reports"
 msgstr ""
 
-#. Default: "Present the outcome of research, which will help to inform discussion among EU and national authorities, trade unions and experts on how to take forward issues in health and safety."
 #: slc.publications:/config.py:58
+#. Default: "Present the outcome of research, which will help to inform discussion among EU and national authorities, trade unions and experts on how to take forward issues in health and safety."
 msgid "help_reports"
 msgstr ""
 
@@ -143,8 +148,8 @@ msgstr ""
 msgid "Literature reviews"
 msgstr ""
 
-#. Default: "Provide an overview of the most important issues related to this topic."
 #: slc.publications:/config.py:66
+#. Default: "Provide an overview of the most important issues related to this topic."
 msgid "help_literature_reviews"
 msgstr ""
 
@@ -152,8 +157,8 @@ msgstr ""
 msgid "E-facts"
 msgstr ""
 
-#. Default: "Online only articles aimed at workers, employers and occupational safety and health professionals."
 #: slc.publications:/config.py:73
+#. Default: "Online only articles aimed at workers, employers and occupational safety and health professionals."
 msgid "help_e-facts"
 msgstr ""
 
@@ -161,8 +166,8 @@ msgstr ""
 msgid "Articles"
 msgstr ""
 
-#. Default: "Articles from leading safety and health experts on issues of topical concern."
 #: slc.publications:/config.py:80
+#. Default: "Articles from leading safety and health experts on issues of topical concern."
 msgid "help_articles"
 msgstr ""
 
@@ -170,8 +175,8 @@ msgstr ""
 msgid "Promotional Material"
 msgstr ""
 
-#. Default: "A selection of promotional literature presenting Agency projects and services and mainly used at exhibitions and events."
 #: slc.publications:/config.py:87
+#. Default: "A selection of promotional literature presenting Agency projects and services and mainly used at exhibitions and events."
 msgid "help_promotional_material"
 msgstr ""
 
@@ -179,140 +184,138 @@ msgstr ""
 msgid "Factsheets"
 msgstr ""
 
-#. Default: "Provide brief introductions to the Agency and to our activities."
 #: slc.publications:/config.py:95
+#. Default: "Provide brief introductions to the Agency and to our activities."
 msgid "help_factsheets"
 msgstr ""
 
-#. Default: "Download the full publication as PDF"
 #: slc.publications:/missing_18n_labels.py:10
+#. Default: "Download the full publication as PDF"
 msgid "label_download_full_publication"
-msgstr "Stáhněte si celou publikaci ve formátu PDF"
+msgstr ""
 
-#. Default: "Order a printed copy of this document!"
 #: slc.publications:/missing_18n_labels.py:12
+#. Default: "Order a printed copy of this document!"
 msgid "label_order_copy"
 msgstr ""
 
-#. Default: "Available in"
 #: slc.publications:/missing_18n_labels.py:14
 #: slc.publications:/browser/templates/related_items.pt:45
+#. Default: "Available in"
 msgid "label_available_in"
-msgstr "K dispozici v"
+msgstr ""
 
-#. Default: "Chapters in this Publication"
 #: slc.publications:/missing_18n_labels.py:15
+#. Default: "Chapters in this Publication"
 msgid "heading_chapterlisting"
 msgstr ""
 
-#. Default: "Related Resources"
 #: slc.publications:/missing_18n_labels.py:17
+#. Default: "Related Resources"
 msgid "heading_related_resources"
 msgstr ""
 
-#. Default: "Show more publications on"
 #: slc.publications:/missing_18n_labels.py:18
+#. Default: "Show more publications on"
 msgid "box_show_more_publications"
-msgstr "Zobrazit více publikací o"
+msgstr ""
 
-#. Default: "Estimated Download Time"
 #: slc.publications:/missing_18n_labels.py:20
+#. Default: "Estimated Download Time"
 msgid "label_estimated_download_time"
-msgstr "Předpokládaná doba potřebná ke stažení"
+msgstr ""
 
 #: slc.publications:/subtypes/file.py:39
 msgid "File"
 msgstr ""
 
-#. Default: "Cover Image"
 #: slc.publications:/subtypes/publication.py:107
+#. Default: "Cover Image"
 msgid "label_cover_image"
 msgstr ""
 
-#. Default: "Upload a cover image. Leave empty to have the system autogenerate one for you."
 #: slc.publications:/subtypes/publication.py:111
+#. Default: "Upload a cover image. Leave empty to have the system autogenerate one for you."
 msgid "description_cover_image"
 msgstr ""
 
-#. Default: "Author"
 #: slc.publications:/subtypes/publication.py:123
+#. Default: "Author"
 msgid "label_author"
 msgstr ""
 
-#. Default: "Fill in the Name of the Author of this Publication."
 #: slc.publications:/subtypes/publication.py:127
+#. Default: "Fill in the Name of the Author of this Publication."
 msgid "description_author"
 msgstr ""
 
-#. Default: "ISBN"
 #: slc.publications:/subtypes/publication.py:137
+#. Default: "ISBN"
 msgid "label_isbn"
 msgstr ""
 
-#. Default: "Fill in the ISBN Number of this Publication."
 #: slc.publications:/subtypes/publication.py:138
+#. Default: "Fill in the ISBN Number of this Publication."
 msgid "description_isbn"
 msgstr ""
 
-#. Default: "Order ID"
 #: slc.publications:/subtypes/publication.py:148
+#. Default: "Order ID"
 msgid "label_order_id"
 msgstr ""
 
-#. Default: "Fill in the Order ID of this Publication."
 #: slc.publications:/subtypes/publication.py:149
+#. Default: "Fill in the Order ID of this Publication."
 msgid "description_order_id"
 msgstr ""
 
-#. Default: "For sale?"
 #: slc.publications:/subtypes/publication.py:161
+#. Default: "For sale?"
 msgid "label_for_sale"
 msgstr ""
 
-#. Default: "Is this Publication for sale?"
 #: slc.publications:/subtypes/publication.py:165
+#. Default: "Is this Publication for sale?"
 msgid "description_for_sale"
 msgstr ""
 
-#. Default: "Chapters"
 #: slc.publications:/subtypes/publication.py:177
+#. Default: "Chapters"
 msgid "label_chapters"
 msgstr ""
 
-#. Default: "Chapters of this Publication. Specify the Link targets defined in your pdf file, one per line."
 #: slc.publications:/subtypes/publication.py:181
+#. Default: "Chapters of this Publication. Specify the Link targets defined in your pdf file, one per line."
 msgid "description_chapters"
 msgstr ""
 
-#. Default: "Metadata INI upload"
 #: slc.publications:/subtypes/publication.py:193
+#. Default: "Metadata INI upload"
 msgid "label_metadata_upload"
 msgstr ""
 
-#. Default: "Upload Metadata in INI style format."
 #: slc.publications:/subtypes/publication.py:197
+#. Default: "Upload Metadata in INI style format."
 msgid "description_metadata_upload"
 msgstr ""
 
-#. Default: "Owner Password"
 #: slc.publications:/subtypes/publication.py:207
+#. Default: "Owner Password"
 msgid "label_owner_password"
 msgstr ""
 
-#. Default: "If this publication is protected, speciy the pdf owner password if you want to parse the file."
 #: slc.publications:/subtypes/publication.py:211
+#. Default: "If this publication is protected, speciy the pdf owner password if you want to parse the file."
 msgid "description_owner_password"
 msgstr ""
 
-#. Default: "User Password"
 #: slc.publications:/subtypes/publication.py:221
+#. Default: "User Password"
 msgid "label_user_password"
 msgstr ""
 
-#. Default: "If this publication is protected, speciy the pdf user password if you want to parse the file."
 #: slc.publications:/subtypes/publication.py:225
+#. Default: "If this publication is protected, speciy the pdf user password if you want to parse the file."
 msgid "description_user_password"
 msgstr ""
 
-#~ msgid "heading_related"
-#~ msgstr "Související publikace"

@@ -3,10 +3,11 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: osha\n"
-"POT-Creation-Date: 2004-12-17 07:49+0000\n"
+"POT-Creation-Date: Thu Jan 31 13:20:16 2013\n"
 "PO-Revision-Date: 2005-02-01 12:00+0100\n"
 "Last-Translator: Deian Markov <deian@mlsp.government.bg>\n"
 "Language-Team: EU\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -16,343 +17,301 @@ msgstr ""
 "Preferred-Encodings: cp1251 UTF-8\n"
 "Domain: slc.publications\n"
 
-#. Default: "The ISBN Number to order the publication - if available."
-#: PublicationFile.py
-msgid "PublicationProduct_help_ISBN_number"
+#: slc.publications:/browser/publication.py:272
+msgid "Apply"
 msgstr ""
 
-#. Default: "The author of this publication. It is used as backup if the real author of the underlying PDF file displayed here is not set."
-#: Publication.py
-#: PublicationFile.py
-msgid "PublicationProduct_help_author"
+#: slc.publications:/browser/publication.py:283
+msgid "Successfully updated"
 msgstr ""
 
-#. Default: "Add one chapter name per line. This will generate link objects pointing to anchors with that name inside the pdf document. Make sure that the chapternames are the same as the pdf web anchor names on your pdf."
-#: Publication.py
-msgid "PublicationProduct_help_chapters"
+#: slc.publications:/browser/publication.py:285
+msgid "No changes"
 msgstr ""
 
-#. Default: "A thumbnail image of this publication. It is used in overview listings and the publication view."
-#: Publication.py
-msgid "PublicationProduct_help_coverImage"
+#: slc.publications:/browser/templates/publications.pt:137
+#: slc.publications:/browser/templates/publications.pt:223
+msgid "${DYNAMIC_CONTENT}"
 msgstr ""
 
-#. Default: "The description of this publication. It is used as backup if the real description of the underlying PDF file displayed here is not set."
-#: Publication.py
-#: PublicationFile.py
-#: PublicationFolder.py
-msgid "PublicationProduct_help_description"
+#. Default: "No results found."
+#: slc.publications:/browser/templates/publications.pt:148
+msgid "label_no_results"
 msgstr ""
 
-#. Default: "Display Publication Images?"
-#: PublicationFolder.py
-msgid "PublicationProduct_help_displayImages"
+#. Default: "Show only latest 10"
+#: slc.publications:/browser/templates/publications.pt:159
+msgid "label_show_latest"
 msgstr ""
 
-#. Default: "Upload the PDF file containing your publication here."
-#: PublicationFile.py
-msgid "PublicationProduct_help_file"
+#. Default: "Search all publications"
+#: slc.publications:/browser/templates/publications.pt:174
+msgid "label_search_publications"
 msgstr ""
 
-#. Default: "forsale"
-#: Publication.py
-msgid "PublicationProduct_help_forsale"
+#. Default: "Select publication type"
+#: slc.publications:/browser/templates/publications.pt:182
+msgid "label_publication_types"
 msgstr ""
 
-#. Default: "The Id of this publication. This will show up in the URL of this publication."
-#: Publication.py
-#: PublicationFile.py
-msgid "PublicationProduct_help_id"
+#. Default: "help"
+#: slc.publications:/browser/templates/publications.pt:186
+msgid "Help"
 msgstr ""
 
-#. Default: "Set the correct language of this publication. This is important. Based on this information, the overview page creates links to the differenc language versions."
-#: PublicationFile.py
-msgid "PublicationProduct_help_language"
+#. Default: "All types"
+#: slc.publications:/browser/templates/publications.pt:201
+msgid "option_publication_all_types"
 msgstr ""
 
-#. Default: "Upload a textfile (ini style) where each section is named after a language abbreviation and contains the metadata keys and values that should be set on the publication files."
-#: Publication.py
-msgid "PublicationProduct_help_metadataUpload"
+#. Default: "Filter by keywords"
+#: slc.publications:/browser/templates/publications.pt:217
+msgid "label_filter_by_keywords"
 msgstr ""
 
-#. Default: "Type the Order-Id (OPOCE) used to order the publication at the EU Bookshop. If you do so, a link to the EU Bookshop will be generated automatically."
-#: PublicationFile.py
-msgid "PublicationProduct_help_order_id"
+#. Default: "Publications library"
+#: slc.publications:/browser/templates/publications.pt:48
+msgid "heading_publications_library"
 msgstr ""
 
-#. Default: "Enter the owner password for the PDF if you want to parse its metadata and it is secured. This password is used as fallback if no password is specified on the publication file object itself."
-#: Publication.py
-#: PublicationFile.py
-msgid "PublicationProduct_help_ownerPassword"
+#: slc.publications:/browser/templates/publications.pt:53
+msgid "All publications can be downloaded free of charge."
 msgstr ""
 
-#. Default: "Select this to reparse all contained PDF files for properties. Note that this might overwrite the currently set values."
-#: Publication.py
-#: PublicationFile.py
-#: PublicationFolder.py
-msgid "PublicationProduct_help_parsePDF"
+#. Default: "+ show featured publications"
+#: slc.publications:/browser/templates/publications.pt:61
+msgid "link_toggle_publications_carousel"
 msgstr ""
 
-#. Default: "Drag and Drop Folders containing your PDF files onto this field. The name of the folder will be used as title and the contained PDF file will be uploaded as the default language Publication. If the folder also contains an image with the name cover_image.jpg, .gif or .png, it will be used as thumbnail."
-#: Publication.py
-msgid "PublicationProduct_help_pdfFilesUpload"
+#. Default: "Latest Publications"
+#: slc.publications:/browser/templates/publications.pt:98
+msgid "heading_publication_results_latest"
 msgstr ""
 
-#. Default: "Drag and Drop Folders containing your PDF files onto this field. The name of the folder will be used as title and the contained PDF file will be uploaded as the default language Publication. If the folder also contains an image with the name cover_image.jpg, .gif or .png, it will be used as thumbnail."
-#: PublicationFolder.py
-msgid "PublicationProduct_help_pdfFilesUploader"
+#. Default: "Key Resources"
+#: slc.publications:/browser/templates/related_items.pt:17
+msgid "heading_key_resources"
 msgstr ""
 
-#. Default: "The date when this publication has been published."
-#: Publication.py
-msgid "PublicationProduct_help_publication_date"
+#: slc.publications:/config.py:101
+msgid "Presentations (PPT)"
 msgstr ""
 
-#. Default: "The Title of this publication. It is used as backup if the real title of the underlying PDF file displayed here is not set. It will then show up in listings and the breadcrumb trail."
-#: Publication.py
-#: PublicationFile.py
-#: PublicationFolder.py
-msgid "PublicationProduct_help_title"
+#. Default: "PPT presentations on various safety and health topics and EU-OSHA projects which can be freely adapted and reused. All English versions are also available on Slideshare (<a href='http://www.slideshare.net/euosha'>http://www.slideshare.net/euosha</a>)"
+#: slc.publications:/config.py:102
+msgid "help_presentations"
 msgstr ""
 
-#. Default: "Enter the user password for the PDF if you want to parse its metadata and it is secured. This password is used as fallback if no password is specified on the publication file object itself."
-#: Publication.py
-#: PublicationFile.py
-msgid "PublicationProduct_help_userPassword"
+#: slc.publications:/config.py:111
+msgid "Magazine"
 msgstr ""
 
-#. Default: "ISBN-Number"
-#: PublicationFile.py
-msgid "PublicationProduct_label_ISBN_number"
+#. Default: "In-depth information and analysis from leading experts and practitioners in occupational safety and health."
+#: slc.publications:/config.py:112
+msgid "help_magazine"
 msgstr ""
 
-#. Default: "Author"
-#: Publication.py
-#: PublicationFile.py
-msgid "PublicationProduct_label_author"
+#: slc.publications:/config.py:118
+msgid "Evaluation reports"
 msgstr ""
 
-#. Default: "Chapters"
-#: PublicationFile.py
-#: Publication.py
-msgid "PublicationProduct_label_chapters"
+#. Default: "An independent assessment of our work and contribute to improving our performance."
+#: slc.publications:/config.py:119
+msgid "help_evaluation_reports"
 msgstr ""
 
-#. Default: "Cover Image"
-#: Publication.py
-msgid "PublicationProduct_label_coverImage"
+#: slc.publications:/config.py:49
+msgid "Corporate publications"
 msgstr ""
 
-#. Default: "Cover Image"
-#: Publication.py
-msgid "PublicationProduct_label_cover_image"
+#. Default: "The Agency's strategy, annual management plan and annual report (full and summary versions) provide a comprehensive overview of EU-OSHA's activities and governance."
+#: slc.publications:/config.py:50
+msgid "help_corporate_publications"
 msgstr ""
 
-#. Default: "Creator"
-#: PublicationFile.py
-msgid "PublicationProduct_label_creator"
+#: slc.publications:/config.py:57
+msgid "Reports"
 msgstr ""
 
-#. Default: "Description"
-#: Publication.py
-#: PublicationFile.py
-#: PublicationFolder.py
-msgid "PublicationProduct_label_description"
+#. Default: "Present the outcome of research, which will help to inform discussion among EU and national authorities, trade unions and experts on how to take forward issues in health and safety."
+#: slc.publications:/config.py:58
+msgid "help_reports"
 msgstr ""
 
-#. Default: "Display Publication Images?"
-#: PublicationFolder.py
-msgid "PublicationProduct_label_displayImages"
+#: slc.publications:/config.py:65
+msgid "Literature reviews"
 msgstr ""
 
-#. Default: "File"
-#: PublicationFile.py
-msgid "PublicationProduct_label_file"
+#. Default: "Provide an overview of the most important issues related to this topic."
+#: slc.publications:/config.py:66
+msgid "help_literature_reviews"
 msgstr ""
 
-#. Default: "Filemetadatamaps"
-#: Publication.py
-#: PublicationFolder.py
-msgid "PublicationProduct_label_filemetadatamaps"
+#: slc.publications:/config.py:72
+msgid "E-facts"
 msgstr ""
 
-#. Default: "Forsale"
-#: Publication.py
-msgid "PublicationProduct_label_forsale"
+#. Default: "Online only articles aimed at workers, employers and occupational safety and health professionals."
+#: slc.publications:/config.py:73
+msgid "help_e-facts"
 msgstr ""
 
-#. Default: "Full"
-#: PublicationFile.py
-msgid "PublicationProduct_label_full"
+#: slc.publications:/config.py:79
+msgid "Articles"
 msgstr ""
 
-#. Default: "Id"
-#: Publication.py
-#: PublicationFile.py
-#: PublicationFolder.py
-msgid "PublicationProduct_label_id"
+#. Default: "Articles from leading safety and health experts on issues of topical concern."
+#: slc.publications:/config.py:80
+msgid "help_articles"
 msgstr ""
 
-#. Default: "Keywords"
-#: Publication.py
-#: PublicationFolder.py
-msgid "PublicationProduct_label_keywords"
+#: slc.publications:/config.py:86
+msgid "Promotional Material"
 msgstr ""
 
-#. Default: "Language"
-#: PublicationFile.py
-msgid "PublicationProduct_label_language"
+#. Default: "A selection of promotional literature presenting Agency projects and services and mainly used at exhibitions and events."
+#: slc.publications:/config.py:87
+msgid "help_promotional_material"
 msgstr ""
 
-#. Default: "Metadataupload"
-#: Publication.py
-msgid "PublicationProduct_label_metadataUpload"
+#: slc.publications:/config.py:94
+msgid "Factsheets"
 msgstr ""
 
-#. Default: "Metadata_map"
-#: FileMetadataMap.py
-msgid "PublicationProduct_label_metadata_map"
+#. Default: "Provide brief introductions to the Agency and to our activities."
+#: slc.publications:/config.py:95
+msgid "help_factsheets"
 msgstr ""
 
-#. Default: "Mime2modifier"
-#: FileMetadataTool.py
-msgid "PublicationProduct_label_mime2modifier"
-msgstr ""
-
-#. Default: "Mime_types"
-#: PDFMetadataIO.py
-msgid "PublicationProduct_label_mime_types"
-msgstr ""
-
-#. Default: "Name"
-#: PDFMetadataIO.py
-msgid "PublicationProduct_label_name"
-msgstr ""
-
-#. Default: "Opoce Number"
-#: PublicationFile.py
-msgid "PublicationProduct_label_opoce"
-msgstr ""
-
-#. Default: "Order_id"
-#: PublicationFile.py
-msgid "PublicationProduct_label_order_id"
-msgstr ""
-
-#. Default: "Owner Password"
-#: Publication.py
-#: PublicationFile.py
-msgid "PublicationProduct_label_ownerPassword"
-msgstr ""
-
-#. Default: "Parse PDF Properties"
-#: Publication.py
-#: PublicationFile.py
-#: PublicationFolder.py
-msgid "PublicationProduct_label_parsePDF"
-msgstr ""
-
-#. Default: "Pdffiles"
-#: Publication.py
-msgid "PublicationProduct_label_pdfFiles"
-msgstr ""
-
-#. Default: "Pdffilesupload"
-#: Publication.py
-msgid "PublicationProduct_label_pdfFilesUpload"
-msgstr ""
-
-#. Default: "Pdffilesuploader"
-#: PublicationFolder.py
-msgid "PublicationProduct_label_pdfFilesUploader"
-msgstr ""
-
-#. Default: "Publication Date"
-#: PublicationFile.py
-#: Publication.py
-msgid "PublicationProduct_label_publication_date"
-msgstr ""
-
-#. Default: "Language"
-#: PublicationFile.py
-msgid "PublicationProduct_label_publication_language"
-msgstr ""
-
-#. Default: "Publication Type"
-#: PublicationFile.py
-msgid "PublicationProduct_label_publication_type"
-msgstr ""
-
-#. Default: "Publicationfiles"
-#: Publication.py
-#: PublicationFile.py
-msgid "PublicationProduct_label_publicationfiles"
-msgstr ""
-
-#. Default: "Publications"
-#: PublicationFolder.py
-msgid "PublicationProduct_label_publications"
-msgstr ""
-
-#. Default: "Readerregistry"
-#: FileMetadataTool.py
-msgid "PublicationProduct_label_readerRegistry"
-msgstr ""
-
-#. Default: "Sort-Criteria"
-#: PublicationFolder.py
-msgid "PublicationProduct_label_sort_criteria"
-msgstr ""
-
-#. Default: "Sort-Criterias"
-#: PublicationFolder.py
-msgid "PublicationProduct_label_sort_criterias"
-msgstr ""
-
-#. Default: "Subject"
-#: PublicationFolder.py
-msgid "PublicationProduct_label_subject"
-msgstr ""
-
-#. Default: "Title"
-#: Publication.py
-#: PublicationFile.py
-#: PublicationFolder.py
-msgid "PublicationProduct_label_title"
-msgstr ""
-
-#. Default: "User Password"
-#: Publication.py
-#: PublicationFile.py
-msgid "PublicationProduct_label_userPassword"
-msgstr ""
-
-#. Default: "Vocab"
-#: ContainmentType.py
-msgid "PublicationProduct_label_vocab"
-msgstr ""
-
-#. Default: "Writerregistry"
-#: FileMetadataTool.py
-msgid "PublicationProduct_label_writerRegistry"
-msgstr ""
-
-#. Default: "Available in"
-msgid "label_available_in"
-msgstr ""
-
-#. Default: "Download the full publication in PDF "
+#. Default: "Download the full publication as PDF"
+#: slc.publications:/missing_18n_labels.py:10
 msgid "label_download_full_publication"
 msgstr ""
 
-#. Default: "Related Publications"
-msgid "heading_related"
-msgstr "Свързани публикации"
+#. Default: "Order a printed copy of this document!"
+#: slc.publications:/missing_18n_labels.py:12
+msgid "label_order_copy"
+msgstr ""
+
+#. Default: "Available in"
+#: slc.publications:/missing_18n_labels.py:14
+#: slc.publications:/browser/templates/related_items.pt:45
+msgid "label_available_in"
+msgstr ""
+
+#. Default: "Chapters in this Publication"
+#: slc.publications:/missing_18n_labels.py:15
+msgid "heading_chapterlisting"
+msgstr ""
+
+#. Default: "Related Resources"
+#: slc.publications:/missing_18n_labels.py:17
+msgid "heading_related_resources"
+msgstr ""
 
 #. Default: "Show more publications on"
+#: slc.publications:/missing_18n_labels.py:18
 msgid "box_show_more_publications"
 msgstr "Покажи повече публикации относно"
 
-#. Default "Estimated Download Time"
+#. Default: "Estimated Download Time"
+#: slc.publications:/missing_18n_labels.py:20
 msgid "label_estimated_download_time"
 msgstr "Приблизително време за сваляне"
+
+#: slc.publications:/subtypes/file.py:39
+msgid "File"
+msgstr ""
+
+#. Default: "Cover Image"
+#: slc.publications:/subtypes/publication.py:107
+msgid "label_cover_image"
+msgstr ""
+
+#. Default: "Upload a cover image. Leave empty to have the system autogenerate one for you."
+#: slc.publications:/subtypes/publication.py:111
+msgid "description_cover_image"
+msgstr ""
+
+#. Default: "Author"
+#: slc.publications:/subtypes/publication.py:123
+msgid "label_author"
+msgstr ""
+
+#. Default: "Fill in the Name of the Author of this Publication."
+#: slc.publications:/subtypes/publication.py:127
+msgid "description_author"
+msgstr ""
+
+#. Default: "ISBN"
+#: slc.publications:/subtypes/publication.py:137
+msgid "label_isbn"
+msgstr ""
+
+#. Default: "Fill in the ISBN Number of this Publication."
+#: slc.publications:/subtypes/publication.py:138
+msgid "description_isbn"
+msgstr ""
+
+#. Default: "Order ID"
+#: slc.publications:/subtypes/publication.py:148
+msgid "label_order_id"
+msgstr ""
+
+#. Default: "Fill in the Order ID of this Publication."
+#: slc.publications:/subtypes/publication.py:149
+msgid "description_order_id"
+msgstr ""
+
+#. Default: "For sale?"
+#: slc.publications:/subtypes/publication.py:161
+msgid "label_for_sale"
+msgstr ""
+
+#. Default: "Is this Publication for sale?"
+#: slc.publications:/subtypes/publication.py:165
+msgid "description_for_sale"
+msgstr ""
+
+#. Default: "Chapters"
+#: slc.publications:/subtypes/publication.py:177
+msgid "label_chapters"
+msgstr ""
+
+#. Default: "Chapters of this Publication. Specify the Link targets defined in your pdf file, one per line."
+#: slc.publications:/subtypes/publication.py:181
+msgid "description_chapters"
+msgstr ""
+
+#. Default: "Metadata INI upload"
+#: slc.publications:/subtypes/publication.py:193
+msgid "label_metadata_upload"
+msgstr ""
+
+#. Default: "Upload Metadata in INI style format."
+#: slc.publications:/subtypes/publication.py:197
+msgid "description_metadata_upload"
+msgstr ""
+
+#. Default: "Owner Password"
+#: slc.publications:/subtypes/publication.py:207
+msgid "label_owner_password"
+msgstr ""
+
+#. Default: "If this publication is protected, speciy the pdf owner password if you want to parse the file."
+#: slc.publications:/subtypes/publication.py:211
+msgid "description_owner_password"
+msgstr ""
+
+#. Default: "User Password"
+#: slc.publications:/subtypes/publication.py:221
+msgid "label_user_password"
+msgstr ""
+
+#. Default: "If this publication is protected, speciy the pdf user password if you want to parse the file."
+#: slc.publications:/subtypes/publication.py:225
+msgid "description_user_password"
+msgstr ""
+
+#~ msgid "heading_related"
+#~ msgstr "Свързани публикации"

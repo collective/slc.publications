@@ -3,7 +3,11 @@
 __author__ = """SYSLAB.COM <info@syslab.com>"""
 __docformat__ = 'plaintext'
 
+from zope.i18nmessageid import MessageFactory
+SLCPublicationsMessageFactory = MessageFactory('slc.publications')
+
 import logging
+
 logger = logging.getLogger('slc.publications')
 logger.debug('Installing slc.publications')
 
@@ -39,6 +43,10 @@ from config import *
 
 from Products.ATContentTypes.content.schemata import finalizeATCTSchema
 from Products.ATContentTypes.content.file import ATFileSchema
+
+
+
+
 
 ATFileSchema['file'].languageIndependent = False
 ATFileSchema['file'].required = False

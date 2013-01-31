@@ -6,6 +6,7 @@ from Products.CMFCore import utils as cmfutils
 from Products.CMFPlone.utils import getSiteEncoding
 from Products.Five.browser import pagetemplatefile
 from Products.statusmessages import interfaces as statusmessages_ifaces
+from slc.publications import SLCPublicationsMessageFactory as _
 from slc.publications import HAVE_LINGUAPLONE
 from slc.publications import interfaces
 from slc.publications.config import combined_languages_EU
@@ -20,8 +21,6 @@ from zope.i18nmessageid import MessageFactory
 from zope.lifecycleevent import Attributes, ObjectModifiedEvent
 
 import Acquisition
-
-_ = MessageFactory('slc.publications')
 
 
 class PublicationPageView(object):

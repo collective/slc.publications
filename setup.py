@@ -44,6 +44,7 @@ setup(name='slc.publications',
       zip_safe=False,
       install_requires=[
           'setuptools',
+          'osha.translations',
           'p4a.common',
           'p4a.z2utils',
           'p4a.subtyper',

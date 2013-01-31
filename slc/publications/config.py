@@ -7,9 +7,9 @@ product_globals = globals()
 DEFAULT_ADD_CONTENT_PERMISSION = "Add portal content"
 
 from ordereddict import OrderedDict
-
-from Products.CMFPlone import PloneMessageFactory as _
+from osha.theme import OSHAMessageFactory as _
 from slc.publications import HAVE_LINGUAPLONE
+from slc.publications import SLCPublicationsMessageFactory as _
 
 DEPENDENCIES = ['p4a.subtyper', ]
 

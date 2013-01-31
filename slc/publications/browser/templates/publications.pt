@@ -79,7 +79,7 @@
                       </a>
                       <p class="hpteaserdate" tal:content="python:toLocalizedTime(item['date'])"/>
                       <p class="teaser_content" tal:content="python:ploneview.cropText(item['description'], length=300, ellipsis='...')"></p>
-                      <p class="teaser_more"><a class="more" tal:attributes="href string:${item/absolute_url}/view"><span tal:omit-tag="" i18n:translate="alert_label_more">More</span>&hellip;</a></p>
+                      <p class="teaser_more"><a class="more" tal:attributes="href string:${item/absolute_url}/view"><span tal:omit-tag="" i18n:translate="alert_label_more" i18n:domain="osha">More</span>&hellip;</a></p>
                     </tal:item>
                   </div>
                 </tal:rep>
@@ -96,30 +96,31 @@
         </div>
 
         <h2 id="publication-results-heading-latest" i18n:translate="heading_publication_results_latest">Latest Publications</h2>
-        <h2 id="publication-results-heading" i18n:translate="heading_publication_results" style="display:none">PublicationsX</h2>
+        <h2 id="publication-results-heading" i18n:translate="heading_publication_results" style="display:none" i18n:domain="osha">Publications</h2>
         
 
         <div id="loading" style="display:none;">
           <img tal:attributes="src string:$portal_url/++resource++slc.publications.browser/loader.gif" alt="Loader" />
-          <span i18n:translate="message_loading">
+          <span i18n:translate="message_loading"
+                i18n:domain="zope">
             Loading...
           </span>
         </div>
 
         <table id="resultTable" class="highDensity" summary="All publications"
                tal:define="publications view/get_publications">
-          <thead>
+          <thead i18n:domain="plone">
             <tr>
-              <th i18n:translate="listingheader_title">
+              <th i18n:translate="">
                 Title
               </th>
-              <th i18n:translate="listingheader_year">
+              <th i18n:translate="">
                 Year
               </th>
-              <th i18n:translate="listingheader_type">
+              <th i18n:translate="heading_type">
                 Type
               </th>
-              <th i18n:translate="listingheader_size">
+              <th i18n:translate="label_size">
                 Size
               </th>
             </tr>
@@ -152,7 +153,8 @@
         <a id="show-all"
            tal:condition="view/has_more_results"
            tal:attributes="href string:publications_view?show-all=True&${request/QUERY_STRING}"
-           i18n:translate="label_show_all">Show all</a>
+           i18n:translate="label_search_large"
+           i18n:domain="plone">Show all</a>
 
         <a id="show-latest"
            style="display:none;"
