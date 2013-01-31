@@ -9,12 +9,14 @@ from DateTime import DateTime
 
 
 from zope.app.component.hooks import getSite
+from zope.i18n import translate
 
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from slc.publications import HAVE_LINGUAPLONE
+from slc.publications import SLCPublicationsMessageFactory as _
 from slc.publications.config import PUB_TYPES
 from slc.publications.utils import _get_storage_folder
 
@@ -90,13 +92,23 @@ class PublicationsView(BrowserView):
             type_info = self.publication_types.get(pub_type)
             type_title = type_info and type_info['title'] or u''
 
+            portal_languages = getToolByName(
+                self.context, 'portal_languages')
+            preflang = portal_languages.getPreferredLanguage()
+
+            # Need to translate the type_name here for the JSON version
+            translated_type_title = translate(
+                type_title,
+                domain="slc.publications",
+                target_language=preflang,
+                )
             publications.append({
                 "title": title,
                 "year": result.effective.year(),
                 "size": obj.getObjSize(),
                 "path": path + "/view",
                 "type": pub_type,
-                "type_title": type_title
+                "type_title": translated_type_title,
             })
         return publications
 

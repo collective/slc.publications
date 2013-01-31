@@ -134,7 +134,7 @@
                    tal:content="structure publication/title"/>
               </td>
               <td tal:content="publication/year"/>
-              <td i18n:translate="" tal:content="publication/type_title">
+              <td tal:content="publication/type_title">
                 Reports
               </td>
               <td>
