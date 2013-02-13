@@ -95,93 +95,93 @@ msgstr ""
 
 #: slc.publications:/config.py:101
 msgid "Presentations (PPT)"
-msgstr ""
+msgstr "Preżentazzjonijiet (PPT)"
 
 #. Default: "PPT presentations on various safety and health topics and EU-OSHA projects which can be freely adapted and reused. All English versions are also available on Slideshare (<a href='http://www.slideshare.net/euosha'>http://www.slideshare.net/euosha</a>)"
 #: slc.publications:/config.py:102
 msgid "help_presentations"
-msgstr ""
+msgstr "Preżentazzjonijiet PPT dwar suġġetti tas-saħħa u sigurtà varji u proġetti tal-EU-OSHA li jistgħu jiġu adattati u użati mill-ġdid b'mod liberu. Il-verżjonijiet kollha bl-Ingliż huma disponibbli fuq <a href=\"http://www.slideshare.net/euosha\" target=\"_blank\" title=\"EU-OSHA fuq slideshare\">Slideshare</a>"
 
 #: slc.publications:/config.py:111
 msgid "Magazine"
-msgstr ""
+msgstr "Rivista"
 
 #. Default: "In-depth information and analysis from leading experts and practitioners in occupational safety and health."
 #: slc.publications:/config.py:112
 msgid "help_magazine"
-msgstr ""
+msgstr "Informazzjoni u analiżi fil-fond minn esperti u prattikanti ewlenin fil-qasam tas-saħħa u s-sigurtà fuq il-post tax-xogħol."
 
 #: slc.publications:/config.py:118
 msgid "Evaluation reports"
-msgstr ""
+msgstr "Rapporti ta' evalwazzjoni"
 
 #. Default: "An independent assessment of our work and contribute to improving our performance."
 #: slc.publications:/config.py:119
 msgid "help_evaluation_reports"
-msgstr ""
+msgstr "Valutazzjoni indipendenti tax-xogħol tagħna u jikkontribwixxu għat-titjib tal-prestazzjoni tagħna."
 
 #: slc.publications:/config.py:49
 msgid "Corporate publications"
-msgstr ""
+msgstr "Pubblikazzjonijiet korporattivi"
 
 #. Default: "The Agency's strategy, annual management plan and annual report (full and summary versions) provide a comprehensive overview of EU-OSHA's activities and governance."
 #: slc.publications:/config.py:50
 msgid "help_corporate_publications"
-msgstr ""
+msgstr "L-istrateġija tal-Aġenzija, il-pjan amministrattiv annwali u r-rapport sħiħ (verżjonijiet sħaħ u sommarji) jipprovdu ħarsa ġenerali komprensiva tal-attivitajiet u tal-governanza tal-EU-OSHA."
 
 #: slc.publications:/config.py:57
 msgid "Reports"
-msgstr ""
+msgstr "Rapporti"
 
 #. Default: "Present the outcome of research, which will help to inform discussion among EU and national authorities, trade unions and experts on how to take forward issues in health and safety."
 #: slc.publications:/config.py:58
 msgid "help_reports"
-msgstr ""
+msgstr "Jippreżentaw ir-riżultati tar-riċerka, li jgħinu biex jinfurmaw id-diskussjoni fost awtoritajiet, trade unions u esperti tal-UE u nazzjonali dwar kif il-kwistjonijiet fl-oqsma tas-saħħa u s-sigurtà għandhom jitressqu 'l quddiem."
 
 #: slc.publications:/config.py:65
 msgid "Literature reviews"
-msgstr ""
+msgstr "Analiżi tal-litteratura"
 
 #. Default: "Provide an overview of the most important issues related to this topic."
 #: slc.publications:/config.py:66
 msgid "help_literature_reviews"
-msgstr ""
+msgstr "Tipprovdi ħarsa ġenerali tal-aktar kwistjonijiet importanti relatati ma' dan is-suġġett."
 
 #: slc.publications:/config.py:72
 msgid "E-facts"
-msgstr ""
+msgstr "Fatti elettroniċi"
 
 #. Default: "Online only articles aimed at workers, employers and occupational safety and health professionals."
 #: slc.publications:/config.py:73
 msgid "help_e-facts"
-msgstr ""
+msgstr "Online, artikli biss immirati għall-ħaddiema, impjegaturi u professjonisti fil-qasam tas-saħħa u s-sigurtà fuq il-post tax-xogħol."
 
 #: slc.publications:/config.py:79
 msgid "Articles"
-msgstr ""
+msgstr "Artikli"
 
 #. Default: "Articles from leading safety and health experts on issues of topical concern."
 #: slc.publications:/config.py:80
 msgid "help_articles"
-msgstr ""
+msgstr "Artikli minn esperti ewlenin fil-qasam tas-saħħa u s-sigurtà dwar kwistjonijiet ta' tħassib topiku."
 
 #: slc.publications:/config.py:86
 msgid "Promotional Material"
-msgstr ""
+msgstr "Materjal ta' Promozzjoni"
 
 #. Default: "A selection of promotional literature presenting Agency projects and services and mainly used at exhibitions and events."
 #: slc.publications:/config.py:87
 msgid "help_promotional_material"
-msgstr ""
+msgstr "Għażla ta' litteratura promozzjonali li tippreżenta proġetti u servizzi tal-Aġenzija u li jintuża prinċipalment f'wirjiet u f'avvenimenti."
 
 #: slc.publications:/config.py:94
 msgid "Factsheets"
-msgstr ""
+msgstr "Skedi informattivi"
 
 #. Default: "Provide brief introductions to the Agency and to our activities."
 #: slc.publications:/config.py:95
 msgid "help_factsheets"
-msgstr ""
+msgstr "Jipprovdu introduzzjonijiet qosra lill-Aġenzija u lill-attivitajiet tagħna."
 
 #. Default: "Download the full publication as PDF"
 #: slc.publications:/missing_18n_labels.py:10

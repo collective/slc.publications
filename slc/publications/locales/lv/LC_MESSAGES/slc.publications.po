@@ -95,93 +95,93 @@ msgstr ""
 
 #: slc.publications:/config.py:101
 msgid "Presentations (PPT)"
-msgstr ""
+msgstr "Prezentācijas (.ppt formātā)"
 
 #. Default: "PPT presentations on various safety and health topics and EU-OSHA projects which can be freely adapted and reused. All English versions are also available on Slideshare (<a href='http://www.slideshare.net/euosha'>http://www.slideshare.net/euosha</a>)"
 #: slc.publications:/config.py:102
 msgid "help_presentations"
-msgstr ""
+msgstr "Brīvi pielāgojamas un atkārtoti izmantojamas prezentācijas (.ppt formātā) par dažādiem drošības un veselības jautājumiem un EU-OSHA projektiem. Visas prezentāciju versijas angļu valodā ir pieejamas arī <a href=\"http://www.slideshare.net/euosha\" target=\"_blank\" title=\"EU-OSHA tīmekļa vietnē\">SlideShare</a>"
 
 #: slc.publications:/config.py:111
 msgid "Magazine"
-msgstr ""
+msgstr "Žurnāls"
 
 #. Default: "In-depth information and analysis from leading experts and practitioners in occupational safety and health."
 #: slc.publications:/config.py:112
 msgid "help_magazine"
-msgstr ""
+msgstr "Žurnālā ir sniegta izsmeļoša informācija un analīze, ko sagatavojuši darba drošības un veselības aizsardzības vadošie eksperti un praktiķi."
 
 #: slc.publications:/config.py:118
 msgid "Evaluation reports"
-msgstr ""
+msgstr "Novērtējuma ziņojumi"
 
 #. Default: "An independent assessment of our work and contribute to improving our performance."
 #: slc.publications:/config.py:119
 msgid "help_evaluation_reports"
-msgstr ""
+msgstr "Mūsu darba neatkarīgs novērtējums, kas palīdz uzlabot mūsu sniegumu."
 
 #: slc.publications:/config.py:49
 msgid "Corporate publications"
-msgstr ""
+msgstr "Iestādes publikācijas"
 
 #. Default: "The Agency's strategy, annual management plan and annual report (full and summary versions) provide a comprehensive overview of EU-OSHA's activities and governance."
 #: slc.publications:/config.py:50
 msgid "help_corporate_publications"
-msgstr ""
+msgstr "Šīs publikācijas ir aģentūras stratēģija, gada darbības plāns un gada ziņojums (pilnīgi un kopsavilkuma varianti), un tajās ir sniegts visaptverošs pārskats par <EM>EU-OSHA"
 
 #: slc.publications:/config.py:57
 msgid "Reports"
-msgstr ""
+msgstr "Ziņojumi"
 
 #. Default: "Present the outcome of research, which will help to inform discussion among EU and national authorities, trade unions and experts on how to take forward issues in health and safety."
 #: slc.publications:/config.py:58
 msgid "help_reports"
-msgstr ""
+msgstr "Ziņojumos ir sniegti pētījumu rezultāti, kas sniedz informāciju, kura ir noderīga diskusijās starp ES un valsts iestādēm, arodbiedrībām un ekspertiem par to, kā risināt problēmas veselības un drošības jomā."
 
 #: slc.publications:/config.py:65
 msgid "Literature reviews"
-msgstr ""
+msgstr "Literatūras apskati"
 
 #. Default: "Provide an overview of the most important issues related to this topic."
 #: slc.publications:/config.py:66
 msgid "help_literature_reviews"
-msgstr ""
+msgstr "Šajos apskatos ir sniegts pārskats par svarīgākajiem jautājumiem par attiecīgo tematu."
 
 #: slc.publications:/config.py:72
 msgid "E-facts"
-msgstr ""
+msgstr "E-fakti"
 
 #. Default: "Online only articles aimed at workers, employers and occupational safety and health professionals."
 #: slc.publications:/config.py:73
 msgid "help_e-facts"
-msgstr ""
+msgstr "Tikai tiešsaistē pieejami raksti darba ņēmējiem, darba devējiem un darba drošības un veselības aizsardzības speciālistiem."
 
 #: slc.publications:/config.py:79
 msgid "Articles"
-msgstr ""
+msgstr "Raksti"
 
 #. Default: "Articles from leading safety and health experts on issues of topical concern."
 #: slc.publications:/config.py:80
 msgid "help_articles"
-msgstr ""
+msgstr "Vadošo drošības un veselības aizsardzības ekspertu raksti par aktuālām problēmām."
 
 #: slc.publications:/config.py:86
 msgid "Promotional Material"
-msgstr ""
+msgstr "Reklāmas materiāli"
 
 #. Default: "A selection of promotional literature presenting Agency projects and services and mainly used at exhibitions and events."
 #: slc.publications:/config.py:87
 msgid "help_promotional_material"
-msgstr ""
+msgstr "Reklāmas publikāciju izlase par aģentūras projektiem un pakalpojumiem. Šie materiāli galvenokārt tiek izmantoti izstādēs un pasākumos."
 
 #: slc.publications:/config.py:94
 msgid "Factsheets"
-msgstr ""
+msgstr "Faktu lapas"
 
 #. Default: "Provide brief introductions to the Agency and to our activities."
 #: slc.publications:/config.py:95
 msgid "help_factsheets"
-msgstr ""
+msgstr "Faktu lapas sniedz īsu pārskatu par aģentūru un tās darbību."
 
 #. Default: "Download the full publication as PDF"
 #: slc.publications:/missing_18n_labels.py:10

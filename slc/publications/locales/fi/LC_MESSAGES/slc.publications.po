@@ -95,93 +95,93 @@ msgstr ""
 
 #: slc.publications:/config.py:101
 msgid "Presentations (PPT)"
-msgstr ""
+msgstr "Esitykset (PPT)"
 
 #. Default: "PPT presentations on various safety and health topics and EU-OSHA projects which can be freely adapted and reused. All English versions are also available on Slideshare (<a href='http://www.slideshare.net/euosha'>http://www.slideshare.net/euosha</a>)"
 #: slc.publications:/config.py:102
 msgid "help_presentations"
-msgstr ""
+msgstr "Vapaasti muokattavia ja käytettäviä PPT-esityksiä erilaisista työterveyteen ja -turvallisuuteen liittyvistä asioista ja EU-OSHA:n hankkeista. Kaikki englanninkieliset versiot ovat saatavilla myös osoitteessa <a href=\"http://www.slideshare.net/euosha\" target=\"_blank\" title=\"EU-OSHA on slideshare\">Slideshare</a>"
 
 #: slc.publications:/config.py:111
 msgid "Magazine"
-msgstr ""
+msgstr "Magazine"
 
 #. Default: "In-depth information and analysis from leading experts and practitioners in occupational safety and health."
 #: slc.publications:/config.py:112
 msgid "help_magazine"
-msgstr ""
+msgstr "Viraston Magazine-julkaisuissa työterveys- ja työturvallisuusalan johtavat asiantuntijat ja ammatinharjoittajat esittävät seikkaperäistä tietoa ja perusteellisia analyyseja."
 
 #: slc.publications:/config.py:118
 msgid "Evaluation reports"
-msgstr ""
+msgstr "Arviointikertomukset"
 
 #. Default: "An independent assessment of our work and contribute to improving our performance."
 #: slc.publications:/config.py:119
 msgid "help_evaluation_reports"
-msgstr ""
+msgstr "Viraston toiminnasta tehty ulkopuolinen arvio auttaa virastoa kehittämään edelleen toimintaansa."
 
 #: slc.publications:/config.py:49
 msgid "Corporate publications"
-msgstr ""
+msgstr "Viraston julkaisut"
 
 #. Default: "The Agency's strategy, annual management plan and annual report (full and summary versions) provide a comprehensive overview of EU-OSHA's activities and governance."
 #: slc.publications:/config.py:50
 msgid "help_corporate_publications"
-msgstr ""
+msgstr "Viraston strategia, vuotuinen hallintosuunnitelma ja vuosikertomus (koko kertomus ja lyhennetty versio) tarjoavat kattavan yleiskuvan EU-OSHA:n toiminnasta ja hallinnosta."
 
 #: slc.publications:/config.py:57
 msgid "Reports"
-msgstr ""
+msgstr "Raportit"
 
 #. Default: "Present the outcome of research, which will help to inform discussion among EU and national authorities, trade unions and experts on how to take forward issues in health and safety."
 #: slc.publications:/config.py:58
 msgid "help_reports"
-msgstr ""
+msgstr "Raporteissa esitellään tutkimustuloksia, jotka auttavat EU:n ja kansallisia viranomaisia, ammattiyhdistyksiä ja asiantuntijoita keskustelussa työterveys- ja työturvallisuusasioiden edistämisestä."
 
 #: slc.publications:/config.py:65
 msgid "Literature reviews"
-msgstr ""
+msgstr "Kirjallisuuskatsaukset"
 
 #. Default: "Provide an overview of the most important issues related to this topic."
 #: slc.publications:/config.py:66
 msgid "help_literature_reviews"
-msgstr ""
+msgstr "Kirjallisuuskatsaukset tarjoavat yleiskuvan keskeisimmistä aiheeseen liittyvistä kysymyksistä."
 
 #: slc.publications:/config.py:72
 msgid "E-facts"
-msgstr ""
+msgstr "E-facts"
 
 #. Default: "Online only articles aimed at workers, employers and occupational safety and health professionals."
 #: slc.publications:/config.py:73
 msgid "help_e-facts"
-msgstr ""
+msgstr "E-facts on ainoastaan Internetissä julkaistava artikkelisarja, joka on suunnattu työntekijöille, työnantajille sekä työterveys- ja työturvallisuusalan ammattilaisille."
 
 #: slc.publications:/config.py:79
 msgid "Articles"
-msgstr ""
+msgstr "Artikkeleita"
 
 #. Default: "Articles from leading safety and health experts on issues of topical concern."
 #: slc.publications:/config.py:80
 msgid "help_articles"
-msgstr ""
+msgstr "Johtavien työterveys- ja työturvallisuusalan ammattilaisten kirjoituksia ajankohtaisista huolenaiheista."
 
 #: slc.publications:/config.py:86
 msgid "Promotional Material"
-msgstr ""
+msgstr "Esittelymateriaali"
 
 #. Default: "A selection of promotional literature presenting Agency projects and services and mainly used at exhibitions and events."
 #: slc.publications:/config.py:87
 msgid "help_promotional_material"
-msgstr ""
+msgstr "Pääasiassa näyttelyihin ja tapahtumiin tarkoitetussa kirjallisessa aineistossa esitellään viraston hankkeita ja palveluja."
 
 #: slc.publications:/config.py:94
 msgid "Factsheets"
-msgstr ""
+msgstr "Factsheet-tiedotteet"
 
 #. Default: "Provide brief introductions to the Agency and to our activities."
 #: slc.publications:/config.py:95
 msgid "help_factsheets"
-msgstr ""
+msgstr "Lyhyitä tiedotteita virastosta ja sen toiminnasta."
 
 #. Default: "Download the full publication as PDF"
 #: slc.publications:/missing_18n_labels.py:10

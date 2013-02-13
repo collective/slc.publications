@@ -95,93 +95,93 @@ msgstr ""
 
 #: slc.publications:/config.py:101
 msgid "Presentations (PPT)"
-msgstr ""
+msgstr "Pateiktys „PowerPoint\" formatu"
 
 #. Default: "PPT presentations on various safety and health topics and EU-OSHA projects which can be freely adapted and reused. All English versions are also available on Slideshare (<a href='http://www.slideshare.net/euosha'>http://www.slideshare.net/euosha</a>)"
 #: slc.publications:/config.py:102
 msgid "help_presentations"
-msgstr ""
+msgstr "Tai pateiktys „PowerPoint\" formatu, kuriose pristatomos įvairios saugos ir sveikatos darbe temos ir EU-OSHA projektai. Pateiktis galima lengvai pritaikyti ir pakartotinai panaudoti. Versijas anglų kalba taip pat galima rasti <a href=\"http://www.slideshare.net/euosha\" target=\"_blank\" title=\"EU-OSHA skaidrių rinkinys\">skaidrių rinkinyje</a>."
 
 #: slc.publications:/config.py:111
 msgid "Magazine"
-msgstr ""
+msgstr "Žurnalai"
 
 #. Default: "In-depth information and analysis from leading experts and practitioners in occupational safety and health."
 #: slc.publications:/config.py:112
 msgid "help_magazine"
-msgstr ""
+msgstr "Pateikiama labiausiai patyrusių profesinės sveikatos ir saugos ekspertų ir praktikuojančių specialistų parengta išsami informacija ir analizė."
 
 #: slc.publications:/config.py:118
 msgid "Evaluation reports"
-msgstr ""
+msgstr "Vertinimo ataskaitos"
 
 #. Default: "An independent assessment of our work and contribute to improving our performance."
 #: slc.publications:/config.py:119
 msgid "help_evaluation_reports"
-msgstr ""
+msgstr "Tai nepriklausomas mūsų darbo vertinimas, padedantis tobulinti mūsų veiklą."
 
 #: slc.publications:/config.py:49
 msgid "Corporate publications"
-msgstr ""
+msgstr "Instituciniai leidiniai"
 
 #. Default: "The Agency's strategy, annual management plan and annual report (full and summary versions) provide a comprehensive overview of EU-OSHA's activities and governance."
 #: slc.publications:/config.py:50
 msgid "help_corporate_publications"
-msgstr ""
+msgstr "Agentūros strategijoje, metiniame valdymo plane ir metinėje ataskaitoje (pateikiama išsami versija ir santrauka) išsamiai aptariama EU-OSHA veikla ir valdymas."
 
 #: slc.publications:/config.py:57
 msgid "Reports"
-msgstr ""
+msgstr "Ataskaitos"
 
 #. Default: "Present the outcome of research, which will help to inform discussion among EU and national authorities, trade unions and experts on how to take forward issues in health and safety."
 #: slc.publications:/config.py:58
 msgid "help_reports"
-msgstr ""
+msgstr "Ataskaitose pateikiamos mokslinių tyrimų išvados, kurios paskatins ES ir nacionalinių institucijų, profesinių sąjungų ir ekspertų diskusijas apie tai, kaip toliau spręsti su darbuotojų sauga ir sveikata susijusius klausimus."
 
 #: slc.publications:/config.py:65
 msgid "Literature reviews"
-msgstr ""
+msgstr "Literatūros apžvalgos"
 
 #. Default: "Provide an overview of the most important issues related to this topic."
 #: slc.publications:/config.py:66
 msgid "help_literature_reviews"
-msgstr ""
+msgstr "Apžvelgiami svarbiausi šios temos klausimai."
 
 #: slc.publications:/config.py:72
 msgid "E-facts"
-msgstr ""
+msgstr "E. faktai"
 
 #. Default: "Online only articles aimed at workers, employers and occupational safety and health professionals."
 #: slc.publications:/config.py:73
 msgid "help_e-facts"
-msgstr ""
+msgstr "Tik internete skelbiami straipsniai, skirti darbuotojams, darbdaviams ir profesinės sveikatos ir saugos specialistams."
 
 #: slc.publications:/config.py:79
 msgid "Articles"
-msgstr ""
+msgstr "Straipsniai"
 
 #. Default: "Articles from leading safety and health experts on issues of topical concern."
 #: slc.publications:/config.py:80
 msgid "help_articles"
-msgstr ""
+msgstr "Labiausiai patyrusių sveikatos ir saugos ekspertų straipsniai, kuriuose nagrinėjami aktualūs klausimai."
 
 #: slc.publications:/config.py:86
 msgid "Promotional Material"
-msgstr ""
+msgstr "Reklaminė medžiaga"
 
 #. Default: "A selection of promotional literature presenting Agency projects and services and mainly used at exhibitions and events."
 #: slc.publications:/config.py:87
 msgid "help_promotional_material"
-msgstr ""
+msgstr "Tai reklaminiai leidiniai, kuriuose pristatomi agentūros projektai ir paslaugos ir kurie dažniausiai naudojami parodose ir renginiuose."
 
 #: slc.publications:/config.py:94
 msgid "Factsheets"
-msgstr ""
+msgstr "Informaciniai biuleteniai"
 
 #. Default: "Provide brief introductions to the Agency and to our activities."
 #: slc.publications:/config.py:95
 msgid "help_factsheets"
-msgstr ""
+msgstr "Čia pateikiamas trumpas aprašymas apie agentūrą ir jos vykdomą veiklą."
 
 #. Default: "Download the full publication as PDF"
 #: slc.publications:/missing_18n_labels.py:10

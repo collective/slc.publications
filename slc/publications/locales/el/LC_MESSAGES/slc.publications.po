@@ -96,93 +96,93 @@ msgstr ""
 
 #: slc.publications:/config.py:101
 msgid "Presentations (PPT)"
-msgstr ""
+msgstr "Παρουσιάσεις (PPT)"
 
 #. Default: "PPT presentations on various safety and health topics and EU-OSHA projects which can be freely adapted and reused. All English versions are also available on Slideshare (<a href='http://www.slideshare.net/euosha'>http://www.slideshare.net/euosha</a>)"
 #: slc.publications:/config.py:102
 msgid "help_presentations"
-msgstr ""
+msgstr "Παρουσίασεις PPT για διάφορα ζητήματα ασφάλειας και υγείας, καθώς και για έργα του EU-OSHA. Οι παρουσιάσεις αυτές μπορούν να προσαρμόζονται και να επαναχρησιμοποιούνται ελεύθερα. Όλες οι αγγλικές εκδόσεις είναι διαθέσιμες και στο <a href=\"http://www.slideshare.net/euosha\" target=\"_blank\" title=\"EU-OSHA on slideshare\">Slideshare</a>"
 
 #: slc.publications:/config.py:111
 msgid "Magazine"
-msgstr ""
+msgstr "Περιοδικό"
 
 #. Default: "In-depth information and analysis from leading experts and practitioners in occupational safety and health."
 #: slc.publications:/config.py:112
 msgid "help_magazine"
-msgstr ""
+msgstr "Εμπεριστατωμένες πληροφορίες και αναλύσεις από επιφανείς εμπειρογνώμονες και επαγγελματίες που δραστηριοποιούνται στον τομέα της επαγγελματικής ασφάλειας και υγείας."
 
 #: slc.publications:/config.py:118
 msgid "Evaluation reports"
-msgstr ""
+msgstr "Εκθέσεις αξιολόγησης"
 
 #. Default: "An independent assessment of our work and contribute to improving our performance."
 #: slc.publications:/config.py:119
 msgid "help_evaluation_reports"
-msgstr ""
+msgstr "Ανεξάρτητη αξιολόγηση του έργου του Οργανισμού, η οποία συμβάλλει στη βελτίωση των επιδόσεών του."
 
 #: slc.publications:/config.py:49
 msgid "Corporate publications"
-msgstr ""
+msgstr "Δημοσιεύσεις του Οργανισμού"
 
 #. Default: "The Agency's strategy, annual management plan and annual report (full and summary versions) provide a comprehensive overview of EU-OSHA's activities and governance."
 #: slc.publications:/config.py:50
 msgid "help_corporate_publications"
-msgstr ""
+msgstr "Η στρατηγική του Οργανισμού, το ετήσιο σχέδιο διαχείρισης και η ετήσια έκθεση (πλήρες κείμενο και περιλήψεις) παρέχουν ολοκληρωμένη επισκόπηση των δραστηριότητων και της διακυβέρνησης του EU-OSHA."
 
 #: slc.publications:/config.py:57
 msgid "Reports"
-msgstr ""
+msgstr "Εκθέσεις"
 
 #. Default: "Present the outcome of research, which will help to inform discussion among EU and national authorities, trade unions and experts on how to take forward issues in health and safety."
 #: slc.publications:/config.py:58
 msgid "help_reports"
-msgstr ""
+msgstr "Παρουσιάζουν τα αποτελέσματα συναφών ερευνών, συμβάλλοντας έτσι στην τροφοδότηση της συζήτησης μεταξύ της ΕΕ και των εθνικών αρχών, των συνδικάτων και των εμπειρογνωμόνων σχετικά με την προώθηση ζητημάτων που άπτονται της υγείας και της ασφάλειας."
 
 #: slc.publications:/config.py:65
 msgid "Literature reviews"
-msgstr ""
+msgstr "Επισκοπήσεις της βιβλιογραφίας"
 
 #. Default: "Provide an overview of the most important issues related to this topic."
 #: slc.publications:/config.py:66
 msgid "help_literature_reviews"
-msgstr ""
+msgstr "Παρέχουν επισκόπηση των σημαντικότερων ζητημάτων που άπτονται του συγκεκριμένου θέματος."
 
 #: slc.publications:/config.py:72
 msgid "E-facts"
-msgstr ""
+msgstr "E-facts "
 
 #. Default: "Online only articles aimed at workers, employers and occupational safety and health professionals."
 #: slc.publications:/config.py:73
 msgid "help_e-facts"
-msgstr ""
+msgstr "Άρθρα που δημοσιεύονται αποκλειστικά στο Διαδίκτυο και προορίζονται για εργαζόμενους, εργοδότες και επαγγελματίες που δραστηριοποιούνται στον τομέα της επαγγελματικής ασφάλειας και υγείας."
 
 #: slc.publications:/config.py:79
 msgid "Articles"
-msgstr ""
+msgstr "Άρθρα"
 
 #. Default: "Articles from leading safety and health experts on issues of topical concern."
 #: slc.publications:/config.py:80
 msgid "help_articles"
-msgstr ""
+msgstr "Άρθρα από επιφανείς εμπειρογνώμονες σε θέματα ασφάλειας και υγείας για διάφορα επίκαιρα ζητήματα."
 
 #: slc.publications:/config.py:86
 msgid "Promotional Material"
-msgstr ""
+msgstr "Υλικά προώθησης"
 
 #. Default: "A selection of promotional literature presenting Agency projects and services and mainly used at exhibitions and events."
 #: slc.publications:/config.py:87
 msgid "help_promotional_material"
-msgstr ""
+msgstr "Επιλεγμένα κείμενα και υλικό προώθησης που παρουσιάζουν τα έργα και τις υπηρεσίες του Οργανισμού, χρησιμοποιούνται δε ως επί το πλείστον σε εκθέσεις και εκδηλώσεις."
 
 #: slc.publications:/config.py:94
 msgid "Factsheets"
-msgstr ""
+msgstr "Τεχνικά δελτία"
 
 #. Default: "Provide brief introductions to the Agency and to our activities."
 #: slc.publications:/config.py:95
 msgid "help_factsheets"
-msgstr ""
+msgstr "Παρέχουν σύντομες εισαγωγικές πληροφορίες για τον Οργανισμό και τις δραστηριότητές του."
 
 #. Default: "Download the full publication as PDF"
 #: slc.publications:/missing_18n_labels.py:10

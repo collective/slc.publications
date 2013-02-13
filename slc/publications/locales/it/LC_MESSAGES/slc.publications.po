@@ -96,93 +96,93 @@ msgstr ""
 
 #: slc.publications:/config.py:101
 msgid "Presentations (PPT)"
-msgstr ""
+msgstr "Presentazioni (PPT)"
 
 #. Default: "PPT presentations on various safety and health topics and EU-OSHA projects which can be freely adapted and reused. All English versions are also available on Slideshare (<a href='http://www.slideshare.net/euosha'>http://www.slideshare.net/euosha</a>)"
 #: slc.publications:/config.py:102
 msgid "help_presentations"
-msgstr ""
+msgstr "Presentazioni PPT su diversi argomenti in materia di salute e sicurezza e sui progetti dell'EU-OSHA che possono essere liberamente adattate e riutilizzate. Tutte le versioni inglesi sono disponibili anche su <a href=\"http://www.slideshare.net/euosha\" target=\"_blank\" title=\"EU-OSHA on slideshare\">Slideshare</a>"
 
 #: slc.publications:/config.py:111
 msgid "Magazine"
-msgstr ""
+msgstr "Rivista"
 
 #. Default: "In-depth information and analysis from leading experts and practitioners in occupational safety and health."
 #: slc.publications:/config.py:112
 msgid "help_magazine"
-msgstr ""
+msgstr "Fornisce informazioni approfondite e analisi dei maggiori esperti e operatori nel settore della sicurezza e salute sul lavoro"
 
 #: slc.publications:/config.py:118
 msgid "Evaluation reports"
-msgstr ""
+msgstr "Relazioni di valutazione"
 
 #. Default: "An independent assessment of our work and contribute to improving our performance."
 #: slc.publications:/config.py:119
 msgid "help_evaluation_reports"
-msgstr ""
+msgstr "Offrono un'analisi indipendente del nostro operato e contribuiscono a migliorare il rendimento dell'Agenzia."
 
 #: slc.publications:/config.py:49
 msgid "Corporate publications"
-msgstr ""
+msgstr "Pubblicazioni istituzionali"
 
 #. Default: "The Agency's strategy, annual management plan and annual report (full and summary versions) provide a comprehensive overview of EU-OSHA's activities and governance."
 #: slc.publications:/config.py:50
 msgid "help_corporate_publications"
-msgstr ""
+msgstr "La strategia dell'Agenzia, il piano di gestione annuale e la relazione annuale (versione integrale e sintesi) forniscono una panoramica esaustiva delle attività e della governance dell'EU-OSHA."
 
 #: slc.publications:/config.py:57
 msgid "Reports"
-msgstr ""
+msgstr "Relazioni"
 
 #. Default: "Present the outcome of research, which will help to inform discussion among EU and national authorities, trade unions and experts on how to take forward issues in health and safety."
 #: slc.publications:/config.py:58
 msgid "help_reports"
-msgstr ""
+msgstr "Illustrano gli esiti delle ricerche e, pertanto, contribuiscono ad arricchire il dibattito tra le autorità europee e nazionali, i sindacati e gli esperti impegnati a trovare soluzioni per progredire in determinati settori della salute e della sicurezza."
 
 #: slc.publications:/config.py:65
 msgid "Literature reviews"
-msgstr ""
+msgstr "Rassegne della letteratura"
 
 #. Default: "Provide an overview of the most important issues related to this topic."
 #: slc.publications:/config.py:66
 msgid "help_literature_reviews"
-msgstr ""
+msgstr "Forniscono una panoramica delle più importanti tematiche collegate a questo settore."
 
 #: slc.publications:/config.py:72
 msgid "E-facts"
-msgstr ""
+msgstr "E-facts"
 
 #. Default: "Online only articles aimed at workers, employers and occupational safety and health professionals."
 #: slc.publications:/config.py:73
 msgid "help_e-facts"
-msgstr ""
+msgstr "Articoli disponibili esclusivamente online e dedicati a lavoratori, datori di lavoro e operatori della salute e della sicurezza sul lavoro."
 
 #: slc.publications:/config.py:79
 msgid "Articles"
-msgstr ""
+msgstr "Articoli"
 
 #. Default: "Articles from leading safety and health experts on issues of topical concern."
 #: slc.publications:/config.py:80
 msgid "help_articles"
-msgstr ""
+msgstr "Articoli di illustri esperti in materia di salute e sicurezza sul lavoro in merito a tematiche di particolare interesse."
 
 #: slc.publications:/config.py:86
 msgid "Promotional Material"
-msgstr ""
+msgstr "Materiale promozionale"
 
 #. Default: "A selection of promotional literature presenting Agency projects and services and mainly used at exhibitions and events."
 #: slc.publications:/config.py:87
 msgid "help_promotional_material"
-msgstr ""
+msgstr "Una selezione della letteratura promozionale che presenta i progetti e i servizi dell'Agenzia, utilizzata prevalentemente in occasioni di mostre ed eventi."
 
 #: slc.publications:/config.py:94
 msgid "Factsheets"
-msgstr ""
+msgstr "Factsheet"
 
 #. Default: "Provide brief introductions to the Agency and to our activities."
 #: slc.publications:/config.py:95
 msgid "help_factsheets"
-msgstr ""
+msgstr "Forniscono una breve introduzione sull'Agenzia e sulle sue attività."
 
 #. Default: "Download the full publication as PDF"
 #: slc.publications:/missing_18n_labels.py:10

@@ -95,93 +95,93 @@ msgstr ""
 
 #: slc.publications:/config.py:101
 msgid "Presentations (PPT)"
-msgstr ""
+msgstr "Prezentációk (PPT)"
 
 #. Default: "PPT presentations on various safety and health topics and EU-OSHA projects which can be freely adapted and reused. All English versions are also available on Slideshare (<a href='http://www.slideshare.net/euosha'>http://www.slideshare.net/euosha</a>)"
 #: slc.publications:/config.py:102
 msgid "help_presentations"
-msgstr ""
+msgstr "A különféle biztonsági és egészségvédelmi témákról és EU-OSHA-projektekről készült PPT-prezentációk szabadon felhasználhatók és alkalmazhatók. Valamennyi prezentáció angol nyelvű változata elérhető itt: <a href=\"http://www.slideshare.net/euosha\" target=\"_blank\" title=\"EU-OSHA a Slideshare-en\">Slideshare</a>"
 
 #: slc.publications:/config.py:111
 msgid "Magazine"
-msgstr ""
+msgstr "Magazin"
 
 #. Default: "In-depth information and analysis from leading experts and practitioners in occupational safety and health."
 #: slc.publications:/config.py:112
 msgid "help_magazine"
-msgstr ""
+msgstr "Az Ügynökség magazinja részletes információt és elemzéseket közöl, amelyek forrásai a munkahelyi biztonság és egészségvédelem vezető szakértői és szakemberei."
 
 #: slc.publications:/config.py:118
 msgid "Evaluation reports"
-msgstr ""
+msgstr "Értékelő jelentések"
 
 #. Default: "An independent assessment of our work and contribute to improving our performance."
 #: slc.publications:/config.py:119
 msgid "help_evaluation_reports"
-msgstr ""
+msgstr "Az értékelő jelentések munkánk független értékelését tartalmazzák, ezáltal hozzájárulnak teljesítményünk javításához."
 
 #: slc.publications:/config.py:49
 msgid "Corporate publications"
-msgstr ""
+msgstr "Vállalati kiadványok"
 
 #. Default: "The Agency's strategy, annual management plan and annual report (full and summary versions) provide a comprehensive overview of EU-OSHA's activities and governance."
 #: slc.publications:/config.py:50
 msgid "help_corporate_publications"
-msgstr ""
+msgstr "Az Ügynökség stratégiája, éves gazdálkodási terve és éves jelentése (ennek teljes változata és összefoglalása) átfogó képet ad az EU-OSHA tevékenységeiről és irányításáról."
 
 #: slc.publications:/config.py:57
 msgid "Reports"
-msgstr ""
+msgstr "Jelentések"
 
 #. Default: "Present the outcome of research, which will help to inform discussion among EU and national authorities, trade unions and experts on how to take forward issues in health and safety."
 #: slc.publications:/config.py:58
 msgid "help_reports"
-msgstr ""
+msgstr "A jelentések a kutatások eredményeit foglalják össze, amelyek azáltal nyújtanak segítséget, hogy információval szolgálnak az uniós és a nemzeti hatóságok, szakszervezetek és szakemberek között az egészségvédelmi és biztonsági kérdések előmozdításának módjáról zajló egyeztetésekhez."
 
 #: slc.publications:/config.py:65
 msgid "Literature reviews"
-msgstr ""
+msgstr "Szakirodalmi áttekintés"
 
 #. Default: "Provide an overview of the most important issues related to this topic."
 #: slc.publications:/config.py:66
 msgid "help_literature_reviews"
-msgstr ""
+msgstr "Ezek az írások áttekintik az ehhez a témához tartozó legfontosabb kérdéseket."
 
 #: slc.publications:/config.py:72
 msgid "E-facts"
-msgstr ""
+msgstr "E-tájékoztatók"
 
 #. Default: "Online only articles aimed at workers, employers and occupational safety and health professionals."
 #: slc.publications:/config.py:73
 msgid "help_e-facts"
-msgstr ""
+msgstr "A kizárólag interneten elérhető cikkek a munkavállalóknak, a munkáltatóknak, valamint a munkahelyi biztonsággal és egészségvédelmmel foglalkozó szakembereknek szólnak."
 
 #: slc.publications:/config.py:79
 msgid "Articles"
-msgstr ""
+msgstr "Cikkek"
 
 #. Default: "Articles from leading safety and health experts on issues of topical concern."
 #: slc.publications:/config.py:80
 msgid "help_articles"
-msgstr ""
+msgstr "A biztonsággal és egészségvédelemmel foglalkozó vezető szakemberek cikkei időszerű témákról."
 
 #: slc.publications:/config.py:86
 msgid "Promotional Material"
-msgstr ""
+msgstr "Promóciós anyagok"
 
 #. Default: "A selection of promotional literature presenting Agency projects and services and mainly used at exhibitions and events."
 #: slc.publications:/config.py:87
 msgid "help_promotional_material"
-msgstr ""
+msgstr "A leginkább kiállításokon és rendezvényeken terjesztett, válogatott promóciós anyagok az Ügynökség projektjeit és szolgáltatásait ismertetik."
 
 #: slc.publications:/config.py:94
 msgid "Factsheets"
-msgstr ""
+msgstr "Tájékoztatók"
 
 #. Default: "Provide brief introductions to the Agency and to our activities."
 #: slc.publications:/config.py:95
 msgid "help_factsheets"
-msgstr ""
+msgstr "Röviden bemutatják az Ügynökséget és tevékenységeinket."
 
 #. Default: "Download the full publication as PDF"
 #: slc.publications:/missing_18n_labels.py:10
