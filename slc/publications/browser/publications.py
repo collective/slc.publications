@@ -1,3 +1,14 @@
+from DateTime import DateTime
+from Products.CMFCore.utils import getToolByName
+from Products.Five.browser import BrowserView
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from ordereddict import OrderedDict
+from slc.publications import HAVE_LINGUAPLONE
+from slc.publications import SLCPublicationsMessageFactory as _
+from slc.publications.config import PUB_TYPES
+from slc.publications.utils import _get_storage_folder
+from zope.app.component.hooks import getSite
+from zope.i18n import translate
 
 import json
 import locale
@@ -5,21 +16,6 @@ import logging
 import os
 import subprocess
 import tempfile
-
-from DateTime import DateTime
-from ordereddict import OrderedDict
-
-from zope.app.component.hooks import getSite
-from zope.i18n import translate
-
-from Products.CMFCore.utils import getToolByName
-from Products.Five.browser import BrowserView
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-
-from slc.publications import HAVE_LINGUAPLONE
-from slc.publications import SLCPublicationsMessageFactory as _
-from slc.publications.config import PUB_TYPES
-from slc.publications.utils import _get_storage_folder
 
 
 logger = logging.getLogger('slc.publications.publications.publications.py')
