@@ -1,7 +1,7 @@
 Changelog
 =========
 
-4.1 (unreleased)
+4.1 (2013-02-14)
 ----------------
 
 - Publications revamp #3790 [jcerjak]
