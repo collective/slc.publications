@@ -4,7 +4,7 @@ Changelog
 4.1 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Publications revamp #3790 [jcerjak]
 
 
 4.0 (2012-09-17)
