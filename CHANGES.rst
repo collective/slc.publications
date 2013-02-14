@@ -4,7 +4,7 @@ Changelog
 4.2 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Fix keyword translations #3790 [deroiste]
 
 
 4.1 (2013-02-14)

@@ -215,12 +215,13 @@
             </fieldset>
 
             <label class="heading" i18n:translate="label_filter_by_keywords">Filter by keywords</label>
-            <fieldset class="checkList">
-              <label tal:repeat="keyword view/get_keywords">
+            <fieldset class="checkList"
+                      tal:define="keywords view/get_keywords">
+              <label tal:repeat="keyword keywords">
                 <input  type="checkbox" name="keywords"
                         tal:attributes="value keyword;
                                         checked python: True and keyword in selected_keywords or ''" />
-                <span i18n:translate="" tal:replace="keyword"/>
+                <span tal:replace="python:keywords[keyword]"/>
               </label>
             </fieldset>
           </form>

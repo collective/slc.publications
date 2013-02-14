@@ -1,3 +1,4 @@
+
 import json
 import locale
 import logging
@@ -6,7 +7,7 @@ import subprocess
 import tempfile
 
 from DateTime import DateTime
-
+from ordereddict import OrderedDict
 
 from zope.app.component.hooks import getSite
 from zope.i18n import translate
@@ -268,9 +269,12 @@ class PublicationsView(BrowserView):
             results[title] = keyword
         sorted_titles = sorted(results.iterkeys(), cmp=locale.strcoll)
 
-        # return just the keyword ids, they will be translated in the
-        # template anyway
-        return [results[title] for title in sorted_titles]
+        ordered_keywords = OrderedDict()
+        for title in sorted_titles:
+            keyword_id = results[title]
+            ordered_keywords[keyword_id] = title
+
+        return ordered_keywords
 
 
 class PublicationsJSONView(PublicationsView):
