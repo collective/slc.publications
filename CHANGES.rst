@@ -1,7 +1,7 @@
 Changelog
 =========
 
-4.3 (unreleased)
+4.3 (2013-02-15)
 ----------------
 
 - Fix egg, was missing templates directory [deroiste]
