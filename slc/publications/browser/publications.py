@@ -114,6 +114,7 @@ class PublicationsView(BrowserView):
             'object_provides':
                 'slc.publications.interfaces.IPublicationEnhanced',
             'review_state': 'published',
+            'path': self.path,
             'sort_on': 'Date',
             'sort_order': 'descending'
         }

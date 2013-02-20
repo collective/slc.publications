@@ -4,7 +4,8 @@ Changelog
 4.4 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Add subtle border to preview images [deroiste]
+- Filter publications in carousel by path #3790 [deroiste]
 
 
 4.3 (2013-02-15)
