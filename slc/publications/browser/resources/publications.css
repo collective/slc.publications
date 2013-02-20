@@ -173,6 +173,7 @@ ul.linkList a {
 
 #latest-publications img {
     max-height: 120px;
+    border: 1px solid #EEEEEE;
 }
 
 #show-highlights a {
