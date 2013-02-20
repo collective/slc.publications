@@ -76,7 +76,10 @@ class PublicationsView(BrowserView):
         publications = []
 
         for result in results:
-            obj = result.getObject()
+            try:
+                obj = result.getObject()
+            except:
+                continue
             path = result.getPath()
             title = result.Title.replace("'", "&#39;")
 
