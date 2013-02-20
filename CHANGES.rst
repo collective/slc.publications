@@ -1,7 +1,7 @@
 Changelog
 =========
 
-4.5 (unreleased)
+4.5 (2013-02-20)
 ----------------
 
 - Use brain instead of obj to get object size [deroiste]
