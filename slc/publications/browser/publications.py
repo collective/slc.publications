@@ -76,10 +76,6 @@ class PublicationsView(BrowserView):
         publications = []
 
         for result in results:
-            try:
-                obj = result.getObject()
-            except:
-                continue
             path = result.getPath()
             title = result.Title.replace("'", "&#39;")
 
@@ -105,7 +101,7 @@ class PublicationsView(BrowserView):
             publications.append({
                 "title": title,
                 "year": result.effective.year(),
-                "size": obj.getObjSize(),
+                "size": result.getObjSize,
                 "path": path + "/view",
                 "type": pub_type,
                 "type_title": translated_type_title,
