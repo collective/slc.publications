@@ -1,7 +1,7 @@
 Changelog
 =========
 
-4.4 (unreleased)
+4.4 (2013-02-20)
 ----------------
 
 - Add subtle border to preview images [deroiste]
