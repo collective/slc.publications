@@ -4,7 +4,7 @@ Changelog
 4.5 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Use brain instead of obj to get object size [deroiste]
 
 
 4.4 (2013-02-20)
