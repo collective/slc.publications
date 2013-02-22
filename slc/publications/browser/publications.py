@@ -42,7 +42,6 @@ class PublicationsView(BrowserView):
         self.pc = self.portal.portal_catalog
         self.path = '/'.join(context.getPhysicalPath())
         self.publication_types = PUB_TYPES
-        self.keywords = self.get_keywords()
 
     def __call__(self):
         return self.template()
