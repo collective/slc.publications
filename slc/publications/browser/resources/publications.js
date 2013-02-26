@@ -78,7 +78,6 @@
 
         $("#publicationsFilter :input").change(function () {
             queryPublications();
-            return false;
         });
 
         $("#show-all").click(function () {
