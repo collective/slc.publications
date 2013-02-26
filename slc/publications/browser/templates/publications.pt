@@ -128,7 +128,7 @@
 
           <tbody>
             <tr tal:repeat="publication publications"
-                tal:attributes="class python: 'type-' + '-'.join(publication['type'])" >
+                tal:attributes="class python: 'type-' + publication['type']" >
               <td>
                 <a tal:attributes="href publication/path"
                    tal:content="structure publication/title"/>
