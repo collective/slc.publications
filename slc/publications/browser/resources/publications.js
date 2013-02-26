@@ -42,7 +42,6 @@
             // change results header
             $("#publication-results-heading-latest").hide();
             $("#publication-results-heading").hide();
-            
         }
 
         // show "Loading..." message
@@ -102,9 +101,12 @@
             return false;
         });
 
-
+        var timeout;
         $("input[name=SearchableText]").keyup(function () {
-            queryPublications();
+            window.clearTimeout(timeout);
+            timeout = window.setTimeout(function () {
+                queryPublications();
+            }, 350);
         });
 
         // show tooltips
