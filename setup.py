@@ -43,7 +43,6 @@ setup(name='slc.publications',
       include_package_data=True,
       zip_safe=False,
       install_requires=[
-          'Products.LinguaPlone',
           'archetypes.schemaextender',
           'ordereddict',
           'p4a.common',
@@ -54,6 +53,7 @@ setup(name='slc.publications',
       ],
       extras_require={
           'test': [
+              'Products.LinguaPlone',
               'plone.app.blob',
               'zope.testing',
           ],
