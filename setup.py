@@ -43,6 +43,7 @@ setup(name='slc.publications',
       include_package_data=True,
       zip_safe=False,
       install_requires=[
+          'Products.LinguaPlone',
           'archetypes.schemaextender',
           'ordereddict',
           'p4a.common',
