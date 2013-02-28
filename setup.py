@@ -53,8 +53,8 @@ setup(name='slc.publications',
       ],
       extras_require={
           'test': [
-              'zope.testing',
               'plone.app.blob',
+              'zope.testing',
           ],
       },
       test_suite='slc.publications.tests.test_docs.test_suite',
