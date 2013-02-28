@@ -10,8 +10,6 @@ from slc.publications import HAVE_LINGUAPLONE, generateMethods
 from zope.i18nmessageid import MessageFactory
 from zope.interface import implements
 
-OSHAMessageFactory = MessageFactory('osha')
-
 LANGUAGE_INDEPENDENT_INITIALIZED = '_languageIndependent_initialized_slc_publications'
 
 
@@ -92,7 +90,7 @@ class SchemaExtender(object):
                     allow_browse=True,
                     show_indexes=False,
                     force_close_on_insert=True,
-                    label=OSHAMessageFactory(u"Related Items"),
+                    label=_(u"Related Items"),
                     description='',
                     visible={'edit': 'visible', 'view': 'invisible' }
                 ),
