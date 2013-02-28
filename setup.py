@@ -45,7 +45,6 @@ setup(name='slc.publications',
       install_requires=[
           'archetypes.schemaextender',
           'ordereddict',
-          'osha.translations',
           'p4a.common',
           'p4a.subtyper',
           'p4a.z2utils',
