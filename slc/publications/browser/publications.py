@@ -3,7 +3,8 @@ from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from ordereddict import OrderedDict
-from slc.publications.config import PUB_TYPES
+from ordereddict import OrderedDict
+from slc.publications.interfaces import IPossiblePublicationContainer
 from zope.app.component.hooks import getSite
 from zope.i18n import translate
 
@@ -30,13 +31,31 @@ class PublicationsView(BrowserView):
         self.request = request
         self.now = DateTime()
         self.portal = getSite()
-        self.pc = self.portal.portal_catalog
+        self.pc = getToolByName(self.context, "portal_catalog")
         self.path = '/'.join(context.getPhysicalPath())
-        self.publication_types = PUB_TYPES
 
     def __call__(self):
         return self.template()
 
+    @property
+    def publication_types(self):
+        path = self.context.absolute_url_path()
+        query = {
+            'path': {'query': path, 'depth': 1},
+            'sort_on': 'getObjPositionInParent',
+            'object_provides': IPossiblePublicationContainer.__identifier__,
+        }
+
+        top_level_publication_folders = self.pc(query)
+        pub_types = OrderedDict()
+
+        for pub_folder in top_level_publication_folders:
+            pub_types[pub_folder.getId] = {
+                'title': pub_folder.Title,
+                'description': pub_folder.Description,
+            }
+        return pub_types
+        
     def get_publications(self):
         form = self.request.form
         typelist = form.get("typelist", "")
