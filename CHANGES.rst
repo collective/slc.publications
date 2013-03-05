@@ -1,7 +1,7 @@
 Changelog
 =========
 
-4.6 (unreleased)
+4.6 (2013-03-05)
 ----------------
 
 - #6887 Fix filtering bug [jcerjak]
