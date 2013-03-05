@@ -4,7 +4,10 @@ Changelog
 4.6 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- #6887 Fix filtering bug [jcerjak]
+- #6848 Performance: Add delay for search results to reduce load,
+  don't fetch keywords in __init__ [jcerjak]
+- Remove methods for generating multiple carousel images [jcerjak]
 
 
 4.5 (2013-02-20)
