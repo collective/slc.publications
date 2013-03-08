@@ -7,16 +7,16 @@ msgstr ""
 "PO-Revision-Date: 2005-02-01 12:00+0100\n"
 "Last-Translator: EU\n"
 "Language-Team: EU\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0\n"
+"Domain: slc.publications\n"
+"Language: \n"
 "Language-Code: sv\n"
 "Language-Name: Svenska\n"
+"Plural-Forms: nplurals=1; plural=0\n"
 "Preferred-Encodings: UTF-8\n"
 "X-Is-Fallback-For: sv-fi\n"
-"Domain: slc.publications\n"
 
 #: slc.publications:/browser/publication.py:272
 msgid "Apply"
@@ -38,142 +38,179 @@ msgstr ""
 #. Default: "No results found."
 #: slc.publications:/browser/templates/publications.pt:148
 msgid "label_no_results"
-msgstr ""
+msgstr "Inga resultat hittades."
 
 #. Default: "Show only latest 10"
 #: slc.publications:/browser/templates/publications.pt:159
 msgid "label_show_latest"
-msgstr ""
+msgstr "Visa bara de senaste 10"
 
 #. Default: "Search all publications"
 #: slc.publications:/browser/templates/publications.pt:174
 msgid "label_search_publications"
-msgstr ""
+msgstr "Sök bland alla publikationer"
 
 #. Default: "Select publication type"
 #: slc.publications:/browser/templates/publications.pt:182
 msgid "label_publication_types"
-msgstr ""
+msgstr "Välj typ av publikation"
 
 #. Default: "help"
 #: slc.publications:/browser/templates/publications.pt:186
 msgid "Help"
-msgstr ""
+msgstr "hjälp"
 
 #. Default: "All types"
 #: slc.publications:/browser/templates/publications.pt:201
 msgid "option_publication_all_types"
-msgstr ""
+msgstr "Alla typer"
 
 #. Default: "Filter by keywords"
 #: slc.publications:/browser/templates/publications.pt:217
 msgid "label_filter_by_keywords"
-msgstr ""
+msgstr "Filtrera med hjälp av nyckelord"
 
 #. Default: "Publications library"
 #: slc.publications:/browser/templates/publications.pt:48
 msgid "heading_publications_library"
-msgstr ""
+msgstr "Publikationsbibliotek"
 
 #: slc.publications:/browser/templates/publications.pt:53
 msgid "All publications can be downloaded free of charge."
-msgstr ""
+msgstr "Alla publikationer kan laddas ner utan kostnad."
 
 #. Default: "+ show featured publications"
 #: slc.publications:/browser/templates/publications.pt:61
 msgid "link_toggle_publications_carousel"
-msgstr ""
+msgstr "+ visa framhävda publikationer"
 
 #. Default: "Latest Publications"
 #: slc.publications:/browser/templates/publications.pt:98
 msgid "heading_publication_results_latest"
-msgstr ""
+msgstr "De senaste publikationerna"
 
 #. Default: "Key Resources"
 #: slc.publications:/browser/templates/related_items.pt:17
 msgid "heading_key_resources"
-msgstr ""
+msgstr "Viktiga resurser"
 
 #: slc.publications:/config.py:101
 msgid "Presentations (PPT)"
 msgstr "Presentationer (ppt-filer)"
 
-#. Default: "PPT presentations on various safety and health topics and EU-OSHA projects which can be freely adapted and reused. All English versions are also available on Slideshare (<a href='http://www.slideshare.net/euosha'>http://www.slideshare.net/euosha</a>)"
+#. Default: "PPT presentations on various safety and health topics and EU-OSHA
+#. projects which can be freely adapted and reused. All English versions are
+#. also available on Slideshare (<a
+#. href='http://www.slideshare.net/euosha'>http://www.slideshare.net/euosha</a>)"
 #: slc.publications:/config.py:102
 msgid "help_presentations"
-msgstr "Presentationer i ppt-format av olika säkerhets- och hälsofrågor samt Europeiska miljöbyråns projekt. De får fritt anpassas och återanvändas.   Alla engelska versioner är också tillgängliga på <a href=\"http://www.slideshare.net/euosha\" target=\"_blank\" title=\"EU-OSHA on slideshare\">Slideshare</a>"
+msgstr ""
+"Presentationer i ppt-format av olika säkerhets- och hälsofrågor samt "
+"Europeiska miljöbyråns projekt. De får fritt anpassas och återanvändas.   "
+"Alla engelska versioner är också tillgängliga på <a "
+"href=\"http://www.slideshare.net/euosha\" target=\"_blank\" title=\"EU-OSHA "
+"on slideshare\">Slideshare</a>"
 
 #: slc.publications:/config.py:111
 msgid "Magazine"
 msgstr "Magazine"
 
-#. Default: "In-depth information and analysis from leading experts and practitioners in occupational safety and health."
+#. Default: "In-depth information and analysis from leading experts and
+#. practitioners in occupational safety and health."
 #: slc.publications:/config.py:112
 msgid "help_magazine"
-msgstr "Djupgående information och analys från ledande experter och praktiskt verksamma på arbetsmiljöområdet.  "
+msgstr ""
+"Djupgående information och analys från ledande experter och praktiskt "
+"verksamma på arbetsmiljöområdet.  "
 
 #: slc.publications:/config.py:118
 msgid "Evaluation reports"
 msgstr "Utvärderingsrapporter"
 
-#. Default: "An independent assessment of our work and contribute to improving our performance."
+#. Default: "An independent assessment of our work and contribute to improving
+#. our performance."
 #: slc.publications:/config.py:119
 msgid "help_evaluation_reports"
-msgstr "Oberoende utvärderingar av vårt arbete som hjälper oss att förbättra våra resultat.  "
+msgstr ""
+"Oberoende utvärderingar av vårt arbete som hjälper oss att förbättra våra "
+"resultat.  "
 
 #: slc.publications:/config.py:49
 msgid "Corporate publications"
 msgstr "Gemensamma publikationer"
 
-#. Default: "The Agency's strategy, annual management plan and annual report (full and summary versions) provide a comprehensive overview of EU-OSHA's activities and governance."
+#. Default: "The Agency's strategy, annual management plan and annual report
+#. (full and summary versions) provide a comprehensive overview of EU-OSHA's
+#. activities and governance."
 #: slc.publications:/config.py:50
 msgid "help_corporate_publications"
-msgstr "Europeiska arbetsmiljöbyråns strategi, årliga fövaltningsplan och årsrapport (den fullständiga versionen och sammanfattningen) ger en helhetsbild av arbetsmiljöbyråns verksamhet och förvaltning.  "
+msgstr ""
+"Europeiska arbetsmiljöbyråns strategi, årliga fövaltningsplan och årsrapport"
+" (den fullständiga versionen och sammanfattningen) ger en helhetsbild av "
+"arbetsmiljöbyråns verksamhet och förvaltning.  "
 
 #: slc.publications:/config.py:57
 msgid "Reports"
 msgstr "Rapporter"
 
-#. Default: "Present the outcome of research, which will help to inform discussion among EU and national authorities, trade unions and experts on how to take forward issues in health and safety."
+#. Default: "Present the outcome of research, which will help to inform
+#. discussion among EU and national authorities, trade unions and experts on
+#. how to take forward issues in health and safety."
 #: slc.publications:/config.py:58
 msgid "help_reports"
-msgstr "I rapporterna presenteras forskningsresultat för att bidra med information till den diskussion som förs mellan EU och nationella myndigheter, fackföreningar och sakkunniga om hur man ska gå vidare med hälso- och säkerhetsfrågor."
+msgstr ""
+"I rapporterna presenteras forskningsresultat för att bidra med information "
+"till den diskussion som förs mellan EU och nationella myndigheter, "
+"fackföreningar och sakkunniga om hur man ska gå vidare med hälso- och "
+"säkerhetsfrågor."
 
 #: slc.publications:/config.py:65
 msgid "Literature reviews"
 msgstr "Litteraturöversikter"
 
-#. Default: "Provide an overview of the most important issues related to this topic."
+#. Default: "Provide an overview of the most important issues related to this
+#. topic."
 #: slc.publications:/config.py:66
 msgid "help_literature_reviews"
-msgstr "Litteraturöversikterna ger en överblick över de viktigaste frågorna i samband med det behandlade ämnesområdet.  "
+msgstr ""
+"Litteraturöversikterna ger en överblick över de viktigaste frågorna i "
+"samband med det behandlade ämnesområdet.  "
 
 #: slc.publications:/config.py:72
 msgid "E-facts"
 msgstr "E-fakta"
 
-#. Default: "Online only articles aimed at workers, employers and occupational safety and health professionals."
+#. Default: "Online only articles aimed at workers, employers and occupational
+#. safety and health professionals."
 #: slc.publications:/config.py:73
 msgid "help_e-facts"
-msgstr "Artiklar som bara finns på nätet och som är avsedda för arbetstagare, arbetsgivare och alla som arbetar med arbetsmiljöfrågor.  "
+msgstr ""
+"Artiklar som bara finns på nätet och som är avsedda för arbetstagare, "
+"arbetsgivare och alla som arbetar med arbetsmiljöfrågor.  "
 
 #: slc.publications:/config.py:79
 msgid "Articles"
 msgstr "Artiklar"
 
-#. Default: "Articles from leading safety and health experts on issues of topical concern."
+#. Default: "Articles from leading safety and health experts on issues of
+#. topical concern."
 #: slc.publications:/config.py:80
 msgid "help_articles"
-msgstr "Artiklar skrivna av ledande arbetsmiljöexperter om dagsaktuella frågor.  "
+msgstr ""
+"Artiklar skrivna av ledande arbetsmiljöexperter om dagsaktuella frågor.  "
 
 #: slc.publications:/config.py:86
 msgid "Promotional Material"
 msgstr "Reklammaterial"
 
-#. Default: "A selection of promotional literature presenting Agency projects and services and mainly used at exhibitions and events."
+#. Default: "A selection of promotional literature presenting Agency projects
+#. and services and mainly used at exhibitions and events."
 #: slc.publications:/config.py:87
 msgid "help_promotional_material"
-msgstr "Ett urval informationsskrifter där Europeiska arbetsmiljöbyråns projekt och tjänster presenteras. Materialet är främst avsett för utställningar och evenemang.  "
+msgstr ""
+"Ett urval informationsskrifter där Europeiska arbetsmiljöbyråns projekt och "
+"tjänster presenteras. Materialet är främst avsett för utställningar och "
+"evenemang.  "
 
 #: slc.publications:/config.py:94
 msgid "Factsheets"
@@ -182,7 +219,9 @@ msgstr "Faktablad"
 #. Default: "Provide brief introductions to the Agency and to our activities."
 #: slc.publications:/config.py:95
 msgid "help_factsheets"
-msgstr "Faktabladen innehåller kortfattade introduktioner till arbetsmiljöbyrån och våra verksamheter.  "
+msgstr ""
+"Faktabladen innehåller kortfattade introduktioner till arbetsmiljöbyrån och "
+"våra verksamheter.  "
 
 #. Default: "Download the full publication as PDF"
 #: slc.publications:/missing_18n_labels.py:10
@@ -192,7 +231,7 @@ msgstr "Ladda ner hela publikationen i PDF format"
 #. Default: "Order a printed copy of this document!"
 #: slc.publications:/missing_18n_labels.py:12
 msgid "label_order_copy"
-msgstr ""
+msgstr "Beställ en utskriven kopia av detta dokument!"
 
 #. Default: "Available in"
 #: slc.publications:/missing_18n_labels.py:14
@@ -203,12 +242,12 @@ msgstr "Finns som"
 #. Default: "Chapters in this Publication"
 #: slc.publications:/missing_18n_labels.py:15
 msgid "heading_chapterlisting"
-msgstr ""
+msgstr "Kapitel i denna publikation"
 
 #. Default: "Related Resources"
 #: slc.publications:/missing_18n_labels.py:17
 msgid "heading_related_resources"
-msgstr ""
+msgstr "Andra relaterade resurser"
 
 #. Default: "Show more publications on"
 #: slc.publications:/missing_18n_labels.py:18
@@ -227,9 +266,10 @@ msgstr ""
 #. Default: "Cover Image"
 #: slc.publications:/subtypes/publication.py:107
 msgid "label_cover_image"
-msgstr ""
+msgstr "Omslagsbild"
 
-#. Default: "Upload a cover image. Leave empty to have the system autogenerate one for you."
+#. Default: "Upload a cover image. Leave empty to have the system autogenerate
+#. one for you."
 #: slc.publications:/subtypes/publication.py:111
 msgid "description_cover_image"
 msgstr ""
@@ -279,7 +319,8 @@ msgstr ""
 msgid "label_chapters"
 msgstr ""
 
-#. Default: "Chapters of this Publication. Specify the Link targets defined in your pdf file, one per line."
+#. Default: "Chapters of this Publication. Specify the Link targets defined in
+#. your pdf file, one per line."
 #: slc.publications:/subtypes/publication.py:181
 msgid "description_chapters"
 msgstr ""
@@ -299,7 +340,8 @@ msgstr ""
 msgid "label_owner_password"
 msgstr ""
 
-#. Default: "If this publication is protected, speciy the pdf owner password if you want to parse the file."
+#. Default: "If this publication is protected, speciy the pdf owner password
+#. if you want to parse the file."
 #: slc.publications:/subtypes/publication.py:211
 msgid "description_owner_password"
 msgstr ""
@@ -309,7 +351,8 @@ msgstr ""
 msgid "label_user_password"
 msgstr ""
 
-#. Default: "If this publication is protected, speciy the pdf user password if you want to parse the file."
+#. Default: "If this publication is protected, speciy the pdf user password if
+#. you want to parse the file."
 #: slc.publications:/subtypes/publication.py:225
 msgid "description_user_password"
 msgstr ""

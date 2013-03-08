@@ -7,16 +7,16 @@ msgstr ""
 "PO-Revision-Date: 2005-02-01 12:00+0100\n"
 "Last-Translator: EU\n"
 "Language-Team: EU\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"Language-Name: Greek\n"
-"Preferred-Encodings: latin1 utf-8\n"
-"Language-Code: el\n"
-"X-Is-Fallback-For: el-gr el-cy\n"
 "Domain: slc.publications\n"
+"Language: \n"
+"Language-Code: el\n"
+"Language-Name: Greek\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Preferred-Encodings: latin1 utf-8\n"
+"X-Is-Fallback-For: el-gr el-cy\n"
 
 #: slc.publications:/browser/publication.py:272
 msgid "Apply"
@@ -38,142 +38,182 @@ msgstr ""
 #. Default: "No results found."
 #: slc.publications:/browser/templates/publications.pt:148
 msgid "label_no_results"
-msgstr ""
+msgstr "Δεν βρέθηκαν αποτελέσματα."
 
 #. Default: "Show only latest 10"
 #: slc.publications:/browser/templates/publications.pt:159
 msgid "label_show_latest"
-msgstr ""
+msgstr "Εμφάνιση μόνο των 10 τελευταίων αποτελεσμάτων"
 
 #. Default: "Search all publications"
 #: slc.publications:/browser/templates/publications.pt:174
 msgid "label_search_publications"
-msgstr ""
+msgstr "Αναζήτηση στο σύνολο των δημοσιεύσεων"
 
 #. Default: "Select publication type"
 #: slc.publications:/browser/templates/publications.pt:182
 msgid "label_publication_types"
-msgstr ""
+msgstr "Επιλογή τύπου δημοσίευσης"
 
 #. Default: "help"
 #: slc.publications:/browser/templates/publications.pt:186
 msgid "Help"
-msgstr ""
+msgstr "Βοήθεια"
 
 #. Default: "All types"
 #: slc.publications:/browser/templates/publications.pt:201
 msgid "option_publication_all_types"
-msgstr ""
+msgstr "Όλοι οι τύποι"
 
 #. Default: "Filter by keywords"
 #: slc.publications:/browser/templates/publications.pt:217
 msgid "label_filter_by_keywords"
-msgstr ""
+msgstr "Χρήση φίλτρου αναζήτησης με λέξεις-κλειδιά"
 
 #. Default: "Publications library"
 #: slc.publications:/browser/templates/publications.pt:48
 msgid "heading_publications_library"
-msgstr ""
+msgstr "Βιβλιοθήκη δημοσιεύσεων"
 
 #: slc.publications:/browser/templates/publications.pt:53
 msgid "All publications can be downloaded free of charge."
-msgstr ""
+msgstr "Δωρεάν μεταφόρτωση όλων των δημοσιεύσεων."
 
 #. Default: "+ show featured publications"
 #: slc.publications:/browser/templates/publications.pt:61
 msgid "link_toggle_publications_carousel"
-msgstr ""
+msgstr "+ εμφάνιση επιλεγμένων δημοσιεύσεων"
 
 #. Default: "Latest Publications"
 #: slc.publications:/browser/templates/publications.pt:98
 msgid "heading_publication_results_latest"
-msgstr ""
+msgstr "Πρόσφατες δημοσιεύσεις"
 
 #. Default: "Key Resources"
 #: slc.publications:/browser/templates/related_items.pt:17
 msgid "heading_key_resources"
-msgstr ""
+msgstr "Βασική πηγή"
 
 #: slc.publications:/config.py:101
 msgid "Presentations (PPT)"
 msgstr "Παρουσιάσεις (PPT)"
 
-#. Default: "PPT presentations on various safety and health topics and EU-OSHA projects which can be freely adapted and reused. All English versions are also available on Slideshare (<a href='http://www.slideshare.net/euosha'>http://www.slideshare.net/euosha</a>)"
+#. Default: "PPT presentations on various safety and health topics and EU-OSHA
+#. projects which can be freely adapted and reused. All English versions are
+#. also available on Slideshare (<a
+#. href='http://www.slideshare.net/euosha'>http://www.slideshare.net/euosha</a>)"
 #: slc.publications:/config.py:102
 msgid "help_presentations"
-msgstr "Παρουσίασεις PPT για διάφορα ζητήματα ασφάλειας και υγείας, καθώς και για έργα του EU-OSHA. Οι παρουσιάσεις αυτές μπορούν να προσαρμόζονται και να επαναχρησιμοποιούνται ελεύθερα. Όλες οι αγγλικές εκδόσεις είναι διαθέσιμες και στο <a href=\"http://www.slideshare.net/euosha\" target=\"_blank\" title=\"EU-OSHA on slideshare\">Slideshare</a>"
+msgstr ""
+"Παρουσίασεις PPT για διάφορα ζητήματα ασφάλειας και υγείας, καθώς και για "
+"έργα του EU-OSHA. Οι παρουσιάσεις αυτές μπορούν να προσαρμόζονται και να "
+"επαναχρησιμοποιούνται ελεύθερα. Όλες οι αγγλικές εκδόσεις είναι διαθέσιμες "
+"και στο <a href=\"http://www.slideshare.net/euosha\" target=\"_blank\" title"
+"=\"EU-OSHA on slideshare\">Slideshare</a>"
 
 #: slc.publications:/config.py:111
 msgid "Magazine"
 msgstr "Περιοδικό"
 
-#. Default: "In-depth information and analysis from leading experts and practitioners in occupational safety and health."
+#. Default: "In-depth information and analysis from leading experts and
+#. practitioners in occupational safety and health."
 #: slc.publications:/config.py:112
 msgid "help_magazine"
-msgstr "Εμπεριστατωμένες πληροφορίες και αναλύσεις από επιφανείς εμπειρογνώμονες και επαγγελματίες που δραστηριοποιούνται στον τομέα της επαγγελματικής ασφάλειας και υγείας."
+msgstr ""
+"Εμπεριστατωμένες πληροφορίες και αναλύσεις από επιφανείς εμπειρογνώμονες και"
+" επαγγελματίες που δραστηριοποιούνται στον τομέα της επαγγελματικής "
+"ασφάλειας και υγείας."
 
 #: slc.publications:/config.py:118
 msgid "Evaluation reports"
 msgstr "Εκθέσεις αξιολόγησης"
 
-#. Default: "An independent assessment of our work and contribute to improving our performance."
+#. Default: "An independent assessment of our work and contribute to improving
+#. our performance."
 #: slc.publications:/config.py:119
 msgid "help_evaluation_reports"
-msgstr "Ανεξάρτητη αξιολόγηση του έργου του Οργανισμού, η οποία συμβάλλει στη βελτίωση των επιδόσεών του."
+msgstr ""
+"Ανεξάρτητη αξιολόγηση του έργου του Οργανισμού, η οποία συμβάλλει στη "
+"βελτίωση των επιδόσεών του."
 
 #: slc.publications:/config.py:49
 msgid "Corporate publications"
 msgstr "Δημοσιεύσεις του Οργανισμού"
 
-#. Default: "The Agency's strategy, annual management plan and annual report (full and summary versions) provide a comprehensive overview of EU-OSHA's activities and governance."
+#. Default: "The Agency's strategy, annual management plan and annual report
+#. (full and summary versions) provide a comprehensive overview of EU-OSHA's
+#. activities and governance."
 #: slc.publications:/config.py:50
 msgid "help_corporate_publications"
-msgstr "Η στρατηγική του Οργανισμού, το ετήσιο σχέδιο διαχείρισης και η ετήσια έκθεση (πλήρες κείμενο και περιλήψεις) παρέχουν ολοκληρωμένη επισκόπηση των δραστηριότητων και της διακυβέρνησης του EU-OSHA."
+msgstr ""
+"Η στρατηγική του Οργανισμού, το ετήσιο σχέδιο διαχείρισης και η ετήσια "
+"έκθεση (πλήρες κείμενο και περιλήψεις) παρέχουν ολοκληρωμένη επισκόπηση των "
+"δραστηριότητων και της διακυβέρνησης του EU-OSHA."
 
 #: slc.publications:/config.py:57
 msgid "Reports"
 msgstr "Εκθέσεις"
 
-#. Default: "Present the outcome of research, which will help to inform discussion among EU and national authorities, trade unions and experts on how to take forward issues in health and safety."
+#. Default: "Present the outcome of research, which will help to inform
+#. discussion among EU and national authorities, trade unions and experts on
+#. how to take forward issues in health and safety."
 #: slc.publications:/config.py:58
 msgid "help_reports"
-msgstr "Παρουσιάζουν τα αποτελέσματα συναφών ερευνών, συμβάλλοντας έτσι στην τροφοδότηση της συζήτησης μεταξύ της ΕΕ και των εθνικών αρχών, των συνδικάτων και των εμπειρογνωμόνων σχετικά με την προώθηση ζητημάτων που άπτονται της υγείας και της ασφάλειας."
+msgstr ""
+"Παρουσιάζουν τα αποτελέσματα συναφών ερευνών, συμβάλλοντας έτσι στην "
+"τροφοδότηση της συζήτησης μεταξύ της ΕΕ και των εθνικών αρχών, των "
+"συνδικάτων και των εμπειρογνωμόνων σχετικά με την προώθηση ζητημάτων που "
+"άπτονται της υγείας και της ασφάλειας."
 
 #: slc.publications:/config.py:65
 msgid "Literature reviews"
 msgstr "Επισκοπήσεις της βιβλιογραφίας"
 
-#. Default: "Provide an overview of the most important issues related to this topic."
+#. Default: "Provide an overview of the most important issues related to this
+#. topic."
 #: slc.publications:/config.py:66
 msgid "help_literature_reviews"
-msgstr "Παρέχουν επισκόπηση των σημαντικότερων ζητημάτων που άπτονται του συγκεκριμένου θέματος."
+msgstr ""
+"Παρέχουν επισκόπηση των σημαντικότερων ζητημάτων που άπτονται του "
+"συγκεκριμένου θέματος."
 
 #: slc.publications:/config.py:72
 msgid "E-facts"
 msgstr "E-facts "
 
-#. Default: "Online only articles aimed at workers, employers and occupational safety and health professionals."
+#. Default: "Online only articles aimed at workers, employers and occupational
+#. safety and health professionals."
 #: slc.publications:/config.py:73
 msgid "help_e-facts"
-msgstr "Άρθρα που δημοσιεύονται αποκλειστικά στο Διαδίκτυο και προορίζονται για εργαζόμενους, εργοδότες και επαγγελματίες που δραστηριοποιούνται στον τομέα της επαγγελματικής ασφάλειας και υγείας."
+msgstr ""
+"Άρθρα που δημοσιεύονται αποκλειστικά στο Διαδίκτυο και προορίζονται για "
+"εργαζόμενους, εργοδότες και επαγγελματίες που δραστηριοποιούνται στον τομέα "
+"της επαγγελματικής ασφάλειας και υγείας."
 
 #: slc.publications:/config.py:79
 msgid "Articles"
 msgstr "Άρθρα"
 
-#. Default: "Articles from leading safety and health experts on issues of topical concern."
+#. Default: "Articles from leading safety and health experts on issues of
+#. topical concern."
 #: slc.publications:/config.py:80
 msgid "help_articles"
-msgstr "Άρθρα από επιφανείς εμπειρογνώμονες σε θέματα ασφάλειας και υγείας για διάφορα επίκαιρα ζητήματα."
+msgstr ""
+"Άρθρα από επιφανείς εμπειρογνώμονες σε θέματα ασφάλειας και υγείας για "
+"διάφορα επίκαιρα ζητήματα."
 
 #: slc.publications:/config.py:86
 msgid "Promotional Material"
 msgstr "Υλικά προώθησης"
 
-#. Default: "A selection of promotional literature presenting Agency projects and services and mainly used at exhibitions and events."
+#. Default: "A selection of promotional literature presenting Agency projects
+#. and services and mainly used at exhibitions and events."
 #: slc.publications:/config.py:87
 msgid "help_promotional_material"
-msgstr "Επιλεγμένα κείμενα και υλικό προώθησης που παρουσιάζουν τα έργα και τις υπηρεσίες του Οργανισμού, χρησιμοποιούνται δε ως επί το πλείστον σε εκθέσεις και εκδηλώσεις."
+msgstr ""
+"Επιλεγμένα κείμενα και υλικό προώθησης που παρουσιάζουν τα έργα και τις "
+"υπηρεσίες του Οργανισμού, χρησιμοποιούνται δε ως επί το πλείστον σε εκθέσεις"
+" και εκδηλώσεις."
 
 #: slc.publications:/config.py:94
 msgid "Factsheets"
@@ -182,7 +222,9 @@ msgstr "Τεχνικά δελτία"
 #. Default: "Provide brief introductions to the Agency and to our activities."
 #: slc.publications:/config.py:95
 msgid "help_factsheets"
-msgstr "Παρέχουν σύντομες εισαγωγικές πληροφορίες για τον Οργανισμό και τις δραστηριότητές του."
+msgstr ""
+"Παρέχουν σύντομες εισαγωγικές πληροφορίες για τον Οργανισμό και τις "
+"δραστηριότητές του."
 
 #. Default: "Download the full publication as PDF"
 #: slc.publications:/missing_18n_labels.py:10
@@ -192,7 +234,7 @@ msgstr "Φορτώστε το πλήρες κείμενο σε PDF μορφή"
 #. Default: "Order a printed copy of this document!"
 #: slc.publications:/missing_18n_labels.py:12
 msgid "label_order_copy"
-msgstr ""
+msgstr "Εκτύπωση αντιγράφου του παρόντος εγγράφου!"
 
 #. Default: "Available in"
 #: slc.publications:/missing_18n_labels.py:14
@@ -203,12 +245,12 @@ msgstr "Διατίθεται στα"
 #. Default: "Chapters in this Publication"
 #: slc.publications:/missing_18n_labels.py:15
 msgid "heading_chapterlisting"
-msgstr ""
+msgstr "Κεφάλαια της παρούσας έκδοσης"
 
 #. Default: "Related Resources"
 #: slc.publications:/missing_18n_labels.py:17
 msgid "heading_related_resources"
-msgstr ""
+msgstr "Συναφής πηγή"
 
 #. Default: "Show more publications on"
 #: slc.publications:/missing_18n_labels.py:18
@@ -227,9 +269,10 @@ msgstr ""
 #. Default: "Cover Image"
 #: slc.publications:/subtypes/publication.py:107
 msgid "label_cover_image"
-msgstr ""
+msgstr "Εξώφυλλο"
 
-#. Default: "Upload a cover image. Leave empty to have the system autogenerate one for you."
+#. Default: "Upload a cover image. Leave empty to have the system autogenerate
+#. one for you."
 #: slc.publications:/subtypes/publication.py:111
 msgid "description_cover_image"
 msgstr ""
@@ -279,7 +322,8 @@ msgstr ""
 msgid "label_chapters"
 msgstr ""
 
-#. Default: "Chapters of this Publication. Specify the Link targets defined in your pdf file, one per line."
+#. Default: "Chapters of this Publication. Specify the Link targets defined in
+#. your pdf file, one per line."
 #: slc.publications:/subtypes/publication.py:181
 msgid "description_chapters"
 msgstr ""
@@ -299,7 +343,8 @@ msgstr ""
 msgid "label_owner_password"
 msgstr ""
 
-#. Default: "If this publication is protected, speciy the pdf owner password if you want to parse the file."
+#. Default: "If this publication is protected, speciy the pdf owner password
+#. if you want to parse the file."
 #: slc.publications:/subtypes/publication.py:211
 msgid "description_owner_password"
 msgstr ""
@@ -309,7 +354,8 @@ msgstr ""
 msgid "label_user_password"
 msgstr ""
 
-#. Default: "If this publication is protected, speciy the pdf user password if you want to parse the file."
+#. Default: "If this publication is protected, speciy the pdf user password if
+#. you want to parse the file."
 #: slc.publications:/subtypes/publication.py:225
 msgid "description_user_password"
 msgstr ""

@@ -7,16 +7,16 @@ msgstr ""
 "PO-Revision-Date: 2005-09-19 17:46+0100\n"
 "Last-Translator: Alexander Pilz <pilz at syslab com>\n"
 "Language-Team: EU\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Domain: slc.publications\n"
+"Language: \n"
 "Language-Code: it\n"
 "Language-Name: Italiano\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "Preferred-Encodings: UTF-8\n"
 "X-Is-Fallback-For: it-ch\n"
-"Domain: slc.publications\n"
 
 #: slc.publications:/browser/publication.py:272
 msgid "Apply"
@@ -38,142 +38,180 @@ msgstr ""
 #. Default: "No results found."
 #: slc.publications:/browser/templates/publications.pt:148
 msgid "label_no_results"
-msgstr ""
+msgstr "Nessun risultato."
 
 #. Default: "Show only latest 10"
 #: slc.publications:/browser/templates/publications.pt:159
 msgid "label_show_latest"
-msgstr ""
+msgstr "Mostra solo gli ultimi 10"
 
 #. Default: "Search all publications"
 #: slc.publications:/browser/templates/publications.pt:174
 msgid "label_search_publications"
-msgstr ""
+msgstr "Cerca tutte le pubblicazioni"
 
 #. Default: "Select publication type"
 #: slc.publications:/browser/templates/publications.pt:182
 msgid "label_publication_types"
-msgstr ""
+msgstr "Seleziona il tipo di pubblicazione"
 
 #. Default: "help"
 #: slc.publications:/browser/templates/publications.pt:186
 msgid "Help"
-msgstr ""
+msgstr "help"
 
 #. Default: "All types"
 #: slc.publications:/browser/templates/publications.pt:201
 msgid "option_publication_all_types"
-msgstr ""
+msgstr "Tutti i tipi"
 
 #. Default: "Filter by keywords"
 #: slc.publications:/browser/templates/publications.pt:217
 msgid "label_filter_by_keywords"
-msgstr ""
+msgstr "Filtra per parole chiave"
 
 #. Default: "Publications library"
 #: slc.publications:/browser/templates/publications.pt:48
 msgid "heading_publications_library"
-msgstr ""
+msgstr "Archivio pubblicazioni"
 
 #: slc.publications:/browser/templates/publications.pt:53
 msgid "All publications can be downloaded free of charge."
-msgstr ""
+msgstr "È possibile scaricare la versione gratuita di ciascuna pubblicazione."
 
 #. Default: "+ show featured publications"
 #: slc.publications:/browser/templates/publications.pt:61
 msgid "link_toggle_publications_carousel"
-msgstr ""
+msgstr "+ mostra pubblicazioni speciali"
 
 #. Default: "Latest Publications"
 #: slc.publications:/browser/templates/publications.pt:98
 msgid "heading_publication_results_latest"
-msgstr ""
+msgstr "Ultime pubblicazioni"
 
 #. Default: "Key Resources"
 #: slc.publications:/browser/templates/related_items.pt:17
 msgid "heading_key_resources"
-msgstr ""
+msgstr "Risorse chiave"
 
 #: slc.publications:/config.py:101
 msgid "Presentations (PPT)"
 msgstr "Presentazioni (PPT)"
 
-#. Default: "PPT presentations on various safety and health topics and EU-OSHA projects which can be freely adapted and reused. All English versions are also available on Slideshare (<a href='http://www.slideshare.net/euosha'>http://www.slideshare.net/euosha</a>)"
+#. Default: "PPT presentations on various safety and health topics and EU-OSHA
+#. projects which can be freely adapted and reused. All English versions are
+#. also available on Slideshare (<a
+#. href='http://www.slideshare.net/euosha'>http://www.slideshare.net/euosha</a>)"
 #: slc.publications:/config.py:102
 msgid "help_presentations"
-msgstr "Presentazioni PPT su diversi argomenti in materia di salute e sicurezza e sui progetti dell'EU-OSHA che possono essere liberamente adattate e riutilizzate. Tutte le versioni inglesi sono disponibili anche su <a href=\"http://www.slideshare.net/euosha\" target=\"_blank\" title=\"EU-OSHA on slideshare\">Slideshare</a>"
+msgstr ""
+"Presentazioni PPT su diversi argomenti in materia di salute e sicurezza e "
+"sui progetti dell'EU-OSHA che possono essere liberamente adattate e "
+"riutilizzate. Tutte le versioni inglesi sono disponibili anche su <a "
+"href=\"http://www.slideshare.net/euosha\" target=\"_blank\" title=\"EU-OSHA "
+"on slideshare\">Slideshare</a>"
 
 #: slc.publications:/config.py:111
 msgid "Magazine"
 msgstr "Rivista"
 
-#. Default: "In-depth information and analysis from leading experts and practitioners in occupational safety and health."
+#. Default: "In-depth information and analysis from leading experts and
+#. practitioners in occupational safety and health."
 #: slc.publications:/config.py:112
 msgid "help_magazine"
-msgstr "Fornisce informazioni approfondite e analisi dei maggiori esperti e operatori nel settore della sicurezza e salute sul lavoro"
+msgstr ""
+"Fornisce informazioni approfondite e analisi dei maggiori esperti e "
+"operatori nel settore della sicurezza e salute sul lavoro"
 
 #: slc.publications:/config.py:118
 msgid "Evaluation reports"
 msgstr "Relazioni di valutazione"
 
-#. Default: "An independent assessment of our work and contribute to improving our performance."
+#. Default: "An independent assessment of our work and contribute to improving
+#. our performance."
 #: slc.publications:/config.py:119
 msgid "help_evaluation_reports"
-msgstr "Offrono un'analisi indipendente del nostro operato e contribuiscono a migliorare il rendimento dell'Agenzia."
+msgstr ""
+"Offrono un'analisi indipendente del nostro operato e contribuiscono a "
+"migliorare il rendimento dell'Agenzia."
 
 #: slc.publications:/config.py:49
 msgid "Corporate publications"
 msgstr "Pubblicazioni istituzionali"
 
-#. Default: "The Agency's strategy, annual management plan and annual report (full and summary versions) provide a comprehensive overview of EU-OSHA's activities and governance."
+#. Default: "The Agency's strategy, annual management plan and annual report
+#. (full and summary versions) provide a comprehensive overview of EU-OSHA's
+#. activities and governance."
 #: slc.publications:/config.py:50
 msgid "help_corporate_publications"
-msgstr "La strategia dell'Agenzia, il piano di gestione annuale e la relazione annuale (versione integrale e sintesi) forniscono una panoramica esaustiva delle attività e della governance dell'EU-OSHA."
+msgstr ""
+"La strategia dell'Agenzia, il piano di gestione annuale e la relazione "
+"annuale (versione integrale e sintesi) forniscono una panoramica esaustiva "
+"delle attività e della governance dell'EU-OSHA."
 
 #: slc.publications:/config.py:57
 msgid "Reports"
 msgstr "Relazioni"
 
-#. Default: "Present the outcome of research, which will help to inform discussion among EU and national authorities, trade unions and experts on how to take forward issues in health and safety."
+#. Default: "Present the outcome of research, which will help to inform
+#. discussion among EU and national authorities, trade unions and experts on
+#. how to take forward issues in health and safety."
 #: slc.publications:/config.py:58
 msgid "help_reports"
-msgstr "Illustrano gli esiti delle ricerche e, pertanto, contribuiscono ad arricchire il dibattito tra le autorità europee e nazionali, i sindacati e gli esperti impegnati a trovare soluzioni per progredire in determinati settori della salute e della sicurezza."
+msgstr ""
+"Illustrano gli esiti delle ricerche e, pertanto, contribuiscono ad "
+"arricchire il dibattito tra le autorità europee e nazionali, i sindacati e "
+"gli esperti impegnati a trovare soluzioni per progredire in determinati "
+"settori della salute e della sicurezza."
 
 #: slc.publications:/config.py:65
 msgid "Literature reviews"
 msgstr "Rassegne della letteratura"
 
-#. Default: "Provide an overview of the most important issues related to this topic."
+#. Default: "Provide an overview of the most important issues related to this
+#. topic."
 #: slc.publications:/config.py:66
 msgid "help_literature_reviews"
-msgstr "Forniscono una panoramica delle più importanti tematiche collegate a questo settore."
+msgstr ""
+"Forniscono una panoramica delle più importanti tematiche collegate a questo "
+"settore."
 
 #: slc.publications:/config.py:72
 msgid "E-facts"
 msgstr "E-facts"
 
-#. Default: "Online only articles aimed at workers, employers and occupational safety and health professionals."
+#. Default: "Online only articles aimed at workers, employers and occupational
+#. safety and health professionals."
 #: slc.publications:/config.py:73
 msgid "help_e-facts"
-msgstr "Articoli disponibili esclusivamente online e dedicati a lavoratori, datori di lavoro e operatori della salute e della sicurezza sul lavoro."
+msgstr ""
+"Articoli disponibili esclusivamente online e dedicati a lavoratori, datori "
+"di lavoro e operatori della salute e della sicurezza sul lavoro."
 
 #: slc.publications:/config.py:79
 msgid "Articles"
 msgstr "Articoli"
 
-#. Default: "Articles from leading safety and health experts on issues of topical concern."
+#. Default: "Articles from leading safety and health experts on issues of
+#. topical concern."
 #: slc.publications:/config.py:80
 msgid "help_articles"
-msgstr "Articoli di illustri esperti in materia di salute e sicurezza sul lavoro in merito a tematiche di particolare interesse."
+msgstr ""
+"Articoli di illustri esperti in materia di salute e sicurezza sul lavoro in "
+"merito a tematiche di particolare interesse."
 
 #: slc.publications:/config.py:86
 msgid "Promotional Material"
 msgstr "Materiale promozionale"
 
-#. Default: "A selection of promotional literature presenting Agency projects and services and mainly used at exhibitions and events."
+#. Default: "A selection of promotional literature presenting Agency projects
+#. and services and mainly used at exhibitions and events."
 #: slc.publications:/config.py:87
 msgid "help_promotional_material"
-msgstr "Una selezione della letteratura promozionale che presenta i progetti e i servizi dell'Agenzia, utilizzata prevalentemente in occasioni di mostre ed eventi."
+msgstr ""
+"Una selezione della letteratura promozionale che presenta i progetti e i "
+"servizi dell'Agenzia, utilizzata prevalentemente in occasioni di mostre ed "
+"eventi."
 
 #: slc.publications:/config.py:94
 msgid "Factsheets"
@@ -192,7 +230,7 @@ msgstr "Download della pubblicazione completa in formato PDF"
 #. Default: "Order a printed copy of this document!"
 #: slc.publications:/missing_18n_labels.py:12
 msgid "label_order_copy"
-msgstr ""
+msgstr "Ordina una copia cartacea del documento!"
 
 #. Default: "Available in"
 #: slc.publications:/missing_18n_labels.py:14
@@ -203,12 +241,12 @@ msgstr "Disponibile en"
 #. Default: "Chapters in this Publication"
 #: slc.publications:/missing_18n_labels.py:15
 msgid "heading_chapterlisting"
-msgstr ""
+msgstr "Capitoli della pubblicazione"
 
 #. Default: "Related Resources"
 #: slc.publications:/missing_18n_labels.py:17
 msgid "heading_related_resources"
-msgstr ""
+msgstr "Risorse correlate"
 
 #. Default: "Show more publications on"
 #: slc.publications:/missing_18n_labels.py:18
@@ -227,9 +265,10 @@ msgstr ""
 #. Default: "Cover Image"
 #: slc.publications:/subtypes/publication.py:107
 msgid "label_cover_image"
-msgstr ""
+msgstr "Immagine di copertina"
 
-#. Default: "Upload a cover image. Leave empty to have the system autogenerate one for you."
+#. Default: "Upload a cover image. Leave empty to have the system autogenerate
+#. one for you."
 #: slc.publications:/subtypes/publication.py:111
 msgid "description_cover_image"
 msgstr ""
@@ -279,7 +318,8 @@ msgstr ""
 msgid "label_chapters"
 msgstr ""
 
-#. Default: "Chapters of this Publication. Specify the Link targets defined in your pdf file, one per line."
+#. Default: "Chapters of this Publication. Specify the Link targets defined in
+#. your pdf file, one per line."
 #: slc.publications:/subtypes/publication.py:181
 msgid "description_chapters"
 msgstr ""
@@ -299,7 +339,8 @@ msgstr ""
 msgid "label_owner_password"
 msgstr ""
 
-#. Default: "If this publication is protected, speciy the pdf owner password if you want to parse the file."
+#. Default: "If this publication is protected, speciy the pdf owner password
+#. if you want to parse the file."
 #: slc.publications:/subtypes/publication.py:211
 msgid "description_owner_password"
 msgstr ""
@@ -309,7 +350,8 @@ msgstr ""
 msgid "label_user_password"
 msgstr ""
 
-#. Default: "If this publication is protected, speciy the pdf user password if you want to parse the file."
+#. Default: "If this publication is protected, speciy the pdf user password if
+#. you want to parse the file."
 #: slc.publications:/subtypes/publication.py:225
 msgid "description_user_password"
 msgstr ""

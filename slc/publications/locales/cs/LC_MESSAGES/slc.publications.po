@@ -7,16 +7,15 @@ msgstr ""
 "PO-Revision-Date: 2005-02-01 12:00+0100\n"
 "Last-Translator: EU\n"
 "Language-Team: EU\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Domain: slc.publications\n"
+"Language: \n"
 "Language-Code: cs\n"
 "Language-Name: Czech\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "Preferred-Encodings: UTF-8\n"
-"Domain: slc.publications\n"
 
 #: slc.publications:/browser/publication.py:272
 msgid "Apply"
@@ -38,112 +37,136 @@ msgstr ""
 #. Default: "No results found."
 #: slc.publications:/browser/templates/publications.pt:148
 msgid "label_no_results"
-msgstr ""
+msgstr "Nebyly nalezeny žádné výsledky."
 
 #. Default: "Show only latest 10"
 #: slc.publications:/browser/templates/publications.pt:159
 msgid "label_show_latest"
-msgstr ""
+msgstr "Zobrazit pouze posledních 10"
 
 #. Default: "Search all publications"
 #: slc.publications:/browser/templates/publications.pt:174
 msgid "label_search_publications"
-msgstr ""
+msgstr "Vyhledávat ve všech publikacích"
 
 #. Default: "Select publication type"
 #: slc.publications:/browser/templates/publications.pt:182
 msgid "label_publication_types"
-msgstr ""
+msgstr "Vybrat druh publikace"
 
 #. Default: "help"
 #: slc.publications:/browser/templates/publications.pt:186
 msgid "Help"
-msgstr ""
+msgstr "nápověda"
 
 #. Default: "All types"
 #: slc.publications:/browser/templates/publications.pt:201
 msgid "option_publication_all_types"
-msgstr ""
+msgstr "Všechny druhy"
 
 #. Default: "Filter by keywords"
 #: slc.publications:/browser/templates/publications.pt:217
 msgid "label_filter_by_keywords"
-msgstr ""
+msgstr "Filtrovat podle klíčových slov"
 
 #. Default: "Publications library"
 #: slc.publications:/browser/templates/publications.pt:48
 msgid "heading_publications_library"
-msgstr ""
+msgstr "Knihovna publikací"
 
 #: slc.publications:/browser/templates/publications.pt:53
 msgid "All publications can be downloaded free of charge."
-msgstr ""
+msgstr "Všechny publikace lze stáhnout zdarma."
 
 #. Default: "+ show featured publications"
 #: slc.publications:/browser/templates/publications.pt:61
 msgid "link_toggle_publications_carousel"
-msgstr ""
+msgstr "+ zobrazit hlavní publikace"
 
 #. Default: "Latest Publications"
 #: slc.publications:/browser/templates/publications.pt:98
 msgid "heading_publication_results_latest"
-msgstr ""
+msgstr "Nejnovější publikace"
 
 #. Default: "Key Resources"
 #: slc.publications:/browser/templates/related_items.pt:17
 msgid "heading_key_resources"
-msgstr ""
+msgstr "Hlavní zdroje"
 
 #: slc.publications:/config.py:101
 msgid "Presentations (PPT)"
 msgstr "Prezentace (PPT)"
 
-#. Default: "PPT presentations on various safety and health topics and EU-OSHA projects which can be freely adapted and reused. All English versions are also available on Slideshare (<a href='http://www.slideshare.net/euosha'>http://www.slideshare.net/euosha</a>)"
+#. Default: "PPT presentations on various safety and health topics and EU-OSHA
+#. projects which can be freely adapted and reused. All English versions are
+#. also available on Slideshare (<a
+#. href='http://www.slideshare.net/euosha'>http://www.slideshare.net/euosha</a>)"
 #: slc.publications:/config.py:102
 msgid "help_presentations"
-msgstr "Prezentace v PowerPointu zaměřené na různá témata z oblasti bezpečnosti a ochrany zdraví a projekty agentury EU-OSHA, které lze volně upravovat a opětovně používat. Všechny anglické verze jsou k dispozici též na <a href=\"http://www.slideshare.net/euosha\" title=\"stránkách agentury EU-OSHA na Slideshare\">Slideshare.</a>"
+msgstr ""
+"Prezentace v PowerPointu zaměřené na různá témata z oblasti bezpečnosti a "
+"ochrany zdraví a projekty agentury EU-OSHA, které lze volně upravovat a "
+"opětovně používat. Všechny anglické verze jsou k dispozici též na <a "
+"href=\"http://www.slideshare.net/euosha\" title=\"stránkách agentury EU-OSHA"
+" na Slideshare\">Slideshare.</a>"
 
 #: slc.publications:/config.py:111
 msgid "Magazine"
 msgstr "Časopis"
 
-#. Default: "In-depth information and analysis from leading experts and practitioners in occupational safety and health."
+#. Default: "In-depth information and analysis from leading experts and
+#. practitioners in occupational safety and health."
 #: slc.publications:/config.py:112
 msgid "help_magazine"
-msgstr "Hloubkové informace a analýzy od předních odborníků na bezpečnost a ochranu zdraví při práci a pracovníků, kteří se této problematice věnují v praxi."
+msgstr ""
+"Hloubkové informace a analýzy od předních odborníků na bezpečnost a ochranu "
+"zdraví při práci a pracovníků, kteří se této problematice věnují v praxi."
 
 #: slc.publications:/config.py:118
 msgid "Evaluation reports"
 msgstr "Hodnotící zprávy"
 
-#. Default: "An independent assessment of our work and contribute to improving our performance."
+#. Default: "An independent assessment of our work and contribute to improving
+#. our performance."
 #: slc.publications:/config.py:119
 msgid "help_evaluation_reports"
-msgstr "Nezávislé posouzení naší práce a příspěvek ke zlepšování naší výkonnosti."
+msgstr ""
+"Nezávislé posouzení naší práce a příspěvek ke zlepšování naší výkonnosti."
 
 #: slc.publications:/config.py:49
 msgid "Corporate publications"
 msgstr "Publikace agentury"
 
-#. Default: "The Agency's strategy, annual management plan and annual report (full and summary versions) provide a comprehensive overview of EU-OSHA's activities and governance."
+#. Default: "The Agency's strategy, annual management plan and annual report
+#. (full and summary versions) provide a comprehensive overview of EU-OSHA's
+#. activities and governance."
 #: slc.publications:/config.py:50
 msgid "help_corporate_publications"
-msgstr "Strategie agentury, její roční plán řízení a výroční zpráva (plné znění i shrnutí) poskytují komplexní přehled o činnostech a správě a řízení agentury EU-OSHA."
+msgstr ""
+"Strategie agentury, její roční plán řízení a výroční zpráva (plné znění i "
+"shrnutí) poskytují komplexní přehled o činnostech a správě a řízení agentury"
+" EU-OSHA."
 
 #: slc.publications:/config.py:57
 msgid "Reports"
 msgstr "Zprávy"
 
-#. Default: "Present the outcome of research, which will help to inform discussion among EU and national authorities, trade unions and experts on how to take forward issues in health and safety."
+#. Default: "Present the outcome of research, which will help to inform
+#. discussion among EU and national authorities, trade unions and experts on
+#. how to take forward issues in health and safety."
 #: slc.publications:/config.py:58
 msgid "help_reports"
-msgstr "Předkládají výsledky výzkumu, které prostřednictvím poskytovaných informací usnadňují diskusi mezi orgány EU a vnitrostátními orgány, odborovými organizacemi a odborníky na téma, jak dále pokročit při řešení otázek BOZP."
+msgstr ""
+"Předkládají výsledky výzkumu, které prostřednictvím poskytovaných informací "
+"usnadňují diskusi mezi orgány EU a vnitrostátními orgány, odborovými "
+"organizacemi a odborníky na téma, jak dále pokročit při řešení otázek BOZP."
 
 #: slc.publications:/config.py:65
 msgid "Literature reviews"
 msgstr "Přehledy literatury "
 
-#. Default: "Provide an overview of the most important issues related to this topic."
+#. Default: "Provide an overview of the most important issues related to this
+#. topic."
 #: slc.publications:/config.py:66
 msgid "help_literature_reviews"
 msgstr "Poskytují přehled nejvýznamnějších otázek týkajících se těchto témat."
@@ -152,28 +175,37 @@ msgstr "Poskytují přehled nejvýznamnějších otázek týkajících se těcht
 msgid "E-facts"
 msgstr "Elektronická fakta"
 
-#. Default: "Online only articles aimed at workers, employers and occupational safety and health professionals."
+#. Default: "Online only articles aimed at workers, employers and occupational
+#. safety and health professionals."
 #: slc.publications:/config.py:73
 msgid "help_e-facts"
-msgstr "Články zveřejněné výhradně na internetu a zaměřené na pracovníky, zaměstnavatele a odborníky na BOZP."
+msgstr ""
+"Články zveřejněné výhradně na internetu a zaměřené na pracovníky, "
+"zaměstnavatele a odborníky na BOZP."
 
 #: slc.publications:/config.py:79
 msgid "Articles"
 msgstr "Články"
 
-#. Default: "Articles from leading safety and health experts on issues of topical concern."
+#. Default: "Articles from leading safety and health experts on issues of
+#. topical concern."
 #: slc.publications:/config.py:80
 msgid "help_articles"
-msgstr "Články od předních odborníků v oblasti bezpečnosti a ochrany zdraví při práci dotýkající se aktuálních témat."
+msgstr ""
+"Články od předních odborníků v oblasti bezpečnosti a ochrany zdraví při "
+"práci dotýkající se aktuálních témat."
 
 #: slc.publications:/config.py:86
 msgid "Promotional Material"
 msgstr "Propagační materiály"
 
-#. Default: "A selection of promotional literature presenting Agency projects and services and mainly used at exhibitions and events."
+#. Default: "A selection of promotional literature presenting Agency projects
+#. and services and mainly used at exhibitions and events."
 #: slc.publications:/config.py:87
 msgid "help_promotional_material"
-msgstr "Výběr propagační literatury, která představuje projekty a služby agentury, zejména pro použití na výstavách a akcích."
+msgstr ""
+"Výběr propagační literatury, která představuje projekty a služby agentury, "
+"zejména pro použití na výstavách a akcích."
 
 #: slc.publications:/config.py:94
 msgid "Factsheets"
@@ -192,7 +224,7 @@ msgstr "Stáhněte si celou publikaci ve formátu PDF"
 #. Default: "Order a printed copy of this document!"
 #: slc.publications:/missing_18n_labels.py:12
 msgid "label_order_copy"
-msgstr ""
+msgstr "Objednejte si tento dokument v tištěné podobě!"
 
 #. Default: "Available in"
 #: slc.publications:/missing_18n_labels.py:14
@@ -203,12 +235,12 @@ msgstr "K dispozici v"
 #. Default: "Chapters in this Publication"
 #: slc.publications:/missing_18n_labels.py:15
 msgid "heading_chapterlisting"
-msgstr ""
+msgstr "Kapitoly v této publikaci"
 
 #. Default: "Related Resources"
 #: slc.publications:/missing_18n_labels.py:17
 msgid "heading_related_resources"
-msgstr ""
+msgstr "Související zdroje"
 
 #. Default: "Show more publications on"
 #: slc.publications:/missing_18n_labels.py:18
@@ -227,9 +259,10 @@ msgstr ""
 #. Default: "Cover Image"
 #: slc.publications:/subtypes/publication.py:107
 msgid "label_cover_image"
-msgstr ""
+msgstr "Obrázek na titulní straně"
 
-#. Default: "Upload a cover image. Leave empty to have the system autogenerate one for you."
+#. Default: "Upload a cover image. Leave empty to have the system autogenerate
+#. one for you."
 #: slc.publications:/subtypes/publication.py:111
 msgid "description_cover_image"
 msgstr ""
@@ -279,7 +312,8 @@ msgstr ""
 msgid "label_chapters"
 msgstr ""
 
-#. Default: "Chapters of this Publication. Specify the Link targets defined in your pdf file, one per line."
+#. Default: "Chapters of this Publication. Specify the Link targets defined in
+#. your pdf file, one per line."
 #: slc.publications:/subtypes/publication.py:181
 msgid "description_chapters"
 msgstr ""
@@ -299,7 +333,8 @@ msgstr ""
 msgid "label_owner_password"
 msgstr ""
 
-#. Default: "If this publication is protected, speciy the pdf owner password if you want to parse the file."
+#. Default: "If this publication is protected, speciy the pdf owner password
+#. if you want to parse the file."
 #: slc.publications:/subtypes/publication.py:211
 msgid "description_owner_password"
 msgstr ""
@@ -309,7 +344,8 @@ msgstr ""
 msgid "label_user_password"
 msgstr ""
 
-#. Default: "If this publication is protected, speciy the pdf user password if you want to parse the file."
+#. Default: "If this publication is protected, speciy the pdf user password if
+#. you want to parse the file."
 #: slc.publications:/subtypes/publication.py:225
 msgid "description_user_password"
 msgstr ""

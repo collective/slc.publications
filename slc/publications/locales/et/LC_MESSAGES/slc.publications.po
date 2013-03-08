@@ -7,15 +7,15 @@ msgstr ""
 "PO-Revision-Date: 2004-12-17 15:53+0100\n"
 "Last-Translator: EU\n"
 "Language-Team: EU\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0\n"
+"Domain: slc.publications\n"
+"Language: \n"
 "Language-Code: et\n"
 "Language-Name: Estonian\n"
+"Plural-Forms: nplurals=1; plural=0\n"
 "Preferred-Encodings: UTF-8\n"
-"Domain: slc.publications\n"
 
 #: slc.publications:/browser/publication.py:272
 msgid "Apply"
@@ -37,85 +37,97 @@ msgstr ""
 #. Default: "No results found."
 #: slc.publications:/browser/templates/publications.pt:148
 msgid "label_no_results"
-msgstr ""
+msgstr "Vasteid ei leitud."
 
 #. Default: "Show only latest 10"
 #: slc.publications:/browser/templates/publications.pt:159
 msgid "label_show_latest"
-msgstr ""
+msgstr "Näita ainult 10 uusimat"
 
 #. Default: "Search all publications"
 #: slc.publications:/browser/templates/publications.pt:174
 msgid "label_search_publications"
-msgstr ""
+msgstr "Otsi kõikidest väljaannetest"
 
 #. Default: "Select publication type"
 #: slc.publications:/browser/templates/publications.pt:182
 msgid "label_publication_types"
-msgstr ""
+msgstr "Vali väljaande liik"
 
 #. Default: "help"
 #: slc.publications:/browser/templates/publications.pt:186
 msgid "Help"
-msgstr ""
+msgstr "abi"
 
 #. Default: "All types"
 #: slc.publications:/browser/templates/publications.pt:201
 msgid "option_publication_all_types"
-msgstr ""
+msgstr "Kõik liigid"
 
 #. Default: "Filter by keywords"
 #: slc.publications:/browser/templates/publications.pt:217
 msgid "label_filter_by_keywords"
-msgstr ""
+msgstr "Filtreeri märksõnade järgi"
 
 #. Default: "Publications library"
 #: slc.publications:/browser/templates/publications.pt:48
 msgid "heading_publications_library"
-msgstr ""
+msgstr "Väljaannete kogu"
 
 #: slc.publications:/browser/templates/publications.pt:53
 msgid "All publications can be downloaded free of charge."
-msgstr ""
+msgstr "Kõiki väljaandeid saab alla laadida tasuta."
 
 #. Default: "+ show featured publications"
 #: slc.publications:/browser/templates/publications.pt:61
 msgid "link_toggle_publications_carousel"
-msgstr ""
+msgstr "+ näita esile toodud väljaandeid"
 
 #. Default: "Latest Publications"
 #: slc.publications:/browser/templates/publications.pt:98
 msgid "heading_publication_results_latest"
-msgstr ""
+msgstr "Uusimad väljaanded"
 
 #. Default: "Key Resources"
 #: slc.publications:/browser/templates/related_items.pt:17
 msgid "heading_key_resources"
-msgstr ""
+msgstr "Põhimaterjalid"
 
 #: slc.publications:/config.py:101
 msgid "Presentations (PPT)"
 msgstr "PowerPoint-esitlused"
 
-#. Default: "PPT presentations on various safety and health topics and EU-OSHA projects which can be freely adapted and reused. All English versions are also available on Slideshare (<a href='http://www.slideshare.net/euosha'>http://www.slideshare.net/euosha</a>)"
+#. Default: "PPT presentations on various safety and health topics and EU-OSHA
+#. projects which can be freely adapted and reused. All English versions are
+#. also available on Slideshare (<a
+#. href='http://www.slideshare.net/euosha'>http://www.slideshare.net/euosha</a>)"
 #: slc.publications:/config.py:102
 msgid "help_presentations"
-msgstr "Slaidiprogrammid mitmesugustel tööohutuse ja töötervishoiuga ning EU-OSHA projektidega seotud teemadel, mida tohib vabalt kohandada ja kasutada. Kõik ingliskeelsed versioonid on allalaadimiseks olemas EU-OSHA veebilehe jaotises <a href=\"http://www.slideshare.net/euosha\" target=\"_blank\" title=\"\">Slideshare</a>"
+msgstr ""
+"Slaidiprogrammid mitmesugustel tööohutuse ja töötervishoiuga ning EU-OSHA "
+"projektidega seotud teemadel, mida tohib vabalt kohandada ja kasutada. Kõik "
+"ingliskeelsed versioonid on allalaadimiseks olemas EU-OSHA veebilehe "
+"jaotises <a href=\"http://www.slideshare.net/euosha\" target=\"_blank\" "
+"title=\"\">Slideshare</a>"
 
 #: slc.publications:/config.py:111
 msgid "Magazine"
 msgstr "Ajakirjad"
 
-#. Default: "In-depth information and analysis from leading experts and practitioners in occupational safety and health."
+#. Default: "In-depth information and analysis from leading experts and
+#. practitioners in occupational safety and health."
 #: slc.publications:/config.py:112
 msgid "help_magazine"
-msgstr "Üksikasjalik teave ja süvaanalüüsid juhtivatelt tööohutuse ja töötervishoiu ekspertidelt ning asjatundjatelt."
+msgstr ""
+"Üksikasjalik teave ja süvaanalüüsid juhtivatelt tööohutuse ja töötervishoiu "
+"ekspertidelt ning asjatundjatelt."
 
 #: slc.publications:/config.py:118
 msgid "Evaluation reports"
 msgstr "Hindamisaruanded"
 
-#. Default: "An independent assessment of our work and contribute to improving our performance."
+#. Default: "An independent assessment of our work and contribute to improving
+#. our performance."
 #: slc.publications:/config.py:119
 msgid "help_evaluation_reports"
 msgstr "Sõltumatu hinnang meie tegevusele, mis aitab meil parandada tulemusi."
@@ -124,25 +136,35 @@ msgstr "Sõltumatu hinnang meie tegevusele, mis aitab meil parandada tulemusi."
 msgid "Corporate publications"
 msgstr "EU-OSHA väljaanded"
 
-#. Default: "The Agency's strategy, annual management plan and annual report (full and summary versions) provide a comprehensive overview of EU-OSHA's activities and governance."
+#. Default: "The Agency's strategy, annual management plan and annual report
+#. (full and summary versions) provide a comprehensive overview of EU-OSHA's
+#. activities and governance."
 #: slc.publications:/config.py:50
 msgid "help_corporate_publications"
-msgstr "Agentuuri strateegia, iga-aastane halduskava ja aastaaruanne (täis- ja lühiversioon) annavad põhjaliku ülevaate EU-OSHA tegevusest ja juhtimisest."
+msgstr ""
+"Agentuuri strateegia, iga-aastane halduskava ja aastaaruanne (täis- ja "
+"lühiversioon) annavad põhjaliku ülevaate EU-OSHA tegevusest ja juhtimisest."
 
 #: slc.publications:/config.py:57
 msgid "Reports"
 msgstr "Aruanded"
 
-#. Default: "Present the outcome of research, which will help to inform discussion among EU and national authorities, trade unions and experts on how to take forward issues in health and safety."
+#. Default: "Present the outcome of research, which will help to inform
+#. discussion among EU and national authorities, trade unions and experts on
+#. how to take forward issues in health and safety."
 #: slc.publications:/config.py:58
 msgid "help_reports"
-msgstr "Aruannetes tutvustatakse teadusuuringute tulemusi, mida Euroopa Liidu ja liikmesriikide asutused, ametiühingud ja eksperdid saavad kasutada arutelus, kuidas lahendada tööohutuse ja töötervishoiu probleeme."
+msgstr ""
+"Aruannetes tutvustatakse teadusuuringute tulemusi, mida Euroopa Liidu ja "
+"liikmesriikide asutused, ametiühingud ja eksperdid saavad kasutada arutelus,"
+" kuidas lahendada tööohutuse ja töötervishoiu probleeme."
 
 #: slc.publications:/config.py:65
 msgid "Literature reviews"
 msgstr "Kirjandusülevaated"
 
-#. Default: "Provide an overview of the most important issues related to this topic."
+#. Default: "Provide an overview of the most important issues related to this
+#. topic."
 #: slc.publications:/config.py:66
 msgid "help_literature_reviews"
 msgstr "Kirjandusülevaated kirjeldavad valdkonna tähtsamaid teemasid."
@@ -151,16 +173,20 @@ msgstr "Kirjandusülevaated kirjeldavad valdkonna tähtsamaid teemasid."
 msgid "E-facts"
 msgstr "E-facts"
 
-#. Default: "Online only articles aimed at workers, employers and occupational safety and health professionals."
+#. Default: "Online only articles aimed at workers, employers and occupational
+#. safety and health professionals."
 #: slc.publications:/config.py:73
 msgid "help_e-facts"
-msgstr "E-facts on veebiväljaanne töövõtjatele, tööandjatele ning tööohutuse ja töötervishoiu spetsialistidele."
+msgstr ""
+"E-facts on veebiväljaanne töövõtjatele, tööandjatele ning tööohutuse ja "
+"töötervishoiu spetsialistidele."
 
 #: slc.publications:/config.py:79
 msgid "Articles"
 msgstr "Artiklid"
 
-#. Default: "Articles from leading safety and health experts on issues of topical concern."
+#. Default: "Articles from leading safety and health experts on issues of
+#. topical concern."
 #: slc.publications:/config.py:80
 msgid "help_articles"
 msgstr "Juhtivate tööohutuse ja töötervishoiu spetsialistide kirjutised."
@@ -169,10 +195,13 @@ msgstr "Juhtivate tööohutuse ja töötervishoiu spetsialistide kirjutised."
 msgid "Promotional Material"
 msgstr "Reklaammaterjalid"
 
-#. Default: "A selection of promotional literature presenting Agency projects and services and mainly used at exhibitions and events."
+#. Default: "A selection of promotional literature presenting Agency projects
+#. and services and mainly used at exhibitions and events."
 #: slc.publications:/config.py:87
 msgid "help_promotional_material"
-msgstr "Agentuuri projekte ja teenuseid tutvustavad reklaamtrükised, mida levitatakse peamiselt messidel ja üritustel."
+msgstr ""
+"Agentuuri projekte ja teenuseid tutvustavad reklaamtrükised, mida "
+"levitatakse peamiselt messidel ja üritustel."
 
 #: slc.publications:/config.py:94
 msgid "Factsheets"
@@ -191,7 +220,7 @@ msgstr "Väljaande täielik tekst pdf-formaadis laadige alla siit"
 #. Default: "Order a printed copy of this document!"
 #: slc.publications:/missing_18n_labels.py:12
 msgid "label_order_copy"
-msgstr ""
+msgstr "Käesoleva dokumendi väljatrüki tellimine"
 
 #. Default: "Available in"
 #: slc.publications:/missing_18n_labels.py:14
@@ -202,12 +231,12 @@ msgstr "Kättesaadav (kus?)"
 #. Default: "Chapters in this Publication"
 #: slc.publications:/missing_18n_labels.py:15
 msgid "heading_chapterlisting"
-msgstr ""
+msgstr "Selle väljaande peatükid"
 
 #. Default: "Related Resources"
 #: slc.publications:/missing_18n_labels.py:17
 msgid "heading_related_resources"
-msgstr ""
+msgstr "Seotud materjalid"
 
 #. Default: "Show more publications on"
 #: slc.publications:/missing_18n_labels.py:18
@@ -226,9 +255,10 @@ msgstr ""
 #. Default: "Cover Image"
 #: slc.publications:/subtypes/publication.py:107
 msgid "label_cover_image"
-msgstr ""
+msgstr "Kaanepilt"
 
-#. Default: "Upload a cover image. Leave empty to have the system autogenerate one for you."
+#. Default: "Upload a cover image. Leave empty to have the system autogenerate
+#. one for you."
 #: slc.publications:/subtypes/publication.py:111
 msgid "description_cover_image"
 msgstr ""
@@ -278,7 +308,8 @@ msgstr ""
 msgid "label_chapters"
 msgstr ""
 
-#. Default: "Chapters of this Publication. Specify the Link targets defined in your pdf file, one per line."
+#. Default: "Chapters of this Publication. Specify the Link targets defined in
+#. your pdf file, one per line."
 #: slc.publications:/subtypes/publication.py:181
 msgid "description_chapters"
 msgstr ""
@@ -298,7 +329,8 @@ msgstr ""
 msgid "label_owner_password"
 msgstr ""
 
-#. Default: "If this publication is protected, speciy the pdf owner password if you want to parse the file."
+#. Default: "If this publication is protected, speciy the pdf owner password
+#. if you want to parse the file."
 #: slc.publications:/subtypes/publication.py:211
 msgid "description_owner_password"
 msgstr ""
@@ -308,7 +340,8 @@ msgstr ""
 msgid "label_user_password"
 msgstr ""
 
-#. Default: "If this publication is protected, speciy the pdf user password if you want to parse the file."
+#. Default: "If this publication is protected, speciy the pdf user password if
+#. you want to parse the file."
 #: slc.publications:/subtypes/publication.py:225
 msgid "description_user_password"
 msgstr ""
