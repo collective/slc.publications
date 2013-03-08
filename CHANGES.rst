@@ -1,8 +1,8 @@
 Changelog
 =========
 
-4.7 (unreleased)
-----------------
+4.7.1 (2013-03-08)
+------------------
 
 - Added translations in 23 languages proided by EU-OSHA [pysaior]
 
