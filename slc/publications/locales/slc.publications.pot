@@ -1,7 +1,20 @@
+##############################################################################
+#
+# Copyright (c) 2003-2004 Zope Foundation and Contributors.
+# All Rights Reserved.
+#
+# This software is subject to the provisions of the Zope Public License,
+# Version 2.1 (ZPL).  A copy of the ZPL should accompany this distribution.
+# THIS SOFTWARE IS PROVIDED "AS IS" AND ANY AND ALL EXPRESS OR IMPLIED
+# WARRANTIES ARE DISCLAIMED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+# WARRANTIES OF TITLE, MERCHANTABILITY, AGAINST INFRINGEMENT, AND FITNESS
+# FOR A PARTICULAR PURPOSE.
+#
+##############################################################################
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
-"POT-Creation-Date: Thu Jan 31 13:20:16 2013\n"
+"POT-Creation-Date: Wed Mar 20 15:45:11 2013\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Zope 3 Developers <zope-dev@zope.org>\n"
@@ -22,9 +35,13 @@ msgstr ""
 msgid "No changes"
 msgstr ""
 
-#: slc.publications:/browser/templates/publications.pt:137
-#: slc.publications:/browser/templates/publications.pt:223
-msgid "${DYNAMIC_CONTENT}"
+#: slc.publications:/browser/templates/publications.pt:117
+msgid "Year"
+msgstr ""
+
+#: slc.publications:/browser/templates/publications.pt:120
+#. Default: "Type"
+msgid "heading_type"
 msgstr ""
 
 #: slc.publications:/browser/templates/publications.pt:148
@@ -86,92 +103,92 @@ msgstr ""
 msgid "heading_key_resources"
 msgstr ""
 
-#: slc.publications:/config.py:101
+#: slc.publications:/config.py:100
 msgid "Presentations (PPT)"
 msgstr ""
 
-#: slc.publications:/config.py:102
+#: slc.publications:/config.py:101
 #. Default: "PPT presentations on various safety and health topics and EU-OSHA projects which can be freely adapted and reused. All English versions are also available on Slideshare (<a href='http://www.slideshare.net/euosha'>http://www.slideshare.net/euosha</a>)"
 msgid "help_presentations"
 msgstr ""
 
-#: slc.publications:/config.py:111
+#: slc.publications:/config.py:110
 msgid "Magazine"
 msgstr ""
 
-#: slc.publications:/config.py:112
+#: slc.publications:/config.py:111
 #. Default: "In-depth information and analysis from leading experts and practitioners in occupational safety and health."
 msgid "help_magazine"
 msgstr ""
 
-#: slc.publications:/config.py:118
+#: slc.publications:/config.py:117
 msgid "Evaluation reports"
 msgstr ""
 
-#: slc.publications:/config.py:119
+#: slc.publications:/config.py:118
 #. Default: "An independent assessment of our work and contribute to improving our performance."
 msgid "help_evaluation_reports"
 msgstr ""
 
-#: slc.publications:/config.py:49
+#: slc.publications:/config.py:48
 msgid "Corporate publications"
 msgstr ""
 
-#: slc.publications:/config.py:50
+#: slc.publications:/config.py:49
 #. Default: "The Agency's strategy, annual management plan and annual report (full and summary versions) provide a comprehensive overview of EU-OSHA's activities and governance."
 msgid "help_corporate_publications"
 msgstr ""
 
-#: slc.publications:/config.py:57
+#: slc.publications:/config.py:56
 msgid "Reports"
 msgstr ""
 
-#: slc.publications:/config.py:58
+#: slc.publications:/config.py:57
 #. Default: "Present the outcome of research, which will help to inform discussion among EU and national authorities, trade unions and experts on how to take forward issues in health and safety."
 msgid "help_reports"
 msgstr ""
 
-#: slc.publications:/config.py:65
+#: slc.publications:/config.py:64
 msgid "Literature reviews"
 msgstr ""
 
-#: slc.publications:/config.py:66
+#: slc.publications:/config.py:65
 #. Default: "Provide an overview of the most important issues related to this topic."
 msgid "help_literature_reviews"
 msgstr ""
 
-#: slc.publications:/config.py:72
+#: slc.publications:/config.py:71
 msgid "E-facts"
 msgstr ""
 
-#: slc.publications:/config.py:73
+#: slc.publications:/config.py:72
 #. Default: "Online only articles aimed at workers, employers and occupational safety and health professionals."
 msgid "help_e-facts"
 msgstr ""
 
-#: slc.publications:/config.py:79
+#: slc.publications:/config.py:78
 msgid "Articles"
 msgstr ""
 
-#: slc.publications:/config.py:80
+#: slc.publications:/config.py:79
 #. Default: "Articles from leading safety and health experts on issues of topical concern."
 msgid "help_articles"
 msgstr ""
 
-#: slc.publications:/config.py:86
+#: slc.publications:/config.py:85
 msgid "Promotional Material"
 msgstr ""
 
-#: slc.publications:/config.py:87
+#: slc.publications:/config.py:86
 #. Default: "A selection of promotional literature presenting Agency projects and services and mainly used at exhibitions and events."
 msgid "help_promotional_material"
 msgstr ""
 
-#: slc.publications:/config.py:94
+#: slc.publications:/config.py:93
 msgid "Factsheets"
 msgstr ""
 
-#: slc.publications:/config.py:95
+#: slc.publications:/config.py:94
 #. Default: "Provide brief introductions to the Agency and to our activities."
 msgid "help_factsheets"
 msgstr ""

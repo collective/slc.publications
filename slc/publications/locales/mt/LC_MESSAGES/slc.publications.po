@@ -3,15 +3,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: osha\n"
-"POT-Creation-Date: Thu Jan 31 13:20:16 2013\n"
+"POT-Creation-Date: Wed Mar 20 15:45:11 2013\n"
 "PO-Revision-Date: 2004-12-17 15:53+0100\n"
 "Last-Translator: EU\n"
 "Language-Team: EU\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Domain: slc.publications\n"
-"Language: \n"
 "Language-Code: mt\n"
 "Language-Name: Malthese\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -29,10 +29,14 @@ msgstr ""
 msgid "No changes"
 msgstr ""
 
-#: slc.publications:/browser/templates/publications.pt:137
-#: slc.publications:/browser/templates/publications.pt:223
-msgid "${DYNAMIC_CONTENT}"
-msgstr ""
+#: slc.publications:/browser/templates/publications.pt:117
+msgid "Year"
+msgstr "Sena"
+
+#. Default: "Type"
+#: slc.publications:/browser/templates/publications.pt:120
+msgid "heading_type"
+msgstr "Tip"
 
 #. Default: "No results found."
 #: slc.publications:/browser/templates/publications.pt:148
@@ -93,69 +97,60 @@ msgstr "L-Aħħar Pubblikazzjonijiet"
 msgid "heading_key_resources"
 msgstr "Riżorsi Ewlenin"
 
-#: slc.publications:/config.py:101
+#: slc.publications:/config.py:100
 msgid "Presentations (PPT)"
 msgstr "Preżentazzjonijiet (PPT)"
 
-#. Default: "PPT presentations on various safety and health topics and EU-OSHA
-#. projects which can be freely adapted and reused. All English versions are
-#. also available on Slideshare (<a
-#. href='http://www.slideshare.net/euosha'>http://www.slideshare.net/euosha</a>)"
-#: slc.publications:/config.py:102
+#. Default: "PPT presentations on various safety and health topics and EU-OSHA projects which can be freely adapted and reused. All English versions are also available on Slideshare (<a href='http://www.slideshare.net/euosha'>http://www.slideshare.net/euosha</a>)"
+#: slc.publications:/config.py:101
 msgid "help_presentations"
 msgstr ""
 "Preżentazzjonijiet PPT dwar suġġetti tas-saħħa u sigurtà varji u proġetti "
 "tal-EU-OSHA li jistgħu jiġu adattati u użati mill-ġdid b'mod liberu. Il-"
-"verżjonijiet kollha bl-Ingliż huma disponibbli fuq <a "
-"href=\"http://www.slideshare.net/euosha\" target=\"_blank\" title=\"EU-OSHA "
-"fuq slideshare\">Slideshare</a>"
+"verżjonijiet kollha bl-Ingliż huma disponibbli fuq <a href=\"http://www."
+"slideshare.net/euosha\" target=\"_blank\" title=\"EU-OSHA fuq slideshare"
+"\">Slideshare</a>"
 
-#: slc.publications:/config.py:111
+#: slc.publications:/config.py:110
 msgid "Magazine"
 msgstr "Rivista"
 
-#. Default: "In-depth information and analysis from leading experts and
-#. practitioners in occupational safety and health."
-#: slc.publications:/config.py:112
+#. Default: "In-depth information and analysis from leading experts and practitioners in occupational safety and health."
+#: slc.publications:/config.py:111
 msgid "help_magazine"
 msgstr ""
 "Informazzjoni u analiżi fil-fond minn esperti u prattikanti ewlenin fil-"
 "qasam tas-saħħa u s-sigurtà fuq il-post tax-xogħol."
 
-#: slc.publications:/config.py:118
+#: slc.publications:/config.py:117
 msgid "Evaluation reports"
 msgstr "Rapporti ta' evalwazzjoni"
 
-#. Default: "An independent assessment of our work and contribute to improving
-#. our performance."
-#: slc.publications:/config.py:119
+#. Default: "An independent assessment of our work and contribute to improving our performance."
+#: slc.publications:/config.py:118
 msgid "help_evaluation_reports"
 msgstr ""
 "Valutazzjoni indipendenti tax-xogħol tagħna u jikkontribwixxu għat-titjib "
 "tal-prestazzjoni tagħna."
 
-#: slc.publications:/config.py:49
+#: slc.publications:/config.py:48
 msgid "Corporate publications"
 msgstr "Pubblikazzjonijiet korporattivi"
 
-#. Default: "The Agency's strategy, annual management plan and annual report
-#. (full and summary versions) provide a comprehensive overview of EU-OSHA's
-#. activities and governance."
-#: slc.publications:/config.py:50
+#. Default: "The Agency's strategy, annual management plan and annual report (full and summary versions) provide a comprehensive overview of EU-OSHA's activities and governance."
+#: slc.publications:/config.py:49
 msgid "help_corporate_publications"
 msgstr ""
 "L-istrateġija tal-Aġenzija, il-pjan amministrattiv annwali u r-rapport sħiħ "
 "(verżjonijiet sħaħ u sommarji) jipprovdu ħarsa ġenerali komprensiva tal-"
 "attivitajiet u tal-governanza tal-EU-OSHA."
 
-#: slc.publications:/config.py:57
+#: slc.publications:/config.py:56
 msgid "Reports"
 msgstr "Rapporti"
 
-#. Default: "Present the outcome of research, which will help to inform
-#. discussion among EU and national authorities, trade unions and experts on
-#. how to take forward issues in health and safety."
-#: slc.publications:/config.py:58
+#. Default: "Present the outcome of research, which will help to inform discussion among EU and national authorities, trade unions and experts on how to take forward issues in health and safety."
+#: slc.publications:/config.py:57
 msgid "help_reports"
 msgstr ""
 "Jippreżentaw ir-riżultati tar-riċerka, li jgħinu biex jinfurmaw id-"
@@ -163,60 +158,56 @@ msgstr ""
 "dwar kif il-kwistjonijiet fl-oqsma tas-saħħa u s-sigurtà għandhom jitressqu "
 "'l quddiem."
 
-#: slc.publications:/config.py:65
+#: slc.publications:/config.py:64
 msgid "Literature reviews"
 msgstr "Analiżi tal-litteratura"
 
-#. Default: "Provide an overview of the most important issues related to this
-#. topic."
-#: slc.publications:/config.py:66
+#. Default: "Provide an overview of the most important issues related to this topic."
+#: slc.publications:/config.py:65
 msgid "help_literature_reviews"
 msgstr ""
-"Tipprovdi ħarsa ġenerali tal-aktar kwistjonijiet importanti relatati ma' dan"
-" is-suġġett."
+"Tipprovdi ħarsa ġenerali tal-aktar kwistjonijiet importanti relatati ma' dan "
+"is-suġġett."
 
-#: slc.publications:/config.py:72
+#: slc.publications:/config.py:71
 msgid "E-facts"
 msgstr "Fatti elettroniċi"
 
-#. Default: "Online only articles aimed at workers, employers and occupational
-#. safety and health professionals."
-#: slc.publications:/config.py:73
+#. Default: "Online only articles aimed at workers, employers and occupational safety and health professionals."
+#: slc.publications:/config.py:72
 msgid "help_e-facts"
 msgstr ""
 "Online, artikli biss immirati għall-ħaddiema, impjegaturi u professjonisti "
 "fil-qasam tas-saħħa u s-sigurtà fuq il-post tax-xogħol."
 
-#: slc.publications:/config.py:79
+#: slc.publications:/config.py:78
 msgid "Articles"
 msgstr "Artikli"
 
-#. Default: "Articles from leading safety and health experts on issues of
-#. topical concern."
-#: slc.publications:/config.py:80
+#. Default: "Articles from leading safety and health experts on issues of topical concern."
+#: slc.publications:/config.py:79
 msgid "help_articles"
 msgstr ""
 "Artikli minn esperti ewlenin fil-qasam tas-saħħa u s-sigurtà dwar "
 "kwistjonijiet ta' tħassib topiku."
 
-#: slc.publications:/config.py:86
+#: slc.publications:/config.py:85
 msgid "Promotional Material"
 msgstr "Materjal ta' Promozzjoni"
 
-#. Default: "A selection of promotional literature presenting Agency projects
-#. and services and mainly used at exhibitions and events."
-#: slc.publications:/config.py:87
+#. Default: "A selection of promotional literature presenting Agency projects and services and mainly used at exhibitions and events."
+#: slc.publications:/config.py:86
 msgid "help_promotional_material"
 msgstr ""
 "Għażla ta' litteratura promozzjonali li tippreżenta proġetti u servizzi tal-"
 "Aġenzija u li jintuża prinċipalment f'wirjiet u f'avvenimenti."
 
-#: slc.publications:/config.py:94
+#: slc.publications:/config.py:93
 msgid "Factsheets"
 msgstr "Skedi informattivi"
 
 #. Default: "Provide brief introductions to the Agency and to our activities."
-#: slc.publications:/config.py:95
+#: slc.publications:/config.py:94
 msgid "help_factsheets"
 msgstr ""
 "Jipprovdu introduzzjonijiet qosra lill-Aġenzija u lill-attivitajiet tagħna."
@@ -266,8 +257,7 @@ msgstr ""
 msgid "label_cover_image"
 msgstr "Immaġni ta' Kopertura"
 
-#. Default: "Upload a cover image. Leave empty to have the system autogenerate
-#. one for you."
+#. Default: "Upload a cover image. Leave empty to have the system autogenerate one for you."
 #: slc.publications:/subtypes/publication.py:111
 msgid "description_cover_image"
 msgstr ""
@@ -317,8 +307,7 @@ msgstr ""
 msgid "label_chapters"
 msgstr ""
 
-#. Default: "Chapters of this Publication. Specify the Link targets defined in
-#. your pdf file, one per line."
+#. Default: "Chapters of this Publication. Specify the Link targets defined in your pdf file, one per line."
 #: slc.publications:/subtypes/publication.py:181
 msgid "description_chapters"
 msgstr ""
@@ -338,8 +327,7 @@ msgstr ""
 msgid "label_owner_password"
 msgstr ""
 
-#. Default: "If this publication is protected, speciy the pdf owner password
-#. if you want to parse the file."
+#. Default: "If this publication is protected, speciy the pdf owner password if you want to parse the file."
 #: slc.publications:/subtypes/publication.py:211
 msgid "description_owner_password"
 msgstr ""
@@ -349,8 +337,7 @@ msgstr ""
 msgid "label_user_password"
 msgstr ""
 
-#. Default: "If this publication is protected, speciy the pdf user password if
-#. you want to parse the file."
+#. Default: "If this publication is protected, speciy the pdf user password if you want to parse the file."
 #: slc.publications:/subtypes/publication.py:225
 msgid "description_user_password"
 msgstr ""

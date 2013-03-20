@@ -7,7 +7,6 @@ product_globals = globals()
 DEFAULT_ADD_CONTENT_PERMISSION = "Add portal content"
 
 from ordereddict import OrderedDict
-from osha.theme import OSHAMessageFactory as _
 from slc.publications import HAVE_LINGUAPLONE
 from slc.publications import SLCPublicationsMessageFactory as _
 
