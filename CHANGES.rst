@@ -4,8 +4,7 @@ Changelog
 4.7.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Translation fixes #7045 [claudio]
 
 4.7.1 (2013-03-08)
 ------------------
