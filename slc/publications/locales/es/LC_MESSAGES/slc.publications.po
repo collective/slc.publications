@@ -38,7 +38,7 @@ msgstr "Año"
 #. Default: "Type"
 #: slc.publications:/browser/templates/publications.pt:120
 msgid "heading_type"
-msgstr "tipo"
+msgstr "Tipo"
 
 #. Default: "No results found."
 #: slc.publications:/browser/templates/publications.pt:148

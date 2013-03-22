@@ -36,7 +36,7 @@ msgstr "Letnik"
 #. Default: "Type"
 #: slc.publications:/browser/templates/publications.pt:120
 msgid "heading_type"
-msgstr "tip"
+msgstr "Tip"
 
 #. Default: "No results found."
 #: slc.publications:/browser/templates/publications.pt:148
