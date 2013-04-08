@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-4.7.4 (unreleased)
+4.7.4 (2013-04-08)
 ------------------
 
 -another attempt
