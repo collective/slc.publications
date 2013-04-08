@@ -1,13 +1,7 @@
 Changelog
 =========
 
-4.7.3 (unreleased)
-------------------
-
-- Nothing changed yet.
-
-
-4.7.2 (2013-04-08)
+4.7.2 (unreleased)
 ------------------
 
 - Translation fixes #7045 [claudio]
