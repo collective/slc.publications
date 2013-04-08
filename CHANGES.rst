@@ -1,7 +1,7 @@
 Changelog
 =========
 
-4.7.3 (unreleased)
+4.7.3 (2013-04-08)
 ------------------
 
 - new release
