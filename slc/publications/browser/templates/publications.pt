@@ -14,7 +14,7 @@
 
   <metal:javascriptslot fill-slot="javascript_head_slot">
     <script type="text/javascript" charset="utf-8"
-            tal:attributes="src string:$portal_url/++resource++slc.publications.browser/publications.js?v=9" >
+            tal:attributes="src string:$portal_url/++resource++slc.publications.browser/publications.js?v=10" >
     </script>
     <script type="text/javascript" charset="utf-8"
             tal:attributes="src string:$portal_url/++resource++osha.theme.behaviour/jquery.hoverIntent.js" >
@@ -97,7 +97,6 @@
 
         <h2 id="publication-results-heading-latest" i18n:translate="heading_publication_results_latest">Latest Publications</h2>
         <h2 id="publication-results-heading" i18n:translate="heading_publication_results" style="display:none" i18n:domain="osha">Publications</h2>
-        
 
         <div id="loading" style="display:none;">
           <img tal:attributes="src string:$portal_url/++resource++slc.publications.browser/loader.gif" alt="Loader" />

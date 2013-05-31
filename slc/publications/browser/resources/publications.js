@@ -7,21 +7,21 @@
     // fetch the publications based on provided search criteria and populate
     // the results table
     function queryPublications() {
-        var query = $("#publicationsFilter").serialize(),
+        var query = jQuery("#publicationsFilter").serialize(),
             resultsCount = 0;
 
         // helper function to toggle the display of 'Show all' and
         // 'Show only latest 10' links
         function toggleShowAll() {
             if (resultsCount < MAX_RESULTS) {
-                $("#show-all").hide();
-                $("#show-latest").hide();
+                jQuery("#show-all").hide();
+                jQuery("#show-latest").hide();
             } else if (showAll) {
-                $("#show-all").hide();
-                $("#show-latest").show();
+                jQuery("#show-all").hide();
+                jQuery("#show-latest").show();
             } else {
-                $("#show-all").show();
-                $("#show-latest").hide();
+                jQuery("#show-all").show();
+                jQuery("#show-latest").hide();
             }
         }
 
@@ -29,31 +29,31 @@
         // if no results have been found
         function showResults() {
             if (resultsCount > 0) {
-                $("#resultTable").show();
-                $("#noResults").hide();
+                jQuery("#resultTable").show();
+                jQuery("#noResults").hide();
             } else {
-                $("#resultTable").hide();
-                $("#noResults").show();
+                jQuery("#resultTable").hide();
+                jQuery("#noResults").show();
             }
             // hide featured publications
-            $("#highlightsContainer").hide();
-            $("#show-highlights").show();
+            jQuery("#highlightsContainer").hide();
+            jQuery("#show-highlights").show();
 
             // change results header
-            $("#publication-results-heading-latest").hide();
-            $("#publication-results-heading").hide();
+            jQuery("#publication-results-heading-latest").hide();
+            jQuery("#publication-results-heading").hide();
         }
 
         // show "Loading..." message
-        $('#loading').show();
+        jQuery('#loading').show();
 
-        $.getJSON(
+        jQuery.getJSON(
             "publications_view.json?" + query,
             function (data) {
                 var items = [],
                     results = "";
 
-                $.each(data, function (key, val) {
+                jQuery.each(data, function (key, val) {
                     var link = "<a href='" + val.path + "'>" + val.title + "</a>";
                     items.push('<tr><td>' + link + '</td><td>' +
                                val.year + '</td><td>' +
@@ -61,47 +61,47 @@
                                val.size + '</em></td></tr>');
                 });
 
-                results = $('<tbody/>', {html: items.join('')});
+                results = jQuery('<tbody/>', {html: items.join('')});
                 resultsCount = items.length;
-                $("#resultTable tbody").replaceWith(results);
+                jQuery("#resultTable tbody").replaceWith(results);
 
                 showResults();
                 toggleShowAll();
 
                 // hide "Loading..." message
-                $('#loading').hide();
+                jQuery('#loading').hide();
             }
         );
     }
 
-    $(document).ready(function () {
+    jQuery(document).ready(function () {
 
-        $("#publicationsFilter :input").change(function () {
+        jQuery("#publicationsFilter :input").change(function () {
             queryPublications();
         });
 
-        $("#show-all").click(function () {
-            $("#publicationsFilter").append("<input type='hidden' name='show-all' value='True'/>");
+        jQuery("#show-all").click(function () {
+            jQuery("#publicationsFilter").append("<input type='hidden' name='show-all' value='True'/>");
             showAll = true;
             queryPublications();
             return false;
         });
 
-        $("#show-latest").click(function () {
-            $("input[name='show-all']").remove();
+        jQuery("#show-latest").click(function () {
+            jQuery("input[name='show-all']").remove();
             showAll = false;
             queryPublications();
             return false;
         });
 
-        $("#show-highlights a").click(function () {
-            $("#highlightsContainer").show();
-            $("#show-highlights").hide();
+        jQuery("#show-highlights a").click(function () {
+            jQuery("#highlightsContainer").show();
+            jQuery("#show-highlights").hide();
             return false;
         });
 
         var timeout;
-        $("input[name=SearchableText]").keyup(function () {
+        jQuery("input[name=SearchableText]").keyup(function () {
             window.clearTimeout(timeout);
             timeout = window.setTimeout(function () {
                 queryPublications();
@@ -109,10 +109,10 @@
         });
 
         // show tooltips
-        $('a.tooltip').each(function () {
-            var helptext = $($(this).attr('rel'));
+        jQuery('a.tooltip').each(function () {
+            var helptext = jQuery(jQuery(this).attr('rel'));
 
-            $(this).qtip({
+            jQuery(this).qtip({
                 content: {
                     text: helptext,
                     title: {
@@ -138,9 +138,10 @@
         });
 
         // Don't warn the user that they have already submitted the form
-        $("#queryPublications").unbind('click');
+        jQuery("#queryPublications").unbind('click');
 
-        var recentcarousel = $(".recentcarousel").jcarousel({scroll: 1});
+        // initialize recent items carousel
+        jQuery(".recentcarousel").jcarousel({scroll: 1});
     });
 
 }());
