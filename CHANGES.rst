@@ -5,8 +5,8 @@ Changelog
 4.7.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Replace $ with jQuery in publications.js to prevent integration errors
+  [jcerjak]
 
 4.7.4 (2013-04-08)
 ------------------
@@ -17,7 +17,7 @@ Changelog
 ------------------
 
 - no changes
- 
+
 4.7.2 (2013-04-08)
 ------------------
 
@@ -121,9 +121,9 @@ Changelog
 -------------------
 
 - Enhancements / Bugfixes for translated Publications with chapters. Chapters (ATLinks) are now
-  correctly copied over from the canonical to translations 
+  correctly copied over from the canonical to translations
   [thomasw]
-- Now propagating values of languageIndependent schema-extended fields actually works for LinguaPlone 2.2 
+- Now propagating values of languageIndependent schema-extended fields actually works for LinguaPlone 2.2
   [thomasw]
 
 1.1.19 (2010-07-14)
@@ -191,7 +191,7 @@ Changelog
 -------------------
 
 - fixed an inconsistency in the related publications where language indepentent was not used (pilz)
-- replaced all occurences of i18n:translate in the publication_view template 
+- replaced all occurences of i18n:translate in the publication_view template
   with a call to a method on the view that uses MessageFactory. I couldn't figure
   out why i18n:translate worked for some langs, and not for others such as NL (thomasw)
 
@@ -200,9 +200,9 @@ Changelog
 1.1.9 (2009-10-06)
 ------------------
 - Chapter links now always point to the url. Normally, if you click on a link
-  and you have edit rights, you would go to the link view and not to the link 
-  target. Since we already offer a second edit link, when somebody has edit 
-  rights, the regular link can point directly to the place the link points to. 
+  and you have edit rights, you would go to the link view and not to the link
+  target. Since we already offer a second edit link, when somebody has edit
+  rights, the regular link can point directly to the place the link points to.
   (gerken)
 
 - Refactored the Chapter Update functionality. It is not a method any longer
@@ -265,9 +265,9 @@ Changelog
 * removed the hardcoded author from the config file and the schema [pilz]
 * Trying to make it work without Linguaplone as well [pilz]
 * added link to title and image [pilz]
-* Added possibility to add manual relations to other content types. This 
+* Added possibility to add manual relations to other content types. This
   includes a language fallback [brand]
-  
+
 
 1.0 final
 ---------
@@ -280,11 +280,11 @@ Changelog
 * Added support for slc.xliff
 * refactored the adapter.py into adapter/ subdir
 * Added an eventhandler to automatically set the suptype on files added to a publication folder
-* Added an eventhandler to detect the uploaded language if the filename starts or 
+* Added an eventhandler to detect the uploaded language if the filename starts or
   ends with a lang abbrev
   E.g. XX_filename.pdf or filename_XX.pdf or XX-filename.pdf or filename-XX.pdf.
-* Added a patch for linguaplone inserting a new event to allow translating 
-  subtyped objects. Translations need to be subtyped just after the object has 
+* Added a patch for linguaplone inserting a new event to allow translating
+  subtyped objects. Translations need to be subtyped just after the object has
   been created and before attributes are edited.
 
 1.0 beta2
