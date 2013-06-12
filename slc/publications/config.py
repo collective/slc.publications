@@ -96,15 +96,16 @@ pub_types["factsheets"] = {
         default="Provide brief introductions to the Agency and to our "
             "activities.")}
 
-pub_types["presentations"] = {
-    "title": _(u"Presentations (PPT)"),
-    "description": _(
-        u"help_presentations",
-        default="PPT presentations on various safety and health topics and "
-            "EU-OSHA projects which can be freely adapted and reused. All "
-            "English versions are also available on Slideshare "
-            "(<a href='http://www.slideshare.net/euosha'>"
-            "http://www.slideshare.net/euosha</a>)")}
+#7694 temporarily remove PPTs from the publication types
+# pub_types["presentations"] = {
+#     "title": _(u"Presentations (PPT)"),
+#     "description": _(
+#         u"help_presentations",
+#         default="PPT presentations on various safety and health topics and "
+#             "EU-OSHA projects which can be freely adapted and reused. All "
+#             "English versions are also available on Slideshare "
+#             "(<a href='http://www.slideshare.net/euosha'>"
+#             "http://www.slideshare.net/euosha</a>)")}
 
 pub_types["magazine"] = {
     "title": _(u"Magazine"),

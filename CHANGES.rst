@@ -10,6 +10,8 @@ Changelog
 - #7379 #7602 #7379 Replace the server side truncation of the carousel
   text on the publications-view with JavaScript (jQuery.dotdotdot)
   [deroiste]
+- #7694 temporarily remove PPTs from the publication types [deroiste]
+
 
 4.7.4 (2013-04-08)
 ------------------
