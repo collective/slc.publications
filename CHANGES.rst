@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-4.7.5 (unreleased)
+4.7.5 (2013-06-24)
 ------------------
 
 - Replace $ with jQuery in publications.js to prevent integration errors
