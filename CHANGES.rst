@@ -5,7 +5,8 @@ Changelog
 4.7.6 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add a version param to the carousel JS on the publications view to
+  avoid caching [deroiste]
 
 
 4.7.5 (2013-06-24)

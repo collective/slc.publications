@@ -34,7 +34,7 @@
             tal:attributes="src string:$portal_url/++resource++slc.publications.browser/jquery.qtip-1.0.0-rc3.min.js">
     </script>
     <script type="text/javascript"
-            src="++resource++osha.theme.behaviour/highlights-carousel.js"
+            src="++resource++osha.theme.behaviour/highlights-carousel.js?v=3"
             language="javascript"></script>
   </metal:javascriptslot>
 
