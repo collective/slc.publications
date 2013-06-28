@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-4.7.6 (unreleased)
+4.7.6 (2013-06-28)
 ------------------
 
 - Add a version param to the carousel JS on the publications view to
