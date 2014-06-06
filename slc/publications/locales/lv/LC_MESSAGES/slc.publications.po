@@ -141,7 +141,7 @@ msgid "help_corporate_publications"
 msgstr ""
 "Šīs publikācijas ir aģentūras stratēģija, gada darbības plāns un gada "
 "ziņojums (pilnīgi un kopsavilkuma varianti), un tajās ir sniegts "
-"visaptverošs pārskats par <EM>EU-OSHA"
+"visaptverošs pārskats par EU-OSHA"
 
 #: slc.publications:/config.py:56
 msgid "Reports"

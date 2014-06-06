@@ -5,7 +5,8 @@ Changelog
 4.7.7 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Remove unclosed <em> in the latvian translation, which made most of
+  the text on the page italic [deroiste]
 
 
 4.7.6 (2013-06-28)
