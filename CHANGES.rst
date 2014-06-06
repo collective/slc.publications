@@ -7,6 +7,8 @@ Changelog
 
 - Remove unclosed <em> in the latvian translation, which made most of
   the text on the page italic [deroiste]
+- #9285 break long words in the Subject listing e.g. for German
+  [deroiste]
 
 
 4.7.6 (2013-06-28)

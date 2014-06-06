@@ -2129,8 +2129,9 @@ ul.checkList li {
 
 .checkList label {
     display: block;
-    width: auto !important;
+    width: 132px;
     padding-left: 18px !important;
+    word-wrap: break-word;
 }
 
 .checkList label input[type="checkbox"] {
