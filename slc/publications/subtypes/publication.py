@@ -9,6 +9,9 @@ from Products.CMFPlone import PloneMessageFactory as _
 from slc.publications import HAVE_LINGUAPLONE, generateMethods
 from zope.i18nmessageid import MessageFactory
 from zope.interface import implements
+import logging
+
+log = logging.getLogger(__name__)
 
 OSHAMessageFactory = MessageFactory('osha')
 
@@ -61,6 +64,10 @@ class ExtendedReferenceField(ExtensionFieldMixin, ExtensionField,
     def get(self, instance, **kwargs):
         if HAVE_LINGUAPLONE:
             canonical = instance.getCanonical()
+            if canonical is None:
+                log.warn("Could not get canonical of item {0}".format(
+                    '/'.join(instance.getPhysicalPath())))
+                canonical = instance
             canonical_refs = atapi.ReferenceField.get(
                 self, canonical, **kwargs)
             portal_languages = getToolByName(instance, 'portal_languages')
