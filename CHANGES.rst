@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-4.7.7 (unreleased)
+4.7.7 (2014-08-18)
 ------------------
 
 - Remove unclosed <em> in the latvian translation, which made most of
